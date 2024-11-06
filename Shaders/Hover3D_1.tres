@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://h3h86yy12dsj"]
+
+[ext_resource type="Shader" path="res://Shaders/Hover3D.gdshader" id="1_hgn7v"]
+
+[resource]
+shader = ExtResource("1_hgn7v")
+shader_parameter/_tilt_Scale = 0.2
+shader_parameter/_isSpecularLight = true
+shader_parameter/_speularLightIntensity = 0.5
+shader_parameter/_speularLightPower = 5.0
+shader_parameter/_mousePos = Vector2(250, 250)

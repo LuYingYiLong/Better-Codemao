@@ -1,0 +1,79 @@
+id,ch,en
+LOGIN_NAME,登录,Login
+VISITOR_LOGIN_NAME,游客登录,Visitor login
+IDENTITY_NAME,身份,Identity
+PASSWORD_NAME,密码,Password
+AUTOMATIC_LOGIN_NAME,自动登录,Automatic login
+ENTER_NAME,进入,Enter
+NEXT_NAME,下一个,Next
+FIND_NAME,查找,Find
+CODEMAO_COMMUNITY_FORUM_NAME,编程猫社区论坛,Codemao community forum
+WORKSHOP_NAME,工作室,Workshop
+FORUM_NAME,论坛,Forum
+POST_NAME,帖子,Post
+OPEN_IN_BROWSER_NAME,在浏览器打开,Open in browser
+ALL_REPLIES_NAME,所有回帖,All replies
+MESSAGE_NAME,消息,Message
+COMMENT_REPLY_NAME,评论与回复,Comment&Reply
+LIKE_FORK_NAME,赞与购买,Like&Fork
+LOAD_MORE_NAME,加载更多,Load more
+SYSTEM_NAME,系统,System
+USER_NAME,用户,User
+DETAILS_NAME,详情,Details
+FANS_NAME,粉丝,Fans
+ATTENTION_NAME,关注,Attention
+VIEW_NAME,被浏览,View
+LIKED_NAME,被点赞,Liked
+COLLECTED_NAME,被收藏,Collected
+RE_CREATED_NAME,被再创作,Re created
+DOING_NAME,正在做,Doing
+MY_WORK_NAME,我的作品,My work
+MY_COLLECTION_WORK_NAME,我的收藏,My Collection work
+USER_DETAILS_NAME,个人信息,User details
+BASIC_INFORMATION_NAME,基本信息,Basic Information
+MORE_INFORMATION_NAME,更多信息,More Information
+AVATAR_NAME,头像,Avatar
+NICKNAME_NAME,昵称,Nickname
+DESCRIPTION_NAME,描述,Description
+SEX_NAME,性别,Sex
+FEMALE_NAME,女,Female
+MALE_NAME,男,Male
+REAL_NAME_NAME,真实姓名,Real name
+BIRTHDAY_NAME,生日,Birthday
+YEAR_NAME,年,Year
+MONTH_NAME,月,Month
+DAY_NAME1,日,Day
+CREATE_TIME_NAME,创建时间,Create time
+MAINACCOUNT_NAME,主账户,Mainaccount
+PASSWORD_NAME,密码,Password
+ITS_SET_NAME,已设置,It's set
+NOT_SET_NAME,未设置,Not set
+PHONE_NUMBER_NAME,手机号,Phone number
+THIRD_PARTY_ACCOUNTS_NAME,第三方账户,Third party accounts
+WECHAT_NAME,微信,Wechat
+BOUND_NAME,已绑定,Bound
+UNBOUND_NAME,未绑定,Unbound
+ADDITIONAL_INFORMATION_NAME,其他信息,Additional information
+GOLD_NAME,金币,Gold
+VOICE_FORBIDDEN_NAME,禁言,Voice forbidden
+SIGNED_NAME,签署《友好契约》,Signing of the "Friendship Pact"
+TRUE_NAME,是,True
+FALSE_NAME,否,False
+AUTHOR_LEVEL2,潜力新星,Student
+AUTHOR_LEVEL3,进阶高手,Master
+AUTHOR_LEVEL4,编程大佬,Guru
+AUTHOR_LEVEL5,源码传说,Legend
+POST_COMMENT_NAME,回复了你的帖子《{0}》,POST_COMMENT
+WORK_COMMENT_NAME,评论了你的作品《{0}》,WORK_COMMENT
+WORK_REPLY_AUTHOR_NAME,回复了你的作品《{0}》下的“{1}”的评论,WORK_REPLY_AUTHOR
+POST_REPLY_AUTHOR_NAME,回复了你的帖子《{0}》下的“{1}”的评论,POST_REPLY_AUTHOR
+WORK_REPLY_REPLY_AUTHOR_NAME,回复了你的作品《{0}》下的“{1}”的回复,WORK_REPLY_REPLY_AUTHOR_NAME
+WORK_REPLY_REPLY_NAME,回复了你在作品《{0}》下的评论,WORK_REPLY_REPLY
+POST_REPLY_NAME,回复了你的帖子《{0}》下的回帖,POST_REPLY
+WORK_LIKE_NAME,赞了你的作品《{0}》,WORK_LIKE
+WORK_FORK_NAME,购买了你的作品《{0}》,WORK_FORK
+WORK_SHOP_USER_LEAVE_NAME,“{0}”已退出“{1}”工作室,WORK_SHOP_USER_LEAVE
+INIT_CONFIG_NAME,初始化配置,Init config
+INIT_CONFIG_PROCESS1,开始之前，我们先设置初始化配置,Before we begin，let's set up the initialization config
+INIT_CONFIG_PROCESS2,查找最新帖子ID,Find the most recent post ID
+INIT_CONFIG_DESCRIPTION2,从编程猫社区获取一个最近的帖子ID并输入,Get a recent post ID from the Codemao community and input
