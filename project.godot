@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="BetterCodemao"
+run/main_scene="res://Scenes/Application.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Application="*res://Scripts/Application.gd"
+Settings="*res://Scripts/Settings.gd"
+GlobalTheme="*res://Scripts/Theme.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor]
+
+naming/scene_name_casing=1
+naming/script_name_casing=1
+
+[gui]
+
+theme/custom_font="res://Resources/Fonts/SourceHanSansCN-Medium.otf"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Languages/Language.ch.translation", "res://Languages/Language.en.translation")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
