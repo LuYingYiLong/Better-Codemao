@@ -1,0 +1,635 @@
+[gd_scene load_steps=11 format=3 uid="uid://caygv4nw10brn"]
+
+[ext_resource type="Script" path="res://Scripts/UserDetailsMenu.gd" id="1_jjlpv"]
+[ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="2_cmo24"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_rk1a2"]
+[ext_resource type="Texture2D" uid="uid://cqu4jim0gxmhd" path="res://Resources/Textures/Image.svg" id="4_rhmyc"]
+[ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="4_v16gt"]
+[ext_resource type="Theme" uid="uid://dxmuchrxdh1vs" path="res://Resources/Themes/LineEditTheme2.tres" id="5_l1qr1"]
+[ext_resource type="Texture2D" uid="uid://bna4a2cy0skgn" path="res://Resources/Textures/Copy.svg" id="6_3i245"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0ymd"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6axoq"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vp7v"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="UserDetailsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jjlpv")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="DetailsRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+material = ExtResource("2_cmo24")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l0ymd")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_rk1a2")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BasicInformationLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("4_v16gt")
+text = "BASIC_INFORMATION_NAME"
+
+[node name="Avatar" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Avatar"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Avatar/MarginContainer"]
+layout_mode = 2
+
+[node name="AvatarLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Avatar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "AVATAR_NAME"
+
+[node name="Mask" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Avatar/MarginContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_1vp7v")
+
+[node name="AvatarTexture" type="TextureRect" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Avatar/MarginContainer/HBoxContainer/Mask"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_rhmyc")
+expand_mode = 1
+
+[node name="Nickname" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Nickname"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Nickname/MarginContainer"]
+layout_mode = 2
+
+[node name="NicknameLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Nickname/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "NICKNAME_NAME"
+
+[node name="NicknameEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Nickname/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = ExtResource("5_l1qr1")
+text = "Nickname"
+editable = false
+context_menu_enabled = false
+
+[node name="Description" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Description"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Description/MarginContainer"]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Description/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "DESCRIPTION_NAME"
+
+[node name="DescriptionEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Description/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = ExtResource("5_l1qr1")
+text = "Description"
+editable = false
+context_menu_enabled = false
+
+[node name="ID" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/ID"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/ID/MarginContainer"]
+layout_mode = 2
+
+[node name="IDLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/ID/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "ID"
+
+[node name="ID" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/ID/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "ID"
+
+[node name="CopyIDButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/ID/MarginContainer/HBoxContainer"]
+self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 28
+icon = ExtResource("6_3i245")
+flat = true
+
+[node name="Sex" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Sex"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Sex/MarginContainer"]
+layout_mode = 2
+
+[node name="SexLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Sex/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "SEX_NAME"
+
+[node name="Sex" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Sex/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "Sex"
+
+[node name="MoreInformationLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("4_v16gt")
+text = "MORE_INFORMATION_NAME"
+
+[node name="RealName" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RealName"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RealName/MarginContainer"]
+layout_mode = 2
+
+[node name="RealNameLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RealName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "REAL_NAME_NAME"
+
+[node name="RealNameEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RealName/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = ExtResource("5_l1qr1")
+text = "RealName"
+editable = false
+context_menu_enabled = false
+
+[node name="BirthdayName" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BirthdayName"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BirthdayName/MarginContainer"]
+layout_mode = 2
+
+[node name="BirthdayLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BirthdayName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "BIRTHDAY_NAME"
+
+[node name="YearEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BirthdayName/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = ExtResource("5_l1qr1")
+text = "Year"
+editable = false
+context_menu_enabled = false
+
+[node name="YearLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BirthdayName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "YEAR_NAME"
+
+[node name="MonthEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BirthdayName/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = ExtResource("5_l1qr1")
+text = "Month"
+editable = false
+context_menu_enabled = false
+
+[node name="MonthLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BirthdayName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "MONTH_NAME"
+
+[node name="DayEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BirthdayName/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = ExtResource("5_l1qr1")
+text = "Day"
+editable = false
+context_menu_enabled = false
+
+[node name="DayLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BirthdayName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "DAY_NAME1"
+
+[node name="CreateTimeName" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CreateTimeName"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CreateTimeName/MarginContainer"]
+layout_mode = 2
+
+[node name="CreateTimeLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CreateTimeName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "CREATE_TIME_NAME"
+
+[node name="CreateTime" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CreateTimeName/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "CreateTime"
+
+[node name="CopyCreateTimeButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CreateTimeName/MarginContainer/HBoxContainer"]
+self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 28
+icon = ExtResource("6_3i245")
+flat = true
+
+[node name="MainaccountLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("4_v16gt")
+text = "MAINACCOUNT_NAME"
+
+[node name="Password" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Password"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Password/MarginContainer"]
+layout_mode = 2
+
+[node name="PasswordLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Password/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "PASSWORD_NAME"
+
+[node name="HasPassword" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Password/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "HasPassword"
+
+[node name="PhoneNumber" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhoneNumber"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhoneNumber/MarginContainer"]
+layout_mode = 2
+
+[node name="PhoneNumberLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhoneNumber/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "PHONE_NUMBER_NAME"
+
+[node name="PhoneNumber" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhoneNumber/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "PhoneNumber"
+
+[node name="ThirdPartyAccountsLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("4_v16gt")
+text = "THIRD_PARTY_ACCOUNTS_NAME"
+
+[node name="QQ" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/QQ"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/QQ/MarginContainer"]
+layout_mode = 2
+
+[node name="QQLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/QQ/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "QQ"
+
+[node name="HasBoundQQ" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/QQ/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "UNBOUND_NAME"
+
+[node name="Wechat" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Wechat"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Wechat/MarginContainer"]
+layout_mode = 2
+
+[node name="WechatLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Wechat/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "WECHAT_NAME"
+
+[node name="HasBoundWechat" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Wechat/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "UNBOUND_NAME"
+
+[node name="AdditionalInformationLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("4_v16gt")
+text = "ADDITIONAL_INFORMATION_NAME"
+
+[node name="Gold" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Gold"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Gold/MarginContainer"]
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Gold/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "GOLD_NAME"
+
+[node name="Gold" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Gold/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "999"
+
+[node name="Signed" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Signed"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Signed/MarginContainer"]
+layout_mode = 2
+
+[node name="SignedLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Signed/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "SIGNED_NAME"
+
+[node name="HasSigned" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Signed/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "FALSE_NAME"
+
+[node name="VoiceForbidden" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6axoq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VoiceForbidden"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VoiceForbidden/MarginContainer"]
+layout_mode = 2
+
+[node name="VoiceForbiddenLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VoiceForbidden/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "VOICE_FORBIDDEN_NAME"
+
+[node name="VoiceForbidden" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VoiceForbidden/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "FALSE_NAME"
+
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/ID/MarginContainer/HBoxContainer/CopyIDButton" to="." method="_on_copy_id_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CreateTimeName/MarginContainer/HBoxContainer/CopyCreateTimeButton" to="." method="_on_copy_create_time_button_pressed"]

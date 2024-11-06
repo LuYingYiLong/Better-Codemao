@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dv2umrnwh4a6"]
+
+[node name="Monitor" type="Window"]
+disable_3d = true
+title = "Monitor"
+initial_position = 3
+size = Vector2i(512, 320)
+current_screen = 0
+min_size = Vector2i(128, 128)
+
+[node name="Blackground" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

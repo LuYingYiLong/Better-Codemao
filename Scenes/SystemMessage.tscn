@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://clsuw06pfq0kp"]
+
+[ext_resource type="Script" path="res://Scripts/SystemMessage.gd" id="1_l1h8q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqk78"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="SystemMessage" type="Control"]
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_l1h8q")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(1, 0.698039, 0, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_top = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vqk78")
+
+[node name="MessageLabel" type="Label" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Message"
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
