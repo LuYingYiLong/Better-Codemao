@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dxmuchrxdh1vs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yo51g"]
+bg_color = Color(0.783523, 0.783523, 0.783523, 0.490196)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5eso"]
+bg_color = Color(0.783523, 0.783523, 0.783523, 0.490196)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7pcuj"]
+bg_color = Color(0.783523, 0.783523, 0.783523, 0.490196)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+LineEdit/colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+LineEdit/colors/font_selected_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+LineEdit/colors/font_uneditable_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+LineEdit/font_sizes/font_size = 20
+LineEdit/styles/focus = SubResource("StyleBoxFlat_yo51g")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_a5eso")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_7pcuj")

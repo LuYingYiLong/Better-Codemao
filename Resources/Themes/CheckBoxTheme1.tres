@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dhv8bp5a1k2d3"]
+
+[ext_resource type="Texture2D" uid="uid://bjvtvdfp57pou" path="res://Resources/Textures/Checked.svg" id="1_wr7gn"]
+[ext_resource type="Texture2D" uid="uid://cs3hfyljdofo8" path="res://Resources/Textures/Unchecked.svg" id="2_k6ecp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2mu61"]
+
+[resource]
+CheckBox/colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+CheckBox/colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+CheckBox/colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+CheckBox/colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+CheckBox/colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+CheckBox/colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+CheckBox/constants/icon_max_width = 12
+CheckBox/font_sizes/font_size = 12
+CheckBox/icons/checked = ExtResource("1_wr7gn")
+CheckBox/icons/checked_disabled = ExtResource("1_wr7gn")
+CheckBox/icons/unchecked = ExtResource("2_k6ecp")
+CheckBox/icons/unchecked_disabled = ExtResource("2_k6ecp")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_2mu61")
