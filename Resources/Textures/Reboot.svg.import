@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dir3ebxrqxnao"
-path="res://.godot/imported/Workshop.svg-223ab0dfc1dab89d6639fcc2c4631ddb.ctex"
+uid="uid://xwrgwh5h8skf"
+path="res://.godot/imported/Reboot.svg-44ad02644e3b4e81b7efede3b115c567.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Workshop.svg"
-dest_files=["res://.godot/imported/Workshop.svg-223ab0dfc1dab89d6639fcc2c4631ddb.ctex"]
+source_file="res://Resources/Textures/Reboot.svg"
+dest_files=["res://.godot/imported/Reboot.svg-44ad02644e3b4e81b7efede3b115c567.ctex"]
 
 [params]
 
