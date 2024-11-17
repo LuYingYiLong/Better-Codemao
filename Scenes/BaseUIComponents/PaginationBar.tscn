@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfb7taf7dr0jb"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/PaginationBar.gd" id="1_ycgga"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="2_d5we3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lo4wy"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="PaginationBar" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_lo4wy")
+script = ExtResource("1_ycgga")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PreviousButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_d5we3")
+theme_override_font_sizes/font_size = 24
+text = "<"
+
+[node name="PagerButtonContainer" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NextButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_d5we3")
+theme_override_font_sizes/font_size = 24
+text = ">"
+
+[connection signal="pressed" from="HBoxContainer/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

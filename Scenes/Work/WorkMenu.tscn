@@ -1,0 +1,681 @@
+[gd_scene load_steps=44 format=3 uid="uid://kwkpaksy2xmu"]
+
+[ext_resource type="Script" path="res://Scripts/Work/WorkMenu.gd" id="1_jdbwl"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/BasePanelContainer.tscn" id="2_3t1v3"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_hyp1r"]
+[ext_resource type="Texture2D" uid="uid://cwo42vvibmedn" path="res://Resources/Textures/Run.svg" id="4_k470w"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="4_lyxtc"]
+[ext_resource type="Texture2D" uid="uid://xwrgwh5h8skf" path="res://Resources/Textures/Reboot.svg" id="5_j5mx1"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="5_y2cvy"]
+[ext_resource type="Texture2D" uid="uid://mwsgajuwl82w" path="res://Resources/Textures/FullScreen.svg" id="6_7vgtg"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_uuxp6"]
+[ext_resource type="Texture2D" uid="uid://c4lupm1on6nj8" path="res://Resources/Textures/Link.svg" id="7_wxigk"]
+[ext_resource type="PackedScene" uid="uid://daq0uuavjfgf1" path="res://Scenes/AuthorLevelTag.tscn" id="8_rtf2g"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="9_ll54y"]
+[ext_resource type="Texture2D" uid="uid://bl8b6wnodhldf" path="res://Resources/Textures/Like.svg" id="10_6pgep"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="11_1udrr"]
+[ext_resource type="PackedScene" uid="uid://doovx6ujtt10p" path="res://Scenes/Work/WorkTag.tscn" id="11_dj7m7"]
+[ext_resource type="PackedScene" uid="uid://bp6dbjsjji0pq" path="res://Scenes/Work/HWorkCard.tscn" id="11_e43ck"]
+[ext_resource type="Texture2D" uid="uid://bnp1vv6ye1f2b" path="res://Resources/Textures/Collect.svg" id="13_e5rua"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="13_gm0mk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4n68a"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57n8s"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebvss"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_essun"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tucdf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_byxkb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3su1t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x2hr1"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_08ep8"]
+color = Color(0, 0, 0, 0.196078)
+grow_begin = -6.0
+grow_end = -6.0
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djshe"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_affos"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_et2vb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehhfg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifta2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ow7fd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj1pj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_idts6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0n67"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ouefy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ane1e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t70r5"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6vkn7"]
+color = Color(0, 0, 0, 0.196078)
+grow_begin = -6.0
+grow_end = -6.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jc6yy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v07ei"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cjkp"]
+
+[node name="WorkMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jdbwl")
+
+[node name="WorkRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="LikeRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="CollectionRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="CommentsRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="FollowRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="UserWorksRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="RecommendedRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_hyp1r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 32
+
+[node name="Work" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4n68a")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RunButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
+self_modulate = Color(0.06, 0.06, 0.06, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 30
+theme_override_icons/icon = ExtResource("4_k470w")
+flat = true
+
+[node name="RebootButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
+self_modulate = Color(0.06, 0.06, 0.06, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 30
+theme_override_icons/icon = ExtResource("5_j5mx1")
+flat = true
+
+[node name="FullScreenButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
+self_modulate = Color(0.06, 0.06, 0.06, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 30
+theme_override_icons/icon = ExtResource("6_7vgtg")
+flat = true
+
+[node name="OpenInBrowserButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
+self_modulate = Color(0.06, 0.06, 0.06, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 30
+theme_override_icons/icon = ExtResource("7_wxigk")
+flat = true
+
+[node name="Mask" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer"]
+clip_children = 1
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_57n8s")
+
+[node name="PreviewTexture" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/Mask" instance=ExtResource("4_lyxtc")]
+unique_name_in_owner = true
+self_modulate = Color(0.5, 0.5, 0.5, 1)
+custom_minimum_size = Vector2(0, 422)
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 3
+stretch_mode = 6
+
+[node name="Like&Collect" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer"]
+layout_mode = 2
+
+[node name="Like" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ebvss")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
+layout_mode = 2
+
+[node name="LikeIcon" type="TextureRect" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
+custom_minimum_size = Vector2(59, 59)
+layout_mode = 2
+texture = ExtResource("10_6pgep")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="LikeLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+theme_override_font_sizes/font_size = 24
+text = "LIKE_NAME"
+text_overrun_behavior = 3
+
+[node name="PraiseTimes" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("11_1udrr")
+text = "999"
+uppercase = true
+
+[node name="LikeButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_essun")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tucdf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_byxkb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
+flat = true
+
+[node name="LikedButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_essun")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tucdf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_byxkb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
+flat = true
+
+[node name="Line" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_08ep8")
+
+[node name="Collect" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ebvss")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
+layout_mode = 2
+
+[node name="CollectIcon" type="TextureRect" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
+custom_minimum_size = Vector2(59, 59)
+layout_mode = 2
+texture = ExtResource("13_e5rua")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="CollectLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+theme_override_font_sizes/font_size = 24
+text = "COLLECT_NAME"
+text_overrun_behavior = 3
+
+[node name="CollectTimes" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("11_1udrr")
+text = "999"
+uppercase = true
+
+[node name="CollectButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_essun")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tucdf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_byxkb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
+flat = true
+
+[node name="CollectedButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_essun")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tucdf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_byxkb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
+flat = true
+
+[node name="Comments" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer"]
+layout_mode = 2
+
+[node name="AllRepliesLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+theme_override_font_sizes/font_size = 24
+text = "ALL_REPLIES_NAME"
+text_overrun_behavior = 3
+
+[node name="TopReplyCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ReplyCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PaginationBar" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer" instance=ExtResource("13_gm0mk")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size = 11
+current_page = 1
+
+[node name="TabBar" type="TabBar" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 32
+
+[node name="Details" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_djshe")
+
+[node name="AvatarTexture" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("4_lyxtc")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("5_y2cvy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -4
+
+[node name="NicknameLabel" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxEmpty_affos")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_et2vb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ehhfg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ifta2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ow7fd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_lj1pj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_idts6")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_r0n67")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ouefy")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ane1e")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t70r5")
+text = "Nickname"
+flat = true
+alignment = 0
+text_overrun_behavior = 3
+
+[node name="AuthorLevelTag" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("8_rtf2g")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="FollowButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("9_ll54y")
+text = "FOLLOW_NAME"
+
+[node name="FollowedButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("9_ll54y")
+text = "FOLLOWED_NAME"
+
+[node name="Line" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_6vkn7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="WorkNameLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+theme_override_font_sizes/font_size = 24
+text = "WorkName"
+autowrap_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+text = "DESCRIPTION_NAME"
+
+[node name="Description" type="TextEdit" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_readonly_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_constants/line_spacing = -4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jc6yy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v07ei")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_4cjkp")
+text = "Description"
+placeholder_text = "Description"
+editable = false
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+autowrap_mode = 2
+scroll_fit_content_height = true
+caret_blink = true
+
+[node name="OperationLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+text = "OPERATION_NAME"
+
+[node name="Operation" type="TextEdit" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_readonly_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_constants/line_spacing = -4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jc6yy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v07ei")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_4cjkp")
+text = "Operation"
+placeholder_text = "Operation"
+editable = false
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+autowrap_mode = 2
+scroll_fit_content_height = true
+caret_blink = true
+
+[node name="WorkTagLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+text = "WORK_TAG_NAME"
+
+[node name="WorkTagContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WorkTag" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/WorkTagContainer" instance=ExtResource("11_dj7m7")]
+layout_mode = 2
+
+[node name="ViewTimesLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+text = "VIEW_TIMES_NAME"
+
+[node name="ViewTimes" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("11_1udrr")
+text = "114514"
+
+[node name="PublishTimeLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+text = "PUBLISH_TIME_NAME"
+
+[node name="PublishTime" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("11_1udrr")
+text = "1919810"
+
+[node name="MoreWorks" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer"]
+layout_mode = 2
+
+[node name="MoreWorksLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+theme_override_font_sizes/font_size = 24
+text = "MORE_WORKS_NAME"
+
+[node name="HWorkCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HWorkCard" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer/HWorkCardContainer" instance=ExtResource("11_e43ck")]
+layout_mode = 2
+
+[node name="RecommendedWorks" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer"]
+layout_mode = 2
+
+[node name="RecommendedWorksLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_uuxp6")
+theme_override_font_sizes/font_size = 24
+text = "RECOMMENDED_WORKS_NAME"
+
+[node name="HRecommendedWorkCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HWorkCard" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer/HRecommendedWorkCardContainer" instance=ExtResource("11_e43ck")]
+layout_mode = 2
+
+[connection signal="request_completed" from="WorkRequest" to="." method="_on_work_request_request_completed"]
+[connection signal="request_completed" from="LikeRequest" to="." method="_on_like_request_request_completed"]
+[connection signal="request_completed" from="CollectionRequest" to="." method="_on_collection_request_request_completed"]
+[connection signal="request_completed" from="CommentsRequest" to="." method="_on_comments_request_request_completed"]
+[connection signal="request_completed" from="FollowRequest" to="." method="_on_follow_request_request_completed"]
+[connection signal="request_completed" from="UserWorksRequest" to="." method="_on_user_works_request_request_completed"]
+[connection signal="request_completed" from="RecommendedRequest" to="." method="_on_recommended_request_request_completed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/OpenInBrowserButton" to="." method="_on_open_in_browser_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikeButton" to="." method="_on_like_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikedButton" to="." method="_on_liked_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectButton" to="." method="_on_collect_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectedButton" to="." method="_on_collected_button_pressed"]
+[connection signal="page_changed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/Mask/AvatarTexture" to="." method="view_user"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="view_user"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/FollowButton" to="." method="_on_follow_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/FollowedButton" to="." method="_on_followed_button_pressed"]

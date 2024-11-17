@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=3 uid="uid://qvuj5812nkeq"]
+
+[ext_resource type="Script" path="res://Scripts/WorkshopMenu.gd" id="1_j6pax"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/BasePanelContainer.tscn" id="2_ksf5l"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_nwk3k"]
+[ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="2_uu257"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="4_hp73l"]
+
+[node name="WorkshopMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j6pax")
+
+[node name="SimpleRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="ShopsRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="BasePanelContainer" parent="MarginContainer" instance=ExtResource("2_ksf5l")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BasePanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/BasePanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_nwk3k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoToButton" type="Button" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_hp73l")
+text = "GO_TO_THE_NAME"
+
+[node name="AdvancedWorkshopLabe" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("2_uu257")
+text = "WORK_SHOP_LEVEL4"
+
+[node name="AdvancedWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UpperIntermediateWorkshopLabe" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("2_uu257")
+text = "WORK_SHOP_LEVEL3"
+
+[node name="UpperIntermediateWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LowerIntermediateWorkshopLabel" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("2_uu257")
+text = "WORK_SHOP_LEVEL2"
+
+[node name="LowerIntermediateWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ElementaryWorkshopLabel" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("2_uu257")
+text = "WORK_SHOP_LEVEL1"
+
+[node name="ElementaryWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BeginnerWorkshopLabel" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("2_uu257")
+text = "WORK_SHOP_LEVEL0"
+
+[node name="BeginnerWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="request_completed" from="SimpleRequest" to="." method="_on_simple_request_request_completed"]
+[connection signal="request_completed" from="ShopsRequest" to="." method="_on_shops_request_request_completed"]
+[connection signal="pressed" from="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GoToButton" to="." method="_on_go_to_button_pressed"]

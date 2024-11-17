@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://du2ukdd0rn8o7"]
+
+[ext_resource type="Script" path="res://Scripts/ForumlMenu.gd" id="1_kph02"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/BasePanelContainer.tscn" id="2_1yq0c"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_4h4qy"]
+[ext_resource type="PackedScene" uid="uid://mfb2rhleqvr6" path="res://Scenes/Forum/PostCard.tscn" id="4_s514n"]
+[ext_resource type="PackedScene" uid="uid://b4f8wiwkdxhq8" path="res://Scenes/Forum/ForumBoardCard.tscn" id="5_pq8ln"]
+
+[node name="ForumlMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_kph02")
+
+[node name="BoardsRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="AllRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Posts" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_1yq0c")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Posts"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/Posts/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_4h4qy")
+horizontal_scroll_mode = 3
+
+[node name="PostCardContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Posts/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PostCard" parent="MarginContainer/HBoxContainer/Posts/MarginContainer/ScrollContainer/PostCardContainer" instance=ExtResource("4_s514n")]
+layout_mode = 2
+
+[node name="Boards" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_1yq0c")]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Boards"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/Boards/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_4h4qy")
+
+[node name="ForumBoardCardContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Boards/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ForumBoardCard" parent="MarginContainer/HBoxContainer/Boards/MarginContainer/ScrollContainer/ForumBoardCardContainer" instance=ExtResource("5_pq8ln")]
+layout_mode = 2

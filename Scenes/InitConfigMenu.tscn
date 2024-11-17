@@ -1,0 +1,200 @@
+[gd_scene load_steps=15 format=3 uid="uid://dqed20qho1shw"]
+
+[ext_resource type="Script" path="res://Scripts/InitConfigMenu.gd" id="1_jctk8"]
+[ext_resource type="Material" uid="uid://coqkdcrjan8oh" path="res://Shaders/DarkenedBlur.tres" id="1_ty7wv"]
+[ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="3_s6tdb"]
+[ext_resource type="Theme" uid="uid://bb3oaxb0rt1le" path="res://Resources/Themes/LineEditTheme1.tres" id="4_kskwv"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="4_ouim8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvduu"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ImageTexture" id="ImageTexture_pevra"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_h4no1"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_vocqu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_654ap"]
+bg_color = Color(1, 1, 1, 1)
+expand_margin_top = 7.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_15kgg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fcsn"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="Theme" id="Theme_814qi"]
+HSlider/icons/grabber = SubResource("ImageTexture_pevra")
+HSlider/icons/grabber_disabled = SubResource("ImageTexture_h4no1")
+HSlider/icons/grabber_highlight = SubResource("ImageTexture_vocqu")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_654ap")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_15kgg")
+HSlider/styles/slider = SubResource("StyleBoxFlat_1fcsn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_38gjk"]
+
+[node name="InitConfigMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jctk8")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -256.0
+offset_right = 375.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+material = ExtResource("1_ty7wv")
+custom_minimum_size = Vector2(750, 512)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yvduu")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="InitConfigLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_s6tdb")
+theme_override_font_sizes/font_size = 40
+text = "INIT_CONFIG_NAME"
+uppercase = true
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_814qi")
+editable = false
+scrollable = false
+
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_38gjk")
+current_tab = 1
+tabs_visible = false
+
+[node name="1" type="Control" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "INIT_CONFIG_PROCESS1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="2" type="Control" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="PostRequest" type="HTTPRequest" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2"]
+unique_name_in_owner = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FindPostIDLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_s6tdb")
+theme_override_font_sizes/font_size = 24
+text = "INIT_CONFIG_PROCESS2"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
+layout_mode = 2
+
+[node name="PostIDEdit" type="LineEdit" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_kskwv")
+placeholder_text = "ID"
+
+[node name="FindButton" type="Button" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_ouim8")
+text = "FIND_NAME"
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.490196)
+text = "INIT_CONFIG_DESCRIPTION2"
+autowrap_mode = 1
+
+[node name="LinkButton" type="LinkButton" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
+layout_mode = 2
+text = "CODEMAO_COMMUNITY_FORUM_NAME"
+uri = "https://shequ.codemao.cn/community"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+scroll_following = true
+shortcut_keys_enabled = false
+
+[node name="NextButton" type="Button" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_ouim8")
+text = "NEXT_NAME"
+
+[connection signal="pressed" from="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer/HBoxContainer/FindButton" to="." method="_on_find_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

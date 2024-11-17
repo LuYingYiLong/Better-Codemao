@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://l0s02l8prky3"]
+
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="1_oiy2d"]
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/PagerButton.gd" id="2_3u6ck"]
+
+[node name="PagerButton" type="Button"]
+custom_minimum_size = Vector2(40, 40)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_oiy2d")
+theme_override_font_sizes/font_size = 24
+text = "1"
+script = ExtResource("2_3u6ck")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

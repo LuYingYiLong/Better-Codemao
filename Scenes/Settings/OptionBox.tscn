@@ -1,0 +1,127 @@
+[gd_scene load_steps=10 format=3 uid="uid://b56q43ue36r4q"]
+
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_4rym5"]
+[ext_resource type="Texture2D" uid="uid://xtqhdrqk18ja" path="res://Resources/Textures/Arrow.svg" id="2_emsui"]
+[ext_resource type="Script" path="res://Scripts/Settings/OptionBox.gd" id="2_xn38o"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_rd6d5"]
+[ext_resource type="Texture2D" uid="uid://c4lupm1on6nj8" path="res://Resources/Textures/Link.svg" id="4_0hwcg"]
+[ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="5_y7p17"]
+[ext_resource type="Texture2D" uid="uid://bna4a2cy0skgn" path="res://Resources/Textures/Copy.svg" id="6_fuxi7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uagon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbgw1"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="OptionBox" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 80)
+offset_right = 377.0
+offset_bottom = 80.0
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = ExtResource("1_4rym5")
+script = ExtResource("2_xn38o")
+text = "Text"
+description = "Description"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="TextLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("3_rd6d5")
+theme_override_font_sizes/font_size = 20
+text = "Text"
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("3_rd6d5")
+text = "Description"
+
+[node name="ArrowTexture" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("2_emsui")
+expand_mode = 1
+
+[node name="LinkTexture" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.06, 0.06, 0.06, 0.501961)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("4_0hwcg")
+expand_mode = 1
+
+[node name="CopyButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.0588235, 0.0588235, 0.0588235, 0.501961)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 28
+icon = ExtResource("6_fuxi7")
+flat = true
+
+[node name="BlackgroundPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_uagon")
+
+[node name="Mask" type="PanelContainer" parent="MarginContainer/HBoxContainer/BlackgroundPanel"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gbgw1")
+
+[node name="BlackgroundTexture" type="TextureRect" parent="MarginContainer/HBoxContainer/BlackgroundPanel/Mask"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_y7p17")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="FileDialog" type="FileDialog" parent="MarginContainer/HBoxContainer/BlackgroundPanel"]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 2
+size = Vector2i(700, 420)
+force_native = true
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png,*.jpg,*.jpeg")
+use_native_dialog = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="file_selected" from="MarginContainer/HBoxContainer/BlackgroundPanel/FileDialog" to="." method="_on_file_dialog_file_selected"]

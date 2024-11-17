@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci8hbvggabgnh"]
+
+[ext_resource type="Script" path="res://Scripts/ImageUrlLoader.gd" id="1_wwonq"]
+
+[node name="ImageUrlLoader" type="TextureRect"]
+expand_mode = 1
+script = ExtResource("1_wwonq")
+
+[node name="ImageRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="request_completed" from="ImageRequest" to="." method="_on_image_request_request_completed"]

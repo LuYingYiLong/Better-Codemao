@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv2umrnwh4a6"]
+
+[ext_resource type="Script" path="res://Scripts/Monitor.gd" id="1_sc2w6"]
+[ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="2_p7qp2"]
+
+[node name="Monitor" type="Window"]
+disable_3d = true
+transparent_bg = true
+title = "Monitor"
+initial_position = 3
+size = Vector2i(512, 320)
+current_screen = 0
+visible = false
+transparent = true
+force_native = true
+min_size = Vector2i(128, 128)
+script = ExtResource("1_sc2w6")
+
+[node name="Blackground" type="ColorRect" parent="."]
+material = ExtResource("2_p7qp2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.580392)

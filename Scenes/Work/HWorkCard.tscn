@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://bp6dbjsjji0pq"]
+
+[ext_resource type="Script" path="res://Scripts/Work/HWorkCard.gd" id="1_aosbv"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_ihmto"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_x5hi3"]
+[ext_resource type="FontFile" uid="uid://cphm5abmdoidd" path="res://Resources/Fonts/SourceHanSansCN-Normal.otf" id="4_1mhrh"]
+[ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="5_v8p1o"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_bv1ut"]
+[ext_resource type="Texture2D" uid="uid://cftybq6tll2w8" path="res://Resources/Textures/Praise.svg" id="7_b8kd4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtyt2"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phxa8"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HWorkCard" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 150)
+offset_right = 155.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtyt2")
+script = ExtResource("1_aosbv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_phxa8")
+
+[node name="PreviewTexture" parent="HBoxContainer/Mask" instance=ExtResource("2_ihmto")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_x5hi3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WorkNameLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "WorkName"
+vertical_alignment = 2
+text_overrun_behavior = 3
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("4_1mhrh")
+text = "Description"
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ViewTimes" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ViewIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer/HBoxContainer/ViewTimes"]
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("5_v8p1o")
+expand_mode = 1
+
+[node name="ViewTimes" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/ViewTimes"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(58, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("6_bv1ut")
+text = "114514"
+text_overrun_behavior = 3
+
+[node name="PraiseTimes" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PraiseIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer/HBoxContainer/PraiseTimes"]
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("7_b8kd4")
+expand_mode = 1
+
+[node name="PraiseTimes" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/PraiseTimes"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(58, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("6_bv1ut")
+text = "1919810"
+text_overrun_behavior = 3
+
+[connection signal="pressed" from="HBoxContainer/Mask/PreviewTexture" to="." method="_on_preview_texture_pressed"]

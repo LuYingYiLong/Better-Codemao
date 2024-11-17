@@ -1,0 +1,121 @@
+[gd_scene load_steps=20 format=3 uid="uid://mem6wfaaptwm"]
+
+[ext_resource type="Script" path="res://Scripts/CommentCard.gd" id="1_nrvkg"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_auwcy"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_6b1el"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_6rxos"]
+[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="5_ya8ud"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_j7p0m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihh0o"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qr7g"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q0hcf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cx6ee"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fbj35"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x7vl4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d57jy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aq4e5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fnpaf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1uje"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gin5g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gt3c7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhp37"]
+
+[node name="CommentCard" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ihh0o")
+script = ExtResource("1_nrvkg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4qr7g")
+
+[node name="AvatarTexture" parent="MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("2_auwcy")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("3_6b1el")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -3
+
+[node name="NicknameLabel" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("4_6rxos")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q0hcf")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_cx6ee")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fbj35")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_x7vl4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_d57jy")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_aq4e5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fnpaf")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_y1uje")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gin5g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_gt3c7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xhp37")
+text = "Nickname"
+flat = true
+alignment = 0
+text_overrun_behavior = 3
+
+[node name="WorkShopTag" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_ya8ud")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_constants/line_spacing = -4
+theme_override_fonts/font = ExtResource("6_j7p0m")
+text = "Content"
+autowrap_mode = 2
+
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]

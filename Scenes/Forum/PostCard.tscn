@@ -1,0 +1,132 @@
+[gd_scene load_steps=21 format=3 uid="uid://mfb2rhleqvr6"]
+
+[ext_resource type="Script" path="res://Scripts/PostCard.gd" id="1_5kq84"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_gtwqm"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_wn7q6"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_2fdoj"]
+[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="3_lkwnq"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_jb4pf"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_o3g1c"]
+[ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="8_0pe6i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g8eg"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ug44"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dnjpi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sy4n8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6kyha"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikobt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vupoj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_et30g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bw0fd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oc7ok"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7wiu0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbfrc"]
+
+[node name="PostCard" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 142)
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = ExtResource("1_gtwqm")
+script = ExtResource("1_5kq84")
+
+[node name="DetailsRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0g8eg")
+
+[node name="AvatarTexture" parent="MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("3_2fdoj")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_wn7q6")
+
+[node name="NicknameLabel" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("5_jb4pf")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7ug44")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dnjpi")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_sy4n8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_6kyha")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ikobt")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vupoj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_et30g")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_bw0fd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_oc7ok")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7wiu0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nbfrc")
+text = "Nickname"
+flat = true
+
+[node name="WorkShopTag" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_lkwnq")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -4
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_o3g1c")
+theme_override_font_sizes/font_size = 20
+text = "Title"
+
+[node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 0.490196)
+theme_override_constants/line_spacing = -4
+theme_override_fonts/font = ExtResource("8_0pe6i")
+text = "Content"
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_gui_input"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NicknameLabel" to="." method="jump_to_user_menu"]

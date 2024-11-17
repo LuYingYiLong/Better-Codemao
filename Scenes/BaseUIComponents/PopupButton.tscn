@@ -1,0 +1,98 @@
+[gd_scene load_steps=16 format=3 uid="uid://ujouhqgfvlnm"]
+
+[ext_resource type="Texture2D" uid="uid://bet1gduyitqqc" path="res://Resources/Textures/ButtonIcon.svg" id="1_ccuk2"]
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/PopupButton.gd" id="2_c5ypo"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_nn5kl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07veu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fvry0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1c1hf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upmh7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4yd80"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pw8bv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpklg"]
+bg_color = Color(0.6, 0.6, 0.6, 0.196078)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wkel"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rs35u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lro4q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ttvfu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbyuy"]
+
+[node name="PopupButton" type="PanelContainer"]
+offset_right = 14.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_07veu")
+script = ExtResource("2_c5ypo")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CheckedIcon" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(6, 26)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("1_ccuk2")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("3_nn5kl")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fvry0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1c1hf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_upmh7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4yd80")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pw8bv")
+flat = true
+
+[node name="ColorRect" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mpklg")
+
+[node name="Mask" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6wkel")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rs35u")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lro4q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ttvfu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dbyuy")
+flat = true
+
+[connection signal="mouse_entered" from="Mask" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Mask" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Mask" to="." method="_on_button_pressed"]

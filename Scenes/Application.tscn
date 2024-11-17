@@ -1,0 +1,246 @@
+[gd_scene load_steps=30 format=3 uid="uid://csg0n6d7u0rvf"]
+
+[ext_resource type="Script" path="res://Scripts/Application.gd" id="1_5hvyn"]
+[ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/LoginMenu.tscn" id="2_1hfjc"]
+[ext_resource type="Texture2D" uid="uid://dir3ebxrqxnao" path="res://Resources/Textures/Workshop.svg" id="2_b44jh"]
+[ext_resource type="Texture2D" uid="uid://dtyf6mejqb7mf" path="res://Resources/Textures/Forum.svg" id="2_do58s"]
+[ext_resource type="Script" path="res://Scripts/NavigationBar.gd" id="2_gfkna"]
+[ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="2_s4ftx"]
+[ext_resource type="Script" path="res://Scripts/BaseBlackground.gd" id="3_jr2r8"]
+[ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="3_scs3j"]
+[ext_resource type="Script" path="res://Scripts/AddressBar.gd" id="5_4xxjt"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_6l8hs"]
+[ext_resource type="Texture2D" uid="uid://xtqhdrqk18ja" path="res://Resources/Textures/Arrow.svg" id="6_rplow"]
+[ext_resource type="Texture2D" uid="uid://dlv44xa7u53o7" path="res://Resources/Textures/Message.svg" id="7_5lsja"]
+[ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="9_2koew"]
+[ext_resource type="Texture2D" uid="uid://cs3rexsdqsp0m" path="res://Resources/Textures/Settings.svg" id="12_tealn"]
+[ext_resource type="PackedScene" uid="uid://bdw6wa6gmpvb5" path="res://Scenes/SystemMessageList.tscn" id="13_0uouo"]
+[ext_resource type="PackedScene" uid="uid://ccy1pjbdx7xby" path="res://Scenes/ViewTheImageWindow.tscn" id="16_5naus"]
+[ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/MainPopupMenu.tscn" id="16_f86f1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ws3nl"]
+shader = ExtResource("3_scs3j")
+shader_parameter/blur_amount = 4.0
+shader_parameter/mix_amount = 0.2
+shader_parameter/color_over = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lemjn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pqexq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjssj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yooam"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0i0j7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qw8lr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sn45s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtgo6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4686y"]
+shader = ExtResource("3_scs3j")
+shader_parameter/blur_amount = 10.0
+shader_parameter/mix_amount = 0.275
+shader_parameter/color_over = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84wbw"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysmc3"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[node name="Application" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5hvyn")
+
+[node name="BaseBlackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_s4ftx")
+expand_mode = 5
+stretch_mode = 6
+script = ExtResource("3_jr2r8")
+
+[node name="BaseBlur" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ws3nl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="AddressBar" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lemjn")
+script = ExtResource("5_4xxjt")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/AddressBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="AddressTabBar" type="TabBar" parent="HBoxContainer/VBoxContainer/AddressBar/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_unselected_color = Color(0.454524, 0.454524, 0.454524, 1)
+theme_override_colors/font_hovered_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_selected_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/drop_mark_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_constants/icon_max_width = 24
+theme_override_fonts/font = ExtResource("6_6l8hs")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_pqexq")
+theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_bjssj")
+theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_yooam")
+theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_0i0j7")
+theme_override_styles/tab_selected = SubResource("StyleBoxEmpty_qw8lr")
+theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_sn45s")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_gtgo6")
+current_tab = 1
+tab_count = 2
+tab_0/title = "ADDRESS1"
+tab_1/title = "ADDRESS2"
+tab_1/icon = ExtResource("6_rplow")
+
+[node name="Pages" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NavigationBar" type="PanelContainer" parent="."]
+material = SubResource("ShaderMaterial_4686y")
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 80.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_84wbw")
+script = ExtResource("2_gfkna")
+
+[node name="MarginContainer" type="MarginContainer" parent="NavigationBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NavigationBar/MarginContainer"]
+layout_mode = 2
+
+[node name="WorkshopTab" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_b44jh")
+
+[node name="ForumTab" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_do58s")
+selected = true
+
+[node name="MessageButton" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+layout_mode = 2
+size_flags_vertical = 10
+mouse_default_cursor_shape = 2
+icon = ExtResource("7_5lsja")
+
+[node name="SettingsButton" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+icon = ExtResource("12_tealn")
+
+[node name="UserButton" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NavigationBar/MarginContainer/VBoxContainer/UserButton"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Mask" type="PanelContainer" parent="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer"]
+clip_children = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ysmc3")
+
+[node name="AvatarTexture" type="TextureRect" parent="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="LoginMenu" parent="." instance=ExtResource("2_1hfjc")]
+layout_mode = 1
+
+[node name="SystemMessageList" parent="." instance=ExtResource("13_0uouo")]
+layout_mode = 1
+
+[node name="ViewTheImageWindow" parent="." instance=ExtResource("16_5naus")]
+
+[node name="MainPopupMenu" parent="." instance=ExtResource("16_f86f1")]
+
+[node name="FileDialog" type="FileDialog" parent="."]
+initial_position = 2
+size = Vector2i(944, 592)
+exclusive = false
+force_native = true
+access = 2
+use_native_dialog = true
+
+[connection signal="tab_selected" from="HBoxContainer/VBoxContainer/AddressBar/MarginContainer/AddressTabBar" to="HBoxContainer/VBoxContainer/AddressBar" method="_on_address_tab_bar_tab_selected"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/WorkshopTab" to="NavigationBar" method="_on_workshop_tab_pressed"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/ForumTab" to="NavigationBar" method="_on_forum_tab_pressed"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/MessageButton" to="NavigationBar" method="_on_message_button_pressed"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/SettingsButton" to="NavigationBar" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/UserButton" to="NavigationBar" method="_on_user_button_pressed"]

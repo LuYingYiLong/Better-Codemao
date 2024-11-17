@@ -1,0 +1,155 @@
+[gd_scene load_steps=8 format=3 uid="uid://w52apwwhxm62"]
+
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_jot2d"]
+[ext_resource type="Script" path="res://Scripts/WorkshopCard.gd" id="1_uwlk2"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_s6kuc"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_i2t4w"]
+[ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="4_7iqac"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mijra"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8upmj"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="WorkshopCard" type="PanelContainer"]
+custom_minimum_size = Vector2(512, 128)
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = ExtResource("1_jot2d")
+script = ExtResource("1_uwlk2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mijra")
+
+[node name="ImageUrlLoader" parent="HBoxContainer/Mask" instance=ExtResource("2_s6kuc")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_i2t4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("4_7iqac")
+theme_override_font_sizes/font_size = 24
+text = "Name"
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_constants/line_spacing = -4
+text = "Description"
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="ManagerLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+text = "MANAGER_NAME"
+
+[node name="Mask" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
+
+[node name="ManagerAvatarTexture" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("2_s6kuc")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_i2t4w")
+
+[node name="SubManagerLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+text = "SUB_MANAGER_NAME"
+
+[node name="Mask2" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
+
+[node name="SubManager1AvatarTexture" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask2" instance=ExtResource("2_s6kuc")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("3_i2t4w")
+
+[node name="Mask3" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
+
+[node name="SubManager2AvatarTexture" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask3" instance=ExtResource("2_s6kuc")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("3_i2t4w")
+
+[node name="Mask4" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
+
+[node name="SubManager3AvatarTexture" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask4" instance=ExtResource("2_s6kuc")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("3_i2t4w")
+
+[node name="Mask5" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
+
+[node name="SubManager4AvatarTexture" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask5" instance=ExtResource("2_s6kuc")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("3_i2t4w")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_manager_avatar_texture_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask2" to="." method="_on_sub_manager_1_avatar_texture_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask3" to="." method="_on_sub_manager_2_avatar_texture_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask4" to="." method="_on_sub_manager_3_avatar_texture_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask5" to="." method="_on_sub_manager_4_avatar_texture_gui_input"]

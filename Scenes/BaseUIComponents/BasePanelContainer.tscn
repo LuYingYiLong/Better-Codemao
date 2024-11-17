@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfa41l48uuw85"]
+
+[ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="1_30k2r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glb71"]
+bg_color = Color(1, 1, 1, 0.490196)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74, 0.74, 0.74, 0.490196)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6yn3"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="BasePanelContainer" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 25.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_glb71")
+
+[node name="Blur" type="PanelContainer" parent="."]
+material = ExtResource("1_30k2r")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y6yn3")
