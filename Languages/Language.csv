@@ -8,7 +8,23 @@ ENTER_NAME,进入,Enter
 NEXT_NAME,下一个,Next
 FIND_NAME,查找,Find
 CODEMAO_COMMUNITY_FORUM_NAME,编程猫社区论坛,Codemao community forum
+WORK_NAME,作品,Work
+LIKE_NAME,点赞,Like
+LIKED_NAME,已点赞,Liked
+COLLECT_NAME,收藏,Collect
+COLLECTED_NAME,已收藏,Collected
+WORK_TAG_NAME,作品标签,Work tag
+VIEW_TIMES_NAME,浏览次数,View times
+PUBLISH_TIME_NAME,发布时间,Publish time
+MORE_WORKS_NAME,更多作品,More works
+RECOMMENDED_WORKS_NAME,推荐作品,Recommended works
 WORKSHOP_NAME,工作室,Workshop
+GO_TO_THE_NAME,前往,Go to the 
+MANAGER_NAME,室长,Manager
+SUB_MANAGER_NAME,副室长,Sub manager
+TOTAL_SCORE_NAME,积分总数,Total score
+SUBMITTED_WORKS_NAME,投稿作品,Submitted works
+WORKSHOP_MEMBER,工作室成员,Workshop member
 FORUM_NAME,论坛,Forum
 POST_NAME,帖子,Post
 OPEN_IN_BROWSER_NAME,在浏览器打开,Open in browser
@@ -18,14 +34,21 @@ COMMENT_REPLY_NAME,评论与回复,Comment&Reply
 LIKE_FORK_NAME,赞与购买,Like&Fork
 LOAD_MORE_NAME,加载更多,Load more
 SYSTEM_NAME,系统,System
+SETTINGS_NAME,设置,Settings
+PERSONALIZATION_NAME,个性化,Personalization
+CHANGE_BLACKGROUND_NAME,更改背景,Change blackground
+LANGUAGE_NAME,语言,Language
+ABOUT_NAME,关于,About
 USER_NAME,用户,User
+FOLLOW_NAME,关注,Follow
+FOLLOWED_NAME,已关注,Followed
 DETAILS_NAME,详情,Details
 FANS_NAME,粉丝,Fans
 ATTENTION_NAME,关注,Attention
-VIEW_NAME,被浏览,View
-LIKED_NAME,被点赞,Liked
-COLLECTED_NAME,被收藏,Collected
-RE_CREATED_NAME,被再创作,Re created
+VIEW_NAME1,被浏览,View
+LIKED_NAME1,被点赞,Liked
+COLLECTED_NAME1,被收藏,Collected
+RE_CREATED_NAME1,被再创作,Re created
 DOING_NAME,正在做,Doing
 MY_WORK_NAME,我的作品,My work
 MY_COLLECTION_WORK_NAME,我的收藏,My Collection work
@@ -35,6 +58,7 @@ MORE_INFORMATION_NAME,更多信息,More Information
 AVATAR_NAME,头像,Avatar
 NICKNAME_NAME,昵称,Nickname
 DESCRIPTION_NAME,描述,Description
+OPERATION_NAME,操作,Operation
 SEX_NAME,性别,Sex
 FEMALE_NAME,女,Female
 MALE_NAME,男,Male
@@ -63,6 +87,11 @@ AUTHOR_LEVEL2,潜力新星,Student
 AUTHOR_LEVEL3,进阶高手,Master
 AUTHOR_LEVEL4,编程大佬,Guru
 AUTHOR_LEVEL5,源码传说,Legend
+WORK_SHOP_LEVEL0,萌新工作室,Beginner workshop
+WORK_SHOP_LEVEL1,实习工作室,Elementary workshop
+WORK_SHOP_LEVEL2,进阶工作室,Lower-intermediate workshop
+WORK_SHOP_LEVEL3,精英工作室,Upper-intermediate workshop
+WORK_SHOP_LEVEL4,大神工作室,Advanced workshop
 POST_COMMENT_NAME,回复了你的帖子《{0}》,POST_COMMENT
 WORK_COMMENT_NAME,评论了你的作品《{0}》,WORK_COMMENT
 WORK_REPLY_AUTHOR_NAME,回复了你的作品《{0}》下的“{1}”的评论,WORK_REPLY_AUTHOR
@@ -73,7 +102,13 @@ POST_REPLY_NAME,回复了你的帖子《{0}》下的回帖,POST_REPLY
 WORK_LIKE_NAME,赞了你的作品《{0}》,WORK_LIKE
 WORK_FORK_NAME,购买了你的作品《{0}》,WORK_FORK
 WORK_SHOP_USER_LEAVE_NAME,“{0}”已退出“{1}”工作室,WORK_SHOP_USER_LEAVE
+POST_DELETE_NAME,你的帖子《{0}》被举报为“{1}”，经管理员核实被判定为违规帖，已被{2}，如有问题可前往反馈,POST_DELETE
+PERSONALIZATION_DESCRIPTION,背景,Blackground
+LANGUAGE_DESCRIPTION,语言,Language
+ABOUT_DESCRIPTION,GitHub,GitHub
 INIT_CONFIG_NAME,初始化配置,Init config
 INIT_CONFIG_PROCESS1,开始之前，我们先设置初始化配置,Before we begin，let's set up the initialization config
 INIT_CONFIG_PROCESS2,查找最新帖子ID,Find the most recent post ID
 INIT_CONFIG_DESCRIPTION2,从编程猫社区获取一个最近的帖子ID并输入,Get a recent post ID from the Codemao community and input
+VIEW_THE_IMAGE_NAME,查看图像,View the image
+SAVE_THE_IMAGE_NAME,保存图像,Save the image
