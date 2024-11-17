@@ -1,0 +1,8 @@
+[gd_resource type="SystemFont" load_steps=2 format=3 uid="uid://qgdcrj7r5eya"]
+
+[ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="1_sfg2l"]
+
+[resource]
+fallbacks = Array[Font]([ExtResource("1_sfg2l")])
+font_names = PackedStringArray("Microsoft YaHei UI")
+font_weight = 575
