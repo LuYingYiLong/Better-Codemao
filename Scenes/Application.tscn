@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://csg0n6d7u0rvf"]
+[gd_scene load_steps=43 format=3 uid="uid://csg0n6d7u0rvf"]
 
 [ext_resource type="Script" path="res://Scripts/Application.gd" id="1_5hvyn"]
 [ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/LoginMenu.tscn" id="2_1hfjc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/SensitiveWordsRequest.gd" id="2_epunv"]
 [ext_resource type="Script" path="res://Scripts/NavigationBar.gd" id="2_gfkna"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="2_s4ftx"]
+[ext_resource type="Script" path="res://Scripts/CheckUpdatesRequest.gd" id="3_ctk8w"]
 [ext_resource type="Script" path="res://Scripts/BaseBlackground.gd" id="3_jr2r8"]
 [ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="3_scs3j"]
 [ext_resource type="Script" path="res://Scripts/AddressBar.gd" id="5_4xxjt"]
@@ -18,10 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://bdw6wa6gmpvb5" path="res://Scenes/SystemMessageList.tscn" id="13_0uouo"]
 [ext_resource type="Texture2D" uid="uid://ba8o2b06nowk1" path="res://Resources/Textures/Library.svg" id="13_x3dak"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="14_6jx8t"]
-[ext_resource type="PackedScene" uid="uid://ccy1pjbdx7xby" path="res://Scenes/ImageViewer.tscn" id="16_5naus"]
+[ext_resource type="PackedScene" uid="uid://ccy1pjbdx7xby" path="res://Scenes/ViewTheImageWindow.tscn" id="16_5naus"]
 [ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="16_aej1e"]
 [ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/PopupMenu.tscn" id="16_f86f1"]
 [ext_resource type="Texture2D" uid="uid://dt4vvl5xceytj" path="res://Resources/Textures/Empty.svg" id="16_jv21r"]
+[ext_resource type="PackedScene" uid="uid://d1r6i8d7tpoqp" path="res://Scenes/BaseUIComponents/ContentDialog.tscn" id="21_4v3bv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lemjn"]
 
@@ -58,14 +60,17 @@ corner_radius_bottom_left = 24
 [sub_resource type="Resource" id="Resource_hp763"]
 script = ExtResource("16_aej1e")
 text = "VIEW_THE_IMAGE_NAME"
+flat = false
 
 [sub_resource type="Resource" id="Resource_ykf6m"]
 script = ExtResource("16_aej1e")
 text = "SAVE_THE_IMAGE_NAME"
+flat = false
 
 [sub_resource type="Resource" id="Resource_ya1pt"]
 script = ExtResource("16_aej1e")
 text = "SIGN_OUT_NAME"
+flat = false
 
 [sub_resource type="Animation" id="Animation_1pyq5"]
 resource_name = "Expand"
@@ -170,6 +175,9 @@ script = ExtResource("1_5hvyn")
 
 [node name="SensitiveWordsRequest" type="HTTPRequest" parent="."]
 script = ExtResource("2_epunv")
+
+[node name="CheckUpdatesRequest" type="HTTPRequest" parent="."]
+script = ExtResource("3_ctk8w")
 
 [node name="BaseBlackground" type="TextureRect" parent="."]
 layout_mode = 1
@@ -348,6 +356,9 @@ libraries = {
 [node name="LoginMenu" parent="." instance=ExtResource("2_1hfjc")]
 layout_mode = 1
 
+[node name="ContentDialog" parent="." instance=ExtResource("21_4v3bv")]
+layout_mode = 1
+
 [node name="SystemMessageList" parent="." instance=ExtResource("13_0uouo")]
 layout_mode = 1
 
@@ -362,6 +373,7 @@ dialog_autowrap = true
 access = 2
 
 [connection signal="request_completed" from="SensitiveWordsRequest" to="SensitiveWordsRequest" method="_on_shielded_word_request_request_completed"]
+[connection signal="request_completed" from="CheckUpdatesRequest" to="CheckUpdatesRequest" method="_on_request_completed"]
 [connection signal="tab_selected" from="HBoxContainer/VBoxContainer/AddressBar/MarginContainer/AddressTabBar" to="HBoxContainer/VBoxContainer/AddressBar" method="_on_address_tab_bar_tab_selected"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/WorkshopTab" to="NavigationBar" method="_on_workshop_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/ForumTab" to="NavigationBar" method="_on_forum_tab_pressed"]

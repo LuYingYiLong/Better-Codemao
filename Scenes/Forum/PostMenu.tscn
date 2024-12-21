@@ -83,6 +83,9 @@ progress_bar = NodePath("../MarginContainer/HSplitContainer/VBoxContainer/Replie
 [node name="AddReplyRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
+[node name="CommentsRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -405,6 +408,7 @@ layout_mode = 2
 [connection signal="request_completed" from="DetailsRequest" to="." method="on_details_received"]
 [connection signal="request_completed" from="RepilesRequest" to="." method="on_repiles_received"]
 [connection signal="request_completed" from="AddReplyRequest" to="." method="_on_add_reply_request_request_completed"]
+[connection signal="request_completed" from="CommentsRequest" to="." method="_on_comments_request_request_completed"]
 [connection signal="gui_input" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/MirroringButton" to="." method="_on_mirroring_button_pressed"]

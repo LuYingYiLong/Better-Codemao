@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://mem6wfaaptwm"]
+[gd_scene load_steps=25 format=3 uid="uid://mem6wfaaptwm"]
 
 [ext_resource type="Script" path="res://Scripts/CommentCard.gd" id="1_nrvkg"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_auwcy"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="5_ya8ud"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_j7p0m"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="6_rivxs"]
+[ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="8_i8pfa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihh0o"]
 bg_color = Color(1, 1, 1, 1)
@@ -134,5 +135,17 @@ autowrap_mode = 2
 scroll_fit_content_height = true
 caret_blink = true
 
+[node name="UpdatedAt" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("8_i8pfa")
+text = "YYY/MM/DD"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/ContentLabel" to="." method="_on_gui_input"]

@@ -14,14 +14,6 @@ var file_dialog: FileDialog = Application.get_file_dialog()
 
 var menu
 
-func _on_button_pressed() -> void:
-	# 在鼠标位置显示弹出菜单：
-	NativeMenu.popup(menu, DisplayServer.mouse_get_position())
-
-func _exit_tree() -> void:
-	# 当不再需要时移除菜单：
-	NativeMenu.free_menu(menu)
-
 func _ready() -> void:
 	thread_helper = ThreadHelper.new(self)
 	menu = NativeMenu.create_menu()
@@ -124,7 +116,7 @@ func _menu_callback(item_id: String) -> void:
 		file_dialog.add_filter("*.png")
 		file_dialog.add_filter("*.jpg")
 		file_dialog.visible = true
-			
+		
 		var current_file: String = file_dialog.current_file
 		var file_extension: String = current_file.get_extension()
 		if current_file.is_empty(): return

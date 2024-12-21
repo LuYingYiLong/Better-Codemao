@@ -140,3 +140,4 @@ func _on_mouse_exited():
 func use_combo_box_set_language(item: PopupItem) -> void:
 	var metadata: String = item.metadata
 	Settings.language = metadata
+	Settings.save_settings_config()

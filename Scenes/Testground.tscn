@@ -29,14 +29,17 @@ _data = {
 [sub_resource type="Resource" id="Resource_3ik4y"]
 script = ExtResource("13_3m03y")
 text = "hello"
+flat = false
 
 [sub_resource type="Resource" id="Resource_kx2i8"]
 script = ExtResource("13_3m03y")
 text = "world"
+flat = false
 
 [sub_resource type="Resource" id="Resource_c6jl6"]
 script = ExtResource("13_3m03y")
 text = "!"
+flat = false
 
 [node name="Testground" type="Control"]
 layout_mode = 3

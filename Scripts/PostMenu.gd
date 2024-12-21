@@ -3,6 +3,7 @@ extends Control
 @onready var details_request = %DetailsRequest
 @onready var repiles_request = %RepilesRequest
 @onready var add_reply_request = %AddReplyRequest
+@onready var comments_request = %CommentsRequest
 
 @onready var h_split_container = %HSplitContainer
 
@@ -36,6 +37,9 @@ var details: Dictionary
 var repiles: Dictionary
 
 var content: String
+
+var id_to_reply: int
+var parent_id: int
 
 func _ready():
 	pagination_bar.size = 3
@@ -116,6 +120,10 @@ func on_repiles_received(result: int, _response_code: int, _headers: PackedStrin
 		if item.get("is_top"): top_reply_card_container.add_child(reply_card_scene)
 		else: reply_card_container.add_child(reply_card_scene)
 		reply_card_scene.set_reply_card_data(item)
+		reply_card_scene.reply_pressed.connect(_on_reply_card_reply_pressed)
+		reply_card_scene.comment_pressed.connect(_on_comment_card_comment_pressed)
+		reply_card_scene.delete_pressed.connect(_on_reply_card_delete_pressed)
+		reply_card_scene.comment_delete_pressed.connect(_on_comment_card_delete_pressed)
 
 func _on_add_reply_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -126,6 +134,18 @@ func _on_add_reply_request_request_completed(result: int, _response_code: int, _
 
 	repiles_request.request("https://api.codemao.cn/web/forums/posts/%s/replies?page=1&limit=30&sort=-created_at" %post_id)
 	pagination_bar.current_page = 1
+	pagination_bar.update_current_page()
+
+func _on_comments_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+	var err = JSON.parse_string(body.get_string_from_utf8())
+	if err != null:
+		var json: Dictionary = err
+		if result != HTTPRequest.RESULT_SUCCESS: return
+		if json.has("error_code"):
+			Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
+			return
+
+	repiles_request.request("https://api.codemao.cn/web/forums/posts/%s/replies?page=1&limit=30&sort=-created_at" %post_id)
 	pagination_bar.update_current_page()
 
 func _on_avatar_texture_gui_input(event):
@@ -182,20 +202,59 @@ func _on_mirroring_button_pressed():
 
 	zip_packer.close()
 
-func _on_secure_text_edit_send(text: String) -> void:
+func _on_reply_card_reply_pressed(id: int, nickname: String) -> void:
+	secure_text_edit.send_type = 1
+	id_to_reply = id
+	parent_id = 0
+	secure_text_edit.placeholder_text = "%s %s" %[
+		TranslationServer.translate("REPLY_NAME"),
+		nickname
+	]
+
+func _on_comment_card_comment_pressed(id: int, _parent_id: int, nickname: String) -> void:
+	secure_text_edit.send_type = 1
+	id_to_reply = id
+	parent_id = _parent_id
+	secure_text_edit.placeholder_text = "%s %s" %[
+		TranslationServer.translate("REPLY_NAME"),
+		nickname
+	]
+
+func _on_reply_card_delete_pressed(id: int) -> void:
+	comments_request.request("https://api.codemao.cn/web/forums/replies/%s" %id, \
+	[Application.generate_cookie_header()], \
+	HTTPClient.METHOD_DELETE)
+
+func _on_comment_card_delete_pressed(id: int) -> void:
+	comments_request.request("https://api.codemao.cn/web/forums/comments/%s" %id, \
+	[Application.generate_cookie_header()], \
+	HTTPClient.METHOD_DELETE)
+
+func _on_secure_text_edit_send(text: String, send_type: int) -> void:
 	var headers: PackedStringArray
 	headers.append(Application.generate_cookie_header())
 	headers.append("Content-Type: application/json;charset=UTF-8")
 	var content_data: Dictionary = {
-		"content": "<p>%s</p>" %text,
-		"title": "“null”"
+		"content": text
 	}
-	var json: String = JSON.stringify(content_data)
-	add_reply_request.request("https://api.codemao.cn/web/forums/posts/%s/replies" %post_id, \
-			headers, \
-			HTTPClient.METHOD_POST, \
-			json)
+	if id_to_reply == 0:
+		var json: String = JSON.stringify(content_data)
+		add_reply_request.request("https://api.codemao.cn/web/forums/posts/%s/replies" %post_id, \
+				headers, \
+				HTTPClient.METHOD_POST, \
+				json)
+	else:
+		content_data["parent_id"] = parent_id
+		var json: String = JSON.stringify(content_data)
+		comments_request.request("https://api.codemao.cn/web/forums/replies/%s/comments" %id_to_reply, \
+				headers, \
+				HTTPClient.METHOD_POST, \
+				json)
 	secure_text_edit.clear()
+	secure_text_edit.placeholder_text = ""
+	secure_text_edit.send_type = 0
+	id_to_reply = 0
+	parent_id = 0
 
 func _on_pagination_bar_page_changed(page):
 	repiles_request.request("https://api.codemao.cn/web/forums/posts/%s/replies?page=%s&limit=30&sort=-created_at" %[post_id, page])

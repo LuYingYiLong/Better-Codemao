@@ -8,7 +8,8 @@ AUTOMATIC_LOGIN_NAME,自动登录,Automatic login
 ENTER_NAME,进入,Enter
 NEXT_NAME,下一个,Next
 FIND_NAME,查找,Find
-CODEMAO_COMMUNITY_FORUM_NAME,编程猫社区论坛,Codemao community forum
+CANCEL_NAME,取消,Cancel
+GET_UPDATES_NAME,获取更新,Get updates
 WORK_NAME,作品,Work
 LIKE_NAME,点赞,Like
 LIKED_NAME,已点赞,Liked
@@ -31,6 +32,8 @@ POST_NAME,帖子,Post
 PUBLISH_ON_NAME,发布于,Publish on
 OPEN_IN_BROWSER_NAME,在浏览器打开,Open in browser
 ALL_REPLIES_NAME,所有回帖,All replies
+REPLY_NAME,回复,Reply
+DELETE_NAME,删除,Delete
 SEND_NAME,发送,Send
 LIBRARY_NAME,图书馆,Library
 FANFIC_NAME,同人小说,Fanfic
@@ -128,3 +131,5 @@ INIT_CONFIG_PROCESS2,查找最新帖子ID,Find the most recent post ID
 INIT_CONFIG_DESCRIPTION2,从编程猫社区获取一个最近的帖子ID并输入,Get a recent post ID from the Codemao community and input
 VIEW_THE_IMAGE_NAME,查看图像,View the image
 SAVE_THE_IMAGE_NAME,保存图像,Save the image
+A_NEW_VERSION_IS_AVAILABLE_TITLE,有新版本可获取,A new version is available
+A_NEW_VERSION_IS_AVAILABLE_DESCRIPTION,最新版本{0}\n当前版本{1},Latest version{0}\nCurrent version{1}

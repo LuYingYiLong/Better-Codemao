@@ -59,6 +59,6 @@ func on_posts_received(result: int, _response_code: int, _headers: PackedStringA
 	post_card_scene.pressed.connect(on_post_card_scene_pressed)
 
 func on_post_card_scene_pressed(data: Dictionary):
-	Application.append_address.emit(TranslationServer.translate("POST_NAME"), \
+	Application.append_address.emit(data.get("title"), \
 			"res://Scenes/Forum/PostMenu.tscn", \
 			data)

@@ -1,5 +1,15 @@
 extends PanelContainer
 
+@export_enum("Web", "String") var send_type: int = 0
+@export var text: String:
+	set(value):
+		text = value
+		text_edit.text = text
+@export var placeholder_text: String:
+	set(value):
+		placeholder_text = value
+		text_edit.placeholder_text = placeholder_text
+
 @onready var text_edit = %TextEdit
 @onready var color_rect = %ColorRect
 @onready var warning_label = %WarningLabel
@@ -10,7 +20,7 @@ extends PanelContainer
 
 @onready var animation_player = %AnimationPlayer
 
-signal send(text: String)
+signal send(text: String, send_type: int)
 
 enum Error{CHECKING, OK, WARNING}
 
@@ -44,8 +54,8 @@ func _on_text_edit_text_changed() -> void:
 func _on_gui_input(event) -> void:
 	if event is InputEventMouseButton and event.is_pressed and sensitive_word_tag_visible: _on_sensitive_word_button_pressed()
 
-func check_text_from_thread(text: String) -> void:
-	sensitive_words = SensitiveWordsManager.check_text(text)
+func check_text_from_thread(_text: String) -> void:
+	sensitive_words = SensitiveWordsManager.check_text(_text)
 	if sensitive_words.is_empty():
 		color_rect.call_deferred("set_self_modulate", Color.html(GlobalTheme.default_ok_color))
 		warning_label.call_deferred("set_text", TranslationServer.translate("SECURE_TEXT_EDIT_REPORT3"))
@@ -96,4 +106,7 @@ func _on_sensitive_word_button_pressed() -> void:
 	sensitive_word_tag_visible = not sensitive_word_tag_visible
 
 func _on_send_button_pressed() -> void:
-	send.emit(text_edit.text)
+	if send_type == 0:
+		send.emit("<p>%s</p>" %text_edit.text, send_type)
+	elif send_type == 1:
+		send.emit(text_edit.text, send_type)

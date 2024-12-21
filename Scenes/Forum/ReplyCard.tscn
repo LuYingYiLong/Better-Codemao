@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://f855sygoy2lw"]
+[gd_scene load_steps=27 format=3 uid="uid://f855sygoy2lw"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_ayk0x"]
 [ext_resource type="Script" path="res://Scripts/ReplyCard.gd" id="2_qbosl"]
@@ -9,6 +9,7 @@
 [ext_resource type="StyleBox" uid="uid://ltv4bwkqhnhc" path="res://Resources/Themes/DefaultPanelDarknessStyle.tres" id="7_1pn4i"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="7_6incp"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_w33pg"]
+[ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="9_fqnsm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qr7g"]
 bg_color = Color(1, 1, 1, 1)
@@ -156,6 +157,16 @@ autowrap_mode = 2
 scroll_fit_content_height = true
 caret_blink = true
 
+[node name="UpdatedAt" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_fqnsm")
+text = "YYY/MM/DD"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
 [node name="CommentContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
@@ -176,5 +187,7 @@ theme_override_constants/margin_bottom = 4
 unique_name_in_owner = true
 layout_mode = 2
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/ContentLabel" to="." method="_on_gui_input"]
