@@ -54,7 +54,7 @@ func _on_nickname_label_pressed():
 	jump_to_user_menu()
 
 func jump_to_user_menu():
-	Application.append_address.emit(TranslationServer.translate("USER_NAME"), \
+	Application.append_address.emit(data.get("user").get("nickname"), \
 			"res://Scenes/User/UserMenu.tscn", \
 			{"id": int(data.get("user", {}).get("id", -1))})
 

@@ -73,6 +73,6 @@ func _on_avatar_gui_input(event):
 		jump_to_user_menu()
 
 func jump_to_user_menu():
-	Application.append_address.emit(TranslationServer.translate("USER_NAME"), \
+	Application.append_address.emit(data.get("user").get("nickname"), \
 			"res://Scenes/User/UserMenu.tscn", \
 			{"id": data.get("user", {}).get("id", -1).to_int()})

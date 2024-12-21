@@ -78,7 +78,7 @@ func _on_nickname_label_pressed():
 
 func jump_to_user_menu():
 	if user_id == 0: return
-	Application.append_address.emit(TranslationServer.translate("USER_NAME"), \
+	Application.append_address.emit(nickname_label.text, \
 			"res://Scenes/User/UserMenu.tscn", \
 			{"id": user_id})
 
