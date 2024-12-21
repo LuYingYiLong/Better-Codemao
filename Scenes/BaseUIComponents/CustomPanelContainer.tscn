@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfa41l48uuw85"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/CustomPanelContainer.gd" id="1_p5b25"]
+[ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="1_s7j0w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glb71"]
+bg_color = Color(1, 1, 1, 0.490196)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74, 0.74, 0.74, 0.490196)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6yn3"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="CustomPanelContainer" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 25.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_glb71")
+script = ExtResource("1_p5b25")
+blur = NodePath("Margin/Blur")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+
+[node name="Blur" type="PanelContainer" parent="Margin"]
+material = ExtResource("1_s7j0w")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y6yn3")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

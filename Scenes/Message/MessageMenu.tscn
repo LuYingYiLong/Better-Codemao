@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1s8kubxqq1ee"]
+[gd_scene load_steps=10 format=3 uid="uid://c1s8kubxqq1ee"]
 
 [ext_resource type="Script" path="res://Scripts/MessageMenu.gd" id="1_06mqh"]
-[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/BasePanelContainer.tscn" id="2_swuei"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_swuei"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_1nww6"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_clvgm"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="4_05d14"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="4_xbwj8"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="6_t8nvq"]
@@ -43,10 +44,14 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="BasePanelContainer" parent="MarginContainer" instance=ExtResource("2_swuei")]
+[node name="PanelContainer" parent="MarginContainer" instance=ExtResource("2_swuei")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BasePanelContainer"]
+[node name="ProgressBar" parent="MarginContainer/PanelContainer" instance=ExtResource("3_clvgm")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -55,28 +60,29 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="CommentReply" type="PanelContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CommentReply" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a0myd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="CommentReplyLabel" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply/VBoxContainer"]
+[node name="CommentReplyLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("3_1nww6")
@@ -84,7 +90,7 @@ theme_override_font_sizes/font_size = 24
 text = "COMMENT_REPLY_NAME"
 text_overrun_behavior = 3
 
-[node name="CommentReply" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply/VBoxContainer"]
+[node name="CommentReply" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -93,23 +99,23 @@ theme_override_fonts/font = ExtResource("4_05d14")
 text = "999"
 uppercase = true
 
-[node name="BeginLine" type="PanelContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="BeginLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxLine_nefk4")
 
-[node name="LikeFork" type="PanelContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="LikeFork" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a0myd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="LikeForkLabel" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork/VBoxContainer"]
+[node name="LikeForkLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("3_1nww6")
@@ -117,7 +123,7 @@ theme_override_font_sizes/font_size = 24
 text = "LIKE_FORK_NAME"
 text_overrun_behavior = 3
 
-[node name="LikeFork" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork/VBoxContainer"]
+[node name="LikeFork" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -126,23 +132,23 @@ theme_override_fonts/font = ExtResource("4_05d14")
 text = "999"
 uppercase = true
 
-[node name="EndLine" type="PanelContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="EndLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxLine_nefk4")
 
-[node name="System" type="PanelContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="System" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a0myd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="SystemLabel" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System/VBoxContainer"]
+[node name="SystemLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("3_1nww6")
@@ -150,7 +156,7 @@ theme_override_font_sizes/font_size = 24
 text = "SYSTEM_NAME"
 text_overrun_behavior = 3
 
-[node name="System" type="Label" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System/VBoxContainer"]
+[node name="System" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -159,23 +165,23 @@ theme_override_fonts/font = ExtResource("4_05d14")
 text = "999"
 uppercase = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_xbwj8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MessageCardContainer" type="VBoxContainer" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="MessageCardContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="LoadMoreButton" type="Button" parent="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="LoadMoreButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -183,7 +189,7 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("6_t8nvq")
 text = "LOAD_MORE_NAME"
 
-[connection signal="gui_input" from="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply" to="." method="_on_comment_reply_gui_input"]
-[connection signal="gui_input" from="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork" to="." method="_on_like_fork_gui_input"]
-[connection signal="gui_input" from="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System" to="." method="_on_system_gui_input"]
-[connection signal="pressed" from="MarginContainer/BasePanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/LoadMoreButton" to="." method="_on_load_more_button_pressed"]
+[connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply" to="." method="_on_comment_reply_gui_input"]
+[connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork" to="." method="_on_like_fork_gui_input"]
+[connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System" to="." method="_on_system_gui_input"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/LoadMoreButton" to="." method="_on_load_more_button_pressed"]

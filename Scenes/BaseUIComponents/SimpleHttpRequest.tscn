@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqabpg44ed0mq"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/SimpleHttpRequest.gd" id="1_rdhgk"]
+
+[node name="SimpleHTTPRequest" type="Node"]
+script = ExtResource("1_rdhgk")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

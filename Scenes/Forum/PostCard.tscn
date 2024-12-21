@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://mfb2rhleqvr6"]
+[gd_scene load_steps=24 format=3 uid="uid://mfb2rhleqvr6"]
 
 [ext_resource type="Script" path="res://Scripts/PostCard.gd" id="1_5kq84"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_gtwqm"]
@@ -8,6 +8,9 @@
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_jb4pf"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_o3g1c"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="8_0pe6i"]
+[ext_resource type="PackedScene" uid="uid://5c4ths80q2t5" path="res://Scenes/Forum/PostTag.tscn" id="8_bw7th"]
+[ext_resource type="Texture2D" uid="uid://b0myqocntu4ln" path="res://Resources/Textures/Replie.svg" id="9_nc8nu"]
+[ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="9_p06k8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g8eg"]
 bg_color = Color(1, 1, 1, 1)
@@ -39,7 +42,7 @@ corner_radius_bottom_left = 15
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbfrc"]
 
 [node name="PostCard" type="PanelContainer"]
-custom_minimum_size = Vector2(300, 142)
+custom_minimum_size = Vector2(300, 170)
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = ExtResource("1_gtwqm")
 script = ExtResource("1_5kq84")
@@ -103,21 +106,60 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="CreateTime" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("8_0pe6i")
+text = "YYYYMMDD"
+
+[node name="Title&Content" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = -4
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Title&Content"]
+layout_mode = 2
+
+[node name="PostAuthorizedTag" parent="MarginContainer/VBoxContainer/Title&Content/HBoxContainer" instance=ExtResource("8_bw7th")]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 0.627451, 0.356863, 1)
+layout_mode = 2
+text = "官"
+color = Color(1, 0.627451, 0.356863, 1)
+
+[node name="PostFeaturedTag" parent="MarginContainer/VBoxContainer/Title&Content/HBoxContainer" instance=ExtResource("8_bw7th")]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.333333, 0.717647, 1, 1)
+layout_mode = 2
+text = "精"
+color = Color(0.333333, 0.717647, 1, 1)
+
+[node name="PostHottedTag" parent="MarginContainer/VBoxContainer/Title&Content/HBoxContainer" instance=ExtResource("8_bw7th")]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.968627, 0.431373, 0.407843, 1)
+layout_mode = 2
+text = "热"
+color = Color(0.968627, 0.431373, 0.407843, 1)
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/Title&Content/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_o3g1c")
 theme_override_font_sizes/font_size = 20
 text = "Title"
+vertical_alignment = 1
 
-[node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer/Title&Content"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 0.490196)
@@ -126,6 +168,46 @@ theme_override_fonts/font = ExtResource("8_0pe6i")
 text = "Content"
 autowrap_mode = 2
 text_overrun_behavior = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Views" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="ViewsIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views"]
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("9_p06k8")
+expand_mode = 1
+
+[node name="Views" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("8_0pe6i")
+text = "999"
+
+[node name="Replies" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="RepliesIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies"]
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("9_nc8nu")
+expand_mode = 1
+
+[node name="Replies" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("8_0pe6i")
+text = "999"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_gui_input"]

@@ -12,6 +12,7 @@ var type: String
 
 var user_id: int
 var post_id: int
+var work_id: int
 var subject_id: int
 	
 func set_message_card_data(_data: Dictionary):
@@ -29,18 +30,23 @@ func set_message_card_data(_data: Dictionary):
 	if type == "POST_COMMENT" or type == "WORK_COMMENT":
 		link_button.text = link_button_text.format([message.get("business_name")])
 		content_label_text = message.get("comment")
-	elif type == "WORK_REPLY_AUTHOR" or type == "POST_REPLY_AUTHOR" or type == "WORK_REPLY_REPLY_AUTHOR":
+		work_id = message.get("business_id")
+	elif type == "WORK_REPLY_AUTHOR" or type == "POST_REPLY_AUTHOR" or type == "POST_REPLY_REPLY_FEEDBACK" or type == "WORK_REPLY_REPLY_AUTHOR":
 		link_button.text = link_button_text.format([message.get("business_name"), message.get("replied_user_nickname")])
 		content_label_text = message.get("reply")
 		comment_label_text = message.get("replied", "")
-	elif type == "WORK_REPLY_REPLY" or type == "POST_REPLY":
+		work_id = message.get("business_id")
+	elif type == "WORK_REPLY_REPLY" or type == "POST_REPLY" or type == "POST_REPLY_REPLY":
 		link_button.text = link_button_text.format([message.get("business_name")])
 		content_label_text = message.get("reply")
 		comment_label_text = message.get("replied", "")
+		work_id = message.get("business_id")
 	elif type == "WORK_LIKE":
 		link_button.text = link_button_text.format([message.get("business_name")])
+		work_id = message.get("business_id")
 	elif type == "WORK_FORK":
 		link_button.text = link_button_text.format([message.get("business_name")])
+		work_id = message.get("business_id")
 	elif type == "WORK_SHOP_USER_LEAVE":
 		link_button.text = link_button_text.format([content.get("leaver").get("nickname"), \
 				content.get("content").get("work_subject_name")])
@@ -79,8 +85,25 @@ func jump_to_user_menu():
 func _on_link_button_pressed():
 	if type == "POST_COMMENT" or \
 			type == "POST_REPLY_AUTHOR" or \
+			type == "POST_REPLY_REPLY" or \
+			type == "POST_REPLY_REPLY_FEEDBACK" or \
 			type == "POST_REPLY":
 		if post_id == 0: return
 		Application.append_address.emit(TranslationServer.translate("POST_NAME"), \
 			"res://Scenes/Forum/PostMenu.tscn", \
 			{"id": post_id})
+	elif type == "WORK_COMMENT" or \
+			type == "WORK_REPLY_AUTHOR" or \
+			type == "WORK_REPLY_REPLY_AUTHOR" or \
+			type == "WORK_REPLY_REPLY" or \
+			type == "WORK_LIKE" or \
+			type == "WORK_FORK":
+		if work_id == 0: return
+		Application.append_address.emit(TranslationServer.translate("WORK_NAME"), \
+			"res://Scenes/Work/WorkMenu.tscn", \
+			{"id": work_id})
+	elif type == "WORK_SHOP_USER_LEAVE":
+		if subject_id == 0: return
+		Application.append_address.emit(TranslationServer.translate("WORKSHOP_NAME"), \
+			"res://Scenes/Workshop/ShopMenu.tscn", \
+			{"id": subject_id})

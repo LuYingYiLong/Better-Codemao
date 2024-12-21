@@ -1,0 +1,89 @@
+{
+	"root_options": [
+		{
+			"option_box": {
+				"text": "PERSONALIZATION_NAME",
+				"description": "PERSONALIZATION_DESCRIPTION",
+				"go_to": "personalization_options"
+			}
+		},
+		{
+			"option_box": {
+				"text": "LANGUAGE_NAME",
+				"description": "LANGUAGE_DESCRIPTION",
+				"go_to": "language_options"
+			}
+		},
+		{
+			"option_box": {
+				"icon": "res://Resources/Textures/About.svg",
+				"text": "ABOUT_NAME",
+				"description": "ABOUT_DESCRIPTION",
+				"go_to": "about_options"
+			}
+		},
+		{
+			"separator": 0
+		},
+		{
+			"option_box": {
+				"text": "TestGround",
+				"jump_to": "res://Scenes/Testground.tscn"
+			}
+		},
+		{
+			"separator": 0
+		},
+		{
+			"option_box": {
+				"text": "OPEN_THE_USER_DATA_FOLDER_NAME",
+				"dir": "user://"
+			}
+		}
+	],
+	"personalization_options": [
+		{
+			"option_box": {
+			"text": "CHANGE_BLACKGROUND_NAME",
+			"change_settings_config": {
+				"path": "personalization",
+				"key": "blackground"
+				}
+			}
+		}
+	],
+	"about_options": [
+		{
+			"option_box": {
+				"text": "GitHub",
+				"description": "SOURCE_CODE_NAME",
+				"link": "https://github.com/LuYingYiLong/Better-Codemao"
+			}
+		}
+	],
+	"language_options": [
+		{
+			"option_box": {
+				"text": "LANGUAGE_NAME",
+				"combo_box": {
+					"selected": "$ settings_config->language->language->index",
+					"items": [
+						{
+							"text": "CHINESE_NAME",
+							"metadata": "ch"
+						},
+						{
+							"text": "ENGLISH_NAME",
+							"metadata": "en"
+						}
+					]
+				},
+				"change_settings_config": {
+					"path": "language",
+					"key": "language",
+					"use": "$ combo_box->items->selected->metadata"
+				}
+			}
+		}
+	]
+}

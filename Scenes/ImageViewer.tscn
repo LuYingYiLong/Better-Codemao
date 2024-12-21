@@ -1,0 +1,184 @@
+[gd_scene load_steps=14 format=3 uid="uid://ccy1pjbdx7xby"]
+
+[ext_resource type="Script" path="res://Scripts/ImageViewer.gd" id="1_2hnnf"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_tcup3"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="4_3ju1c"]
+[ext_resource type="Texture2D" uid="uid://xwrgwh5h8skf" path="res://Resources/Textures/Reboot.svg" id="4_w403i"]
+[ext_resource type="Texture2D" uid="uid://exor33llkxq5" path="res://Resources/Textures/Save.svg" id="5_0f8s3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvdob"]
+bg_color = Color(0.952941, 0.952941, 0.952941, 1)
+
+[sub_resource type="Animation" id="Animation_sn2nn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/ImageTexture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_thp4p"]
+resource_name = "RotationTo180"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/ImageTexture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [1.5708, 3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_34id7"]
+resource_name = "RotationTo270"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/ImageTexture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [3.14159, 4.71239]
+}
+
+[sub_resource type="Animation" id="Animation_tpuvt"]
+resource_name = "RotationTo360"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/ImageTexture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [4.71239, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_8wbq3"]
+resource_name = "RotationTo90"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/ImageTexture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3q3sq"]
+_data = {
+"RESET": SubResource("Animation_sn2nn"),
+"RotationTo180": SubResource("Animation_thp4p"),
+"RotationTo270": SubResource("Animation_34id7"),
+"RotationTo360": SubResource("Animation_tpuvt"),
+"RotationTo90": SubResource("Animation_8wbq3")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mqa4x"]
+
+[node name="ImageViewer" type="Window"]
+title = "VIEW_THE_IMAGE_NAME"
+initial_position = 1
+size = Vector2i(1200, 820)
+visible = false
+transient_to_focused = true
+force_native = true
+script = ExtResource("1_2hnnf")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(0.937255, 0.956863, 0.976471, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rvdob")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="ImageTexture" type="Sprite2D" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture = ExtResource("2_tcup3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PanelContainer/VBoxContainer/ImageTexture"]
+unique_name_in_owner = true
+root_node = NodePath("../../../..")
+libraries = {
+"": SubResource("AnimationLibrary_3q3sq")
+}
+
+[node name="PanelContainer" parent="PanelContainer/VBoxContainer" instance=ExtResource("4_3ju1c")]
+layout_mode = 2
+size_flags_vertical = 10
+top_left = 0
+top_right = 0
+bottom_right = 0
+bottom_left = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RotationButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_focus_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_hover_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_disabled_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_constants/icon_max_width = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mqa4x")
+icon = ExtResource("4_w403i")
+flat = true
+
+[node name="SaveButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_focus_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_hover_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_disabled_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_constants/icon_max_width = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mqa4x")
+icon = ExtResource("5_0f8s3")
+flat = true
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/RotationButton" to="." method="_on_rotation_button_pressed"]

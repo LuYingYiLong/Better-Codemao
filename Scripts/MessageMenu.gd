@@ -3,6 +3,8 @@ extends Control
 @onready var message_count_request = %MessageCountRequest
 @onready var message_record_request = %MessageRecordRequest
 
+@onready var progress_bar = %ProgressBar
+
 @onready var comment_reply = %CommentReply
 @onready var like_fork = %LikeFork
 @onready var system = %System
@@ -28,8 +30,13 @@ func _ready():
 	_message_record_request()
 
 func on_message_count_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
 	var json: Dictionary = JSON.parse_string('{"query":%s}' %body.get_string_from_utf8())
+	if result != HTTPRequest.RESULT_SUCCESS: return
+	if json.has("error_code"):
+		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
+		return
+	
+	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
 	for query: Dictionary in json.get("query"):
 		if query.get("query_type") == "COMMENT_REPLY":
 			comment_reply_count = query.get("count")
@@ -53,11 +60,18 @@ func _message_record_request(reload: bool = true):
 			[Application.generate_cookie_header()], HTTPClient.METHOD_GET)
 	message_count_request.request("https://api.codemao.cn/web/message-record/count", \
 			[Application.generate_cookie_header()], HTTPClient.METHOD_GET)
+	progress_bar.show()
 
 func on_message_record_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-	load_more_button.disabled = false
-	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	if result != HTTPRequest.RESULT_SUCCESS: return
+	if json.has("error_code"):
+		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
+		progress_bar.progress_state = 2
+		return
+	progress_bar.hide()
+
+	load_more_button.disabled = false
 	var items: Array = json.get("items", [])
 	if items.is_empty(): return
 	for _i in range(limit - offset - 100):

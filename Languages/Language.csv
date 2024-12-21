@@ -1,5 +1,6 @@
 id,ch,en
 LOGIN_NAME,登录,Login
+SIGN_OUT_NAME,退出登录,Sign out
 VISITOR_LOGIN_NAME,游客登录,Visitor login
 IDENTITY_NAME,身份,Identity
 PASSWORD_NAME,密码,Password
@@ -27,8 +28,14 @@ SUBMITTED_WORKS_NAME,投稿作品,Submitted works
 WORKSHOP_MEMBER,工作室成员,Workshop member
 FORUM_NAME,论坛,Forum
 POST_NAME,帖子,Post
+PUBLISH_ON_NAME,发布于,Publish on
 OPEN_IN_BROWSER_NAME,在浏览器打开,Open in browser
 ALL_REPLIES_NAME,所有回帖,All replies
+SEND_NAME,发送,Send
+LIBRARY_NAME,图书馆,Library
+FANFIC_NAME,同人小说,Fanfic
+COMIC_NAME,漫画连载,Comic
+FACTION_NAME,资料图鉴,Faction
 MESSAGE_NAME,消息,Message
 COMMENT_REPLY_NAME,评论与回复,Comment&Reply
 LIKE_FORK_NAME,赞与购买,Like&Fork
@@ -38,7 +45,11 @@ SETTINGS_NAME,设置,Settings
 PERSONALIZATION_NAME,个性化,Personalization
 CHANGE_BLACKGROUND_NAME,更改背景,Change blackground
 LANGUAGE_NAME,语言,Language
+CHINESE_NAME,中文,Chinese
+ENGLISH_NAME,英文,English
 ABOUT_NAME,关于,About
+SOURCE_CODE_NAME,源代码,Source code
+OPEN_THE_USER_DATA_FOLDER_NAME,打开用户数据文件夹,Open the User Data folder
 USER_NAME,用户,User
 FOLLOW_NAME,关注,Follow
 FOLLOWED_NAME,已关注,Followed
@@ -92,10 +103,15 @@ WORK_SHOP_LEVEL1,实习工作室,Elementary workshop
 WORK_SHOP_LEVEL2,进阶工作室,Lower-intermediate workshop
 WORK_SHOP_LEVEL3,精英工作室,Upper-intermediate workshop
 WORK_SHOP_LEVEL4,大神工作室,Advanced workshop
+SECURE_TEXT_EDIT_REPORT1,检查潜在屏蔽词...,Checking for potential blocked words...
+SECURE_TEXT_EDIT_REPORT2,发现潜在的屏蔽词！,Discover words that may be blocked!
+SECURE_TEXT_EDIT_REPORT3,未找到,No found
 POST_COMMENT_NAME,回复了你的帖子《{0}》,POST_COMMENT
 WORK_COMMENT_NAME,评论了你的作品《{0}》,WORK_COMMENT
-WORK_REPLY_AUTHOR_NAME,回复了你的作品《{0}》下的“{1}”的评论,WORK_REPLY_AUTHOR
-POST_REPLY_AUTHOR_NAME,回复了你的帖子《{0}》下的“{1}”的评论,POST_REPLY_AUTHOR
+WORK_REPLY_AUTHOR_NAME,回复了你在作品《{0}》下的“{1}”的评论,WORK_REPLY_AUTHOR
+POST_REPLY_AUTHOR_NAME,回复了你在帖子《{0}》下的“{1}”的评论,POST_REPLY_AUTHOR
+POST_REPLY_REPLY_NAME,回复了你在帖子《{0}》下的评论,POST_REPLY_REPLY
+POST_REPLY_REPLY_FEEDBACK_NAME,回复了你的回帖“{0}”下的“{1}”的回复,POST_REPLY_REPLY_FEEDBACK
 WORK_REPLY_REPLY_AUTHOR_NAME,回复了你的作品《{0}》下的“{1}”的回复,WORK_REPLY_REPLY_AUTHOR_NAME
 WORK_REPLY_REPLY_NAME,回复了你在作品《{0}》下的评论,WORK_REPLY_REPLY
 POST_REPLY_NAME,回复了你的帖子《{0}》下的回帖,POST_REPLY

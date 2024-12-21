@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://f855sygoy2lw"]
+[gd_scene load_steps=26 format=3 uid="uid://f855sygoy2lw"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_ayk0x"]
 [ext_resource type="Script" path="res://Scripts/ReplyCard.gd" id="2_qbosl"]
@@ -7,6 +7,7 @@
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_wmkx4"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="6_wn6mf"]
 [ext_resource type="StyleBox" uid="uid://ltv4bwkqhnhc" path="res://Resources/Themes/DefaultPanelDarknessStyle.tres" id="7_1pn4i"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="7_6incp"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_w33pg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qr7g"]
@@ -44,6 +45,12 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pvpvh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nwukn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pj2w3"]
 
 [node name="ReplyCard" type="PanelContainer"]
 custom_minimum_size = Vector2(264, 0)
@@ -130,14 +137,24 @@ size_flags_horizontal = 10
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_myk3v")
 
-[node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="ContentLabel" type="TextEdit" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("7_6incp")
+theme_override_colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_readonly_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("7_w33pg")
-text = "Content"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pvpvh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nwukn")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_pj2w3")
+editable = false
+context_menu_enabled = false
+wrap_mode = 1
 autowrap_mode = 2
+scroll_fit_content_height = true
+caret_blink = true
 
 [node name="CommentContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true

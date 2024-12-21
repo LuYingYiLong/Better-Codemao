@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://du2ukdd0rn8o7"]
+[gd_scene load_steps=8 format=3 uid="uid://du2ukdd0rn8o7"]
 
 [ext_resource type="Script" path="res://Scripts/ForumlMenu.gd" id="1_kph02"]
-[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/BasePanelContainer.tscn" id="2_1yq0c"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_1yq0c"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_yn624"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_4h4qy"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_r815b"]
 [ext_resource type="PackedScene" uid="uid://mfb2rhleqvr6" path="res://Scenes/Forum/PostCard.tscn" id="4_s514n"]
 [ext_resource type="PackedScene" uid="uid://b4f8wiwkdxhq8" path="res://Scenes/Forum/ForumBoardCard.tscn" id="5_pq8ln"]
 
@@ -16,11 +18,13 @@ grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_kph02")
 
-[node name="BoardsRequest" type="HTTPRequest" parent="."]
+[node name="BoardsRequest" parent="." instance=ExtResource("2_yn624")]
 unique_name_in_owner = true
+progress_bar = NodePath("../MarginContainer/HBoxContainer/Boards/BoardsProgressBar")
 
-[node name="AllRequest" type="HTTPRequest" parent="."]
+[node name="AllRequest" parent="." instance=ExtResource("2_yn624")]
 unique_name_in_owner = true
+progress_bar = NodePath("../MarginContainer/HBoxContainer/Posts/PostsProgressBar")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -41,6 +45,9 @@ theme_override_constants/separation = 32
 [node name="Posts" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_1yq0c")]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="PostsProgressBar" parent="MarginContainer/HBoxContainer/Posts" instance=ExtResource("3_r815b")]
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Posts"]
 layout_mode = 2
@@ -69,6 +76,9 @@ custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="BoardsProgressBar" parent="MarginContainer/HBoxContainer/Boards" instance=ExtResource("3_r815b")]
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Boards"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
@@ -88,3 +98,6 @@ size_flags_vertical = 3
 
 [node name="ForumBoardCard" parent="MarginContainer/HBoxContainer/Boards/MarginContainer/ScrollContainer/ForumBoardCardContainer" instance=ExtResource("5_pq8ln")]
 layout_mode = 2
+
+[connection signal="request_completed" from="BoardsRequest" to="." method="on_boards_received"]
+[connection signal="request_completed" from="AllRequest" to="." method="on_all_received"]

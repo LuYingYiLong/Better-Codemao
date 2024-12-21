@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://c37vy0oob4v5k"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/MainPopupMenu.gd" id="1_28uko"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_kc72k"]
+[ext_resource type="PackedScene" uid="uid://ujouhqgfvlnm" path="res://Scenes/BaseUIComponents/PopupButton.tscn" id="2_paejy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nm8o"]
+bg_color = Color(1, 1, 1, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.881937, 0.881937, 0.881936, 0.490196)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.0627451)
+shadow_size = 8
+shadow_offset = Vector2(0, 8)
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_un3o1"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_0nm8o")
+
+[node name="PopupMenu" type="Window"]
+disable_3d = true
+transparent_bg = true
+position = Vector2i(526, 274)
+size = Vector2i(200, 74)
+visible = false
+unresizable = true
+borderless = true
+transparent = true
+popup_window = true
+script = ExtResource("1_28uko")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_un3o1")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_kc72k")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="ItemsContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PopupButton" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/ItemsContainer" instance=ExtResource("2_paejy")]
+layout_mode = 2
+text = "Popup"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

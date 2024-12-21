@@ -1,13 +1,42 @@
-[gd_scene load_steps=9 format=3 uid="uid://cymjxc2cku07l"]
+[gd_scene load_steps=21 format=3 uid="uid://cymjxc2cku07l"]
 
 [ext_resource type="Script" path="res://Scripts/Testground.gd" id="1_3r2ct"]
 [ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="1_kesxp"]
 [ext_resource type="Texture2D" uid="uid://dlv44xa7u53o7" path="res://Resources/Textures/Message.svg" id="2_f7siu"]
 [ext_resource type="Texture2D" uid="uid://dtyf6mejqb7mf" path="res://Resources/Textures/Forum.svg" id="4_gt30v"]
 [ext_resource type="Texture2D" uid="uid://dir3ebxrqxnao" path="res://Resources/Textures/Workshop.svg" id="4_unva7"]
-[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/BasePanelContainer.tscn" id="5_g64to"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="5_g64to"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_j8df0"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="8_vypfj"]
+[ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="9_sac5q"]
+[ext_resource type="PackedScene" uid="uid://dhhh13oso15fl" path="res://Scenes/BaseUIComponents/Button.tscn" id="10_lt0ct"]
+[ext_resource type="PackedScene" uid="uid://b56q43ue36r4q" path="res://Scenes/Settings/OptionBox.tscn" id="10_tafj6"]
+[ext_resource type="PackedScene" uid="uid://cd2hiax67rgqi" path="res://Scenes/BaseUIComponents/ComboBox.tscn" id="12_b8yot"]
+[ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="13_3m03y"]
+
+[sub_resource type="Animation" id="Animation_pgrvm"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqo3k"]
+_data = {
+"new_animation": SubResource("Animation_pgrvm")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5oy1m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ndks"]
+
+[sub_resource type="Resource" id="Resource_3ik4y"]
+script = ExtResource("13_3m03y")
+text = "hello"
+
+[sub_resource type="Resource" id="Resource_kx2i8"]
+script = ExtResource("13_3m03y")
+text = "world"
+
+[sub_resource type="Resource" id="Resource_c6jl6"]
+script = ExtResource("13_3m03y")
+text = "!"
 
 [node name="Testground" type="Control"]
 layout_mode = 3
@@ -61,3 +90,49 @@ text = "微软雅黑"
 
 [node name="PaginationBar" parent="MarginContainer/GridContainer" instance=ExtResource("8_vypfj")]
 layout_mode = 2
+
+[node name="Button" parent="MarginContainer/GridContainer" instance=ExtResource("10_lt0ct")]
+layout_mode = 2
+
+[node name="OptionBox" parent="MarginContainer/GridContainer" instance=ExtResource("10_tafj6")]
+layout_mode = 2
+
+[node name="SecureTextEdit" parent="." instance=ExtResource("9_sac5q")]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 268.0
+offset_right = 523.0
+offset_bottom = 543.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wqo3k")
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_left = 445.0
+offset_top = 217.0
+offset_right = 485.0
+offset_bottom = 257.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5oy1m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PanelContainer"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_8ndks")
+
+[node name="ComboBox" parent="." instance=ExtResource("12_b8yot")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 555.0
+offset_top = 189.0
+offset_right = 856.0
+offset_bottom = 229.0
+grow_horizontal = 1
+grow_vertical = 1
+items = Array[ExtResource("13_3m03y")]([SubResource("Resource_3ik4y"), SubResource("Resource_kx2i8"), SubResource("Resource_c6jl6")])

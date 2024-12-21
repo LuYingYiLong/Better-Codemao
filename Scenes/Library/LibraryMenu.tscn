@@ -1,0 +1,122 @@
+[gd_scene load_steps=10 format=3 uid="uid://bi80elkyb4v8g"]
+
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="1_rqsrl"]
+[ext_resource type="Script" path="res://Scripts/Library/LibraryMenu.gd" id="1_t0hba"]
+[ext_resource type="Theme" uid="uid://70upt1e30r52" path="res://Resources/Themes/ButtonTheme3.tres" id="2_0h76v"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_lbead"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_ruyu1"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="4_sd72x"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="5_cb537"]
+[ext_resource type="PackedScene" uid="uid://bfiqi7q8rbtwi" path="res://Scenes/Library/FanficCard.tscn" id="6_1lsxp"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_vcagn"]
+color = Color(0, 0, 0, 0.196078)
+grow_begin = -6.0
+grow_end = -6.0
+vertical = true
+
+[node name="LibraryMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t0hba")
+
+[node name="FanficTypeRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="FanficRecommendRequest" parent="." instance=ExtResource("2_lbead")]
+unique_name_in_owner = true
+progress_bar = NodePath("../MarginContainer/PanelContainer/ProgressBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="PanelContainer" parent="MarginContainer" instance=ExtResource("1_rqsrl")]
+layout_mode = 2
+
+[node name="ProgressBar" parent="MarginContainer/PanelContainer" instance=ExtResource("4_sd72x")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TabBar" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="FanficLabel" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_0h76v")
+theme_override_fonts/font = ExtResource("3_ruyu1")
+text = "FANFIC_NAME"
+flat = true
+text_overrun_behavior = 3
+
+[node name="BeginLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_vcagn")
+
+[node name="ComicLabel" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_0h76v")
+theme_override_fonts/font = ExtResource("3_ruyu1")
+text = "COMIC_NAME"
+flat = true
+text_overrun_behavior = 3
+
+[node name="EndLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_vcagn")
+
+[node name="FactionLabel" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_0h76v")
+theme_override_fonts/font = ExtResource("3_ruyu1")
+text = "FACTION_NAME"
+flat = true
+text_overrun_behavior = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_cb537")
+
+[node name="FanficCardContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 6
+
+[node name="FanficCard" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/FanficCardContainer" instance=ExtResource("6_1lsxp")]
+layout_mode = 2
+
+[connection signal="request_completed" from="FanficTypeRequest" to="." method="_on_fanfic_type_request_request_completed"]
+[connection signal="request_completed" from="FanficRecommendRequest" to="." method="_on_fanfic_recommend_request_request_completed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b5o0hpr15s67y"]
+[gd_scene load_steps=26 format=3 uid="uid://b5o0hpr15s67y"]
 
 [ext_resource type="Script" path="res://Scripts/UserMenu.gd" id="1_lvrm4"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_7uk8a"]
@@ -58,6 +58,12 @@ color = Color(0, 0, 0, 0.196078)
 grow_begin = 8.0
 grow_end = -6.0
 vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d05ia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nigqu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rt75g"]
 
 [node name="UserMenu" type="Control"]
 layout_mode = 3
@@ -446,17 +452,23 @@ theme_override_font_sizes/font_size = 24
 text = "DOING_NAME"
 uppercase = true
 
-[node name="Doing" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer"]
+[node name="Doing" type="TextEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("2_7uk8a")
+theme_override_colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_readonly_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("10_oqh5g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d05ia")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nigqu")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_rt75g")
 text = "Doing"
 autowrap_mode = 2
-text_overrun_behavior = 3
+scroll_smooth = true
 
 [node name="WorkList" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)

@@ -20,3 +20,11 @@ var top_color: String = "#6eff72"
 var system_ok_message_color: String = "#0067c0"
 var system_warning_message_color: String = "#ffb300"
 var system_error_message_color: String = "#cc2929"
+
+var default_ok_color: String = "#2e8b57"
+var default_warning_color: String = "#ffb300"
+var default_error_color: String = "#cc2929"
+
+var progress_running_color: String = "#0067c0"
+var progress_paused_color: String = "#9d5d00"
+var progress_error_color: String = "#c42b1c"

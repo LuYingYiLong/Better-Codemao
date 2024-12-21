@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://mem6wfaaptwm"]
+[gd_scene load_steps=24 format=3 uid="uid://mem6wfaaptwm"]
 
 [ext_resource type="Script" path="res://Scripts/CommentCard.gd" id="1_nrvkg"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_auwcy"]
@@ -6,6 +6,7 @@
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_6rxos"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="5_ya8ud"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_j7p0m"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="6_rivxs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihh0o"]
 bg_color = Color(1, 1, 1, 1)
@@ -38,6 +39,12 @@ corner_radius_bottom_left = 28
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gt3c7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhp37"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dwesk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m08y5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nn8r2"]
 
 [node name="CommentCard" type="PanelContainer"]
 self_modulate = Color(1, 1, 1, 0)
@@ -108,14 +115,24 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="ContentLabel" type="TextEdit" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("6_rivxs")
+theme_override_colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_readonly_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("6_j7p0m")
-text = "Content"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dwesk")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m08y5")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_nn8r2")
+editable = false
+context_menu_enabled = false
+wrap_mode = 1
 autowrap_mode = 2
+scroll_fit_content_height = true
+caret_blink = true
 
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]

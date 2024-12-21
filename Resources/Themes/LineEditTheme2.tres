@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dxmuchrxdh1vs"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dxmuchrxdh1vs"]
+
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_y4kqe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yo51g"]
 bg_color = Color(0.783523, 0.783523, 0.783523, 0.490196)
@@ -16,11 +18,10 @@ bg_color = Color(0.783523, 0.783523, 0.783523, 0.490196)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
-border_width_bottom = 1
+border_color = Color(0.603922, 0.603922, 0.603922, 0.490196)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7pcuj"]
 bg_color = Color(0.783523, 0.783523, 0.783523, 0.490196)
@@ -28,16 +29,61 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
+border_color = Color(0.605274, 0.605274, 0.605274, 0.490196)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vf0ac"]
+bg_color = Color(0.783523, 0.783523, 0.783523, 0.490196)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.603922, 0.603922, 0.603922, 0.490196)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r0o8s"]
+bg_color = Color(0.783523, 0.783523, 0.783523, 0.490196)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color(0.603922, 0.603922, 0.603922, 0.490196)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spi6p"]
+bg_color = Color(0.783523, 0.783523, 0.783523, 0.490196)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.603922, 0.603922, 0.603922, 0.490196)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
 
 [resource]
 LineEdit/colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 LineEdit/colors/font_selected_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 LineEdit/colors/font_uneditable_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 LineEdit/font_sizes/font_size = 20
+LineEdit/fonts/font = ExtResource("1_y4kqe")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_yo51g")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_a5eso")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_7pcuj")
+TextEdit/colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+TextEdit/colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 0.490196)
+TextEdit/fonts/font = ExtResource("1_y4kqe")
+TextEdit/styles/focus = SubResource("StyleBoxFlat_vf0ac")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_r0o8s")
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_spi6p")

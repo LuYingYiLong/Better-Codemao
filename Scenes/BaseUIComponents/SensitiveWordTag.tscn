@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwa7mueqbcy5d"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/SensitiveWordTag.gd" id="1_l40y3"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_qg6nc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wswrn"]
+
+[node name="SensitiveWordTag" type="MarginContainer"]
+theme_override_constants/margin_left = -8
+script = ExtResource("1_l40y3")
+
+[node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/icon_normal_color = Color(0.06, 0.06, 0.06, 0.490196)
+theme_override_colors/icon_focus_color = Color(0.0588235, 0.0588235, 0.0588235, 0.490196)
+theme_override_colors/icon_pressed_color = Color(0.0588235, 0.0588235, 0.0588235, 0.490196)
+theme_override_colors/icon_hover_color = Color(0.0588235, 0.0588235, 0.0588235, 0.490196)
+theme_override_colors/icon_hover_pressed_color = Color(0.0588235, 0.0588235, 0.0588235, 0.490196)
+theme_override_colors/icon_disabled_color = Color(0.0588235, 0.0588235, 0.0588235, 0.490196)
+theme_override_constants/icon_max_width = 32
+theme_override_fonts/font = ExtResource("1_qg6nc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wswrn")
+text = "   Text"
+flat = true
+alignment = 0
+text_overrun_behavior = 3
+clip_text = true
+icon_alignment = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b56q43ue36r4q"]
+[gd_scene load_steps=16 format=3 uid="uid://b56q43ue36r4q"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_4rym5"]
 [ext_resource type="Texture2D" uid="uid://xtqhdrqk18ja" path="res://Resources/Textures/Arrow.svg" id="2_emsui"]
@@ -7,6 +7,20 @@
 [ext_resource type="Texture2D" uid="uid://c4lupm1on6nj8" path="res://Resources/Textures/Link.svg" id="4_0hwcg"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="5_y7p17"]
 [ext_resource type="Texture2D" uid="uid://bna4a2cy0skgn" path="res://Resources/Textures/Copy.svg" id="6_fuxi7"]
+[ext_resource type="PackedScene" uid="uid://cd2hiax67rgqi" path="res://Scenes/BaseUIComponents/ComboBox.tscn" id="7_t8efv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_al2ms"]
+bg_color = Color(0.843184, 0.843184, 0.843184, 0.196078)
+border_width_bottom = 1
+border_color = Color(0.662452, 0.662452, 0.662452, 0.490196)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uagon"]
 
@@ -17,8 +31,64 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="Animation" id="Animation_sqdm5"]
+resource_name = "MouseEntered"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_03oa2"]
+resource_name = "MouseExited"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ah0ha"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sj6wq"]
+_data = {
+"MouseEntered": SubResource("Animation_sqdm5"),
+"MouseExited": SubResource("Animation_03oa2"),
+"RESET": SubResource("Animation_ah0ha")
+}
+
 [node name="OptionBox" type="PanelContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 86)
 offset_right = 377.0
 offset_bottom = 80.0
 mouse_default_cursor_shape = 2
@@ -26,6 +96,12 @@ theme_override_styles/panel = ExtResource("1_4rym5")
 script = ExtResource("2_xn38o")
 text = "Text"
 description = "Description"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_al2ms")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -36,26 +112,37 @@ theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.101961, 0.105882, 0.105882, 1)
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = -4
+theme_override_constants/separation = -6
 alignment = 1
 
 [node name="TextLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("3_rd6d5")
 theme_override_font_sizes/font_size = 20
 text = "Text"
 
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.372549, 0.372549, 0.376471, 1)
 theme_override_fonts/font = ExtResource("3_rd6d5")
 text = "Description"
 
@@ -90,6 +177,13 @@ theme_override_constants/icon_max_width = 28
 icon = ExtResource("6_fuxi7")
 flat = true
 
+[node name="ComboBox" parent="MarginContainer/HBoxContainer" instance=ExtResource("7_t8efv")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+size_flags_vertical = 4
+
 [node name="BlackgroundPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
@@ -123,5 +217,13 @@ access = 2
 filters = PackedStringArray("*.png,*.jpg,*.jpeg")
 use_native_dialog = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_sj6wq")
+}
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="file_selected" from="MarginContainer/HBoxContainer/BlackgroundPanel/FileDialog" to="." method="_on_file_dialog_file_selected"]

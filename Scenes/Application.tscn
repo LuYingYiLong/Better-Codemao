@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://csg0n6d7u0rvf"]
+[gd_scene load_steps=41 format=3 uid="uid://csg0n6d7u0rvf"]
 
 [ext_resource type="Script" path="res://Scripts/Application.gd" id="1_5hvyn"]
 [ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/LoginMenu.tscn" id="2_1hfjc"]
 [ext_resource type="Texture2D" uid="uid://dir3ebxrqxnao" path="res://Resources/Textures/Workshop.svg" id="2_b44jh"]
 [ext_resource type="Texture2D" uid="uid://dtyf6mejqb7mf" path="res://Resources/Textures/Forum.svg" id="2_do58s"]
+[ext_resource type="Script" path="res://Scripts/SensitiveWordsRequest.gd" id="2_epunv"]
 [ext_resource type="Script" path="res://Scripts/NavigationBar.gd" id="2_gfkna"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="2_s4ftx"]
 [ext_resource type="Script" path="res://Scripts/BaseBlackground.gd" id="3_jr2r8"]
@@ -15,14 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="9_2koew"]
 [ext_resource type="Texture2D" uid="uid://cs3rexsdqsp0m" path="res://Resources/Textures/Settings.svg" id="12_tealn"]
 [ext_resource type="PackedScene" uid="uid://bdw6wa6gmpvb5" path="res://Scenes/SystemMessageList.tscn" id="13_0uouo"]
-[ext_resource type="PackedScene" uid="uid://ccy1pjbdx7xby" path="res://Scenes/ViewTheImageWindow.tscn" id="16_5naus"]
-[ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/MainPopupMenu.tscn" id="16_f86f1"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ws3nl"]
-shader = ExtResource("3_scs3j")
-shader_parameter/blur_amount = 4.0
-shader_parameter/mix_amount = 0.2
-shader_parameter/color_over = Color(1, 1, 1, 1)
+[ext_resource type="Texture2D" uid="uid://ba8o2b06nowk1" path="res://Resources/Textures/Library.svg" id="13_x3dak"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="14_6jx8t"]
+[ext_resource type="PackedScene" uid="uid://ccy1pjbdx7xby" path="res://Scenes/ImageViewer.tscn" id="16_5naus"]
+[ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="16_aej1e"]
+[ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/PopupMenu.tscn" id="16_f86f1"]
+[ext_resource type="Texture2D" uid="uid://dt4vvl5xceytj" path="res://Resources/Textures/Empty.svg" id="16_jv21r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lemjn"]
 
@@ -40,10 +39,10 @@ shader_parameter/color_over = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtgo6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4686y"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cp50f"]
 shader = ExtResource("3_scs3j")
-shader_parameter/blur_amount = 10.0
-shader_parameter/mix_amount = 0.275
+shader_parameter/blur_amount = 6.0
+shader_parameter/mix_amount = 0.0
 shader_parameter/color_over = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84wbw"]
@@ -56,6 +55,110 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
+[sub_resource type="Resource" id="Resource_hp763"]
+script = ExtResource("16_aej1e")
+text = "VIEW_THE_IMAGE_NAME"
+
+[sub_resource type="Resource" id="Resource_ykf6m"]
+script = ExtResource("16_aej1e")
+text = "SAVE_THE_IMAGE_NAME"
+
+[sub_resource type="Resource" id="Resource_ya1pt"]
+script = ExtResource("16_aej1e")
+text = "SIGN_OUT_NAME"
+
+[sub_resource type="Animation" id="Animation_1pyq5"]
+resource_name = "Expand"
+length = 0.15
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(76, 0), Vector2(250, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HBoxContainer/Control:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(76, 0), Vector2(250, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a8k3p"]
+resource_name = "Fold"
+length = 0.15
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(250, 0), Vector2(76, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HBoxContainer/Control:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.142857),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(250, 0), Vector2(76, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6fgiu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HBoxContainer/Control:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oci1q"]
+_data = {
+"Expand": SubResource("Animation_1pyq5"),
+"Fold": SubResource("Animation_a8k3p"),
+"RESET": SubResource("Animation_6fgiu")
+}
+
 [node name="Application" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -64,6 +167,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5hvyn")
+
+[node name="SensitiveWordsRequest" type="HTTPRequest" parent="."]
+script = ExtResource("2_epunv")
 
 [node name="BaseBlackground" type="TextureRect" parent="."]
 layout_mode = 1
@@ -78,14 +184,13 @@ stretch_mode = 6
 script = ExtResource("3_jr2r8")
 
 [node name="BaseBlur" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_ws3nl")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.937255, 0.956863, 0.976471, 1)
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
@@ -132,7 +237,7 @@ theme_override_colors/font_selected_color = Color(0.0627451, 0.0627451, 0.062745
 theme_override_colors/drop_mark_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_constants/icon_max_width = 24
 theme_override_fonts/font = ExtResource("6_6l8hs")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 30
 theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_pqexq")
 theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_bjssj")
 theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_yooam")
@@ -152,12 +257,12 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="NavigationBar" type="PanelContainer" parent="."]
-material = SubResource("ShaderMaterial_4686y")
+material = SubResource("ShaderMaterial_cp50f")
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 80.0
+offset_right = 68.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_84wbw")
 script = ExtResource("2_gfkna")
@@ -166,59 +271,79 @@ script = ExtResource("2_gfkna")
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NavigationBar/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 5
 
 [node name="WorkshopTab" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 icon = ExtResource("2_b44jh")
+text = "WORKSHOP_NAME"
 
 [node name="ForumTab" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 icon = ExtResource("2_do58s")
+text = "FORUM_NAME"
 selected = true
+
+[node name="LibraryTab" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("13_x3dak")
+text = "LIBRARY_NAME"
 
 [node name="MessageButton" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
 layout_mode = 2
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
 icon = ExtResource("7_5lsja")
+text = "MESSAGE_NAME"
 
 [node name="SettingsButton" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
 layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 icon = ExtResource("12_tealn")
+text = "SETTINGS_NAME"
 
 [node name="UserButton" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
+icon = ExtResource("16_jv21r")
 
 [node name="MarginContainer" type="MarginContainer" parent="NavigationBar/MarginContainer/VBoxContainer/UserButton"]
+custom_minimum_size = Vector2(68, 46)
 layout_mode = 2
+size_flags_horizontal = 0
 mouse_filter = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_right = 14
 
 [node name="Mask" type="PanelContainer" parent="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer"]
 clip_children = 1
+custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
+size_flags_horizontal = 8
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ysmc3")
 
-[node name="AvatarTexture" type="TextureRect" parent="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask"]
+[node name="AvatarTexture" parent="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask" instance=ExtResource("14_6jx8t")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 2
-expand_mode = 1
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+popup_item = Array[ExtResource("16_aej1e")]([SubResource("Resource_hp763"), SubResource("Resource_ykf6m"), null, SubResource("Resource_ya1pt")])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NavigationBar"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_oci1q")
+}
 
 [node name="LoginMenu" parent="." instance=ExtResource("2_1hfjc")]
 layout_mode = 1
@@ -226,21 +351,24 @@ layout_mode = 1
 [node name="SystemMessageList" parent="." instance=ExtResource("13_0uouo")]
 layout_mode = 1
 
-[node name="ViewTheImageWindow" parent="." instance=ExtResource("16_5naus")]
+[node name="ImageViewer" parent="." instance=ExtResource("16_5naus")]
 
 [node name="MainPopupMenu" parent="." instance=ExtResource("16_f86f1")]
 
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 2
 size = Vector2i(944, 592)
-exclusive = false
-force_native = true
+dialog_autowrap = true
 access = 2
-use_native_dialog = true
 
+[connection signal="request_completed" from="SensitiveWordsRequest" to="SensitiveWordsRequest" method="_on_shielded_word_request_request_completed"]
 [connection signal="tab_selected" from="HBoxContainer/VBoxContainer/AddressBar/MarginContainer/AddressTabBar" to="HBoxContainer/VBoxContainer/AddressBar" method="_on_address_tab_bar_tab_selected"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/WorkshopTab" to="NavigationBar" method="_on_workshop_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/ForumTab" to="NavigationBar" method="_on_forum_tab_pressed"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/LibraryTab" to="NavigationBar" method="_on_library_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/MessageButton" to="NavigationBar" method="_on_message_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/SettingsButton" to="NavigationBar" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/UserButton" to="NavigationBar" method="_on_user_button_pressed"]
+[connection signal="mouse_entered" from="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask/AvatarTexture" to="NavigationBar/MarginContainer/VBoxContainer/UserButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask/AvatarTexture" to="NavigationBar/MarginContainer/VBoxContainer/UserButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask/AvatarTexture" to="NavigationBar/MarginContainer/VBoxContainer/UserButton" method="_on_pressed"]

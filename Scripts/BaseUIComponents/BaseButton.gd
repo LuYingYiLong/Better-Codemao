@@ -38,6 +38,8 @@ func set_icon(_icon: Texture) -> void:
 func set_text(_text: String) -> void:
 	if Engine.is_editor_hint():
 		%Button.text = _text
+	else:
+		%Button.text = _text
 
 func _on_pressed():
 	if not selected:

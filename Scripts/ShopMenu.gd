@@ -3,6 +3,8 @@ extends Control
 @onready var shop_request = %ShopRequest
 @onready var works_request = %WorksRequest
 
+@onready var scroll_container = %ScrollContainer
+
 @onready var preview_texture = %PreviewTexture
 @onready var name_label = %NameLabel
 @onready var level_tag = %LevelTag
@@ -14,9 +16,12 @@ extends Control
 
 const WORK_CARD_SCENE = preload("res://Scenes/Work/WorkCard.tscn")
 
+func _process(_delta):
+	work_card_container.columns = clampi(floori(scroll_container.size.x / 155), 1, 999)
+
 func set_data(data: Dictionary):
 	shop_request.request("https://api.codemao.cn/web/shops/%s" %data.get("id"))
-	works_request.request("https://api.codemao.cn/web/works/subjects/%s/works?&offset=0&limit=20&sort=-created_at,-id&user_id=%s&work_subject_id=%s" %[data.get("id"), Application.user_id, data.get("id")])
+	works_request.request("https://api.codemao.cn/web/works/subjects/%s/works?&offset=0&limit=40&sort=-created_at,-id&user_id=%s&work_subject_id=%s" %[data.get("id"), Application.user_id, data.get("id")])
 
 func _on_shop_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())

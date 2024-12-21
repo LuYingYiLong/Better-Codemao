@@ -21,6 +21,7 @@ var user_avatar: Texture = null:
 	set(value):
 		user_avatar = value
 		user_avatar_update.emit()
+var user_name: String
 
 func _notification(what):
 	if what == NOTIFICATION_APPLICATION_FOCUS_IN:
@@ -105,13 +106,13 @@ func emit_system_error_message(message: String):
 	add_system_message.emit(message, GlobalTheme.system_error_message_color, 6.0)
 
 func get_popup_menu():
-	return get_node("/root/@Control@96/MainPopupMenu")
+	return get_node("/root/@Control@99/MainPopupMenu")
 
 func get_file_dialog():
-	return get_node("/root/@Control@96/FileDialog")
+	return get_node("/root/@Control@99/FileDialog")
 
 func view_the_image(image: Texture):
-	var view_the_image_window = get_node("/root/@Control@96/ViewTheImageWindow")
+	var view_the_image_window = get_node("/root/@Control@99/ImageViewer")
 	view_the_image_window.populate_image(image)
 	view_the_image_window.show_window()
 

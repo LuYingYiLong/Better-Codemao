@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=3 uid="uid://bfiqi7q8rbtwi"]
+
+[ext_resource type="Script" path="res://Scripts/Library/FanficCard.gd" id="1_3j2rn"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="1_bougr"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_jk3nt"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_5bd60"]
+[ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="4_b5d1v"]
+[ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="5_drvxb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4ws2"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0na54"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_t6oex"]
+color = Color(0, 0, 0, 0.196078)
+grow_begin = -6.0
+grow_end = -6.0
+vertical = true
+
+[node name="FanficCard" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(160, 270)
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b4ws2")
+script = ExtResource("1_3j2rn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="VBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0na54")
+
+[node name="CoverTexture" parent="VBoxContainer/Mask" instance=ExtResource("1_bougr")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 220)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("2_jk3nt")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("3_5bd60")
+theme_override_font_sizes/font_size = 20
+text = "FanficName"
+horizontal_alignment = 1
+vertical_alignment = 2
+text_overrun_behavior = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_b5d1v")
+expand_mode = 1
+
+[node name="ViewTimes" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("5_drvxb")
+text = "999"
+text_overrun_behavior = 3
+
+[node name="Line" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_t6oex")
+
+[node name="TypeLabel" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("5_drvxb")
+text = "Type"
+horizontal_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Mask/CoverTexture" to="." method="_on_cover_texture_pressed"]

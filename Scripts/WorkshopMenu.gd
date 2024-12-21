@@ -38,8 +38,11 @@ func _on_go_to_button_pressed():
 			{"id": work_subject_id})
 
 func _on_shops_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	if result != HTTPRequest.RESULT_SUCCESS:
+		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
+		return
+
 	var items: Array = json.get("items")
 	for node in beginner_workshop_card_container.get_children():
 		node.queue_free()

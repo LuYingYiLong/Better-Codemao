@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6a62cd8dkxa1"]
+[gd_scene load_steps=6 format=3 uid="uid://b6a62cd8dkxa1"]
 
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsMenu.gd" id="1_tjfs3"]
-[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/BasePanelContainer.tscn" id="2_ln0m7"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_ln0m7"]
 [ext_resource type="PackedScene" uid="uid://b56q43ue36r4q" path="res://Scenes/Settings/OptionBox.tscn" id="3_psrpy"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_xxu8e"]
+[ext_resource type="PackedScene" uid="uid://b1m3nwa8qhnfw" path="res://Scenes/BaseUIComponents/Separator.tscn" id="5_hbtpr"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -46,4 +47,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="OptionBox" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/OptionBoxContainer" instance=ExtResource("3_psrpy")]
+layout_mode = 2
+
+[node name="Separator" parent="MarginContainer/BasePanelContainer/MarginContainer/ScrollContainer/OptionBoxContainer" instance=ExtResource("5_hbtpr")]
 layout_mode = 2

@@ -5,8 +5,16 @@ extends PanelContainer
 @onready var avatar_texture = %AvatarTexture
 @onready var nickname_label = %NicknameLabel
 @onready var work_shop_tag = %WorkShopTag
+@onready var create_time = %CreateTime
+
+@onready var post_authorized_tag = %PostAuthorizedTag
+@onready var post_featured_tag = %PostFeaturedTag
+@onready var post_hotted_tag = %PostHottedTag
 @onready var title_label = %TitleLabel
 @onready var content_label = %ContentLabel
+
+@onready var views = %Views
+@onready var replies = %Replies
 
 signal pressed(data: Dictionary)
 
@@ -36,8 +44,19 @@ func set_post_card_data(_data: Dictionary):
 	work_shop_tag.set_work_shop_data(user.get("work_shop_level", 0), \
 			user.get("work_shop_name", ""), \
 			user.get("subject_id", 0))
+	var create_time_dict: Dictionary = Time.get_datetime_dict_from_unix_time(data.get("created_at"))
+	create_time.text = "%s/%s/%s" %[create_time_dict.get("year"), \
+			create_time_dict.get("month"), \
+			create_time_dict.get("day")]
+
+	post_authorized_tag.visible = data.get("is_authorized", false)
+	post_featured_tag.visible = data.get("is_featured", false)
+	post_hotted_tag.visible = data.get("is_hotted", false)
 	title_label.text = data.get("title")
 	content_label.text = Application.html_to_text(data.get("content"))
+
+	views.text = str(data.get("n_views", 0))
+	replies.text = str(data.get("n_replies", 0))
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and \

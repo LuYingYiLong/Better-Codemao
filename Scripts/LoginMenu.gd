@@ -15,6 +15,8 @@ extends Control
 
 const LOGIN_DATA_JSON_PATH: String = "user://LoginData.json"
 
+var avatar_url: String
+
 var login_data = {"pid": "65edCTyg",
 	"identity": "",
 	"password": ""}
@@ -22,10 +24,6 @@ var login_data = {"pid": "65edCTyg",
 var user_headers: PackedStringArray
 
 func _ready():
-	login_request.timeout = 5.0
-	login_request.request_completed.connect(on_login_received)
-	avatar_request.request_completed.connect(on_avatar_received)
-
 	automatic_login_check.button_pressed = Settings.automatic_login
 	if FileAccess.file_exists(LOGIN_DATA_JSON_PATH):
 		login_data = Application.load_json_file(LOGIN_DATA_JSON_PATH)
@@ -35,6 +33,8 @@ func _ready():
 		_on_login_button_pressed()
 	else:
 		animation_player.play("Show")
+		await animation_player.animation_finished
+		animation_player.play("ShowLoginMenu")
 
 func on_login_received(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
 	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
@@ -45,31 +45,47 @@ func on_login_received(result: int, response_code: int, headers: PackedStringArr
 		var response_headers: Dictionary
 		for header: String in headers:
 			response_headers[header.get_slice(": ", 0)] = header.get_slice(": ", 1)
-		##读取响应头
+
+		#读取响应头
 		if response_headers.has("Set-Cookie"):
 			store_cookies(response_headers)
+
 		var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 		var user_info: Dictionary = json.get("user_info")
+		Settings.save_settings_config()
 		Application.user_id = user_info.get("id", -1)
-		avatar_request.request(user_info.get("avatar_url", ""))
+		avatar_url = user_info.get("avatar_url", "")
+		avatar_texture.load_image(avatar_url)
+		avatar_request.request(avatar_url)
 		if !Settings.automatic_login:
 			nickname_label.text = user_info.get("nickname", "")
+			Application.user_name = user_info.get("nickname", "")
 			description_label.text = user_info.get("description", "")
-			animation_player.play("ExpansionUserDataPanel")
+			animation_player.play("HideLoginMenu")
+			await animation_player.animation_finished
+			animation_player.play("ShowWelcomeMenu")
 		else: hide()
+		
+		#如果没有UserData则创建一个
+		if !FileAccess.file_exists(ProjectSettings.globalize_path("user://UserData.json")):
+			var user_data: Dictionary = {
+				"nickname": user_info.get("nickname", ""),
+				"description": user_info.get("description", "")
+				}
+			Application.save_json_file("user://UserData.json", user_data)
 
-func on_avatar_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-	if result != HTTPRequest.RESULT_SUCCESS: push_error("无法下载图像。尝试一个不同的图像。")
-
+func _on_avatar_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+	if result != HTTPRequest.RESULT_SUCCESS: return
 	var image = Image.new()
-	var error = image.load_jpg_from_buffer(body)
-	if error != OK:
-		push_error("无法加载图像。")
+	var error
+	if avatar_url.ends_with(".jpeg") or avatar_url.ends_with(".jpg"):
+		error = image.load_jpg_from_buffer(body)
+	elif avatar_url.ends_with(".png"):
+		error = image.load_png_from_buffer(body)
 
-	var texture = ImageTexture.create_from_image(image)
-	Application.user_avatar = texture
-	avatar_texture.texture = texture
-	if Settings.automatic_login: queue_free()
+	if error != OK:
+		return
+	Application.user_avatar = ImageTexture.create_from_image(image)
 
 # 存储从 Set-Cookie 中提取的 Cookie
 func store_cookies(set_cookie_headers):
@@ -82,7 +98,9 @@ func store_cookies(set_cookie_headers):
 			Application.cookies[_name] = value
 
 func _on_visitor_login_button_pressed():
-	hide()
+	animation_player.play("HideLoginMenu")
+	await animation_player.animation_finished
+	animation_player.play("Hide")
 
 func _on_login_button_pressed():
 	login_data["identity"] = identity_edit.text
@@ -92,7 +110,8 @@ func _on_login_button_pressed():
 	login_request.request("https://api.codemao.cn/tiger/v3/web/accounts/login", headers, HTTPClient.METHOD_POST, json)
 
 func _on_enter_button_pressed():
-	Settings.save_settings_config()
+	animation_player.play("HideWelcomeMenu")
+	await animation_player.animation_finished
 	animation_player.play("Hide")
 
 func _on_automatic_login_check_pressed():

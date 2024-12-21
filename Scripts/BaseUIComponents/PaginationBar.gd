@@ -38,11 +38,15 @@ func update_pager_total() -> void:
 			if pager_button_scene.text != "...": pager_button_scene.set_page(pager_button_scene.text.to_int())
 			pager_button_scene.on_pressed.connect(_on_pager_button_pressed)
 		pager_button_scene.flat = !is_current_page(pager_button_scene.text.to_int())
+		if pager_button_scene.flat: pager_button_scene.add_theme_color_override("font_color", Color.html("#101010"))
+		else: pager_button_scene.add_theme_color_override("font_color", Color.html("#ffffff"))
 		if pager_button_scene.text.to_int() == total: break
 
 func update_current_page() -> void:
 	for pager in pager_button_container.get_children():
 		pager.flat = !is_current_page(pager.text.to_int())
+		if pager.flat: pager.add_theme_color_override("font_color", Color.html("#101010"))
+		else: pager.add_theme_color_override("font_color", Color.html("#ffffff"))
 
 func is_current_page(page: int) -> bool:
 	return page == current_page

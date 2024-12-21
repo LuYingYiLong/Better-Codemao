@@ -3,7 +3,10 @@ extends Node
 var automatic_login: bool = false
 var blackground: String = ""
 var anti_aliasing: int = ANTI_ALIASING.DISABLED
-var language: String = "ch"
+var language: String = "ch":
+	set(value):
+		language = value
+		TranslationServer.set_locale(language)
 
 enum ANTI_ALIASING{DISABLED, MSAA3D_2X, MSAA3D_4X, MSAA3D_8X}
 
@@ -17,6 +20,7 @@ func _ready():
 		save_settings_config()
 	var dir_access: DirAccess = DirAccess.open("user://")
 	dir_access.make_dir("Personalization")
+	dir_access.make_dir("Files")
 	load_settings_config()
 	TranslationServer.set_locale(language)
 

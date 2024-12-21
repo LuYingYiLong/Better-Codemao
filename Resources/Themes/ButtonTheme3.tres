@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://70upt1e30r52"]
+
+[ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="1_aoyt1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tajin"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_meldw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vo7t0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhrjo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1vw3"]
+
+[resource]
+Button/colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+Button/colors/font_disabled_color = Color(0.06, 0.06, 0.06, 0.490196)
+Button/colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+Button/colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+Button/colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+Button/colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+Button/constants/h_separation = 10
+Button/font_sizes/font_size = 18
+Button/fonts/font = ExtResource("1_aoyt1")
+Button/styles/disabled = SubResource("StyleBoxEmpty_tajin")
+Button/styles/focus = SubResource("StyleBoxEmpty_meldw")
+Button/styles/hover = SubResource("StyleBoxEmpty_vo7t0")
+Button/styles/normal = SubResource("StyleBoxEmpty_lhrjo")
+Button/styles/pressed = SubResource("StyleBoxEmpty_y1vw3")

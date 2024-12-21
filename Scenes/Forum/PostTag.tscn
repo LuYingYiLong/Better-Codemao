@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://5c4ths80q2t5"]
+
+[ext_resource type="Script" path="res://Scripts/Forum/PostTag.gd" id="1_5dqsm"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_jslgp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36mxt"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="PostTag" type="PanelContainer"]
+self_modulate = Color(0, 0.403922, 0.752941, 1)
+custom_minimum_size = Vector2(18, 18)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_36mxt")
+script = ExtResource("1_5dqsm")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_jslgp")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 1

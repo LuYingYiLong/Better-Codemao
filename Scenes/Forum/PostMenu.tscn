@@ -1,15 +1,24 @@
-[gd_scene load_steps=27 format=3 uid="uid://di7yxffcqkw44"]
+[gd_scene load_steps=37 format=3 uid="uid://di7yxffcqkw44"]
 
 [ext_resource type="Script" path="res://Scripts/PostMenu.gd" id="1_na1xp"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_e7c64"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_hyegb"]
-[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/BasePanelContainer.tscn" id="2_qpd8g"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_qpd8g"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_4qe0f"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_ri125"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_ftsgq"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="4_svy5b"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="5_ytj6e"]
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="8_6ln4p"]
+[ext_resource type="Texture2D" uid="uid://ddeh8htl365sg" path="res://Resources/Textures/RichText.svg" id="8_8nsta"]
+[ext_resource type="Texture2D" uid="uid://c4lupm1on6nj8" path="res://Resources/Textures/Link.svg" id="8_ums52"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="8_y8iu8"]
+[ext_resource type="Texture2D" uid="uid://crt23j26ryky" path="res://Resources/Textures/Mirroring.svg" id="9_idpnt"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="9_vrxlf"]
+[ext_resource type="Texture2D" uid="uid://hcbgfg8by3t7" path="res://Resources/Textures/Text.svg" id="9_w60un"]
+[ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="10_4n3yp"]
+[ext_resource type="Texture2D" uid="uid://b0myqocntu4ln" path="res://Resources/Textures/Replie.svg" id="12_wwoe7"]
+[ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="13_fdfjd"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="16_0gukb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4781"]
 bg_color = Color(1, 1, 1, 1)
@@ -40,6 +49,12 @@ corner_radius_bottom_left = 28
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k0qjr"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1w6wk"]
+color = Color(0, 0, 0, 0.196078)
+grow_begin = -6.0
+grow_end = -6.0
+vertical = true
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijp3g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inf11"]
@@ -57,10 +72,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_na1xp")
 
-[node name="DetailsRequest" type="HTTPRequest" parent="."]
+[node name="DetailsRequest" parent="." instance=ExtResource("2_e7c64")]
 unique_name_in_owner = true
+progress_bar = NodePath("../MarginContainer/HSplitContainer/Details/DetailsProgressBar")
 
-[node name="RepilesRequest" type="HTTPRequest" parent="."]
+[node name="RepilesRequest" parent="." instance=ExtResource("2_e7c64")]
+unique_name_in_owner = true
+progress_bar = NodePath("../MarginContainer/HSplitContainer/VBoxContainer/Replies/RepliesProgressBar")
+
+[node name="AddReplyRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -78,12 +98,16 @@ theme_override_constants/margin_bottom = 32
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 32
 theme_override_constants/minimum_grab_thickness = 6
 theme_override_constants/autohide = 1
 split_offset = 820
 dragger_visibility = 1
 
 [node name="Details" parent="MarginContainer/HSplitContainer" instance=ExtResource("2_qpd8g")]
+layout_mode = 2
+
+[node name="DetailsProgressBar" parent="MarginContainer/HSplitContainer/Details" instance=ExtResource("3_4qe0f")]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/Details"]
@@ -167,11 +191,135 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Views" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ViewsIcon" type="TextureRect" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/Views"]
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_4n3yp")
+expand_mode = 1
+
+[node name="Views" type="Label" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/Views"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_vrxlf")
+text = "999"
+
+[node name="Replies" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="RepliesIcon" type="TextureRect" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/Replies"]
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("12_wwoe7")
+expand_mode = 1
+
+[node name="Replies" type="Label" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/Replies"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_vrxlf")
+text = "999"
+
+[node name="Control" type="Control" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="Line" type="PanelContainer" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxLine_1w6wk")
+
+[node name="MirroringButton" type="Button" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 26
+icon = ExtResource("9_idpnt")
+flat = true
+icon_alignment = 1
+
+[node name="ToRichTextButton" type="Button" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 26
+icon = ExtResource("8_8nsta")
+flat = true
+icon_alignment = 1
+
+[node name="ToTextButton" type="Button" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 26
+icon = ExtResource("9_w60un")
+flat = true
+icon_alignment = 1
+
+[node name="OpenInBrowserButton" type="Button" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 26
+icon = ExtResource("8_ums52")
+flat = true
+icon_alignment = 1
+
+[node name="PublishOn" type="Label" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_vrxlf")
+text = "PUBLISH_ON_NAME: YYY/MM/DD"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_overrun_behavior = 3
+
 [node name="ContentLabel" type="RichTextLabel" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 theme_override_colors/default_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/selection_color = Color(0.501961, 0.501961, 0.501961, 0.25098)
 theme_override_fonts/normal_font = ExtResource("8_y8iu8")
 theme_override_fonts/mono_font = ExtResource("9_vrxlf")
 theme_override_fonts/bold_font = ExtResource("4_ftsgq")
@@ -191,27 +339,28 @@ context_menu_enabled = true
 threaded = true
 selection_enabled = true
 
-[node name="OpenInBrowserButton" type="Button" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer"]
 layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = ExtResource("8_6ln4p")
-text = "OPEN_IN_BROWSER_NAME"
+theme_override_constants/separation = 32
 
-[node name="Replies" parent="MarginContainer/HSplitContainer" instance=ExtResource("2_qpd8g")]
+[node name="Replies" parent="MarginContainer/HSplitContainer/VBoxContainer" instance=ExtResource("2_qpd8g")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RepliesProgressBar" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies" instance=ExtResource("3_4qe0f")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/Replies"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Replies/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer"]
 layout_mode = 2
 
-[node name="AllRepliesLabel" type="Label" parent="MarginContainer/HSplitContainer/Replies/MarginContainer/VBoxContainer"]
+[node name="AllRepliesLabel" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -220,26 +369,47 @@ theme_override_font_sizes/font_size = 24
 text = "ALL_REPLIES_NAME"
 text_overrun_behavior = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/Replies/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_ri125")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TopReplyCardContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="TopReplyCardContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ReplyCardContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ReplyCardContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="PaginationBar" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("16_0gukb")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+current_page = 1
+
+[node name="SecureTextEdit" parent="MarginContainer/HSplitContainer/VBoxContainer" instance=ExtResource("13_fdfjd")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 200)
+layout_mode = 2
+
+[connection signal="request_completed" from="DetailsRequest" to="." method="on_details_received"]
+[connection signal="request_completed" from="RepilesRequest" to="." method="on_repiles_received"]
+[connection signal="request_completed" from="AddReplyRequest" to="." method="_on_add_reply_request_request_completed"]
 [connection signal="gui_input" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/OpenInBrowserButton" to="." method="_on_open_in_browser_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/MirroringButton" to="." method="_on_mirroring_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/ToRichTextButton" to="." method="_on_to_rich_text_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/ToTextButton" to="." method="_on_to_text_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/OpenInBrowserButton" to="." method="_on_open_in_browser_button_pressed"]
+[connection signal="page_changed" from="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
+[connection signal="send" from="MarginContainer/HSplitContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_send"]

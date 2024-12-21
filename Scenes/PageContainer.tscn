@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vjpqlhmjq3yu"]
+[gd_scene load_steps=9 format=3 uid="uid://vjpqlhmjq3yu"]
 
 [ext_resource type="Script" path="res://Scripts/PageContainer.gd" id="1_ja0r5"]
 
@@ -14,9 +14,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 0.1),
+"transitions": PackedFloat32Array(2.5, 2),
 "update": 0,
-"values": [1152, 0]
+"values": [2000, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -26,9 +26,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 0.1),
+"transitions": PackedFloat32Array(2.5, 2),
 "update": 0,
-"values": [-1152, 0]
+"values": [-2000, 0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -55,9 +55,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 0.1),
+"transitions": PackedFloat32Array(2.5, 2),
 "update": 0,
-"values": [-1152, 0]
+"values": [-2000, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -67,9 +67,50 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 0.1),
+"transitions": PackedFloat32Array(2.5, 2),
 "update": 0,
-"values": [1152, 0]
+"values": [2000, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_p288d"]
+resource_name = "PushInTop"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [1000, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_constants/margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [-1000, 0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -96,9 +137,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 0.1),
+"transitions": PackedFloat32Array(2.5, 2),
 "update": 0,
-"values": [0, -1152]
+"values": [0, -2000]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -108,9 +149,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 0.1),
+"transitions": PackedFloat32Array(2.5, 2),
 "update": 0,
-"values": [0, 1152]
+"values": [0, 2000]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -137,9 +178,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 0.1),
+"transitions": PackedFloat32Array(2.5, 2),
 "update": 0,
-"values": [0, 1152]
+"values": [0, 2000]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -149,9 +190,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 0.1),
+"transitions": PackedFloat32Array(2.5, 2),
 "update": 0,
-"values": [0, -1152]
+"values": [0, -2000]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -204,11 +245,36 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:theme_override_constants/margin_top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:theme_override_constants/margin_bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_osdm4"]
 _data = {
 "PushInLeft": SubResource("Animation_0tiga"),
 "PushInRight": SubResource("Animation_qxbdr"),
+"PushInTop": SubResource("Animation_p288d"),
 "PushOutLeft": SubResource("Animation_npr13"),
 "PushOutRight": SubResource("Animation_qubph"),
 "RESET": SubResource("Animation_7cdbq")
@@ -224,7 +290,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 script = ExtResource("1_ja0r5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

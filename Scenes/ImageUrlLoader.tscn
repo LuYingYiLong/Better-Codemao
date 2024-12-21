@@ -1,10 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci8hbvggabgnh"]
+[gd_scene load_steps=5 format=3 uid="uid://ci8hbvggabgnh"]
 
 [ext_resource type="Script" path="res://Scripts/ImageUrlLoader.gd" id="1_wwonq"]
+[ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="2_2qk66"]
+
+[sub_resource type="Resource" id="Resource_hp763"]
+script = ExtResource("2_2qk66")
+text = "VIEW_THE_IMAGE_NAME"
+
+[sub_resource type="Resource" id="Resource_ykf6m"]
+script = ExtResource("2_2qk66")
+text = "SAVE_THE_IMAGE_NAME"
 
 [node name="ImageUrlLoader" type="TextureRect"]
 expand_mode = 1
 script = ExtResource("1_wwonq")
+popup_item = Array[ExtResource("2_2qk66")]([SubResource("Resource_hp763"), SubResource("Resource_ykf6m")])
 
 [node name="ImageRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true

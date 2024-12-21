@@ -11,8 +11,6 @@ const POST_CARD_SCENE = preload("res://Scenes/Forum/PostCard.tscn")
 const FORUM_BOARD_CARD_SCENE = preload("res://Scenes/Forum/ForumBoardCard.tscn")
 
 func _ready():
-	boards_request.request_completed.connect(on_boards_received)
-	all_request.request_completed.connect(on_all_received)
 	var headers = ["Content-Type: application/json"]
 	for node in forum_board_card_container.get_children():
 		node.queue_free()
@@ -26,6 +24,7 @@ func on_boards_received(result: int, _response_code: int, _headers: PackedString
 	if result != HTTPRequest.RESULT_SUCCESS:
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
 		return
+
 	var items: Array = json.get("items")
 	for item: Dictionary in items:
 		var forum_board_card_scene = FORUM_BOARD_CARD_SCENE.instantiate()
@@ -37,10 +36,11 @@ func on_all_received(result: int, _response_code: int, _headers: PackedStringArr
 	if result != HTTPRequest.RESULT_SUCCESS:
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
 		return
+
 	var items: Array = json.get("items")
 	var count: int = -1
 	for post_id: String in items:
-		if count >= 20: break
+		if count >= 30: break
 		count += 1
 		var post_card_scene = POST_CARD_SCENE.instantiate()
 		post_card_container.add_child(post_card_scene)
