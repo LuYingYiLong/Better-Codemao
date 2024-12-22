@@ -46,7 +46,10 @@ LOAD_MORE_NAME,加载更多,Load more
 SYSTEM_NAME,系统,System
 SETTINGS_NAME,设置,Settings
 PERSONALIZATION_NAME,个性化,Personalization
-CHANGE_BLACKGROUND_NAME,更改背景,Change blackground
+CHANGE_BLACK_GROUND_NAME,更改背景,Change black ground
+BLACK_GROUND_MODE_NAME,背景模式,Black ground mode
+IMAGE_NAME,图像,Image
+SYSTEM_BASE_COLOR_NAME,系统基色,System base color
 LANGUAGE_NAME,语言,Language
 CHINESE_NAME,中文,Chinese
 ENGLISH_NAME,英文,English

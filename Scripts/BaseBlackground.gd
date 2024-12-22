@@ -5,7 +5,6 @@ extends TextureRect
 var color: Color = DisplayServer.get_base_color()
 
 func _ready():
-	base_blur.color = DisplayServer.get_base_color()
 	Settings.settings_config_loaded.connect(_on_settings_config_update)
 	Settings.settings_config_update.connect(_on_settings_config_update)
 	_on_settings_config_update()
@@ -29,3 +28,5 @@ func _on_settings_config_update():
 		image.load(Settings.blackground)
 		var _texture = ImageTexture.create_from_image(image)
 		texture = _texture
+	if Settings.blackground_mode == 1: base_blur.color = DisplayServer.get_base_color()
+	base_blur.visible = Settings.blackground_mode == 1

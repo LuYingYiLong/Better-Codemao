@@ -39,7 +39,7 @@ NavigationButtonsGroup=""
 
 [gui]
 
-theme/custom_font="res://Resources/Fonts/SourceHanSansCN-Medium.otf"
+theme/custom_font="res://Resources/Fonts/SystemFontMedium.tres"
 
 [internationalization]
 

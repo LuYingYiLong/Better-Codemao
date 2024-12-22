@@ -61,6 +61,10 @@ func set_option_box_data(data: Dictionary):
 					var texture = ImageTexture.create_from_image(image)
 					blackground_texture.texture = texture
 				blackground_panel.show()
+			["personalization", "blackground_mode"]:
+				var use = data.get("change_settings_config").get("use")
+				if use is String and use == "$ combo_box->items->selected->metadata":
+					combo_box.item_changed.connect(use_combo_box_set_blackground_mode)
 			["language", "language"]:
 				var use = data.get("change_settings_config").get("use")
 				if use is String and use == "$ combo_box->items->selected->metadata":
@@ -123,6 +127,8 @@ func process_command(command: String):
 		"settings_config":
 			if sections.size() >= 3:
 				match [sections[1], sections[2]]:
+					["personalization", "blackground_mode"]:
+						return Settings.blackground_mode
 					["language", "language"]:
 						if sections.size() >= 4:
 							match Settings.language:
@@ -136,6 +142,11 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	animation_player.play("MouseExited")
+
+func use_combo_box_set_blackground_mode(item: PopupItem) -> void:
+	var metadata: int = item.metadata
+	Settings.blackground_mode = metadata
+	Settings.save_settings_config()
 
 func use_combo_box_set_language(item: PopupItem) -> void:
 	var metadata: String = item.metadata

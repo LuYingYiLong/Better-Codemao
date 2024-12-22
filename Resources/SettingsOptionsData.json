@@ -44,10 +44,33 @@
 	"personalization_options": [
 		{
 			"option_box": {
-			"text": "CHANGE_BLACKGROUND_NAME",
+			"text": "CHANGE_BLACK_GROUND_NAME",
 			"change_settings_config": {
 				"path": "personalization",
 				"key": "blackground"
+				}
+			}
+		},
+		{
+			"option_box": {
+				"text": "BLACK_GROUND_MODE_NAME",
+				"combo_box": {
+					"selected": "$ settings_config->personalization->blackground_mode",
+					"items": [
+						{
+							"text": "IMAGE_NAME",
+							"metadata": 0
+						},
+						{
+							"text": "SYSTEM_BASE_COLOR_NAME",
+							"metadata": 1
+						}
+					]
+				},
+				"change_settings_config": {
+					"path": "personalization",
+					"key": "blackground_mode",
+					"use": "$ combo_box->items->selected->metadata"
 				}
 			}
 		}
