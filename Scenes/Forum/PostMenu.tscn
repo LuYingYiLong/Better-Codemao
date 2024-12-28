@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://di7yxffcqkw44"]
+[gd_scene load_steps=32 format=3 uid="uid://di7yxffcqkw44"]
 
 [ext_resource type="Script" path="res://Scripts/PostMenu.gd" id="1_na1xp"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_e7c64"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="5_ytj6e"]
 [ext_resource type="Texture2D" uid="uid://ddeh8htl365sg" path="res://Resources/Textures/RichText.svg" id="8_8nsta"]
 [ext_resource type="Texture2D" uid="uid://c4lupm1on6nj8" path="res://Resources/Textures/Link.svg" id="8_ums52"]
-[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="8_y8iu8"]
 [ext_resource type="Texture2D" uid="uid://crt23j26ryky" path="res://Resources/Textures/Mirroring.svg" id="9_idpnt"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="9_vrxlf"]
 [ext_resource type="Texture2D" uid="uid://hcbgfg8by3t7" path="res://Resources/Textures/Text.svg" id="9_w60un"]
@@ -54,14 +53,6 @@ color = Color(0, 0, 0, 0.196078)
 grow_begin = -6.0
 grow_end = -6.0
 vertical = true
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijp3g"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inf11"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sk3ek"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tc6jw"]
 
 [node name="PostMenu" type="Control"]
 layout_mode = 3
@@ -317,30 +308,10 @@ horizontal_alignment = 2
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="ContentLabel" type="RichTextLabel" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Contents" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Details/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_mode = 2
-theme_override_colors/default_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/selection_color = Color(0.501961, 0.501961, 0.501961, 0.25098)
-theme_override_fonts/normal_font = ExtResource("8_y8iu8")
-theme_override_fonts/mono_font = ExtResource("9_vrxlf")
-theme_override_fonts/bold_font = ExtResource("4_ftsgq")
-theme_override_font_sizes/bold_italics_font_size = 20
-theme_override_font_sizes/italics_font_size = 20
-theme_override_font_sizes/mono_font_size = 20
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 20
-theme_override_styles/fill = SubResource("StyleBoxEmpty_ijp3g")
-theme_override_styles/background = SubResource("StyleBoxEmpty_inf11")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_sk3ek")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tc6jw")
-bbcode_enabled = true
-fit_content = true
-scroll_active = false
-context_menu_enabled = true
-threaded = true
-selection_enabled = true
+theme_override_constants/separation = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer"]
 layout_mode = 2

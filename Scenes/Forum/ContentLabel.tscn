@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1a4son7e2wes"]
+
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_wp3qx"]
+[ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="2_44vxr"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_gv7s4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijp3g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inf11"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sk3ek"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tc6jw"]
+
+[node name="ContentLabel" type="RichTextLabel"]
+focus_mode = 2
+theme_override_colors/default_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/selection_color = Color(0.501961, 0.501961, 0.501961, 0.25098)
+theme_override_fonts/normal_font = ExtResource("1_wp3qx")
+theme_override_fonts/mono_font = ExtResource("2_44vxr")
+theme_override_fonts/bold_font = ExtResource("3_gv7s4")
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_styles/fill = SubResource("StyleBoxEmpty_ijp3g")
+theme_override_styles/background = SubResource("StyleBoxEmpty_inf11")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sk3ek")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tc6jw")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+context_menu_enabled = true
+threaded = true
+selection_enabled = true

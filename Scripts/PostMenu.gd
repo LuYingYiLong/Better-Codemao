@@ -16,7 +16,7 @@ extends Control
 @onready var to_rich_text_button = %ToRichTextButton
 @onready var to_text_button = %ToTextButton
 @onready var publish_on = %PublishOn
-@onready var content_label = %ContentLabel
+@onready var contents = %Contents
 
 @onready var all_replies_label = %AllRepliesLabel
 @onready var scroll_container = %ScrollContainer
@@ -26,6 +26,8 @@ extends Control
 
 @onready var secure_text_edit = %SecureTextEdit
 
+const CONTENT_LABEL_SCENE = preload("res://Scenes/Forum/ContentLabel.tscn")
+const IMAGE_URL_LOADER_SCENE = preload("res://Scenes/ImageUrlLoader.tscn")
 const REPLY_CARD_SCENE = preload("res://Scenes/Forum/ReplyCard.tscn")
 
 var rich_text_enabled: bool = true
@@ -87,11 +89,23 @@ func on_details_received(result: int, _response_code: int, _headers: PackedStrin
 	populate_content()
 
 func populate_content():
-	content_label.clear()
+	for node in contents.get_children():
+		node.queue_free()
 	to_rich_text_button.visible = not rich_text_enabled
 	to_text_button.visible = rich_text_enabled
-	if rich_text_enabled: content_label.append_text(Application.html_to_bbcode(content))
-	else: content_label.add_text(Application.html_to_text(content))
+	var content_array: PackedStringArray = Application.html_to_bbcode(content).split("|SPLIT|")
+	for content_type: String in content_array:
+		if content_type.contains("https://cdn-community.bcmcdn.com/47/community/"):
+			var image_url_loader = IMAGE_URL_LOADER_SCENE.instantiate()
+			contents.add_child(image_url_loader)
+			image_url_loader.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
+			image_url_loader.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+			image_url_loader.load_image(content_type)
+		else:
+			var content_label = CONTENT_LABEL_SCENE.instantiate()
+			contents.add_child(content_label)
+			if rich_text_enabled: content_label.append_text(content_type)
+			else: content_label.add_text(content_type)
 
 func on_repiles_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())

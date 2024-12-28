@@ -9,6 +9,7 @@ extends Window
 		visible = true
 		emit = value
 
+@onready var texture_rect = %TextureRect
 @onready var margin_container = %MarginContainer
 @onready var panel_container = %PanelContainer
 @onready var scroll_container = %ScrollContainer

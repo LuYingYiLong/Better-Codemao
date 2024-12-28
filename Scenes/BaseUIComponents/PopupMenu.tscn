@@ -35,6 +35,11 @@ transparent = true
 popup_window = true
 script = ExtResource("1_28uko")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 anchors_preset = 15

@@ -99,7 +99,17 @@ func html_to_bbcode(html: String):
 			'<span style="font-size: xx-large;">': html = html.replace(get_string, "[font_size=30]")
 			'<strong>': html = html.replace(get_string, "[b]")
 			#提取图片链接：https:\/\/cdn-community.codemao.cn\/.*?\.png|jpeg
-			_: html = html.replace(get_string, "")
+			_:
+				if get_string.contains("https://cdn-community.bcmcdn.com/47/community/"):
+					var image_link_regex = RegEx.new()
+					image_link_regex.compile('("https://cdn-community.bcmcdn.com/47/community/.*?")')
+					var image_link_result = image_link_regex.search(get_string)
+					if image_link_result:
+						var image_link: String = image_link_result.get_string()
+						image_link = image_link.replace('"', '|SPLIT|')
+						html = html.replace(get_string, image_link)
+				else:
+					html = html.replace(get_string, "")
 	return html
 
 func emit_system_error_message(message: String):
