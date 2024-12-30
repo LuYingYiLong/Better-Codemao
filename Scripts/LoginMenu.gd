@@ -42,6 +42,7 @@ func on_login_received(result: int, response_code: int, headers: PackedStringArr
 		Application.save_json_file(LOGIN_DATA_JSON_PATH, login_data)
 		user_headers = headers
 		Application.login_data = login_data
+		Application.logged_in = true
 		var response_headers: Dictionary
 		for header: String in headers:
 			response_headers[header.get_slice(": ", 0)] = header.get_slice(": ", 1)

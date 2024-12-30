@@ -28,6 +28,8 @@ TOTAL_SCORE_NAME,积分总数,Total score
 SUBMITTED_WORKS_NAME,投稿作品,Submitted works
 WORKSHOP_MEMBER,工作室成员,Workshop member
 FORUM_NAME,论坛,Forum
+MINE_POSTS_NAME,我的帖子,Mine posts
+MINE_REPLIED_NAME,我的回复,Mine replied
 POST_NAME,帖子,Post
 PUBLISH_ON_NAME,发布于,Publish on
 OPEN_IN_BROWSER_NAME,在浏览器打开,Open in browser

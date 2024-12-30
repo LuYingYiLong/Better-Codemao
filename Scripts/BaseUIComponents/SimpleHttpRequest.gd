@@ -28,7 +28,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 	_change_progress_bar_state(0, false)
 
 func _change_progress_bar_state(state: int, visible: bool) -> void:
-	var progress_bar_scene = get_node(progress_bar)
-	if progress_bar_scene != null:
+	if progress_bar != null:
+		var progress_bar_scene = get_node(progress_bar)
 		progress_bar_scene.progress_state = state
 		progress_bar_scene.visible = visible

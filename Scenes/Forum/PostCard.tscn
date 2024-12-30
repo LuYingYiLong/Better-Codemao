@@ -42,7 +42,7 @@ corner_radius_bottom_left = 15
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbfrc"]
 
 [node name="PostCard" type="PanelContainer"]
-custom_minimum_size = Vector2(300, 170)
+custom_minimum_size = Vector2(0, 170)
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = ExtResource("1_gtwqm")
 script = ExtResource("1_5kq84")
@@ -156,6 +156,7 @@ theme_override_fonts/font = ExtResource("7_o3g1c")
 theme_override_font_sizes/font_size = 20
 text = "Title"
 vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer/Title&Content"]
 unique_name_in_owner = true

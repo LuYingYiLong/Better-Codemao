@@ -15,6 +15,7 @@ const SETTINGS_OPTIONS_DATA_PATH = "res://Resources/SettingsOptionsData.json"
 var login_data = {"pid": "65edCTyg",
 	"identity": "",
 	"password": ""}
+var logged_in: bool
 var user_id: int
 var cookies: Dictionary
 var user_avatar: Texture = null:
