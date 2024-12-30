@@ -9,6 +9,7 @@ extends PanelContainer
 	set(value):
 		text = value
 		set_text(text)
+@export var group: String
 @export var selected: bool
 
 @onready var color_rect = %ColorRect
@@ -16,11 +17,14 @@ extends PanelContainer
 @onready var animation_player = %AnimationPlayer
 
 signal pressed
+signal metadata_output(metadata)
 signal animation_finished(anim_name)
 
 var current_tab: int
 var last_tab: int = -1
 var last_tab_scene = null
+
+var metadata = null
 
 func _ready():
 	if !Engine.is_editor_hint():
@@ -33,6 +37,8 @@ func _ready():
 
 func set_icon(_icon: Texture) -> void:
 	if Engine.is_editor_hint():
+		%Button.icon = _icon
+	else:
 		%Button.icon = _icon
 
 func set_text(_text: String) -> void:
@@ -64,10 +70,12 @@ func _on_pressed():
 				await last_tab_scene.animation_finished
 				play("PushInTop")
 
-		for node in get_tree().get_nodes_in_group("NavigationButtonsGroup"):
+		for node in get_tree().get_nodes_in_group(group):
 			node.last_tab = current_tab
 			node.last_tab_scene = self
 	pressed.emit()
+	if metadata != null:
+		metadata_output.emit(metadata)
 
 func _on_mouse_entered():
 	color_rect.show()

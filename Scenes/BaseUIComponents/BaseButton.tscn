@@ -229,11 +229,12 @@ _data = {
 "Selected": SubResource("Animation_7nmkk")
 }
 
-[node name="BaseButton" type="PanelContainer" groups=["NavigationButtonsGroup"]]
+[node name="BaseButton" type="PanelContainer"]
 offset_right = 157.0
 offset_bottom = 46.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_divmj")
 script = ExtResource("3_lhgw4")
+group = null
 
 [node name="ColorRect" type="PanelContainer" parent="."]
 unique_name_in_owner = true

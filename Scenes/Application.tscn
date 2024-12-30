@@ -284,45 +284,51 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="WorkshopTab" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+[node name="WorkshopTab" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 icon = ExtResource("2_b44jh")
 text = "WORKSHOP_NAME"
+group = "NavigationButtonsGroup"
 
-[node name="ForumTab" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+[node name="ForumTab" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 icon = ExtResource("2_do58s")
 text = "FORUM_NAME"
+group = "NavigationButtonsGroup"
 selected = true
 
-[node name="LibraryTab" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+[node name="LibraryTab" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 icon = ExtResource("13_x3dak")
 text = "LIBRARY_NAME"
+group = "NavigationButtonsGroup"
 
-[node name="MessageButton" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+[node name="MessageButton" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 layout_mode = 2
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
 icon = ExtResource("7_5lsja")
 text = "MESSAGE_NAME"
+group = "NavigationButtonsGroup"
 
-[node name="SettingsButton" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+[node name="SettingsButton" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 icon = ExtResource("12_tealn")
 text = "SETTINGS_NAME"
+group = "NavigationButtonsGroup"
 
-[node name="UserButton" parent="NavigationBar/MarginContainer/VBoxContainer" instance=ExtResource("9_2koew")]
+[node name="UserButton" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 icon = ExtResource("16_jv21r")
+group = "NavigationButtonsGroup"
 
 [node name="MarginContainer" type="MarginContainer" parent="NavigationBar/MarginContainer/VBoxContainer/UserButton"]
 custom_minimum_size = Vector2(68, 46)

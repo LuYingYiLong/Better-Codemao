@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db4xoj42nxmst"
-path="res://.godot/imported/shequ_logo.png-0a92775d8bfa5352fdd587217fb52c8a.ctex"
+uid="uid://cmom8jwor5eo8"
+path="res://.godot/imported/PopularActivities.svg-985110a0fd034ba3a660a65c9ed7b817.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/shequ_logo.png"
-dest_files=["res://.godot/imported/shequ_logo.png-0a92775d8bfa5352fdd587217fb52c8a.ctex"]
+source_file="res://Resources/Textures/PopularActivities.svg"
+dest_files=["res://.godot/imported/PopularActivities.svg-985110a0fd034ba3a660a65c9ed7b817.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

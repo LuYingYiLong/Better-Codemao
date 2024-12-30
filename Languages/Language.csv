@@ -28,8 +28,22 @@ TOTAL_SCORE_NAME,积分总数,Total score
 SUBMITTED_WORKS_NAME,投稿作品,Submitted works
 WORKSHOP_MEMBER,工作室成员,Workshop member
 FORUM_NAME,论坛,Forum
+FORUM_SQUARE_NAME,论坛广场,Forum square
+POPULAR_ACTIVITIES_NAME,热门活动,Popular activities
+CODING_PARADISE_NAME,编程乐园,Coding paradise
+WORKSHOP_MASTER_APPRENTICE_NAME,工作室&师徒,Workshop & Master & Apprentice
+YOU_ASK_I_ANSWER_NAME,你问我答,"You ask, I answer"
+THE_CODE_ISLAND_NAME,代码岛,The Code Island
+COCO_APP_AUTHORING_NAME,CoCo应用创作,CoCo App authoring
+PYTHON_PARADISE_NAME,Python乐园,Python paradise
+THE_CODE_SPRITE_NAME,源码精灵,The Code Sprite
+THE_NOC_MATCH_NAME,NOC比赛,The NOC match
+CHATTING_SQUARE_NAME,灌水池塘,Chatting square
+THE_TOWER_OF_BABEL_NAME,通天塔,The Tower of Babel
+PROGRAMMER_CLASSROOM_NAME,训练师课堂,Programmer classroom
 MINE_POSTS_NAME,我的帖子,Mine posts
 MINE_REPLIED_NAME,我的回复,Mine replied
+HISTORY_NAME,历史记录,History
 POST_NAME,帖子,Post
 PUBLISH_ON_NAME,发布于,Publish on
 OPEN_IN_BROWSER_NAME,在浏览器打开,Open in browser
@@ -114,19 +128,19 @@ WORK_SHOP_LEVEL4,大神工作室,Advanced workshop
 SECURE_TEXT_EDIT_REPORT1,检查潜在屏蔽词...,Checking for potential blocked words...
 SECURE_TEXT_EDIT_REPORT2,发现潜在的屏蔽词！,Discover words that may be blocked!
 SECURE_TEXT_EDIT_REPORT3,未找到,No found
-POST_COMMENT_NAME,回复了你的帖子《{0}》,POST_COMMENT
-WORK_COMMENT_NAME,评论了你的作品《{0}》,WORK_COMMENT
-WORK_REPLY_AUTHOR_NAME,回复了你在作品《{0}》下的“{1}”的评论,WORK_REPLY_AUTHOR
-POST_REPLY_AUTHOR_NAME,回复了你在帖子《{0}》下的“{1}”的评论,POST_REPLY_AUTHOR
-POST_REPLY_REPLY_NAME,回复了你在帖子《{0}》下的评论,POST_REPLY_REPLY
-POST_REPLY_REPLY_FEEDBACK_NAME,回复了你的回帖“{0}”下的“{1}”的回复,POST_REPLY_REPLY_FEEDBACK
-WORK_REPLY_REPLY_AUTHOR_NAME,回复了你的作品《{0}》下的“{1}”的回复,WORK_REPLY_REPLY_AUTHOR_NAME
-WORK_REPLY_REPLY_NAME,回复了你在作品《{0}》下的评论,WORK_REPLY_REPLY
-POST_REPLY_NAME,回复了你的帖子《{0}》下的回帖,POST_REPLY
-WORK_LIKE_NAME,赞了你的作品《{0}》,WORK_LIKE
-WORK_FORK_NAME,购买了你的作品《{0}》,WORK_FORK
-WORK_SHOP_USER_LEAVE_NAME,“{0}”已退出“{1}”工作室,WORK_SHOP_USER_LEAVE
-POST_DELETE_NAME,你的帖子《{0}》被举报为“{1}”，经管理员核实被判定为违规帖，已被{2}，如有问题可前往反馈,POST_DELETE
+POST_COMMENT_NAME,回复了你的帖子 {0},replied to your post {0}
+WORK_COMMENT_NAME,评论了你的作品 {0},commented on your post {0}
+WORK_REPLY_AUTHOR_NAME,回复了你在作品 {0} 下的 {1} 的评论,replied to your comment {1} on the work {0}
+POST_REPLY_AUTHOR_NAME,回复了你在帖子 {0} 下的 {1} 的评论,replied to your comment {1} on the post {0}
+POST_REPLY_REPLY_NAME,回复了你在帖子 {0} 下的评论,replied to your comment on the post {0}
+POST_REPLY_REPLY_FEEDBACK_NAME,回复了你的回帖 {0} 下的 {1} 的回复,replies {1} to your reply {0}
+WORK_REPLY_REPLY_AUTHOR_NAME,回复了你的作品 {0} 下的 {1} 的回复,replies {1} to your work {0}
+WORK_REPLY_REPLY_NAME,回复了你在作品 {0} 下的评论,replied to your comment on the work {0}
+POST_REPLY_NAME,回复了你的帖子 {0} 下的回帖,replied to a reply to your post {0}
+WORK_LIKE_NAME,赞了你的作品 {0},liked your work {0}
+WORK_FORK_NAME,购买了你的作品 {0},buys your work {0}
+WORK_SHOP_USER_LEAVE_NAME,{0} 已退出 {1} 工作室, {0} leave the workshop {1}
+POST_DELETE_NAME,你的帖子 {0} 被举报为 {1}，经管理员核实被判定为违规帖，已被 {2}，如有问题可前往反馈,"Your post {0} was reported as a {1}, and the post was verified by the moderator as a violating post, and has been {2}, if you have any questions, you can go to the feedback"
 PERSONALIZATION_DESCRIPTION,背景,Blackground
 LANGUAGE_DESCRIPTION,语言,Language
 ABOUT_DESCRIPTION,GitHub,GitHub

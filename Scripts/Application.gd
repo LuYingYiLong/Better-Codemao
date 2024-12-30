@@ -9,8 +9,8 @@ signal set_root_address(address_name: String, scene_path: String, data: Dictiona
 
 signal add_system_message(message: String, color: String, time: float)
 
-const EFFECTIVE_POST_ID_PATH = "user://EffectivePostID.dat"
 const SETTINGS_OPTIONS_DATA_PATH = "res://Resources/SettingsOptionsData.json"
+const FORUM_HISTORY_PATH = "user://Forum-history.json"
 
 var login_data = {"pid": "65edCTyg",
 	"identity": "",
@@ -56,16 +56,6 @@ func load_json_file(file_path: String):
 			return null
 	else: push_warning("Attempts to locate the file failed")
 	return null
-
-func save_effective_post_id(post_id: int):
-	var file = FileAccess.open(EFFECTIVE_POST_ID_PATH, FileAccess.WRITE)
-	file.store_string(str(post_id))
-	file.close()
-
-func get_effective_post_id() -> int:
-	var file = FileAccess.open(EFFECTIVE_POST_ID_PATH, FileAccess.READ)
-	var post_id: int = file.get_as_text().to_int()
-	return post_id
 
 #生成 Cookie 请求头
 func generate_cookie_header() -> String:
