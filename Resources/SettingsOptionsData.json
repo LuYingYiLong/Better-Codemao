@@ -2,6 +2,7 @@
 	"root_options": [
 		{
 			"option_box": {
+				"icon": "res://Resources/Textures/Personalization.svg",
 				"text": "PERSONALIZATION_NAME",
 				"description": "PERSONALIZATION_DESCRIPTION",
 				"go_to": "personalization_options"
@@ -9,6 +10,7 @@
 		},
 		{
 			"option_box": {
+				"icon": "res://Resources/Textures/Language.svg",
 				"text": "LANGUAGE_NAME",
 				"description": "LANGUAGE_DESCRIPTION",
 				"go_to": "language_options"
@@ -36,6 +38,7 @@
 		},
 		{
 			"option_box": {
+				"icon": "res://Resources/Textures/OpenTheUserDataFloder.svg",
 				"text": "OPEN_THE_USER_DATA_FOLDER_NAME",
 				"dir": "user://"
 			}
@@ -76,6 +79,13 @@
 		}
 	],
 	"about_options": [
+		{
+			"option_box": {
+				"text": "BetterCodemao",
+				"description": "BetterCodemao is licensed under the MIT License",
+				"link": "https://mit-license.org/"
+			}
+		},
 		{
 			"option_box": {
 				"text": "GitHub",

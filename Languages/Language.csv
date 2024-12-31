@@ -146,9 +146,9 @@ WORK_SHOP_USER_LEAVE_NAME,{0} 已退出 {1} 工作室, {0} leave the workshop {1
 POST_DELETE_NAME,你的帖子 {0} 被举报为 {1}，经管理员核实被判定为违规帖，已被 {2}，如有问题可前往反馈,"Your post {0} was reported as a {1}, and the post was verified by the moderator as a violating post, and has been {2}, if you have any questions, you can go to the feedback"
 PERSONALIZATION_DESCRIPTION,背景,Blackground
 LANGUAGE_DESCRIPTION,语言,Language
-ABOUT_DESCRIPTION,GitHub,GitHub
+ABOUT_DESCRIPTION,MIT License，GitHub,"MIT License, GitHub"
 INIT_CONFIG_NAME,初始化配置,Init config
-INIT_CONFIG_PROCESS1,开始之前，我们先设置初始化配置,Before we begin，let's set up the initialization config
+INIT_CONFIG_PROCESS1,开始之前，我们先设置初始化配置,"Before we begin, let's set up the initialization config"
 INIT_CONFIG_PROCESS2,查找最新帖子ID,Find the most recent post ID
 INIT_CONFIG_DESCRIPTION2,从编程猫社区获取一个最近的帖子ID并输入,Get a recent post ID from the Codemao community and input
 VIEW_THE_IMAGE_NAME,查看图像,View the image
