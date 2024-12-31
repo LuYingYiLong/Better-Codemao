@@ -1,7 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://c4h76lvohoy6a"]
 
 [ext_resource type="Script" path="res://Scripts/LoginMenu.gd" id="1_ghnru"]
-[ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="2_7meop"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_76gck"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_ciblx"]
 [ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="4_464f7"]
@@ -13,6 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="8_trjf4"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="10_gwxr0"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="11_g32uo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hclhu"]
+draw_center = false
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.0980392)
+shadow_size = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15rth"]
 bg_color = Color(1, 1, 1, 1)
@@ -57,26 +65,26 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LoginMenu:position")
+tracks/0/path = NodePath("LoginMenuMarginContainer/LoginMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.2, 1),
-"update": 0,
-"values": [Vector2(376, 68), Vector2(376, 650)]
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LoginMenu:visible")
+tracks/1/path = NodePath("LoginMenuMarginContainer:theme_override_constants/margin_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [0, 256]
 }
 
 [sub_resource type="Animation" id="Animation_okalb"]
@@ -86,26 +94,26 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WelcomeMenu:position")
+tracks/0/path = NodePath("WelcomeMenuMarginContainer/WelcomeMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.2, 1),
-"update": 0,
-"values": [Vector2(376, 68), Vector2(376, 650)]
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WelcomeMenu:visible")
+tracks/1/path = NodePath("WelcomeMenuMarginContainer:theme_override_constants/margin_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [0, 256]
 }
 
 [sub_resource type="Animation" id="Animation_7pxlh"]
@@ -113,19 +121,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LoginMenu:position")
+tracks/0/path = NodePath("LoginMenuMarginContainer/LoginMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(376, 68)]
+"update": 1,
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LoginMenu:visible")
+tracks/1/path = NodePath("WelcomeMenuMarginContainer/WelcomeMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -137,19 +145,19 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WelcomeMenu:position")
+tracks/2/path = NodePath(".:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(376, 68)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("WelcomeMenu:visible")
+tracks/3/path = NodePath(".:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -161,26 +169,26 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".:modulate")
+tracks/4/path = NodePath("LoginMenuMarginContainer:theme_override_constants/margin_top")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath(".:visible")
+tracks/5/path = NodePath("WelcomeMenuMarginContainer:theme_override_constants/margin_top")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_bnylm"]
@@ -219,26 +227,26 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LoginMenu:position")
+tracks/0/path = NodePath("LoginMenuMarginContainer/LoginMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.2, 1),
-"update": 0,
-"values": [Vector2(376, 650), Vector2(376, 68)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LoginMenu:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoginMenuMarginContainer:theme_override_constants/margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [256, 0]
 }
 
 [sub_resource type="Animation" id="Animation_h72p7"]
@@ -248,26 +256,26 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WelcomeMenu:position")
+tracks/0/path = NodePath("WelcomeMenuMarginContainer/WelcomeMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.2, 1),
-"update": 0,
-"values": [Vector2(376, 650), Vector2(376, 68)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WelcomeMenu:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WelcomeMenuMarginContainer:theme_override_constants/margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [256, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eybew"]
@@ -293,100 +301,21 @@ script = ExtResource("1_ghnru")
 
 [node name="LoginRequest" parent="." instance=ExtResource("2_76gck")]
 unique_name_in_owner = true
-progress_bar = NodePath("../LoginMenu/ProgressBar")
+progress_bar = NodePath("../LoginMenuMarginContainer/LoginMenu/ProgressBar")
 
 [node name="AvatarRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Blackground" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_7meop")
-expand_mode = 5
-stretch_mode = 6
+color = Color(0, 0, 0, 0.196078)
 
-[node name="LoginMenu" parent="." instance=ExtResource("5_6efwq")]
-visible = false
-custom_minimum_size = Vector2(400, 512)
-layout_mode = 2
-offset_left = 376.0
-offset_top = 68.0004
-offset_right = 776.0
-offset_bottom = 580.0
-
-[node name="ProgressBar" parent="LoginMenu" instance=ExtResource("5_2oq5a")]
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="LoginMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LoginMenu/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="LoginLabel" type="Label" parent="LoginMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_fonts/font = ExtResource("4_464f7")
-theme_override_font_sizes/font_size = 40
-text = "Login"
-
-[node name="IdentityEdit" type="LineEdit" parent="LoginMenu/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme = ExtResource("5_wnk0n")
-placeholder_text = "IDENTITY_NAME"
-select_all_on_focus = true
-caret_blink = true
-
-[node name="PasswordEdit" type="LineEdit" parent="LoginMenu/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme = ExtResource("5_wnk0n")
-placeholder_text = "PASSWORD_NAME"
-select_all_on_focus = true
-caret_blink = true
-secret = true
-secret_character = "*"
-
-[node name="AutomaticLoginCheck" type="CheckBox" parent="LoginMenu/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = ExtResource("7_p24c8")
-theme_override_font_sizes/font_size = 12
-text = "AUTOMATIC_LOGIN_NAME"
-
-[node name="VisitorLoginButton" type="Button" parent="LoginMenu/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 10
-mouse_default_cursor_shape = 2
-theme = ExtResource("5_tjtci")
-text = "VISITOR_LOGIN_NAME"
-
-[node name="LoginButton" type="Button" parent="LoginMenu/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 8
-mouse_default_cursor_shape = 2
-theme = ExtResource("5_tjtci")
-text = "LOGIN_NAME"
-
-[node name="WelcomeMenu" parent="." instance=ExtResource("5_6efwq")]
-visible = false
-custom_minimum_size = Vector2(400, 512)
+[node name="LoginMenuMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -399,18 +328,115 @@ offset_right = 200.0
 offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_top = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WelcomeMenu"]
+[node name="LoginMenu" parent="LoginMenuMarginContainer" instance=ExtResource("5_6efwq")]
+visible = false
+custom_minimum_size = Vector2(400, 512)
+layout_mode = 2
+
+[node name="ProgressBar" parent="LoginMenuMarginContainer/LoginMenu" instance=ExtResource("5_2oq5a")]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LoginMenuMarginContainer/LoginMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeMenu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginMenuMarginContainer/LoginMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LoginLabel" type="Label" parent="LoginMenuMarginContainer/LoginMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("4_464f7")
+theme_override_font_sizes/font_size = 40
+text = "Login"
+
+[node name="IdentityEdit" type="LineEdit" parent="LoginMenuMarginContainer/LoginMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("5_wnk0n")
+placeholder_text = "IDENTITY_NAME"
+select_all_on_focus = true
+caret_blink = true
+
+[node name="PasswordEdit" type="LineEdit" parent="LoginMenuMarginContainer/LoginMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("5_wnk0n")
+placeholder_text = "PASSWORD_NAME"
+select_all_on_focus = true
+caret_blink = true
+secret = true
+secret_character = "*"
+
+[node name="AutomaticLoginCheck" type="CheckBox" parent="LoginMenuMarginContainer/LoginMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_p24c8")
+text = "AUTOMATIC_LOGIN_NAME"
+
+[node name="VisitorLoginButton" type="Button" parent="LoginMenuMarginContainer/LoginMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 10
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_tjtci")
+text = "VISITOR_LOGIN_NAME"
+
+[node name="LoginButton" type="Button" parent="LoginMenuMarginContainer/LoginMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_tjtci")
+text = "LOGIN_NAME"
+
+[node name="Shadow" type="PanelContainer" parent="LoginMenuMarginContainer/LoginMenu"]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hclhu")
+
+[node name="WelcomeMenuMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="WelcomeMenu" parent="WelcomeMenuMarginContainer" instance=ExtResource("5_6efwq")]
+visible = false
+custom_minimum_size = Vector2(400, 512)
 layout_mode = 2
 
-[node name="Mask" type="PanelContainer" parent="WelcomeMenu/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/MarginContainer/VBoxContainer"]
 clip_children = 1
 custom_minimum_size = Vector2(190, 190)
 layout_mode = 2
@@ -418,17 +444,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_15rth")
 
-[node name="AvatarTexture" parent="WelcomeMenu/MarginContainer/VBoxContainer/Mask" instance=ExtResource("8_trjf4")]
+[node name="AvatarTexture" parent="WelcomeMenuMarginContainer/WelcomeMenu/MarginContainer/VBoxContainer/Mask" instance=ExtResource("8_trjf4")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_ciblx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeMenu/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = -6
 
-[node name="NicknameLabel" type="Label" parent="WelcomeMenu/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="NicknameLabel" type="Label" parent="WelcomeMenuMarginContainer/WelcomeMenu/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
@@ -439,7 +465,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="DescriptionLabel" type="Label" parent="WelcomeMenu/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="WelcomeMenuMarginContainer/WelcomeMenu/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -451,13 +477,19 @@ horizontal_alignment = 1
 autowrap_mode = 2
 text_overrun_behavior = 3
 
-[node name="EnterButton" type="Button" parent="WelcomeMenu/MarginContainer/VBoxContainer"]
+[node name="EnterButton" type="Button" parent="WelcomeMenuMarginContainer/WelcomeMenu/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_tjtci")
 text = "ENTER_NAME"
+
+[node name="Shadow" type="PanelContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu"]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hclhu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -467,7 +499,7 @@ libraries = {
 
 [connection signal="request_completed" from="LoginRequest" to="." method="on_login_received"]
 [connection signal="request_completed" from="AvatarRequest" to="." method="_on_avatar_request_request_completed"]
-[connection signal="pressed" from="LoginMenu/MarginContainer/VBoxContainer/AutomaticLoginCheck" to="." method="_on_automatic_login_check_pressed"]
-[connection signal="pressed" from="LoginMenu/MarginContainer/VBoxContainer/VisitorLoginButton" to="." method="_on_visitor_login_button_pressed"]
-[connection signal="pressed" from="LoginMenu/MarginContainer/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
-[connection signal="pressed" from="WelcomeMenu/MarginContainer/VBoxContainer/EnterButton" to="." method="_on_enter_button_pressed"]
+[connection signal="pressed" from="LoginMenuMarginContainer/LoginMenu/MarginContainer/VBoxContainer/AutomaticLoginCheck" to="." method="_on_automatic_login_check_pressed"]
+[connection signal="pressed" from="LoginMenuMarginContainer/LoginMenu/MarginContainer/VBoxContainer/VisitorLoginButton" to="." method="_on_visitor_login_button_pressed"]
+[connection signal="pressed" from="LoginMenuMarginContainer/LoginMenu/MarginContainer/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="WelcomeMenuMarginContainer/WelcomeMenu/MarginContainer/VBoxContainer/EnterButton" to="." method="_on_enter_button_pressed"]

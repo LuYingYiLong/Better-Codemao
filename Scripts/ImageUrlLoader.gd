@@ -23,12 +23,6 @@ func _ready() -> void:
 		else: NativeMenu.add_separator(menu)
 		count += 1
 
-#func _process(_delta):
-#	if animated_sprite_2d.visible:
-#		animated_sprite_2d.position = size / 2
-#		if !animated_sprite_2d.is_playing():
-#			animated_sprite_2d.play("gif")
-
 func load_image(url: String) -> void:
 	_url = url
 	image_request.request(url)

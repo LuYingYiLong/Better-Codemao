@@ -199,9 +199,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
-copy_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -328,6 +325,7 @@ layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 icon = ExtResource("16_jv21r")
+text = "VISITOR_NAME"
 group = "NavigationButtonsGroup"
 
 [node name="MarginContainer" type="MarginContainer" parent="NavigationBar/MarginContainer/VBoxContainer/UserButton"]
@@ -388,4 +386,5 @@ access = 2
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/UserButton" to="NavigationBar" method="_on_user_button_pressed"]
 [connection signal="mouse_entered" from="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask/AvatarTexture" to="NavigationBar/MarginContainer/VBoxContainer/UserButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask/AvatarTexture" to="NavigationBar/MarginContainer/VBoxContainer/UserButton" method="_on_mouse_exited"]
+[connection signal="popup_menu_callback" from="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask/AvatarTexture" to="NavigationBar" method="_on_avatar_texture_popup_menu_callback"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/UserButton/MarginContainer/Mask/AvatarTexture" to="NavigationBar/MarginContainer/VBoxContainer/UserButton" method="_on_pressed"]

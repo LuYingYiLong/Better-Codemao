@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0svhruuw0s8f"
-path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+uid="uid://cc6i46qxistuu"
+path="res://.godot/imported/BetterCodemaoCover.svg-80f3eb396e88219f052f1623d534e8fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+source_file="res://Resources/Textures/BetterCodemaoCover.svg"
+dest_files=["res://.godot/imported/BetterCodemaoCover.svg-80f3eb396e88219f052f1623d534e8fa.ctex"]
 
 [params]
 

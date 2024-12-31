@@ -25,16 +25,19 @@ var user_headers: PackedStringArray
 
 func _ready():
 	automatic_login_check.button_pressed = Settings.automatic_login
+	Application.show_login_menu.connect(show_login_menu)
 	if FileAccess.file_exists(LOGIN_DATA_JSON_PATH):
 		login_data = Application.load_json_file(LOGIN_DATA_JSON_PATH)
 		identity_edit.text = login_data.get("identity", "")
 		password_edit.text = login_data.get("password", "")
-	if Settings.automatic_login:
-		_on_login_button_pressed()
-	else:
-		animation_player.play("Show")
-		await animation_player.animation_finished
-		animation_player.play("ShowLoginMenu")
+	if Settings.automatic_login: _on_login_button_pressed()
+	else: show_login_menu()
+
+func show_login_menu():
+	automatic_login_check.button_pressed = Settings.automatic_login
+	animation_player.play("Show")
+	await animation_player.animation_finished
+	animation_player.play("ShowLoginMenu")
 
 func on_login_received(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
 	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
@@ -83,9 +86,10 @@ func _on_avatar_request_request_completed(result: int, _response_code: int, _hea
 		error = image.load_jpg_from_buffer(body)
 	elif avatar_url.ends_with(".png"):
 		error = image.load_png_from_buffer(body)
+		if error != OK: return
 
-	if error != OK:
-		return
+	if error != OK: return
+	image.save_png("user://UserAvatar.png")
 	Application.user_avatar = ImageTexture.create_from_image(image)
 
 # 存储从 Set-Cookie 中提取的 Cookie

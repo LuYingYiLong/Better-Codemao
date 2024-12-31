@@ -7,22 +7,27 @@ signal append_address(address_name: String, scene_path: String, data: Dictionary
 @warning_ignore("unused_signal")
 signal set_root_address(address_name: String, scene_path: String, data: Dictionary)
 
+@warning_ignore("unused_signal")
+signal show_login_menu
+
 signal add_system_message(message: String, color: String, time: float)
 
 const SETTINGS_OPTIONS_DATA_PATH = "res://Resources/SettingsOptionsData.json"
 const FORUM_HISTORY_PATH = "user://Forum-history.json"
 
-var login_data = {"pid": "65edCTyg",
+const INITI_LOGIN_DATA = {"pid": "65edCTyg",
 	"identity": "",
 	"password": ""}
+
+var login_data: Dictionary = INITI_LOGIN_DATA
 var logged_in: bool
 var user_id: int
 var cookies: Dictionary
+var user_name: String
 var user_avatar: Texture = null:
 	set(value):
 		user_avatar = value
 		user_avatar_update.emit()
-var user_name: String
 
 func _notification(what):
 	if what == NOTIFICATION_APPLICATION_FOCUS_IN:
@@ -63,6 +68,19 @@ func generate_cookie_header() -> String:
 	for _name in cookies.keys():
 		cookie_str += _name + "=" + cookies[_name] + "; "
 	return "Cookie: " + cookie_str.trim_suffix("; ")
+
+func sign_out() -> void:
+	login_data = INITI_LOGIN_DATA
+	save_json_file("user://LoginData.json", login_data)
+	logged_in = false
+	user_id = 0
+	cookies.clear()
+	user_name = TranslationServer.translate("VISITOR_NAME")
+	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://UserData.json"))
+	if FileAccess.file_exists(ProjectSettings.globalize_path("user://UserAvatar.png")): DirAccess.remove_absolute(ProjectSettings.globalize_path("user://UserAvatar.png"))
+	Settings.automatic_login = false
+	Settings.save_settings_config()
+	user_avatar = null
 
 func html_to_text(html: String):
 	var regex = RegEx.new()

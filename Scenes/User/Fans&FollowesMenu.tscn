@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://i2r6lk07rh6d"]
+
+[ext_resource type="Script" path="res://Scripts/User/Fans&FollowesMenu.gd" id="1_qe1e5"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_6w7ph"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="3_hsydp"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="4_rvetd"]
+[ext_resource type="PackedScene" uid="uid://dqlb3s0adss3h" path="res://Scenes/User/FansCard.tscn" id="5_22jkb"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="6_mfgkw"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="7_uednh"]
+
+[node name="Fans&FollowesMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qe1e5")
+
+[node name="FansRequest" parent="." instance=ExtResource("2_6w7ph")]
+unique_name_in_owner = true
+progress_bar = NodePath("../MarginContainer/PanelContainer/ProgressBar")
+
+[node name="FollowersRequest" parent="." instance=ExtResource("2_6w7ph")]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="PanelContainer" parent="MarginContainer" instance=ExtResource("3_hsydp")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_rvetd")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FansCardContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FansCard" parent="MarginContainer/PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/FansCardContainer" instance=ExtResource("5_22jkb")]
+layout_mode = 2
+
+[node name="PaginationBar" parent="MarginContainer/PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_mfgkw")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size = 20
+current_page = 1
+
+[node name="ProgressBar" parent="MarginContainer/PanelContainer" instance=ExtResource("7_uednh")]
+layout_mode = 2
+
+[connection signal="request_completed" from="FansRequest" to="." method="on_fans_or_fllowers_received"]
+[connection signal="request_completed" from="FollowersRequest" to="." method="on_fans_or_fllowers_received"]
+[connection signal="page_changed" from="MarginContainer/PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]

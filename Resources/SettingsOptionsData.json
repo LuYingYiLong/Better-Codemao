@@ -92,6 +92,13 @@
 				"description": "SOURCE_CODE_NAME",
 				"link": "https://github.com/LuYingYiLong/Better-Codemao"
 			}
+		},
+		{
+			"option_box": {
+				"text": "JOIN_US_NAME",
+				"description": "JOIN_US_DESCRIPTION",
+				"go_to": "join_us_options"
+			}
 		}
 	],
 	"language_options": [
@@ -116,6 +123,13 @@
 					"key": "language",
 					"use": "$ combo_box->items->selected->metadata"
 				}
+			}
+		}
+	],
+	"join_us_options": [
+		{
+			"scene": {
+				"path": "res://Scenes/Settings/JoinUsPanel.tscn"
 			}
 		}
 	]

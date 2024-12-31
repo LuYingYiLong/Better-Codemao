@@ -2,10 +2,13 @@ id,ch,en
 LOGIN_NAME,登录,Login
 SIGN_OUT_NAME,退出登录,Sign out
 VISITOR_LOGIN_NAME,游客登录,Visitor login
+PLEASE_LOGIN_FIRST_NAME,请先登录,Please log in first
+VISITOR_NAME,游客,Visitor
 IDENTITY_NAME,身份,Identity
 PASSWORD_NAME,密码,Password
 AUTOMATIC_LOGIN_NAME,自动登录,Automatic login
 ENTER_NAME,进入,Enter
+RETRY_NAME,重试,Retry
 NEXT_NAME,下一个,Next
 FIND_NAME,查找,Find
 CONTINUE_NAME,继续,Continue
@@ -75,7 +78,10 @@ LANGUAGE_NAME,语言,Language
 CHINESE_NAME,中文,Chinese
 ENGLISH_NAME,英文,English
 ABOUT_NAME,关于,About
+ABOUT_DESCRIPTION,MIT License，GitHub，QQ群,"MIT License, GitHub, QQ group chat"
 SOURCE_CODE_NAME,源代码,Source code
+JOIN_US_NAME,加入我们,Join us
+JOIN_US_DESCRIPTION,QQ群,QQ group chat
 OPEN_THE_USER_DATA_FOLDER_NAME,打开用户数据文件夹,Open the User Data folder
 USER_NAME,用户,User
 FOLLOW_NAME,关注,Follow
@@ -148,7 +154,6 @@ WORK_SHOP_USER_LEAVE_NAME,{0} 已退出 {1} 工作室, {0} leave the workshop {1
 POST_DELETE_NAME,你的帖子 {0} 被举报为 {1}，经管理员核实被判定为违规帖，已被 {2}，如有问题可前往反馈,"Your post {0} was reported as a {1}, and the post was verified by the moderator as a violating post, and has been {2}, if you have any questions, you can go to the feedback"
 PERSONALIZATION_DESCRIPTION,背景,Blackground
 LANGUAGE_DESCRIPTION,语言,Language
-ABOUT_DESCRIPTION,MIT License，GitHub,"MIT License, GitHub"
 INIT_CONFIG_NAME,初始化配置,Init config
 INIT_CONFIG_PROCESS1,开始之前，我们先设置初始化配置,"Before we begin, let's set up the initialization config"
 INIT_CONFIG_PROCESS2,查找最新帖子ID,Find the most recent post ID

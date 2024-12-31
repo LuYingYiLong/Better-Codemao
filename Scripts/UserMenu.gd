@@ -4,6 +4,9 @@ extends Control
 @onready var work_list_request = %WorkListRequest
 @onready var collection_work_list_request = %CollectionWorkListRequest
 
+@onready var user_panel = %UserPanel
+@onready var please_login_first_panel = %PleaseLoginFirstPanel
+
 @onready var cover_texture = %CoverTexture
 @onready var avatar_texture = %AvatarTexture
 @onready var nickname_label = %NicknameLabel
@@ -31,14 +34,20 @@ const WORK_CARD_SCENE = preload("res://Scenes/Work/WorkCard.tscn")
 var user_id: int:
 	set(value):
 		user_id = value
-		if not honor_request.is_connected("request_completed", on_honor_received):
-			honor_request.request_completed.connect(on_honor_received)
-		honor_request.request("https://api.codemao.cn/creation-tools/v1/user/center/honor?user_id=%s" %user_id, \
-				[], HTTPClient.METHOD_GET)
+		please_login_first_panel.visible = user_id <= 0
+		if user_id > 0:
+			if not honor_request.is_connected("request_completed", on_honor_received):
+				honor_request.request_completed.connect(on_honor_received)
+			honor_request.request("https://api.codemao.cn/creation-tools/v1/user/center/honor?user_id=%s" %user_id, \
+					[], HTTPClient.METHOD_GET)
 
 func _ready():
+	Application.user_avatar_update.connect(user_avatar_update)
 	work_list_request.request_completed.connect(on_work_list_received)
 	collection_work_list_request.request_completed.connect(on_collection_work_list_received)
+
+func user_avatar_update() -> void:
+	user_id = Application.user_id
 
 func set_data(data: Dictionary):
 	user_id = data.get("id", -1)
@@ -105,3 +114,27 @@ func _on_details_button_pressed():
 	Application.append_address.emit(TranslationServer.translate("USER_DETAILS_NAME"), \
 			"res://Scenes/User/UserDetailsMenu.tscn", \
 			{})
+
+func _on_fans_total_gui_input(event) -> void:
+	if event is InputEventMouseButton and \
+			event.is_pressed and \
+			event.button_mask == 1 and \
+			event.button_index == 1:
+		Application.append_address.emit(TranslationServer.translate("FANS_NAME"), \
+			"res://Scenes/User/Fans&FollowesMenu.tscn", \
+			{"id": user_id, "mode": 0})
+
+func _on_followers_total_gui_input(event) -> void:
+	if event is InputEventMouseButton and \
+			event.is_pressed and \
+			event.button_mask == 1 and \
+			event.button_index == 1:
+		Application.append_address.emit(TranslationServer.translate("ATTENTION_NAME"), \
+			"res://Scenes/User/Fans&FollowesMenu.tscn", \
+			{"id": user_id, "mode": 1})
+
+func _on_retry_button_pressed():
+	user_id = Application.user_id
+
+func _on_login_button_pressed():
+	Application.show_login_menu.emit()

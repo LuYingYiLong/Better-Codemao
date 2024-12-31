@@ -14,12 +14,15 @@ var address_size: int
 var last_selected_id: int = -1
 var now_selected_id: int
 
+var is_playing: bool
+
 func _ready():
 	Application.append_address.connect(append_address)
 	Application.set_root_address.connect(set_root_address)
 
 func set_root_address(address_name: String, scene_path: String = "", data: Dictionary = {}):
 	address.clear()
+	is_playing = false
 	if address_name.length() > MAX_STRING_LENGTH:
 		address_name = "%s..." %address_name.erase(MAX_STRING_LENGTH, address_name.length() - MAX_STRING_LENGTH)
 	address["0"] = {"name": address_name, "selected": true}
@@ -46,6 +49,7 @@ func set_root_address(address_name: String, scene_path: String = "", data: Dicti
 	if !scene_path.is_empty(): page_container_scene.load_scene(scene_path, data)
 
 func append_address(address_name: String, scene_path: String = "", data: Dictionary = {}):
+	if is_playing: return
 	address[str(address_size)] = {"name": address_name, "selected": false}
 	address_size += 1
 	if address_name.length() > MAX_STRING_LENGTH:
@@ -58,6 +62,8 @@ func append_address(address_name: String, scene_path: String = "", data: Diction
 	address_tab_bar.current_tab = address_size - 1
 
 func _on_address_tab_bar_tab_selected(tab: int):
+	if is_playing: return
+	is_playing = true
 	var queue_free_ids: Array
 	var last_scene_node
 	var now_scene_node
@@ -107,3 +113,4 @@ func _on_address_tab_bar_tab_selected(tab: int):
 		address_size -= 1
 		var node = pages.get_node(id)
 		if node != null: node.queue_free()
+	is_playing = false

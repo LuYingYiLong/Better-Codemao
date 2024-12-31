@@ -25,3 +25,6 @@ func set_data(data: Dictionary):
 			"separator":
 				var separator_scene = SEPARATOR_SCENE.instantiate()
 				option_box_container.add_child(separator_scene)
+			"scene":
+				var target_scene = load(component_data.get("path")).instantiate()
+				option_box_container.add_child(target_scene)

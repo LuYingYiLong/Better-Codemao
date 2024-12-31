@@ -1,0 +1,142 @@
+[gd_scene load_steps=11 format=3 uid="uid://dqlb3s0adss3h"]
+
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_ekoyo"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_ghtjt"]
+[ext_resource type="Script" path="res://Scripts/User/FansCard.gd" id="2_iqxt4"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_kkiyt"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_nnym4"]
+[ext_resource type="Texture2D" uid="uid://cftybq6tll2w8" path="res://Resources/Textures/Praise.svg" id="5_xj81q"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_mau3q"]
+[ext_resource type="Texture2D" uid="uid://bs8tg7fui1e36" path="res://Resources/Textures/Work.svg" id="7_y4qht"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="8_x1ax2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6x1yh"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="FansCard" type="PanelContainer"]
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = ExtResource("1_ekoyo")
+script = ExtResource("2_iqxt4")
+
+[node name="FollowRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6x1yh")
+
+[node name="AvatarTexture" parent="MarginContainer/HBoxContainer/Mask" instance=ExtResource("2_ghtjt")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_kkiyt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -8
+
+[node name="NicknameLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_nnym4")
+theme_override_font_sizes/font_size = 20
+text = "Nickname"
+text_overrun_behavior = 3
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "Description"
+text_overrun_behavior = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+
+[node name="TotalLikes" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="LikeIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TotalLikes"]
+self_modulate = Color(0.11, 0.11, 0.11, 1)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("5_xj81q")
+expand_mode = 1
+
+[node name="TotalLikesLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TotalLikes"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("6_mau3q")
+theme_override_font_sizes/font_size = 10
+text = "999"
+
+[node name="TotalWorks" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="WorkIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TotalWorks"]
+self_modulate = Color(0.11, 0.11, 0.11, 1)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("7_y4qht")
+expand_mode = 1
+
+[node name="TotalWorksLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TotalWorks"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("6_mau3q")
+theme_override_font_sizes/font_size = 10
+text = "999"
+
+[node name="FollowButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("8_x1ax2")
+text = "FOLLOW_NAME"
+
+[node name="FollowedButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("8_x1ax2")
+text = "FOLLOWED_NAME"
+
+[connection signal="gui_input" from="." to="." method="_on_avatar_gui_input"]
+[connection signal="request_completed" from="FollowRequest" to="." method="_on_follow_request_request_completed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/FollowButton" to="." method="_on_follow_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/FollowedButton" to="." method="_on_followed_button_pressed"]

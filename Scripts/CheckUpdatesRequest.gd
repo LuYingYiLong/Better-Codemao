@@ -4,7 +4,11 @@ func _ready() -> void:
 	request("https://api.github.com/repos/LuYingYiLong/Better-Codemao/issues/1")
 
 func _on_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	var json_class: JSON = JSON.new()
+	if json_class.parse(body.get_string_from_utf8()) != OK:
+		Application.emit_system_error_message("JSON parsing failed")
+		return
+	var json: Dictionary = json_class.data
 	if result != HTTPRequest.RESULT_SUCCESS: return
 	if json.has("error_code"):
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ujouhqgfvlnm" path="res://Scenes/BaseUIComponents/PopupButton.tscn" id="2_paejy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nm8o"]
-bg_color = Color(1, 1, 1, 0.784314)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
