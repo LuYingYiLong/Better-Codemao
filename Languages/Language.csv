@@ -8,6 +8,7 @@ AUTOMATIC_LOGIN_NAME,自动登录,Automatic login
 ENTER_NAME,进入,Enter
 NEXT_NAME,下一个,Next
 FIND_NAME,查找,Find
+CONTINUE_NAME,继续,Continue
 CANCEL_NAME,取消,Cancel
 GET_UPDATES_NAME,获取更新,Get updates
 WORK_NAME,作品,Work
@@ -44,6 +45,8 @@ PROGRAMMER_CLASSROOM_NAME,训练师课堂,Programmer classroom
 MINE_POSTS_NAME,我的帖子,Mine posts
 MINE_REPLIED_NAME,我的回复,Mine replied
 HISTORY_NAME,历史记录,History
+CLEAR_HISTORY_NAME,清理历史记录,Clear history
+CLEAR_HISTORY_DESCRIPTION,清理后不会恢复,It will not be restored after cleanup
 POST_NAME,帖子,Post
 PUBLISH_ON_NAME,发布于,Publish on
 OPEN_IN_BROWSER_NAME,在浏览器打开,Open in browser

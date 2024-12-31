@@ -24,6 +24,7 @@ func _ready():
 	update_pager_total()
 
 func update_pager_total() -> void:
+	if pager_button_container == null: return
 	for node in pager_button_container.get_children():
 		node.queue_free()
 	for count: int in range(total):
@@ -43,6 +44,7 @@ func update_pager_total() -> void:
 		if pager_button_scene.text.to_int() == total: break
 
 func update_current_page() -> void:
+	if pager_button_container == null: return
 	for pager in pager_button_container.get_children():
 		pager.flat = !is_current_page(pager.text.to_int())
 		if pager.flat: pager.add_theme_color_override("font_color", Color.html("#101010"))

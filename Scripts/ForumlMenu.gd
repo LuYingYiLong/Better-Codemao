@@ -8,6 +8,7 @@ extends Control
 @onready var scroll_container = %ScrollContainer
 
 @onready var board_name_label = %BoardNameLabel
+@onready var clear_history_button = %ClearHistoryButton
 @onready var posts_progress_bar = %PostsProgressBar
 @onready var post_card_container = %PostCardContainer
 @onready var pagination_bar = %PaginationBar
@@ -71,14 +72,13 @@ var board_id: String
 var status = status_type.Forum:
 	set(value):
 		status = value
-		if status == status_type.Forum:
-			pagination_bar.current_page = 1
-			pagination_bar.update_current_page()
-			load_forum()
-		elif status == status_type.History:
-			pagination_bar.current_page = 1
-			pagination_bar.update_current_page()
-			load_history()
+		pagination_bar.current_page = 1
+		pagination_bar.update_current_page()
+		if status == status_type.Forum: load_forum()
+		elif status == status_type.History: load_history()
+		elif status == status_type.MinePosts: mine_posts_request.request("https://api.codemao.cn/web/forums/posts/mine/created?page=1&limit=%s" %LOADS_NUMBER, [Application.generate_cookie_header()])
+		elif status == status_type.MineReplied: mine_replied_request.request("https://api.codemao.cn/web/forums/posts/mine/replied?page=1&limit=%s" %LOADS_NUMBER, [Application.generate_cookie_header()])
+		clear_history_button.visible = status == status_type.History
 
 func _ready() -> void:
 	var headers = ["Content-Type: application/json"]
@@ -119,8 +119,8 @@ func load_history() -> void:
 		post_card_scene.pressed.connect(on_post_card_scene_pressed)
 
 func on_user_avatar_update() -> void:
-	mine_posts_request.request("https://api.codemao.cn/web/forums/posts/mine/created?page=1&limit=20", [Application.generate_cookie_header()])
-	mine_replied_request.request("https://api.codemao.cn/web/forums/posts/mine/replied?page=1&limit=20", [Application.generate_cookie_header()])
+	mine_posts_request.request("https://api.codemao.cn/web/forums/posts/mine/created?page=1&limit=%s" %LOADS_NUMBER, [Application.generate_cookie_header()])
+	mine_replied_request.request("https://api.codemao.cn/web/forums/posts/mine/replied?page=1&limit=%s" %LOADS_NUMBER, [Application.generate_cookie_header()])
 
 func on_boards_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -189,6 +189,10 @@ func _on_pagination_bar_page_changed(page: int) -> void:
 		all_request.request("https://api.codemao.cn/web/forums/posts/hots/all")
 	elif status == status_type.Board:
 		board_request.request("https://api.codemao.cn/web/forums/boards/%s/posts?page=%s&limit=%s" %[board_id, page, LOADS_NUMBER])
+	elif status == status_type.MinePosts:
+		mine_posts_request.request("https://api.codemao.cn/web/forums/posts/mine/created?page=%s&limit=%s" %[page, LOADS_NUMBER], [Application.generate_cookie_header()])
+	elif status == status_type.MineReplied:
+		mine_replied_request.request("https://api.codemao.cn/web/forums/posts/mine/replied?page=%s&limit=%s" %[page, LOADS_NUMBER], [Application.generate_cookie_header()])
 
 func _on_board_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -217,7 +221,19 @@ func _on_mine_posts_request_request_completed(result: int, _response_code: int, 
 	if mine_posts_request.progress_bar == null:
 		mine_posts_request.progress_bar = posts_progress_bar.get_path()
 		mine_posts_total.text = str(json.get("total", 0))
-	var items: Array = json.get("items")
+
+	if status == status_type.MinePosts:
+		for node in post_card_container.get_children():
+			node.queue_free()
+		pagination_bar.total = ceili(json.get("total") / LOADS_NUMBER)
+		pagination_bar.update_pager_total()
+		pagination_bar.visible = pagination_bar.total > 0
+		var items: Array = json.get("items")
+		for item: Dictionary in items:
+			var post_card_scene = POST_CARD_SCENE.instantiate()
+			post_card_container.add_child(post_card_scene)
+			post_card_scene.set_post_card_data(item)
+			post_card_scene.pressed.connect(on_post_card_scene_pressed)
 
 func _on_mine_replied_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -228,6 +244,19 @@ func _on_mine_replied_request_request_completed(result: int, _response_code: int
 	if mine_replied_request.progress_bar == null:
 		mine_replied_request.progress_bar = posts_progress_bar.get_path()
 		mine_replied_total.text = str(json.get("total", 0))
+
+	if status == status_type.MineReplied:
+		for node in post_card_container.get_children():
+			node.queue_free()
+		pagination_bar.total = ceili(json.get("total") / LOADS_NUMBER)
+		pagination_bar.update_pager_total()
+		pagination_bar.visible = pagination_bar.total > 0
+		var items: Array = json.get("items")
+		for item: Dictionary in items:
+			var post_card_scene = POST_CARD_SCENE.instantiate()
+			post_card_container.add_child(post_card_scene)
+			post_card_scene.set_post_card_data(item)
+			post_card_scene.pressed.connect(on_post_card_scene_pressed)
 
 func on_posts_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -259,9 +288,55 @@ func on_post_card_scene_pressed(data: Dictionary) -> void:
 			"res://Scenes/Forum/PostMenu.tscn", \
 			data)
 
+func _on_mine_posts_gui_input(event) -> void:
+	if event is InputEventMouseButton and \
+			event.is_pressed and \
+			event.button_mask == 1 and \
+			event.button_index == 1:
+		status = status_type.MinePosts
+		board_name_label.text = TranslationServer.translate("MINE_POSTS_NAME")
+
+func _on_mine_replied_gui_input(event) -> void:
+	if event is InputEventMouseButton and \
+			event.is_pressed and \
+			event.button_mask == 1 and \
+			event.button_index == 1:
+		status = status_type.MineReplied
+		board_name_label.text = TranslationServer.translate("MINE_REPLIED_NAME")
+
 func _on_history_gui_input(event) -> void:
 	if event is InputEventMouseButton and \
 			event.is_pressed and \
 			event.button_mask == 1 and \
 			event.button_index == 1:
 		status = status_type.History
+		board_name_label.text = TranslationServer.translate("HISTORY_NAME")
+
+func _on_clear_history_button_pressed():
+	var content_dialog = Application.get_content_dialog()
+	if !content_dialog.is_connected("callback", _content_dialog_callback): content_dialog.callback.connect(_content_dialog_callback)
+	content_dialog.title = "%s?" %TranslationServer.translate("HISTORY_NAME")
+	content_dialog.text = TranslationServer.translate("CLEAR_HISTORY_DESCRIPTION")
+	content_dialog.popup_item.clear()
+	var get_updates_item: PopupItem = PopupItem.new()
+	get_updates_item.text = "CONTINUE_NAME"
+	get_updates_item.flat = true
+	content_dialog.popup_item.append(get_updates_item)
+	var cancel_item: PopupItem = PopupItem.new()
+	cancel_item.text = "CANCEL_NAME"
+	content_dialog.popup_item.append(cancel_item)
+	content_dialog.show_content_dialog()
+
+func _content_dialog_callback(index: int) -> void:
+	if index == 0:
+		var forum_history: Dictionary = Application.load_json_file(Application.FORUM_HISTORY_PATH)
+		forum_history["items"] = []
+		Application.save_json_file(Application.FORUM_HISTORY_PATH, forum_history)
+		history_total.text = "0"
+		if status == status_type.History:
+			for node in post_card_container.get_children():
+				node.queue_free()
+			pagination_bar.hide()
+	var content_dialog = Application.get_content_dialog()
+	content_dialog.hide_content_dialog()
+	content_dialog.disconnect("callback", _content_dialog_callback)

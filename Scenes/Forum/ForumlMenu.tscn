@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://du2ukdd0rn8o7"]
+[gd_scene load_steps=14 format=3 uid="uid://du2ukdd0rn8o7"]
 
 [ext_resource type="Script" path="res://Scripts/ForumlMenu.gd" id="1_kph02"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_1yq0c"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_4h4qy"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_r815b"]
 [ext_resource type="PackedScene" uid="uid://mfb2rhleqvr6" path="res://Scenes/Forum/PostCard.tscn" id="4_s514n"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="5_yjx67"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="7_ti6ce"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="9_286o5"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="10_4lx3q"]
@@ -31,15 +32,15 @@ script = ExtResource("1_kph02")
 
 [node name="BoardsRequest" parent="." instance=ExtResource("2_yn624")]
 unique_name_in_owner = true
-progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Boards/BoardsProgressBar")
+progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Boards/BoardsProgressBar")
 
 [node name="AllRequest" parent="." instance=ExtResource("2_yn624")]
 unique_name_in_owner = true
-progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Posts/PostsProgressBar")
+progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Posts/PostsProgressBar")
 
 [node name="BoardRequest" parent="." instance=ExtResource("2_yn624")]
 unique_name_in_owner = true
-progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Posts/PostsProgressBar")
+progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Posts/PostsProgressBar")
 
 [node name="MinePostsRequest" parent="." instance=ExtResource("2_yn624")]
 unique_name_in_owner = true
@@ -70,84 +71,98 @@ theme_override_constants/margin_bottom = 32
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="BoardNameLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="BoardNameLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("9_286o5")
 theme_override_font_sizes/font_size = 24
 text = "FORUM_SQUARE_NAME"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="ClearHistoryButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_yjx67")
+text = "CLEAR_HISTORY_NAME"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 32
 
-[node name="Posts" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_1yq0c")]
+[node name="Posts" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("2_1yq0c")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="PostsProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Posts" instance=ExtResource("3_r815b")]
+[node name="PostsProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Posts" instance=ExtResource("3_r815b")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Posts"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Posts"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="PostCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Posts/MarginContainer"]
+[node name="PostCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Posts/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="PostCard" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Posts/MarginContainer/PostCardContainer" instance=ExtResource("4_s514n")]
+[node name="PostCard" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Posts/MarginContainer/PostCardContainer" instance=ExtResource("4_s514n")]
 layout_mode = 2
 
-[node name="PaginationBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("7_ti6ce")]
+[node name="PaginationBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("7_ti6ce")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size = 15
 current_page = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Mine" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_1yq0c")]
+[node name="Mine" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("2_1yq0c")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer"]
 layout_mode = 2
 
-[node name="MinePosts" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
+[node name="MinePosts" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6obgi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MinePosts"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MinePosts"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="MinePostsLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MinePosts/VBoxContainer"]
+[node name="MinePostsLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MinePosts/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("9_286o5")
@@ -155,7 +170,7 @@ theme_override_font_sizes/font_size = 24
 text = "MINE_POSTS_NAME"
 text_overrun_behavior = 3
 
-[node name="MinePostsTotal" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MinePosts/VBoxContainer"]
+[node name="MinePostsTotal" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MinePosts/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -164,22 +179,22 @@ theme_override_fonts/font = ExtResource("10_4lx3q")
 text = "999"
 uppercase = true
 
-[node name="BeginLine" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
+[node name="BeginLine" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxLine_fhe24")
 
-[node name="MineReplied" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
+[node name="MineReplied" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6obgi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MineReplied"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MineReplied"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="MineRepliedLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MineReplied/VBoxContainer"]
+[node name="MineRepliedLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MineReplied/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("9_286o5")
@@ -187,7 +202,7 @@ theme_override_font_sizes/font_size = 24
 text = "MINE_REPLIED_NAME"
 text_overrun_behavior = 3
 
-[node name="MineRepliedTotal" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MineReplied/VBoxContainer"]
+[node name="MineRepliedTotal" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MineReplied/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -196,22 +211,22 @@ theme_override_fonts/font = ExtResource("10_4lx3q")
 text = "999"
 uppercase = true
 
-[node name="EndLine" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
+[node name="EndLine" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxLine_fhe24")
 
-[node name="History" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
+[node name="History" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6obgi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/History"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/History"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="HistoryLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/History/VBoxContainer"]
+[node name="HistoryLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/History/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("9_286o5")
@@ -219,7 +234,7 @@ theme_override_font_sizes/font_size = 24
 text = "HISTORY_NAME"
 text_overrun_behavior = 3
 
-[node name="HistoryTotal" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/History/VBoxContainer"]
+[node name="HistoryTotal" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/History/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -228,29 +243,29 @@ theme_override_fonts/font = ExtResource("10_4lx3q")
 text = "999"
 uppercase = true
 
-[node name="Boards" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_1yq0c")]
+[node name="Boards" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("2_1yq0c")]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="BoardsProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Boards" instance=ExtResource("3_r815b")]
+[node name="BoardsProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Boards" instance=ExtResource("3_r815b")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Boards"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Boards"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="ForumBoardCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Boards/MarginContainer"]
+[node name="ForumBoardCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Boards/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BaseButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Boards/MarginContainer/ForumBoardCardContainer" instance=ExtResource("11_lpw71")]
+[node name="BaseButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Boards/MarginContainer/ForumBoardCardContainer" instance=ExtResource("11_lpw71")]
 layout_mode = 2
 group = ""
 
@@ -259,5 +274,8 @@ group = ""
 [connection signal="request_completed" from="BoardRequest" to="." method="_on_board_request_request_completed"]
 [connection signal="request_completed" from="MinePostsRequest" to="." method="_on_mine_posts_request_request_completed"]
 [connection signal="request_completed" from="MineRepliedRequest" to="." method="_on_mine_replied_request_request_completed"]
-[connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
-[connection signal="gui_input" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mine/MarginContainer/VBoxContainer/History" to="." method="_on_history_gui_input"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/ClearHistoryButton" to="." method="_on_clear_history_button_pressed"]
+[connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
+[connection signal="gui_input" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MinePosts" to="." method="_on_mine_posts_gui_input"]
+[connection signal="gui_input" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MineReplied" to="." method="_on_mine_replied_gui_input"]
+[connection signal="gui_input" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/History" to="." method="_on_history_gui_input"]
