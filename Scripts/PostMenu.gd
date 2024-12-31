@@ -28,6 +28,7 @@ extends Control
 
 const CONTENT_LABEL_SCENE = preload("res://Scenes/Forum/ContentLabel.tscn")
 const IMAGE_URL_LOADER_SCENE = preload("res://Scenes/ImageUrlLoader.tscn")
+const CODE_VIEWER_SCENE = preload("res://Scenes/Forum/CodeViewer.tscn")
 const REPLY_CARD_SCENE = preload("res://Scenes/Forum/ReplyCard.tscn")
 
 var rich_text_enabled: bool = true
@@ -101,6 +102,20 @@ func populate_content():
 			image_url_loader.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 			image_url_loader.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 			image_url_loader.load_image(content_type)
+		elif content_type.contains("|CODE|"):
+			var split: PackedStringArray = content_type.split("|CODE|")
+			for content: String in split:
+				if content.is_empty(): continue
+				elif content.begins_with("|BEGIN|") and content.ends_with("|END|"):
+					var code_viewer_scene = load("res://Scenes/Forum/CodeViewer.tscn").instantiate()
+					contents.add_child(code_viewer_scene)
+					code_viewer_scene.text = content.trim_prefix("|BEGIN|").trim_suffix("|END|")
+					code_viewer_scene.type = ""
+				else:
+					var content_label = CONTENT_LABEL_SCENE.instantiate()
+					contents.add_child(content_label)
+					if rich_text_enabled: content_label.append_text(content)
+					else: content_label.add_text(content)
 		else:
 			var content_label = CONTENT_LABEL_SCENE.instantiate()
 			contents.add_child(content_label)

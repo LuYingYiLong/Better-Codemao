@@ -1,0 +1,196 @@
+[gd_scene load_steps=22 format=3 uid="uid://cy12otxv78kgc"]
+
+[ext_resource type="Script" path="res://Scripts/Forum/CodeViewer.gd" id="1_m182g"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="1_wk5cr"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_uk8jj"]
+[ext_resource type="Texture2D" uid="uid://bna4a2cy0skgn" path="res://Resources/Textures/Copy.svg" id="3_neyad"]
+[ext_resource type="FontFile" uid="uid://bttiv76brd75q" path="res://Resources/Fonts/JetBrainsMono-Medium.ttf" id="4_04h34"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8n8q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d2e0"]
+bg_color = Color(0.111197, 0.111197, 0.111197, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.105882, 0.105882, 0.105882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ce7qd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xei62"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_left = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.10748, 0.10748, 0.10748, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7tuk"]
+bg_color = Color(0.643137, 0.643137, 0.643137, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyivt"]
+bg_color = Color(0.643137, 0.643137, 0.643137, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pru3"]
+bg_color = Color(0.643137, 0.643137, 0.643137, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgi1q"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_top = 8
+border_color = Color(0.141176, 0.141176, 0.141176, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6kpo"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_top = 8
+border_color = Color(0.141176, 0.141176, 0.141176, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cirw"]
+bg_color = Color(0.641934, 0.641934, 0.641934, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf4a5"]
+bg_color = Color(0.643137, 0.643137, 0.643137, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6a041"]
+bg_color = Color(0.643137, 0.643137, 0.643137, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcnps"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_left = 8
+border_color = Color(0.141176, 0.141176, 0.141176, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1jed"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_left = 8
+border_color = Color(0.141176, 0.141176, 0.141176, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_kmfl7"]
+CodeEdit/colors/font_readonly_color = Color(0.87451, 0.87451, 0.87451, 1)
+CodeEdit/colors/line_number_color = Color(0.670588, 0.670588, 0.670588, 0.490196)
+CodeEdit/fonts/font = ExtResource("4_04h34")
+CodeEdit/styles/read_only = SubResource("StyleBoxFlat_xei62")
+HScrollBar/styles/grabber = SubResource("StyleBoxFlat_s7tuk")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_yyivt")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_6pru3")
+HScrollBar/styles/scroll = SubResource("StyleBoxFlat_rgi1q")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_g6kpo")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_3cirw")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_qf4a5")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_6a041")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_hcnps")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_n1jed")
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_bwske"]
+number_color = Color(0.258824, 1, 0.760784, 1)
+symbol_color = Color(0.611765, 0.721569, 0.909804, 1)
+function_color = Color(0.988235, 0.435294, 0.513726, 1)
+member_variable_color = Color(0.321569, 0.654902, 0.933333, 1)
+
+[node name="CodeViewer" type="PanelContainer"]
+offset_right = 453.0
+offset_bottom = 294.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r8n8q")
+script = ExtResource("1_m182g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5d2e0")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TypeLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_wk5cr")
+theme_override_font_sizes/font_size = 20
+text = "Type"
+text_overrun_behavior = 3
+
+[node name="CopyButton" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 30
+theme_override_fonts/font = ExtResource("2_uk8jj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ce7qd")
+text = "COPY_NAME"
+icon = ExtResource("3_neyad")
+flat = true
+
+[node name="Timer" type="Timer" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/CopyButton"]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="CodeEdit" type="CodeEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_kmfl7")
+text = "func _ready():
+	print(\"Hello world\")"
+editable = false
+scroll_fit_content_height = true
+syntax_highlighter = SubResource("CodeHighlighter_bwske")
+gutters_draw_line_numbers = true
+
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/CopyButton" to="." method="_on_copy_button_pressed"]
+[connection signal="timeout" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/CopyButton/Timer" to="." method="_on_timer_timeout"]

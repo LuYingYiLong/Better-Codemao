@@ -89,6 +89,8 @@ func html_to_bbcode(html: String):
 			'<span style="font-size: x-large;">': html = html.replace(get_string, "[font_size=26]")
 			'<span style="font-size: xx-large;">': html = html.replace(get_string, "[font_size=30]")
 			'<strong>': html = html.replace(get_string, "[b]")
+			'<code>': html = html.replace(get_string, "|CODE||BEGIN|")
+			'</code>': html = html.replace(get_string, "|END||CODE|")
 			#提取图片链接：https:\/\/cdn-community.codemao.cn\/.*?\.png|jpeg
 			_:
 				if get_string.contains("https://cdn-community.bcmcdn.com/47/community/"):
