@@ -267,7 +267,6 @@ size_flags_vertical = 3
 
 [node name="BaseButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Boards/MarginContainer/ForumBoardCardContainer" instance=ExtResource("11_lpw71")]
 layout_mode = 2
-group = ""
 
 [connection signal="request_completed" from="BoardsRequest" to="." method="on_boards_received"]
 [connection signal="request_completed" from="AllRequest" to="." method="on_all_received"]

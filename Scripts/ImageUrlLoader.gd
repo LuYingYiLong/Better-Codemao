@@ -16,12 +16,6 @@ var menu
 
 func _ready() -> void:
 	thread_helper = ThreadHelper.new(self)
-	menu = NativeMenu.create_menu()
-	var count: int = 0
-	for item in popup_item:
-		if item != null: NativeMenu.add_item(menu, TranslationServer.translate(item.text), _menu_callback, Callable(), str(count))
-		else: NativeMenu.add_separator(menu)
-		count += 1
 
 func load_image(url: String) -> void:
 	_url = url
@@ -78,6 +72,12 @@ func _on_gui_input(event) -> void:
 			#popup_menu.set_pos(DisplayServer.mouse_get_position())
 			#popup_menu.index_pressed.connect(on_popup_menu_index_pressed)
 			#popup_menu.focus_exited.connect(on_popup_menu_focus_exited)
+			menu = NativeMenu.create_menu()
+			var count: int = 0
+			for item in popup_item:
+				if item != null: NativeMenu.add_item(menu, TranslationServer.translate(item.text), _menu_callback, Callable(), str(count))
+				else: NativeMenu.add_separator(menu)
+				count += 1
 			NativeMenu.popup(menu, DisplayServer.mouse_get_position())
 
 func on_popup_menu_index_pressed(index: int) -> void:

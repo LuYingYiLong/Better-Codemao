@@ -69,7 +69,7 @@ flat = false
 
 [sub_resource type="Resource" id="Resource_ya1pt"]
 script = ExtResource("16_aej1e")
-text = "SIGN_OUT_NAME"
+text = "LOGIN_NAME"
 flat = false
 
 [sub_resource type="Animation" id="Animation_1pyq5"]
@@ -100,6 +100,78 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(76, 0), Vector2(250, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/WorkshopTab:infobage_display_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/VBoxContainer/ForumTab:infobage_display_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer/VBoxContainer/LibraryTab:infobage_display_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%MessageButton:infobage_display_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MarginContainer/VBoxContainer/SettingsButton:infobage_display_mode")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%UserButton:infobage_display_mode")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_a8k3p"]
 resource_name = "Fold"
@@ -129,6 +201,78 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(250, 0), Vector2(76, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/WorkshopTab:infobage_display_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/VBoxContainer/ForumTab:infobage_display_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer/VBoxContainer/LibraryTab:infobage_display_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%MessageButton:infobage_display_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MarginContainer/VBoxContainer/SettingsButton:infobage_display_mode")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%UserButton:infobage_display_mode")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_6fgiu"]
 length = 0.001
@@ -155,6 +299,78 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(80, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/WorkshopTab:infobage_display_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/VBoxContainer/ForumTab:infobage_display_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer/VBoxContainer/LibraryTab:infobage_display_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%MessageButton:infobage_display_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MarginContainer/VBoxContainer/SettingsButton:infobage_display_mode")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%UserButton:infobage_display_mode")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oci1q"]
@@ -271,6 +487,9 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_84wbw")
 script = ExtResource("2_gfkna")
 
+[node name="MessageCountRequest" type="HTTPRequest" parent="NavigationBar"]
+unique_name_in_owner = true
+
 [node name="MarginContainer" type="MarginContainer" parent="NavigationBar"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
@@ -304,6 +523,7 @@ text = "LIBRARY_NAME"
 group = "NavigationButtonsGroup"
 
 [node name="MessageButton" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
@@ -378,6 +598,7 @@ access = 2
 [connection signal="request_completed" from="SensitiveWordsRequest" to="SensitiveWordsRequest" method="_on_shielded_word_request_request_completed"]
 [connection signal="request_completed" from="CheckUpdatesRequest" to="CheckUpdatesRequest" method="_on_request_completed"]
 [connection signal="tab_selected" from="HBoxContainer/VBoxContainer/AddressBar/MarginContainer/AddressTabBar" to="HBoxContainer/VBoxContainer/AddressBar" method="_on_address_tab_bar_tab_selected"]
+[connection signal="request_completed" from="NavigationBar/MessageCountRequest" to="NavigationBar" method="_on_message_count_request_request_completed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/WorkshopTab" to="NavigationBar" method="_on_workshop_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/ForumTab" to="NavigationBar" method="_on_forum_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/LibraryTab" to="NavigationBar" method="_on_library_tab_pressed"]

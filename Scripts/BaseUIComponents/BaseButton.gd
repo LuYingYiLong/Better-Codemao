@@ -11,9 +11,25 @@ extends PanelContainer
 		set_text(text)
 @export var group: String
 @export var selected: bool
+@export_group("InfoBadge")
+@export var infobadge_visible: bool:
+	set(value):
+		infobadge_visible = value
+		_set_infobadge_visible()
+@export_enum("Left Compact", "Left Expanded") var infobage_display_mode: int = 0:
+	set(value):
+		infobage_display_mode = value
+		_set_infobadge_visible()
+@export var infobadge_value: int:
+	set(value):
+		infobadge_value = value
+		info_badge.value = infobadge_value
+		info_badge_2.value = infobadge_value
 
 @onready var color_rect = %ColorRect
 @onready var button = %Button
+@onready var info_badge = %InfoBadge
+@onready var info_badge_2 = %InfoBadge2
 @onready var animation_player = %AnimationPlayer
 
 signal pressed
@@ -76,6 +92,14 @@ func _on_pressed():
 	pressed.emit()
 	if metadata != null:
 		metadata_output.emit(metadata)
+
+func _set_infobadge_visible():
+	if infobage_display_mode == 0:
+		info_badge.visible = infobadge_visible
+		info_badge_2.hide()
+	elif infobage_display_mode == 1:
+		info_badge.hide()
+		info_badge_2.visible = infobadge_visible
 
 func _on_mouse_entered():
 	color_rect.show()

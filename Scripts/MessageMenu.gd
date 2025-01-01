@@ -24,13 +24,15 @@ var limit: int = 0
 var offset: int = 0
 
 func _ready():
-	message_count_request.request_completed.connect(on_message_count_received)
-	message_record_request.request_completed.connect(on_message_record_received)
 	message_count_request.request("https://api.codemao.cn/web/message-record/count", [Application.generate_cookie_header()], HTTPClient.METHOD_GET)
 	_message_record_request()
 
 func on_message_count_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-	var json: Dictionary = JSON.parse_string('{"query":%s}' %body.get_string_from_utf8())
+	var json_class: JSON = JSON.new()
+	if json_class.parse('{"query":%s}' %body.get_string_from_utf8()) != OK:
+		Application.emit_system_error_message("JSON parsing failed")
+		return
+	var json: Dictionary = json_class.data
 	if result != HTTPRequest.RESULT_SUCCESS: return
 	if json.has("error_code"):
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])

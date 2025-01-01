@@ -13,6 +13,7 @@ NEXT_NAME,下一个,Next
 FIND_NAME,查找,Find
 CONTINUE_NAME,继续,Continue
 CANCEL_NAME,取消,Cancel
+OK_NAME,确定,OK
 COPY_NAME,复制,Copy
 COPIED_NAME,已复制,Copied
 GET_UPDATES_NAME,获取更新,Get updates

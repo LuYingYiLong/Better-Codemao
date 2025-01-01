@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbxnfno4eba6m"]
+[gd_scene load_steps=16 format=3 uid="uid://cbxnfno4eba6m"]
 
 [ext_resource type="Theme" uid="uid://70upt1e30r52" path="res://Resources/Themes/ButtonTheme3.tres" id="1_kpnky"]
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/BaseButton.gd" id="3_lhgw4"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_y3dj7"]
+[ext_resource type="PackedScene" uid="uid://bnd8cbgyjwj6g" path="res://Scenes/BaseUIComponents/InfoBadge.tscn" id="5_mwhat"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_divmj"]
 
@@ -30,7 +31,7 @@ step = 0.075
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_top")
+tracks/0/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_top")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -42,7 +43,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_bottom")
+tracks/1/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_bottom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -59,7 +60,7 @@ step = 0.075
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_top")
+tracks/0/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_top")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -71,7 +72,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_bottom")
+tracks/1/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_bottom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -88,7 +89,7 @@ step = 0.075
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_top")
+tracks/0/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_top")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -100,7 +101,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%Button/../Mask/MarginContainer:theme_override_constants/margin_bottom")
+tracks/1/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_bottom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -117,7 +118,7 @@ step = 0.075
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_bottom")
+tracks/0/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_bottom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -129,7 +130,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%Button/../Mask/MarginContainer:theme_override_constants/margin_top")
+tracks/1/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -144,7 +145,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_top")
+tracks/0/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_top")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -156,7 +157,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_bottom")
+tracks/1/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_bottom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -168,7 +169,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%Button/../Mask/MarginContainer:theme_override_constants/margin_top")
+tracks/2/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_top")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -180,7 +181,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%Button/../Mask/MarginContainer:theme_override_constants/margin_bottom")
+tracks/3/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_bottom")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -197,7 +198,7 @@ step = 0.075
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_top")
+tracks/0/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_top")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -209,7 +210,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Mask/MarginContainer:theme_override_constants/margin_bottom")
+tracks/1/path = NodePath("../Mask/_MarginContainer:theme_override_constants/margin_bottom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -230,11 +231,10 @@ _data = {
 }
 
 [node name="BaseButton" type="PanelContainer"]
-offset_right = 157.0
+offset_right = 140.0
 offset_bottom = 46.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_divmj")
 script = ExtResource("3_lhgw4")
-group = null
 
 [node name="ColorRect" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -253,13 +253,13 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_46m0k")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Mask"]
+[node name="_MarginContainer" type="MarginContainer" parent="HBoxContainer/Mask"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 46
 
-[node name="Line" type="PanelContainer" parent="HBoxContainer/Mask/MarginContainer"]
+[node name="Line" type="PanelContainer" parent="HBoxContainer/Mask/_MarginContainer"]
 self_modulate = Color(0, 0.403922, 0.752941, 1)
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
@@ -279,6 +279,23 @@ theme_override_fonts/font = ExtResource("3_y3dj7")
 alignment = 0
 text_overrun_behavior = 3
 clip_text = true
+
+[node name="InfoBadge2" parent="HBoxContainer" instance=ExtResource("5_mwhat")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 46
+
+[node name="InfoBadge" parent="Margin" instance=ExtResource("5_mwhat")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

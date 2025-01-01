@@ -189,6 +189,8 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("6_t8nvq")
 text = "LOAD_MORE_NAME"
 
+[connection signal="request_completed" from="MessageCountRequest" to="." method="on_message_count_received"]
+[connection signal="request_completed" from="MessageRecordRequest" to="." method="on_message_record_received"]
 [connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply" to="." method="_on_comment_reply_gui_input"]
 [connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork" to="." method="_on_like_fork_gui_input"]
 [connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System" to="." method="_on_system_gui_input"]

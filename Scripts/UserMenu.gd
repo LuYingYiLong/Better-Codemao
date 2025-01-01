@@ -3,8 +3,10 @@ extends Control
 @onready var honor_request = %HonorRequest
 @onready var work_list_request = %WorkListRequest
 @onready var collection_work_list_request = %CollectionWorkListRequest
+@onready var basic_request = %BasicRequest
 
 @onready var user_panel = %UserPanel
+@onready var fly_text_edit = %FlyTextEdit
 @onready var please_login_first_panel = %PleaseLoginFirstPanel
 
 @onready var cover_texture = %CoverTexture
@@ -36,15 +38,13 @@ var user_id: int:
 		user_id = value
 		please_login_first_panel.visible = user_id <= 0
 		if user_id > 0:
-			if not honor_request.is_connected("request_completed", on_honor_received):
-				honor_request.request_completed.connect(on_honor_received)
 			honor_request.request("https://api.codemao.cn/creation-tools/v1/user/center/honor?user_id=%s" %user_id, \
 					[], HTTPClient.METHOD_GET)
 
+var doing_text: String
+
 func _ready():
 	Application.user_avatar_update.connect(user_avatar_update)
-	work_list_request.request_completed.connect(on_work_list_received)
-	collection_work_list_request.request_completed.connect(on_collection_work_list_received)
 
 func user_avatar_update() -> void:
 	user_id = Application.user_id
@@ -87,6 +87,30 @@ func on_honor_received(result: int, _response_code: int, _headers: PackedStringA
 			[], HTTPClient.METHOD_GET)
 	collection_work_list_request.request("https://api.codemao.cn/creation-tools/v1/user/center/collect/list?user_id=%s&offset=1&limit=12" %user_id, \
 			[], HTTPClient.METHOD_GET)
+
+func _on_edit_doing_button_pressed() -> void:
+	fly_text_edit.init_text = doing.text
+	fly_text_edit.show_fly_text_edit()
+
+func _on_fly_text_edit_finish_editing(text: String) -> void:
+	doing_text = text
+	var headers: PackedStringArray
+	headers.append(Application.generate_cookie_header())
+	headers.append("Content-Type: application/json;charset=UTF-8")
+	basic_request.request("https://api.codemao.cn/nemo/v2/user/basic", \
+			headers, \
+			HTTPClient.METHOD_PUT, \
+			'{"doing":"%s"}' %text)
+
+func _on_basic_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json_class: JSON = JSON.new()
+	if json_class.parse(body.get_string_from_utf8()) == OK:
+		var json: Dictionary = json_class.data
+		if result != HTTPRequest.RESULT_SUCCESS: return
+		if json.has("error_code"):
+			Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
+			return
+	else: doing.text = doing_text
 
 func on_work_list_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())

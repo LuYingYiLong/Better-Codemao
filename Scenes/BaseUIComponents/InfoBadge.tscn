@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnd8cbgyjwj6g"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/InfoBadge.gd" id="1_578s6"]
+[ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="2_xtiko"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evb86"]
+bg_color = Color(0, 0.403922, 0.752941, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="InfoBadge" type="PanelContainer"]
+custom_minimum_size = Vector2(16, 16)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_evb86")
+script = ExtResource("1_578s6")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xtiko")
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b5o0hpr15s67y"]
+[gd_scene load_steps=30 format=3 uid="uid://b5o0hpr15s67y"]
 
 [ext_resource type="Script" path="res://Scripts/UserMenu.gd" id="1_lvrm4"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_7uk8a"]
@@ -12,7 +12,10 @@
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="10_oqh5g"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="10_w1ogm"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="11_14dwl"]
-[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/BasePanelContainer.tscn" id="13_i2jmu"]
+[ext_resource type="Texture2D" uid="uid://bxp1kylcw7tka" path="res://Resources/Textures/Edit.svg" id="13_3edbl"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="13_i2jmu"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="15_addgs"]
+[ext_resource type="PackedScene" uid="uid://dnpj1qtwe4hfr" path="res://Scenes/BaseUIComponents/FlyTextEdit.tscn" id="16_fgs5f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lripq"]
 bg_color = Color(1, 1, 1, 1)
@@ -85,6 +88,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="CollectionWorkListRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="BasicRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -173,7 +179,7 @@ layout_mode = 2
 [node name="NicknameLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
 theme_override_font_sizes/font_size = 32
 text = "Nickname"
@@ -448,13 +454,26 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer"]
 layout_mode = 2
 
-[node name="DoingLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+
+[node name="DoingLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
 theme_override_font_sizes/font_size = 24
 text = "DOING_NAME"
 uppercase = true
+
+[node name="EditDoingButton" type="Button" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0.105882, 0.105882, 0.105882, 1)
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 28
+icon = ExtResource("13_3edbl")
+flat = true
 
 [node name="Doing" type="TextEdit" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -462,9 +481,9 @@ self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_7uk8a")
-theme_override_colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_readonly_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_placeholder_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_readonly_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("10_oqh5g")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_d05ia")
@@ -473,6 +492,10 @@ theme_override_styles/read_only = SubResource("StyleBoxEmpty_rt75g")
 text = "Doing"
 autowrap_mode = 2
 scroll_smooth = true
+
+[node name="ProgressBar" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing" instance=ExtResource("15_addgs")]
+visible = false
+layout_mode = 2
 
 [node name="WorkList" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
@@ -546,6 +569,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
+[node name="FlyTextEdit" parent="MarginContainer" instance=ExtResource("16_fgs5f")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="PleaseLoginFirstPanel" parent="MarginContainer" instance=ExtResource("13_i2jmu")]
 unique_name_in_owner = true
 visible = false
@@ -585,8 +612,14 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("10_w1ogm")
 text = "LOGIN_NAME"
 
+[connection signal="request_completed" from="HonorRequest" to="." method="on_honor_received"]
+[connection signal="request_completed" from="WorkListRequest" to="." method="on_work_list_received"]
+[connection signal="request_completed" from="CollectionWorkListRequest" to="." method="on_collection_work_list_received"]
+[connection signal="request_completed" from="BasicRequest" to="." method="_on_basic_request_request_completed"]
 [connection signal="pressed" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/DetailsButton" to="." method="_on_details_button_pressed"]
 [connection signal="gui_input" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal" to="." method="_on_fans_total_gui_input"]
 [connection signal="gui_input" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal" to="." method="_on_followers_total_gui_input"]
+[connection signal="pressed" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer/EditDoingButton" to="." method="_on_edit_doing_button_pressed"]
+[connection signal="finish_editing" from="MarginContainer/FlyTextEdit" to="." method="_on_fly_text_edit_finish_editing"]
 [connection signal="pressed" from="MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
