@@ -127,16 +127,16 @@ func emit_system_error_message(message: String):
 	add_system_message.emit(message, GlobalTheme.system_error_message_color, 6.0)
 
 func get_popup_menu():
-	return get_node("/root/@Control@100/MainPopupMenu")
+	return get_node("/root/@Control@101/MainPopupMenu")
 
 func get_file_dialog():
-	return get_node("/root/@Control@100/FileDialog")
+	return get_node("/root/@Control@101/FileDialog")
 
 func get_content_dialog():
-	return get_node("/root/@Control@100/ContentDialog")
+	return get_node("/root/@Control@101/ContentDialog")
 
 func view_the_image(image: Texture):
-	var view_the_image_window = get_node("/root/@Control@100/ImageViewer")
+	var view_the_image_window = get_node("/root/@Control@101/ImageViewer")
 	view_the_image_window.populate_image(image)
 	view_the_image_window.show_window()
 

@@ -4,7 +4,7 @@ extends Window
 @export var emit: bool:
 	set(value):
 		if value:
-			size.y = 40 + (clampi(items_total, 1, 10) * 34)
+			size.y = 38 + (clampi(items_total, 1, 10) * 34)
 			margin_container.add_theme_constant_override("margin_bottom", size.y * 2)
 		visible = true
 		emit = value

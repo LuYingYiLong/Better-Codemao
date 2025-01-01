@@ -16,8 +16,8 @@ config/tags=PackedStringArray("app")
 run/main_scene="res://Scenes/Application.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://BootSplash.png"
-config/icon="res://icon.svg"
-config/windows_native_icon="res://icon.ico"
+config/icon="res://Icon.svg"
+config/windows_native_icon="res://Icon.ico"
 
 [autoload]
 

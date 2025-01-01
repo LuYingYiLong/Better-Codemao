@@ -17,11 +17,11 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pw8bv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpklg"]
-bg_color = Color(0.6, 0.6, 0.6, 0.196078)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+bg_color = Color(0.6, 0.6, 0.6, 0.0980392)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wkel"]
 
@@ -34,8 +34,10 @@ corner_radius_bottom_left = 4
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbyuy"]
 
 [node name="PopupButton" type="PanelContainer"]
-offset_right = 14.0
-offset_bottom = 32.0
+custom_minimum_size = Vector2(0, 36)
+offset_right = 20.0
+offset_bottom = 36.0
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_07veu")
 script = ExtResource("2_c5ypo")
 
@@ -55,7 +57,7 @@ expand_mode = 1
 
 [node name="Control" type="Control" parent="HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(6, 0)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 mouse_filter = 2
 
@@ -69,7 +71,7 @@ theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451
 theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("3_nn5kl")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fvry0")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_1c1hf")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_upmh7")
