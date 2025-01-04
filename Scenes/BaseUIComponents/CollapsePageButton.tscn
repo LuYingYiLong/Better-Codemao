@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4pl0w7x6bht4"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/CollapsePageButton.gd" id="1_ncfwu"]
+
+[node name="CollapsePageButton" type="Button"]
+custom_minimum_size = Vector2(40, 40)
+mouse_default_cursor_shape = 2
+script = ExtResource("1_ncfwu")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

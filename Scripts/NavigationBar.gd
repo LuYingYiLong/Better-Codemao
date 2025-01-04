@@ -41,34 +41,34 @@ func on_user_avatar_update() -> void:
 		user_button.text = user_data.get("nickname")
 
 func _on_workshop_tab_pressed() -> void:
-	Application.set_root_address.emit(TranslationServer.translate("WORKSHOP_NAME"), \
+	Application.set_root_address.emit("WORKSHOP_NAME", \
 			"res://Scenes/Workshop/WorkshopMenu.tscn", \
 			{})
 
 func _on_forum_tab_pressed() -> void:
-	Application.set_root_address.emit(TranslationServer.translate("FORUM_NAME"), \
+	Application.set_root_address.emit("FORUM_NAME", \
 			"res://Scenes/Forum/ForumlMenu.tscn", \
 			{})
 
 func _on_library_tab_pressed() -> void:
-	Application.set_root_address.emit(TranslationServer.translate("LIBRARY_NAME"), \
+	Application.set_root_address.emit("LIBRARY_NAME", \
 			"res://Scenes/Library/LibraryMenu.tscn", \
 			{})
 
 func _on_message_button_pressed() -> void:
 	message_button.infobadge_value = 0
 	message_button.infobadge_visible = false
-	Application.set_root_address.emit(TranslationServer.translate("MESSAGE_NAME"), \
+	Application.set_root_address.emit("MESSAGE_NAME", \
 			"res://Scenes/Message/MessageMenu.tscn", \
 			{})
 
 func _on_settings_button_pressed() -> void:
-	Application.set_root_address.emit(TranslationServer.translate("SETTINGS_NAME"), \
+	Application.set_root_address.emit("SETTINGS_NAME", \
 			"res://Scenes/Settings/SettingsMenu.tscn", \
 			{"go_to": "root_options"})
 
 func _on_user_button_pressed() -> void:
-	Application.set_root_address.emit(TranslationServer.translate("USER_NAME"), \
+	Application.set_root_address.emit("USER_NAME", \
 			"res://Scenes/User/UserMenu.tscn", \
 			{"id": Application.user_id})
 

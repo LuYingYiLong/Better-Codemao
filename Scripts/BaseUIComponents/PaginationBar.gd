@@ -20,7 +20,7 @@ signal page_changed(page: int)
 
 const PAGER_BUTTON_SCENE = preload("res://Scenes/BaseUIComponents/PagerButton.tscn")
 
-func _ready():
+func _ready() -> void:
 	update_pager_total()
 
 func update_pager_total() -> void:
@@ -37,18 +37,15 @@ func update_pager_total() -> void:
 			pager_button_scene.text = str(count + 1)
 		if !Engine.is_editor_hint():
 			if pager_button_scene.text != "...": pager_button_scene.set_page(pager_button_scene.text.to_int())
+			else: pager_button_scene.collapse_pages = Vector2i(count - 1, total)
 			pager_button_scene.on_pressed.connect(_on_pager_button_pressed)
-		pager_button_scene.flat = !is_current_page(pager_button_scene.text.to_int())
-		if pager_button_scene.flat: pager_button_scene.add_theme_color_override("font_color", Color.html("#1b1b1b"))
-		else: pager_button_scene.add_theme_color_override("font_color", Color.html("#ffffff"))
+		pager_button_scene.current_page = current_page
 		if pager_button_scene.text.to_int() == total: break
 
 func update_current_page() -> void:
 	if pager_button_container == null: return
 	for pager in pager_button_container.get_children():
-		pager.flat = !is_current_page(pager.text.to_int())
-		if pager.flat: pager.add_theme_color_override("font_color", Color.html("#1b1b1b"))
-		else: pager.add_theme_color_override("font_color", Color.html("#ffffff"))
+		pager.current_page = current_page
 
 func is_current_page(page: int) -> bool:
 	return page == current_page
@@ -58,13 +55,13 @@ func _on_pager_button_pressed(page: int):
 	current_page = page
 	update_current_page()
 
-func _on_previous_button_pressed():
+func _on_previous_button_pressed() -> void:
 	if current_page > 1:
 		current_page -=1
 		page_changed.emit(current_page)
 		update_current_page()
 
-func _on_next_button_pressed():
+func _on_next_button_pressed() -> void:
 	if current_page < total:
 		current_page += 1
 		page_changed.emit(current_page)

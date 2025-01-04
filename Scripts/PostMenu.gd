@@ -67,7 +67,7 @@ func on_details_received(result: int, _response_code: int, _headers: PackedStrin
 	user_id = user.get("id").to_int()
 	repiles_request.request("https://api.codemao.cn/web/forums/posts/%s/replies?page=1&limit=30&sort=-created_at" %json.get("id", 0))
 	nickname_label.text = user.get("nickname", "ERROR")
-	avatar_texture.load_image(user.get("avatar_url"))
+	avatar_texture.load_image(user.get("avatar_url"), user.get("nickname", "ERROR"))
 	work_shop_tag.set_work_shop_data(user.get("work_shop_level", 0), \
 			user.get("work_shop_name", ""), \
 			user.get("subject_id", 0))

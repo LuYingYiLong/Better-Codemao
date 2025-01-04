@@ -34,9 +34,9 @@ func _on_text_edit_focus_entered() -> void:
 func _on_text_edit_focus_exited() -> void:
 	line.hide()
 
-func _on_cancel_button_pressed():
+func _on_cancel_button_pressed() -> void:
 	hide_fly_text_edit()
 
-func _on_ok_button_pressed():
+func _on_ok_button_pressed() -> void:
 	finish_editing.emit(text_edit.text)
 	hide_fly_text_edit()

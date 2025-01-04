@@ -24,7 +24,7 @@ signal pressed(index: int)
 
 var index: int
 
-func _ready():
+func _ready() -> void:
 	if !Engine.is_editor_hint():
 		button.text = text
 		checked_icon.visible = checked
@@ -32,16 +32,16 @@ func _ready():
 		if checked: control.custom_minimum_size = Vector2(14, 0)
 		else: control.custom_minimum_size = Vector2(20, 0)
 
-func set_item_text(_text: String):
+func set_item_text(_text: String) -> void:
 	text = _text
 	button.text = text
 
-func _on_mouse_entered():
+func _on_mouse_entered() -> void:
 	color_rect.show()
 
-func _on_mouse_exited():
+func _on_mouse_exited() -> void:
 	if !checked:
 		color_rect.hide()
 
-func _on_button_pressed():
+func _on_button_pressed() -> void:
 	pressed.emit(index)

@@ -19,11 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://bdw6wa6gmpvb5" path="res://Scenes/SystemMessageList.tscn" id="13_0uouo"]
 [ext_resource type="Texture2D" uid="uid://ba8o2b06nowk1" path="res://Resources/Textures/Library.svg" id="13_x3dak"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="14_6jx8t"]
-[ext_resource type="PackedScene" uid="uid://ccy1pjbdx7xby" path="res://Scenes/ViewTheImageWindow.tscn" id="16_5naus"]
 [ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="16_aej1e"]
 [ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/PopupMenu.tscn" id="16_f86f1"]
 [ext_resource type="Texture2D" uid="uid://dt4vvl5xceytj" path="res://Resources/Textures/Empty.svg" id="16_jv21r"]
 [ext_resource type="PackedScene" uid="uid://d1r6i8d7tpoqp" path="res://Scenes/BaseUIComponents/ContentDialog.tscn" id="21_4v3bv"]
+[ext_resource type="PackedScene" uid="uid://ccy1pjbdx7xby" path="res://Scenes/ImageViewer.tscn" id="23_omtur"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lemjn"]
 
@@ -586,7 +586,7 @@ layout_mode = 1
 [node name="SystemMessageList" parent="." instance=ExtResource("13_0uouo")]
 layout_mode = 1
 
-[node name="ImageViewer" parent="." instance=ExtResource("16_5naus")]
+[node name="ImageViewer" parent="." instance=ExtResource("23_omtur")]
 
 [node name="MainPopupMenu" parent="." instance=ExtResource("16_f86f1")]
 width = -1
@@ -594,8 +594,10 @@ width = -1
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 2
 size = Vector2i(944, 592)
+force_native = true
 dialog_autowrap = true
 access = 2
+use_native_dialog = true
 
 [connection signal="request_completed" from="SensitiveWordsRequest" to="SensitiveWordsRequest" method="_on_shielded_word_request_request_completed"]
 [connection signal="request_completed" from="CheckUpdatesRequest" to="CheckUpdatesRequest" method="_on_request_completed"]

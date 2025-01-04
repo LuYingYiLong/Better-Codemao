@@ -38,8 +38,8 @@ func set_option_box_data(data: Dictionary):
 	if data.has("icon"):
 		icon.texture = load(data.get("icon"))
 		icon.show()
-	text = TranslationServer.translate(data.get("text", ""))
-	description = TranslationServer.translate(data.get("description", ""))
+	text = data.get("text", "")
+	description = data.get("description", "")
 	go_to = data.get("go_to", "")
 	link = data.get("link", "")
 	dir = data.get("dir", "")
@@ -75,29 +75,16 @@ func _on_gui_input(event):
 			event.is_pressed and \
 			event.button_mask == 1 and \
 			event.button_index == 1:
-		if _data.has("go_to"):
-			if not _data.get("go_to") is String: return
-			if _data.get("go_to").is_empty(): return
-			Application.append_address.emit(TranslationServer.translate(_data.get("text", "")), \
+		if !go_to.is_empty(): Application.append_address.emit(_data.get("text", ""), \
 					"res://Scenes/Settings/SettingsMenu.tscn", \
-					{"go_to": _data.get("go_to")})
+					{"go_to": go_to})
 		
-		elif _data.has("jump_to"):
-			if not _data.get("jump_to") is String: return
-			if _data.get("jump_to").is_empty(): return
-			Application.append_address.emit(TranslationServer.translate(_data.get("text", "")), \
-					_data.get("jump_to"), \
+		elif !jump_to.is_empty(): Application.append_address.emit(_data.get("text", ""), \
+					jump_to, \
 					{})
+		elif !link.is_empty(): OS.shell_open(link)
 
-		elif _data.has("link"):
-			if not _data.get("link") is String: return
-			if _data.get("link").is_empty(): return
-			OS.shell_open(_data.get("link"))
-
-		elif _data.has("dir"):
-			if not _data.get("dir") is String: return
-			if _data.get("dir").is_empty(): return
-			OS.shell_open(ProjectSettings.globalize_path(_data.get("dir")))
+		elif !dir.is_empty(): OS.shell_open(ProjectSettings.globalize_path(_data.get("dir")))
 
 		elif _data.has("change_settings_config"):
 			var path: String = _data.get("change_settings_config").get("path")

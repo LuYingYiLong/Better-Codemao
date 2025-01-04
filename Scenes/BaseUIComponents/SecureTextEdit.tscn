@@ -79,8 +79,11 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="Theme" id="Theme_v8h11"]
 TextEdit/colors/background_color = Color(1, 1, 1, 0)
-TextEdit/colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+TextEdit/colors/caret_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 TextEdit/colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 0.490196)
+TextEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+TextEdit/colors/selection_color = Color(0, 0.470588, 0.831373, 1)
 TextEdit/fonts/font = ExtResource("2_w7fei")
 TextEdit/styles/focus = SubResource("StyleBoxFlat_vf0ac")
 TextEdit/styles/normal = SubResource("StyleBoxFlat_r0o8s")
@@ -322,9 +325,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_v8h11")
-theme_override_font_sizes/font_size = 20
 context_menu_enabled = false
 wrap_mode = 1
+caret_blink = true
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2

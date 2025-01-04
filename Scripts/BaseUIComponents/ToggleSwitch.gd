@@ -28,7 +28,7 @@ var focus: bool
 #	margin_container.add_theme_constant_override("margin_right", margin_right)
 #	margin_container.add_theme_constant_override("margin_bottom", margin_bottom)
 
-func _on_gui_input(event):
+func _on_gui_input(event) -> void:
 	if event is InputEventMouseButton and \
 			event.is_pressed and \
 			event.button_mask == 1 and \

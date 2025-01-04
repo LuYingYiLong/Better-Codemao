@@ -14,15 +14,15 @@ extends PanelContainer
 @onready var timer = %Timer
 @onready var code_edit = %CodeEdit
 
-func _ready():
+func _ready() -> void:
 	code_edit.text = text
 	type_label.text = type
 
-func _on_copy_button_pressed():
+func _on_copy_button_pressed() -> void:
 	if !timer.is_stopped(): timer.stop()
 	DisplayServer.clipboard_set(text)
 	copy_button.text = TranslationServer.translate("COPIED_NAME")
 	timer.start()
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	copy_button.text = TranslationServer.translate("COPY_NAME")

@@ -15,15 +15,16 @@
 [node name="ContentLabel" type="RichTextLabel"]
 focus_mode = 2
 theme_override_colors/default_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/selection_color = Color(0.501961, 0.501961, 0.501961, 0.25098)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/selection_color = Color(0, 0.470588, 0.831373, 1)
 theme_override_fonts/normal_font = ExtResource("1_wp3qx")
 theme_override_fonts/mono_font = ExtResource("2_44vxr")
 theme_override_fonts/bold_font = ExtResource("3_gv7s4")
-theme_override_font_sizes/bold_italics_font_size = 20
-theme_override_font_sizes/italics_font_size = 20
-theme_override_font_sizes/mono_font_size = 20
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
 theme_override_styles/fill = SubResource("StyleBoxEmpty_ijp3g")
 theme_override_styles/background = SubResource("StyleBoxEmpty_inf11")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sk3ek")

@@ -37,10 +37,10 @@ func _on_animation_player_animation_finished(anim_name: String) -> void:
 				animation_player.play("Paused&Error")
 	current_anim_finished_name = anim_name
 
-func _on_draw():
+func _on_draw() -> void:
 	animation_player.play("Running")
 
-func _on_hidden():
+func _on_hidden() -> void:
 	animation_player.stop()
 	progress_color = Color.html(GlobalTheme.progress_running_color)
 	current_anim_finished_name = "Running"

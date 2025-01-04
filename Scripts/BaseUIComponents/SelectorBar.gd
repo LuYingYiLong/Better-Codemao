@@ -12,7 +12,7 @@ const SELECTOR_BAR_ITEM_SCENE = preload("res://Scenes/BaseUIComponents/SelectorB
 
 signal index_pressed(index: int)
 
-func _ready():
+func _ready() -> void:
 	selector_bar_item_container.alignment = item_alignment
 	for node in selector_bar_item_container.get_children():
 		node.queue_free()

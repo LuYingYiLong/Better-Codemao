@@ -286,7 +286,7 @@ text = "SelectorBar"
 [node name="SelectorBar" parent="ScrollContainer/MarginContainer/VBoxContainer/SelectorBarPanel/MarginContainer/VBoxContainer" instance=ExtResource("14_rp0w0")]
 layout_mode = 2
 selector_bar_items = Array[ExtResource("15_i53lu")]([SubResource("Resource_f4r1j"), SubResource("Resource_rx6j1"), SubResource("Resource_texpb")])
-items_width = 64.0
+items_width = 128.0
 
 [node name="AutoSuggestBoxPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2

@@ -55,11 +55,11 @@ func append_address(address_name: String, scene_path: String = "", data: Diction
 	address_size += 1
 	if address_name.length() > MAX_STRING_LENGTH:
 		address_name = "%s..." %address_name.erase(MAX_STRING_LENGTH, address_name.length() - MAX_STRING_LENGTH)
-	address_tab_bar.add_tab(address_name, ARROW_TEXTURE)
 	var page_container_scene = PAGE_CONTAINER_SCENE.instantiate()
 	pages.add_child(page_container_scene)
 	page_container_scene.name = str(address_size - 1)
 	if !scene_path.is_empty(): page_container_scene.load_scene(scene_path, data)
+	address_tab_bar.add_tab(address_name, ARROW_TEXTURE)
 	address_tab_bar.current_tab = address_size - 1
 
 func _on_address_tab_bar_tab_selected(tab: int):
