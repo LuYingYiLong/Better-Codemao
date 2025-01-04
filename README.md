@@ -19,7 +19,7 @@
 
 # 问题反馈
 
-该项目仍在开发中，功能尚未完善！若发现Bug可以前往GitHub仓库拉去新Issus，每一次问题的发现能更好的完善BetterCodemao
+该项目仍在开发中，功能尚未完善！若发现Bug可以前往GitHub仓库拉去新Issues，每一次问题的发现能更好的完善BetterCodemao
 
 建议反馈包含：
 - 截取含有问题的图片
