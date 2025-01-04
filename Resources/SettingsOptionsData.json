@@ -2,10 +2,10 @@
 	"root_options": [
 		{
 			"option_box": {
-				"icon": "res://Resources/Textures/Personalization.svg",
-				"text": "PERSONALIZATION_NAME",
-				"description": "PERSONALIZATION_DESCRIPTION",
-				"go_to": "personalization_options"
+				"icon": "res://Resources/Textures/Personalize.svg",
+				"text": "PERSONALIZE_NAME",
+				"description": "PERSONALIZE_DESCRIPTION",
+				"go_to": "personalize_options"
 			}
 		},
 		{
@@ -38,13 +38,13 @@
 		},
 		{
 			"option_box": {
-				"icon": "res://Resources/Textures/OpenTheUserDataFloder.svg",
+				"icon": "res://Resources/Textures/PersonalFolder.svg",
 				"text": "OPEN_THE_USER_DATA_FOLDER_NAME",
 				"dir": "user://"
 			}
 		}
 	],
-	"personalization_options": [
+	"personalize_options": [
 		{
 			"option_box": {
 			"text": "CHANGE_BLACK_GROUND_NAME",

@@ -33,8 +33,8 @@ unresizable = true
 borderless = true
 transparent = true
 popup_window = true
-force_native = true
 script = ExtResource("1_28uko")
+width = null
 
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true

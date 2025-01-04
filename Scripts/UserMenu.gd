@@ -27,6 +27,7 @@ extends Control
 @onready var re_created_total_label = %ReCreatedTotalLabel
 
 @onready var doing = %Doing
+@onready var edit_doing_button = %EditDoingButton
 
 @onready var work_card_container = %WorkCardContainer
 @onready var collection_work_card_container = %CollectionWorkCardContainer
@@ -82,11 +83,15 @@ func on_honor_received(result: int, _response_code: int, _headers: PackedStringA
 	re_created_total_label.text = str(json.get("re_created_total"))
 
 	doing.text = json.get("doing")
+	edit_doing_button.visible = user_id == Application.user_id
 
 	work_list_request.request("https://api.codemao.cn/creation-tools/v1/user/center/work-list?user_id=%s&offset=1&limit=12" %user_id, \
 			[], HTTPClient.METHOD_GET)
 	collection_work_list_request.request("https://api.codemao.cn/creation-tools/v1/user/center/collect/list?user_id=%s&offset=1&limit=12" %user_id, \
 			[], HTTPClient.METHOD_GET)
+
+func _on_id_copy_button_pressed():
+	DisplayServer.clipboard_set(str(user_id))
 
 func _on_edit_doing_button_pressed() -> void:
 	fly_text_edit.init_text = doing.text

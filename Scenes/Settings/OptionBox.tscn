@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://xtqhdrqk18ja" path="res://Resources/Textures/Arrow.svg" id="2_emsui"]
 [ext_resource type="Script" path="res://Scripts/Settings/OptionBox.gd" id="2_xn38o"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_rd6d5"]
-[ext_resource type="Texture2D" uid="uid://c4lupm1on6nj8" path="res://Resources/Textures/Link.svg" id="4_0hwcg"]
+[ext_resource type="Texture2D" uid="uid://di1fixh8mr52o" path="res://Resources/Textures/Link.svg" id="4_0hwcg"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="5_y7p17"]
-[ext_resource type="Texture2D" uid="uid://bna4a2cy0skgn" path="res://Resources/Textures/Copy.svg" id="6_fuxi7"]
+[ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="6_fuxi7"]
 [ext_resource type="PackedScene" uid="uid://cd2hiax67rgqi" path="res://Scenes/BaseUIComponents/ComboBox.tscn" id="7_t8efv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_al2ms"]

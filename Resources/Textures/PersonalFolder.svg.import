@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1mqcffaqk5gb"
-path="res://.godot/imported/OpenTheUserDataFloder.svg-d6a58c1cfb5c042f40309458466b847f.ctex"
+uid="uid://mvou1uiej7lx"
+path="res://.godot/imported/PersonalFolder.svg-beb01a1ece9a6629b998775a0912a9b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/OpenTheUserDataFloder.svg"
-dest_files=["res://.godot/imported/OpenTheUserDataFloder.svg-d6a58c1cfb5c042f40309458466b847f.ctex"]
+source_file="res://Resources/Textures/PersonalFolder.svg"
+dest_files=["res://.godot/imported/PersonalFolder.svg-beb01a1ece9a6629b998775a0912a9b5.ctex"]
 
 [params]
 

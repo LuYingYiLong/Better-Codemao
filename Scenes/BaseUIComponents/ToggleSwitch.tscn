@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dhhh13oso15fl"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/Button.gd" id="1_qulsh"]
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/ToggleSwitch.gd" id="1_qulsh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6y43t"]
 
@@ -235,7 +235,7 @@ _data = {
 "RESET": SubResource("Animation_62ahc")
 }
 
-[node name="Button" type="PanelContainer"]
+[node name="ToggleSwitch" type="PanelContainer"]
 custom_minimum_size = Vector2(50, 24)
 offset_left = 153.0
 offset_top = 118.0

@@ -1,18 +1,48 @@
-[gd_scene load_steps=21 format=3 uid="uid://cymjxc2cku07l"]
+[gd_scene load_steps=26 format=3 uid="uid://cymjxc2cku07l"]
 
 [ext_resource type="Script" path="res://Scripts/Testground.gd" id="1_3r2ct"]
 [ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="1_kesxp"]
-[ext_resource type="Texture2D" uid="uid://dlv44xa7u53o7" path="res://Resources/Textures/Message.svg" id="2_f7siu"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_yyy4w"]
 [ext_resource type="Texture2D" uid="uid://dtyf6mejqb7mf" path="res://Resources/Textures/Forum.svg" id="4_gt30v"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_uhfn0"]
 [ext_resource type="Texture2D" uid="uid://dir3ebxrqxnao" path="res://Resources/Textures/Workshop.svg" id="4_unva7"]
-[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="5_g64to"]
-[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_j8df0"]
+[ext_resource type="Texture2D" uid="uid://ba8o2b06nowk1" path="res://Resources/Textures/Library.svg" id="8_o14c5"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="8_vypfj"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="9_sac5q"]
-[ext_resource type="PackedScene" uid="uid://dhhh13oso15fl" path="res://Scenes/BaseUIComponents/Button.tscn" id="10_lt0ct"]
-[ext_resource type="PackedScene" uid="uid://b56q43ue36r4q" path="res://Scenes/Settings/OptionBox.tscn" id="10_tafj6"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="10_hmxdw"]
+[ext_resource type="PackedScene" uid="uid://dhhh13oso15fl" path="res://Scenes/BaseUIComponents/ToggleSwitch.tscn" id="10_lt0ct"]
 [ext_resource type="PackedScene" uid="uid://cd2hiax67rgqi" path="res://Scenes/BaseUIComponents/ComboBox.tscn" id="12_b8yot"]
 [ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="13_3m03y"]
+[ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="14_rp0w0"]
+[ext_resource type="Script" path="res://Scripts/SelectorBarItem.gd" id="15_i53lu"]
+[ext_resource type="Texture2D" uid="uid://cwo42vvibmedn" path="res://Resources/Textures/Run.svg" id="16_8d527"]
+[ext_resource type="Texture2D" uid="uid://exor33llkxq5" path="res://Resources/Textures/Save.svg" id="17_b1xk1"]
+[ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="18_0wdjv"]
+
+[sub_resource type="Resource" id="Resource_3ik4y"]
+script = ExtResource("13_3m03y")
+text = "Hello"
+flat = false
+
+[sub_resource type="Resource" id="Resource_kx2i8"]
+script = ExtResource("13_3m03y")
+text = "World"
+flat = false
+
+[sub_resource type="Resource" id="Resource_f4r1j"]
+script = ExtResource("15_i53lu")
+text = "Run"
+icon = ExtResource("16_8d527")
+
+[sub_resource type="Resource" id="Resource_rx6j1"]
+script = ExtResource("15_i53lu")
+text = "Save"
+icon = ExtResource("17_b1xk1")
+
+[sub_resource type="Resource" id="Resource_texpb"]
+script = ExtResource("15_i53lu")
+text = "View"
+icon = ExtResource("18_0wdjv")
 
 [sub_resource type="Animation" id="Animation_pgrvm"]
 resource_name = "new_animation"
@@ -21,25 +51,6 @@ resource_name = "new_animation"
 _data = {
 "new_animation": SubResource("Animation_pgrvm")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5oy1m"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8ndks"]
-
-[sub_resource type="Resource" id="Resource_3ik4y"]
-script = ExtResource("13_3m03y")
-text = "hello"
-flat = false
-
-[sub_resource type="Resource" id="Resource_kx2i8"]
-script = ExtResource("13_3m03y")
-text = "world"
-flat = false
-
-[sub_resource type="Resource" id="Resource_c6jl6"]
-script = ExtResource("13_3m03y")
-text = "!"
-flat = false
 
 [node name="Testground" type="Control"]
 layout_mode = 3
@@ -50,92 +61,194 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3r2ct")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_yyy4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
-columns = 4
+theme_override_constants/separation = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+[node name="BaseButtonPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
 
-[node name="NavigationButton" parent="MarginContainer/GridContainer/VBoxContainer" instance=ExtResource("1_kesxp")]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel"]
 layout_mode = 2
-icon = ExtResource("2_f7siu")
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="NavigationButton2" parent="MarginContainer/GridContainer/VBoxContainer" instance=ExtResource("1_kesxp")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel/MarginContainer"]
 layout_mode = 2
-icon = ExtResource("4_gt30v")
 
-[node name="NavigationButton3" parent="MarginContainer/GridContainer/VBoxContainer" instance=ExtResource("1_kesxp")]
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_uhfn0")
+theme_override_font_sizes/font_size = 26
+text = "BaseButton"
+
+[node name="BaseButtonContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NavigationButton" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel/MarginContainer/VBoxContainer/BaseButtonContainer" groups=["BaseButtonGroup"] instance=ExtResource("1_kesxp")]
 layout_mode = 2
 icon = ExtResource("4_unva7")
+text = "Workshop"
+group = "BaseButtonGroup"
 
-[node name="BasePanelContainer" parent="MarginContainer/GridContainer" instance=ExtResource("5_g64to")]
-custom_minimum_size = Vector2(256, 0)
+[node name="NavigationButton2" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel/MarginContainer/VBoxContainer/BaseButtonContainer" groups=["BaseButtonGroup"] instance=ExtResource("1_kesxp")]
+layout_mode = 2
+icon = ExtResource("4_gt30v")
+text = "Forum"
+group = "BaseButtonGroup"
+
+[node name="NavigationButton3" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel/MarginContainer/VBoxContainer/BaseButtonContainer" groups=["BaseButtonGroup"] instance=ExtResource("1_kesxp")]
+layout_mode = 2
+icon = ExtResource("8_o14c5")
+text = "Library"
+group = "BaseButtonGroup"
+
+[node name="PaginationBarPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PaginationBarPanel"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_j8df0")
-text = "微软雅黑"
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="PaginationBar" parent="MarginContainer/GridContainer" instance=ExtResource("8_vypfj")]
-layout_mode = 2
-
-[node name="Button" parent="MarginContainer/GridContainer" instance=ExtResource("10_lt0ct")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PaginationBarPanel/MarginContainer"]
 layout_mode = 2
 
-[node name="OptionBox" parent="MarginContainer/GridContainer" instance=ExtResource("10_tafj6")]
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PaginationBarPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_uhfn0")
+theme_override_font_sizes/font_size = 26
+text = "PaginationBar"
+
+[node name="PaginationBar" parent="ScrollContainer/MarginContainer/VBoxContainer/PaginationBarPanel/MarginContainer/VBoxContainer" instance=ExtResource("8_vypfj")]
+layout_mode = 2
+total = 8
+size = 6
+current_page = 1
+
+[node name="ToggleSwitchPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
 
-[node name="SecureTextEdit" parent="." instance=ExtResource("9_sac5q")]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 268.0
-offset_right = 523.0
-offset_bottom = 543.0
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/ToggleSwitchPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/ToggleSwitchPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/ToggleSwitchPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_uhfn0")
+theme_override_font_sizes/font_size = 26
+text = "ToggleSwitch"
+
+[node name="ToggleSwitch" parent="ScrollContainer/MarginContainer/VBoxContainer/ToggleSwitchPanel/MarginContainer/VBoxContainer" instance=ExtResource("10_lt0ct")]
+layout_mode = 2
+
+[node name="SecureTextEditPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEditPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEditPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEditPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_uhfn0")
+theme_override_font_sizes/font_size = 26
+text = "SecureTextEdit"
+
+[node name="SecureTextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEditPanel/MarginContainer/VBoxContainer" instance=ExtResource("9_sac5q")]
+custom_minimum_size = Vector2(210, 180)
+layout_mode = 2
+
+[node name="ComboBoxPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/ComboBoxPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/ComboBoxPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/ComboBoxPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_uhfn0")
+theme_override_font_sizes/font_size = 26
+text = "ComboBox"
+
+[node name="ComboBox" parent="ScrollContainer/MarginContainer/VBoxContainer/ComboBoxPanel/MarginContainer/VBoxContainer" instance=ExtResource("12_b8yot")]
+layout_mode = 2
+items = Array[ExtResource("13_3m03y")]([SubResource("Resource_3ik4y"), SubResource("Resource_kx2i8")])
+
+[node name="SelectorBarPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/SelectorBarPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/SelectorBarPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/SelectorBarPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_uhfn0")
+theme_override_font_sizes/font_size = 26
+text = "SelectorBar"
+
+[node name="SelectorBar" parent="ScrollContainer/MarginContainer/VBoxContainer/SelectorBarPanel/MarginContainer/VBoxContainer" instance=ExtResource("14_rp0w0")]
+layout_mode = 2
+selector_bar_items = Array[ExtResource("15_i53lu")]([SubResource("Resource_f4r1j"), SubResource("Resource_rx6j1"), SubResource("Resource_texpb")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_wqo3k")
 }
-
-[node name="PanelContainer" type="PanelContainer" parent="."]
-clip_children = 1
-layout_mode = 0
-offset_left = 445.0
-offset_top = 217.0
-offset_right = 485.0
-offset_bottom = 257.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5oy1m")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PanelContainer"]
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_8ndks")
-
-[node name="ComboBox" parent="." instance=ExtResource("12_b8yot")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 555.0
-offset_top = 189.0
-offset_right = 856.0
-offset_bottom = 229.0
-grow_horizontal = 1
-grow_vertical = 1
-items = Array[ExtResource("13_3m03y")]([SubResource("Resource_3ik4y"), SubResource("Resource_kx2i8"), SubResource("Resource_c6jl6")])

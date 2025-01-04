@@ -70,7 +70,7 @@ LIKE_FORK_NAME,赞与购买,Like&Fork
 LOAD_MORE_NAME,加载更多,Load more
 SYSTEM_NAME,系统,System
 SETTINGS_NAME,设置,Settings
-PERSONALIZATION_NAME,个性化,Personalization
+PERSONALIZE_NAME,个性化,Personalize
 CHANGE_BLACK_GROUND_NAME,更改背景,Change black ground
 BLACK_GROUND_MODE_NAME,背景模式,Black ground mode
 IMAGE_NAME,图像,Image
@@ -146,6 +146,7 @@ WORK_REPLY_AUTHOR_NAME,回复了你在作品 {0} 下的 {1} 的评论,replied to
 POST_REPLY_AUTHOR_NAME,回复了你在帖子 {0} 下的 {1} 的评论,replied to your comment {1} on the post {0}
 POST_REPLY_REPLY_NAME,回复了你在帖子 {0} 下的评论,replied to your comment on the post {0}
 POST_REPLY_REPLY_FEEDBACK_NAME,回复了你的回帖 {0} 下的 {1} 的回复,replies {1} to your reply {0}
+POST_DISCUSSION_LIKED_NAME,赞了你在帖子 {0} 下的回复,liked your reply on the post {0}
 WORK_REPLY_REPLY_AUTHOR_NAME,回复了你的作品 {0} 下的 {1} 的回复,replies {1} to your work {0}
 WORK_REPLY_REPLY_NAME,回复了你在作品 {0} 下的评论,replied to your comment on the work {0}
 POST_REPLY_NAME,回复了你的帖子 {0} 下的回帖,replied to a reply to your post {0}
@@ -153,7 +154,7 @@ WORK_LIKE_NAME,赞了你的作品 {0},liked your work {0}
 WORK_FORK_NAME,购买了你的作品 {0},buys your work {0}
 WORK_SHOP_USER_LEAVE_NAME,{0} 已退出 {1} 工作室, {0} leave the workshop {1}
 POST_DELETE_NAME,你的帖子 {0} 被举报为 {1}，经管理员核实被判定为违规帖，已被 {2}，如有问题可前往反馈,"Your post {0} was reported as a {1}, and the post was verified by the moderator as a violating post, and has been {2}, if you have any questions, you can go to the feedback"
-PERSONALIZATION_DESCRIPTION,背景,Blackground
+PERSONALIZE_DESCRIPTION,背景图片，背景模式,"Black ground image, Black ground mode"
 LANGUAGE_DESCRIPTION,语言,Language
 INIT_CONFIG_NAME,初始化配置,Init config
 INIT_CONFIG_PROCESS1,开始之前，我们先设置初始化配置,"Before we begin, let's set up the initialization config"

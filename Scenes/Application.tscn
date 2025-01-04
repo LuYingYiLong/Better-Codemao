@@ -588,6 +588,7 @@ layout_mode = 1
 [node name="ImageViewer" parent="." instance=ExtResource("16_5naus")]
 
 [node name="MainPopupMenu" parent="." instance=ExtResource("16_f86f1")]
+width = -1
 
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 2

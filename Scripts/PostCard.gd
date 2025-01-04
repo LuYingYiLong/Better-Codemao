@@ -40,7 +40,7 @@ func set_post_card_data(_data: Dictionary):
 	data = _data
 	var user: Dictionary = data.get("user", {})
 	nickname_label.text = user.get("nickname", "ERROR")
-	avatar_texture.load_image(user.get("avatar_url"))
+	avatar_texture.load_image(user.get("avatar_url", ""))
 	work_shop_tag.set_work_shop_data(user.get("work_shop_level", 0), \
 			user.get("work_shop_name", ""), \
 			user.get("subject_id", 0))

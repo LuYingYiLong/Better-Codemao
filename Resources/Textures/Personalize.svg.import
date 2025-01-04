@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://17bpn5pfodll"
-path="res://.godot/imported/Personalization.svg-72d95cc7ebd4a82789ccdf6fcfda5ab3.ctex"
+uid="uid://c7rja7tykl720"
+path="res://.godot/imported/Personalize.svg-53b3dc1fc428c587eaa10f24ba436e36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Personalization.svg"
-dest_files=["res://.godot/imported/Personalization.svg-72d95cc7ebd4a82789ccdf6fcfda5ab3.ctex"]
+source_file="res://Resources/Textures/Personalize.svg"
+dest_files=["res://.godot/imported/Personalize.svg-53b3dc1fc428c587eaa10f24ba436e36.ctex"]
 
 [params]
 

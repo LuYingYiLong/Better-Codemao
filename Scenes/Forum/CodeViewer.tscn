@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Forum/CodeViewer.gd" id="1_m182g"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="1_wk5cr"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_uk8jj"]
-[ext_resource type="Texture2D" uid="uid://bna4a2cy0skgn" path="res://Resources/Textures/Copy.svg" id="3_neyad"]
+[ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="3_neyad"]
 [ext_resource type="FontFile" uid="uid://bttiv76brd75q" path="res://Resources/Fonts/JetBrainsMono-Medium.ttf" id="4_04h34"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8n8q"]

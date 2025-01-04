@@ -3,6 +3,7 @@ extends PanelContainer
 @onready var avatar_texture = %AvatarTexture
 @onready var nickname_label = %NicknameLabel
 @onready var work_shop_tag = %WorkShopTag
+@onready var drop_down_button = %DropDownButton
 @onready var content_label = %ContentLabel
 @onready var updated_at = %UpdatedAt
 
@@ -23,6 +24,13 @@ func set_comment_card_data(json: Dictionary):
 	work_shop_tag.set_work_shop_data(user.get("work_shop_level"), \
 			user.get("work_shop_name"), \
 			user.get("subject_id"))
+	var reply_popup_item: PopupItem = PopupItem.new()
+	reply_popup_item.text = "REPLY_NAME"
+	drop_down_button.popup_items.append(reply_popup_item)
+	if int(user.get("id")) == Application.user_id:
+		var delete_popup_item: PopupItem = PopupItem.new()
+		delete_popup_item.text = "DELETE_NAME"
+		drop_down_button.popup_items.append(delete_popup_item)
 	content_label.text = json.get("content")
 	var create_time_dict: Dictionary = Time.get_datetime_dict_from_unix_time(json.get("created_at"))
 	updated_at.text = "%s%s%s%s%s%s  %s:%s" %[

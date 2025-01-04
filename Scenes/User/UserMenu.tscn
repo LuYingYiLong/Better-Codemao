@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b5o0hpr15s67y"]
+[gd_scene load_steps=33 format=3 uid="uid://b5o0hpr15s67y"]
 
 [ext_resource type="Script" path="res://Scripts/UserMenu.gd" id="1_lvrm4"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_7uk8a"]
@@ -12,7 +12,8 @@
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="10_oqh5g"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="10_w1ogm"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="11_14dwl"]
-[ext_resource type="Texture2D" uid="uid://bxp1kylcw7tka" path="res://Resources/Textures/Edit.svg" id="13_3edbl"]
+[ext_resource type="FontFile" uid="uid://dndmarojekfh5" path="res://Resources/Fonts/Segoe Fluent Icons.ttf" id="11_tbaca"]
+[ext_resource type="Texture2D" uid="uid://y646rsxl202r" path="res://Resources/Textures/Edit.svg" id="13_3edbl"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="13_i2jmu"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="15_addgs"]
 [ext_resource type="PackedScene" uid="uid://dnpj1qtwe4hfr" path="res://Scenes/BaseUIComponents/FlyTextEdit.tscn" id="16_fgs5f"]
@@ -35,6 +36,8 @@ corner_radius_top_left = 64
 corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxpra"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hq2l2"]
 bg_color = Color(1, 1, 1, 1)
@@ -62,6 +65,8 @@ color = Color(0, 0, 0, 0.196078)
 grow_begin = 8.0
 grow_end = -6.0
 vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ytqbo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d05ia"]
 
@@ -199,7 +204,7 @@ unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("10_oqh5g")
 theme_override_font_sizes/font_size = 20
@@ -207,13 +212,32 @@ text = "Description"
 autowrap_mode = 2
 text_overrun_behavior = 3
 
-[node name="IDLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="IDLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("10_oqh5g")
 text = "ID"
+
+[node name="IDCopyButton" type="Button" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer2"]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("11_tbaca")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uxpra")
+text = ""
+flat = true
 
 [node name="DetailsButton" type="Button" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer"]
 unique_name_in_owner = true
@@ -467,11 +491,13 @@ text = "DOING_NAME"
 uppercase = true
 
 [node name="EditDoingButton" type="Button" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 self_modulate = Color(0.105882, 0.105882, 0.105882, 1)
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 28
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ytqbo")
 icon = ExtResource("13_3edbl")
 flat = true
 
@@ -616,6 +642,7 @@ text = "LOGIN_NAME"
 [connection signal="request_completed" from="WorkListRequest" to="." method="on_work_list_received"]
 [connection signal="request_completed" from="CollectionWorkListRequest" to="." method="on_collection_work_list_received"]
 [connection signal="request_completed" from="BasicRequest" to="." method="_on_basic_request_request_completed"]
+[connection signal="pressed" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer2/IDCopyButton" to="." method="_on_id_copy_button_pressed"]
 [connection signal="pressed" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/DetailsButton" to="." method="_on_details_button_pressed"]
 [connection signal="gui_input" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal" to="." method="_on_fans_total_gui_input"]
 [connection signal="gui_input" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal" to="." method="_on_followers_total_gui_input"]

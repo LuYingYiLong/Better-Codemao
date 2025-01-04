@@ -1,9 +1,11 @@
 @tool
 extends Window
 
+@export var width: int = -1
 @export var emit: bool:
 	set(value):
 		if value:
+			if width > -1: size.x = width + 16
 			size.y = 38 + (clampi(items_total, 1, 10) * 34)
 			margin_container.add_theme_constant_override("margin_bottom", size.y * 2)
 		visible = true

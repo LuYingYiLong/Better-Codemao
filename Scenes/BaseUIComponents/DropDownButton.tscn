@@ -1,0 +1,160 @@
+[gd_scene load_steps=10 format=3 uid="uid://d18nv2g7nrkrb"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/DropDownButton.gd" id="1_x5hd5"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="2_hskg2"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_lw60y"]
+[ext_resource type="Texture2D" uid="uid://3vdlgvk3ptm" path="res://Resources/Textures/DownArrow.svg" id="3_wc7v3"]
+[ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/PopupMenu.tscn" id="5_1l88s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fa3o3"]
+
+[sub_resource type="Animation" id="Animation_1cq44"]
+resource_name = "Animation"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.2, 1, 1),
+"update": 0,
+"values": [0, 8, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_constants/margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.4),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [4, 0]
+}
+
+[sub_resource type="Animation" id="Animation_ijbwx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_constants/margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x2eb0"]
+_data = {
+"Animation": SubResource("Animation_1cq44"),
+"RESET": SubResource("Animation_ijbwx")
+}
+
+[node name="DropDownButton" type="PanelContainer"]
+offset_right = 170.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fa3o3")
+script = ExtResource("1_x5hd5")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("2_hskg2")
+theme_override_styles/disabled_mirrored = ExtResource("2_hskg2")
+theme_override_styles/disabled = ExtResource("2_hskg2")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_hskg2")
+theme_override_styles/hover_pressed = ExtResource("2_hskg2")
+theme_override_styles/hover_mirrored = ExtResource("2_hskg2")
+theme_override_styles/hover = ExtResource("2_hskg2")
+theme_override_styles/pressed_mirrored = ExtResource("2_hskg2")
+theme_override_styles/pressed = ExtResource("2_hskg2")
+theme_override_styles/normal_mirrored = ExtResource("2_hskg2")
+theme_override_styles/normal = ExtResource("2_hskg2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Button/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="Button/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.105882, 0.105882, 0.105882, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Button/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("2_lw60y")
+text_overrun_behavior = 3
+
+[node name="DownArrowMarginContainer" type="MarginContainer" parent="Button/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="DownArrowIcon" type="TextureRect" parent="Button/MarginContainer/HBoxContainer/DownArrowMarginContainer"]
+self_modulate = Color(0.403922, 0.403922, 0.403922, 1)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_wc7v3")
+expand_mode = 1
+
+[node name="DownArrowAnimationPlayer" type="AnimationPlayer" parent="Button/MarginContainer/HBoxContainer/DownArrowMarginContainer"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_x2eb0")
+}
+
+[node name="PopupMenu" parent="." instance=ExtResource("5_1l88s")]
+unique_name_in_owner = true
+width = -1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="index_pressed" from="PopupMenu" to="." method="_on_popup_menu_index_pressed"]

@@ -3,6 +3,7 @@ extends PanelContainer
 @onready var avatar_texture = %AvatarTexture
 @onready var nickname_label = %NicknameLabel
 @onready var work_shop_tag = %WorkShopTag
+@onready var drop_down_button = %DropDownButton
 @onready var is_top = %IsTop
 @onready var content_label = %ContentLabel
 @onready var updated_at = %UpdatedAt
@@ -21,7 +22,6 @@ var data: Dictionary
 
 var menu
 
-
 func set_reply_card_data(json: Dictionary):
 	data = json
 	var user: Dictionary = json.get("user")
@@ -32,6 +32,13 @@ func set_reply_card_data(json: Dictionary):
 			user.get("subject_id"))
 	is_top.self_modulate = Color.html(GlobalTheme.top_color)
 	is_top.visible = json.get("is_top")
+	var reply_popup_item: PopupItem = PopupItem.new()
+	reply_popup_item.text = "REPLY_NAME"
+	drop_down_button.popup_items.append(reply_popup_item)
+	if int(user.get("id")) == Application.user_id:
+		var delete_popup_item: PopupItem = PopupItem.new()
+		delete_popup_item.text = "DELETE_NAME"
+		drop_down_button.popup_items.append(delete_popup_item)
 	content_label.text = Application.html_to_text(json.get("content"))
 	var earliest_comments: Array
 	if json.has("earliest_comments"): earliest_comments = json.get("earliest_comments")

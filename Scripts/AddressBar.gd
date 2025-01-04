@@ -21,8 +21,8 @@ func _ready():
 	Application.set_root_address.connect(set_root_address)
 
 func set_root_address(address_name: String, scene_path: String = "", data: Dictionary = {}):
+	is_playing = true
 	address.clear()
-	is_playing = false
 	if address_name.length() > MAX_STRING_LENGTH:
 		address_name = "%s..." %address_name.erase(MAX_STRING_LENGTH, address_name.length() - MAX_STRING_LENGTH)
 	address["0"] = {"name": address_name, "selected": true}
@@ -47,6 +47,7 @@ func set_root_address(address_name: String, scene_path: String = "", data: Dicti
 	await get_tree().create_timer(0.025).timeout
 	page_container_scene._show("PushInTop")
 	if !scene_path.is_empty(): page_container_scene.load_scene(scene_path, data)
+	is_playing = false
 
 func append_address(address_name: String, scene_path: String = "", data: Dictionary = {}):
 	if is_playing: return

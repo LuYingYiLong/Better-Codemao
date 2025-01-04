@@ -52,11 +52,13 @@ func set_message_card_data(_data: Dictionary):
 				content.get("content").get("work_subject_name")])
 		user_id = content.get("leaver").get("leaver_id")
 		subject_id = content.get("content").get("subject_id")
-	elif "POST_DELETE":
+	elif type == "POST_DELETE":
 		link_button.text = link_button_text.format([message.get("business_name"), \
 				message.get("reason_name"), \
 				message.get("result_name")])
-	else: Application.add_system_message.emit("Unknow type: %s" %type, GlobalTheme.system_warning_message_color, 4)
+	elif type == "POST_DISCUSSION_LIKED":
+		link_button.text = link_button_text.format([message.get("business_name")])
+		comment_label_text = message.get("comment", "")
 	user_id = sender.get("id", 0)
 	post_id = message.get("business_id", 0)
 	content_label.text = Application.html_to_text(content_label_text)

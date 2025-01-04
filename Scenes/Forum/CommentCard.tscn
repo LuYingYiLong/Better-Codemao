@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://mem6wfaaptwm"]
+[gd_scene load_steps=27 format=3 uid="uid://mem6wfaaptwm"]
 
 [ext_resource type="Script" path="res://Scripts/CommentCard.gd" id="1_nrvkg"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_auwcy"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="5_ya8ud"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_j7p0m"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="6_rivxs"]
+[ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="6_trih3"]
+[ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="7_osu5c"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="8_i8pfa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihh0o"]
@@ -116,6 +118,13 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
+[node name="DropDownButton" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_trih3")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("7_osu5c")
+
 [node name="ContentLabel" type="TextEdit" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -148,4 +157,5 @@ text_overrun_behavior = 3
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]
+[connection signal="index_pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DropDownButton" to="." method="_menu_callback"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/ContentLabel" to="." method="_on_gui_input"]
