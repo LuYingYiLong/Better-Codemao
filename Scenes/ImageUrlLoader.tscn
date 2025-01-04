@@ -1,23 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci8hbvggabgnh"]
+[gd_scene load_steps=7 format=3 uid="uid://ci8hbvggabgnh"]
 
 [ext_resource type="Script" path="res://Scripts/ImageUrlLoader.gd" id="1_wwonq"]
 [ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="2_2qk66"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_ux0w1"]
 
 [sub_resource type="Resource" id="Resource_hp763"]
 script = ExtResource("2_2qk66")
 text = "VIEW_THE_IMAGE_NAME"
+flat = false
 
 [sub_resource type="Resource" id="Resource_ykf6m"]
 script = ExtResource("2_2qk66")
 text = "SAVE_THE_IMAGE_NAME"
+flat = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhsi7"]
+bg_color = Color(0.803922, 0.839216, 0.847059, 1)
 
 [node name="ImageUrlLoader" type="TextureRect"]
+offset_right = 37.0
+offset_bottom = 34.0
 expand_mode = 1
 script = ExtResource("1_wwonq")
 popup_item = Array[ExtResource("2_2qk66")]([SubResource("Resource_hp763"), SubResource("Resource_ykf6m")])
 
 [node name="ImageRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
+
+[node name="NamePanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fhsi7")
+
+[node name="NameLabel" type="Label" parent="NamePanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.231373, 0.266667, 0.278431, 1)
+theme_override_fonts/font = ExtResource("3_ux0w1")
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="request_completed" from="ImageRequest" to="." method="_on_image_request_request_completed"]

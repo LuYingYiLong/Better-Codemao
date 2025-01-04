@@ -31,11 +31,13 @@ layout_mode = 2
 clip_children = 1
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mijra")
 
 [node name="ImageUrlLoader" parent="HBoxContainer/Mask" instance=ExtResource("2_s6kuc")]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("3_i2t4w")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
@@ -52,7 +54,7 @@ theme_override_constants/separation = 0
 [node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("4_7iqac")
 theme_override_font_sizes/font_size = 24
 text = "Name"
@@ -62,7 +64,7 @@ unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_constants/line_spacing = -4
 text = "Description"
 autowrap_mode = 2
@@ -75,7 +77,7 @@ size_flags_vertical = 8
 
 [node name="ManagerLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 text = "MANAGER_NAME"
 
 [node name="Mask" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -92,7 +94,7 @@ texture = ExtResource("3_i2t4w")
 
 [node name="SubManagerLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 text = "SUB_MANAGER_NAME"
 
 [node name="Mask2" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]

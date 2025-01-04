@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cc6i46qxistuu" path="res://Resources/Textures/BetterCodemaoCover.svg" id="2_laaug"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_se784"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="4_h2l6t"]
-[ext_resource type="Texture2D" uid="uid://bna4a2cy0skgn" path="res://Resources/Textures/Copy.svg" id="5_mbqor"]
+[ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="5_mbqor"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5j1l4"]
 

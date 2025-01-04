@@ -1,0 +1,162 @@
+[gd_scene load_steps=13 format=3 uid="uid://biuqtci6nku4a"]
+
+[ext_resource type="Texture2D" uid="uid://v32tggmvvt4d" path="res://Resources/Textures/Update.svg" id="1_5xwhv"]
+[ext_resource type="Script" path="res://Scripts/Settings/CheckForUpdatesPanel.gd" id="1_e8jv0"]
+[ext_resource type="Texture2D" uid="uid://b2yhjewq3yl08" path="res://Resources/Textures/OK.svg" id="2_krrou"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_p8akd"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_qpahu"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="4_kwnqk"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="5_yyro5"]
+[ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="7_lr1dj"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="9_db7rn"]
+[ext_resource type="PackedScene" uid="uid://b56q43ue36r4q" path="res://Scenes/Settings/OptionBox.tscn" id="10_t3y0n"]
+[ext_resource type="PackedScene" uid="uid://drbgm8oplu7mk" path="res://Scenes/BaseUIComponents/HyperlinkButton.tscn" id="11_8l45t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_coejm"]
+
+[node name="CheckForUpdatesPanel" type="PanelContainer"]
+offset_right = 1152.0
+offset_bottom = 144.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_coejm")
+script = ExtResource("1_e8jv0")
+
+[node name="CheckUpdatesRequest" parent="." instance=ExtResource("2_p8akd")]
+unique_name_in_owner = true
+progress_bar = NodePath("../MarginContainer/VBoxContainer/HBoxContainer/CheckingPanel/ProgressBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="UpdateIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("1_5xwhv")
+expand_mode = 1
+
+[node name="OKIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/UpdateIcon"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_krrou")
+expand_mode = 1
+
+[node name="CheckingPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckingPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("5_yyro5")
+theme_override_font_sizes/font_size = 26
+text = "CHECKING_FOR_UPDATES_NAME"
+
+[node name="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckingPanel" instance=ExtResource("3_qpahu")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="IsLatestVersionPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = -2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/IsLatestVersionPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("5_yyro5")
+theme_override_font_sizes/font_size = 26
+text = "YOU_ARE_USING_THE_LATEST_VERSION_NAME"
+
+[node name="LastCheckTimeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/IsLatestVersionPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11, 0.11, 0.11, 0.490196)
+theme_override_fonts/font = ExtResource("7_lr1dj")
+text = "LAST_CHECK_TIME_NAME"
+
+[node name="HasLatestVersionPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = -2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HasLatestVersionPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("5_yyro5")
+theme_override_font_sizes/font_size = 26
+text = "A_NEW_VERSION_IS_AVAILABLE_TITLE"
+
+[node name="ANewVersionIsAvailableLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HasLatestVersionPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11, 0.11, 0.11, 0.490196)
+theme_override_fonts/font = ExtResource("7_lr1dj")
+text = "A_NEW_VERSION_IS_AVAILABLE_DESCRIPTION"
+
+[node name="CheckForUpdatesButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(114, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_kwnqk")
+text = "CHECK_FOR_UPDATES_NAME"
+
+[node name="GetUpdatesPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="GetUpdatesLabel" type="Label" parent="MarginContainer/VBoxContainer/GetUpdatesPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("9_db7rn")
+text = "GET_UPDATES_NAME"
+
+[node name="GitHubOptionBox" parent="MarginContainer/VBoxContainer/GetUpdatesPanel" instance=ExtResource("10_t3y0n")]
+layout_mode = 2
+text = "GitHub"
+description = ""
+link = "https://github.com/LuYingYiLong/Better-Codemao/releases"
+
+[node name="123PanOptionBox" parent="MarginContainer/VBoxContainer/GetUpdatesPanel" instance=ExtResource("10_t3y0n")]
+layout_mode = 2
+text = "123云盘"
+description = ""
+link = "https://www.123865.com/s/dmLmjv-aduBh"
+
+[node name="HyperlinkButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("11_8l45t")]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "FAILED_TO_GET_UPDATES_NAME"
+hyperlink = "ContentDialog:{\"title\":\"FAILED_TO_GET_UPDATES_NAME\",\"text\":\"FAILED_TO_GET_UPDATES_DESCRIPTION\"}"
+
+[connection signal="request_completed" from="CheckUpdatesRequest" to="." method="_on_check_updates_request_request_completed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CheckForUpdatesButton" to="." method="_on_check_for_updates_button_pressed"]

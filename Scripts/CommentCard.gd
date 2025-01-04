@@ -19,7 +19,7 @@ func set_comment_card_data(json: Dictionary):
 	var user: Dictionary
 	if json.has("user"): user = json.get("user")
 	elif json.has("reply_user"): user = json.get("reply_user")
-	avatar_texture.load_image(user.get("avatar_url"))
+	avatar_texture.load_image(user.get("avatar_url"), user.get("nickname"))
 	nickname_label.text = user.get("nickname")
 	work_shop_tag.set_work_shop_data(user.get("work_shop_level"), \
 			user.get("work_shop_name"), \

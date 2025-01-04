@@ -12,6 +12,7 @@ signal show_login_menu
 
 signal add_system_message(message: String, color: String, time: float)
 
+const USER_DATA_PATH = "user://UserData.json"
 const SETTINGS_OPTIONS_DATA_PATH = "res://Resources/SettingsOptionsData.json"
 const FORUM_HISTORY_PATH = "user://Forum-history.json"
 
@@ -122,6 +123,13 @@ func html_to_bbcode(html: String):
 				else:
 					html = html.replace(get_string, "")
 	return html
+
+func string_to_hex(input: String) -> String:
+	var hex_char: String
+	var bytes: PackedByteArray = input.to_utf8_buffer()
+	for byte in bytes:
+		hex_char = hex_char + "%" + "%02x" %byte
+	return hex_char.to_upper()
 
 func emit_system_error_message(message: String):
 	add_system_message.emit(message, GlobalTheme.system_error_message_color, 6.0)

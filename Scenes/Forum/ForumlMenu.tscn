@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://du2ukdd0rn8o7"]
+[gd_scene load_steps=15 format=3 uid="uid://du2ukdd0rn8o7"]
 
 [ext_resource type="Script" path="res://Scripts/ForumlMenu.gd" id="1_kph02"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_1yq0c"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_4h4qy"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_r815b"]
 [ext_resource type="PackedScene" uid="uid://mfb2rhleqvr6" path="res://Scenes/Forum/PostCard.tscn" id="4_s514n"]
+[ext_resource type="PackedScene" uid="uid://b70w7s5k2wnp7" path="res://Scenes/BaseUIComponents/AutoSuggestBox.tscn" id="5_dge4m"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="5_yjx67"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="7_ti6ce"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="9_286o5"]
@@ -33,6 +34,10 @@ script = ExtResource("1_kph02")
 [node name="BoardsRequest" parent="." instance=ExtResource("2_yn624")]
 unique_name_in_owner = true
 progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Boards/BoardsProgressBar")
+
+[node name="SearchRequest" parent="." instance=ExtResource("2_yn624")]
+unique_name_in_owner = true
+progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Posts/PostsProgressBar")
 
 [node name="AllRequest" parent="." instance=ExtResource("2_yn624")]
 unique_name_in_owner = true
@@ -70,19 +75,25 @@ theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 32
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="BoardNameLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("9_286o5")
 theme_override_font_sizes/font_size = 24
 text = "FORUM_SQUARE_NAME"
+
+[node name="AutoSuggestBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_dge4m")]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "SEARCH_NAME"
 
 [node name="ClearHistoryButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -176,7 +187,7 @@ self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("10_4lx3q")
-text = "999"
+text = "--"
 uppercase = true
 
 [node name="BeginLine" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
@@ -208,7 +219,7 @@ self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("10_4lx3q")
-text = "999"
+text = "--"
 uppercase = true
 
 [node name="EndLine" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer"]
@@ -240,7 +251,7 @@ self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("10_4lx3q")
-text = "999"
+text = "--"
 uppercase = true
 
 [node name="Boards" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("2_1yq0c")]
@@ -269,10 +280,12 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [connection signal="request_completed" from="BoardsRequest" to="." method="on_boards_received"]
+[connection signal="request_completed" from="SearchRequest" to="." method="_on_search_completed"]
 [connection signal="request_completed" from="AllRequest" to="." method="on_all_received"]
 [connection signal="request_completed" from="BoardRequest" to="." method="_on_board_request_request_completed"]
 [connection signal="request_completed" from="MinePostsRequest" to="." method="_on_mine_posts_request_request_completed"]
 [connection signal="request_completed" from="MineRepliedRequest" to="." method="_on_mine_replied_request_request_completed"]
+[connection signal="search_pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoSuggestBox" to="." method="_on_auto_suggest_box_search_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/ClearHistoryButton" to="." method="_on_clear_history_button_pressed"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
 [connection signal="gui_input" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MinePosts" to="." method="_on_mine_posts_gui_input"]

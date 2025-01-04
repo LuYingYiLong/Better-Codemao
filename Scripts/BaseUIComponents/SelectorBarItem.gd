@@ -13,5 +13,6 @@ var index: int
 @onready var animation_player = %AnimationPlayer
 
 func _on_pressed() -> void:
-	if !selected: selected = true
-	index_pressed.emit(index)
+	if !selected:
+		selected = true
+		index_pressed.emit(index)

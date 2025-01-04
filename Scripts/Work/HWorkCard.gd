@@ -10,9 +10,12 @@ var id: int
 
 func set_work_card_data(json: Dictionary):
 	id = int(json.get("id"))
-	if json.has("work_name"): work_name_label.text = json.get("work_name")
-	elif json.has("name"): work_name_label.text = json.get("name")
-	preview_texture.load_image(json.get("preview"))
+	if json.has("work_name"):
+		work_name_label.text = json.get("work_name")
+		preview_texture.load_image(json.get("preview"), json.get("work_name"))
+	elif json.has("name"):
+		work_name_label.text = json.get("name")
+		preview_texture.load_image(json.get("preview"), json.get("name"))
 	description_label.text = json.get("description", "")
 	view_times.text = str(json.get("view_times"))
 	praise_times.text = str(json.get("praise_times"))

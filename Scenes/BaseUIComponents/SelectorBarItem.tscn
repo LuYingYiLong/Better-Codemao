@@ -76,6 +76,8 @@ _data = {
 }
 
 [node name="SelectorBarItem" type="Button"]
+offset_right = 44.0
+offset_bottom = 40.0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.360784, 0.360784, 0.360784, 1)
@@ -95,6 +97,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_b0rft")
 text = "Item"
 icon = ExtResource("2_06avt")
 flat = true
+text_overrun_behavior = 3
 script = ExtResource("3_ymf3k")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

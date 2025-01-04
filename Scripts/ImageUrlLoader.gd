@@ -4,10 +4,23 @@ extends TextureRect
 
 @onready var image_request = %ImageRequest
 
+@onready var name_panel = %NamePanel
+@onready var name_label = %NameLabel
+
 signal pressed
 signal popup_menu_callback(id: int)
 
+const SUFFIX_TYPES: Dictionary = {
+	".jpeg": "jpg",
+	".jpg": "jpg",
+	".cover": "jpg",
+	".png": "png",
+	".dll": "gif",
+	".gif": "gif"
+}
+
 var _url: String
+var _name: String
 var thread_helper: ThreadHelper
 var popup_menu: Window = Application.get_popup_menu()
 var file_dialog: FileDialog = Application.get_file_dialog()
@@ -17,15 +30,23 @@ var menu
 func _ready() -> void:
 	thread_helper = ThreadHelper.new(self)
 
-func load_image(url: String) -> void:
+func load_image(url: String, _name_: String = "") -> void:
 	_url = url
-	image_request.request(url)
+	_name = _name_
+	var has_suffix: bool
+	for key: String in SUFFIX_TYPES.keys():
+		has_suffix = url.ends_with(key)
+		if has_suffix: break
+	if has_suffix:
+		image_request.request(url)
+	else:
+		image_request.request(url, ["Content-Type: image/png"])
 
 func _on_image_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS:
 		push_error("Could not get data")
 	else:
-		if _url.ends_with(".gif"):
+		if _url.ends_with(".gif") or _url.ends_with(".dll"):
 			var animated_sprite_2d := AnimatedSprite2D.new()
 			texture = null
 			add_child(animated_sprite_2d)
@@ -40,16 +61,18 @@ func _load_image_from_thread(buffer: PackedByteArray) -> void:
 	if buffer.is_empty(): return
 	var image = Image.new()
 	var error
-	if _url.ends_with(".jpeg") or _url.ends_with(".jpg"):
+	if _url.ends_with(".jpeg") or _url.ends_with(".jpg") or _url.ends_with(".cover"):
 		error = image.load_jpg_from_buffer(buffer)
 	elif _url.ends_with(".png"):
 		error = image.load_png_from_buffer(buffer)
-	else: return
 
-	if error != OK:
-		return
-	var _texture = ImageTexture.create_from_image(image)
-	call_deferred("set_texture", _texture)
+	if error != OK and !_name.is_empty():
+		call_deferred("set_texture", null)
+		name_panel.call_deferred("set_visible", true)
+		name_label.call_deferred("set_text", _name[0])
+	else:
+		var _texture = ImageTexture.create_from_image(image)
+		call_deferred("set_texture", _texture)
 
 func _load_gif_from_thread(animated_sprite_2d: AnimatedSprite2D, buffer: PackedByteArray, my_size: Vector2) -> void:
 	var sprite_frames: SpriteFrames = GifManager.sprite_frames_from_buffer(buffer)

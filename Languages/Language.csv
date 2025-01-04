@@ -4,13 +4,14 @@ SIGN_OUT_NAME,退出登录,Sign out
 VISITOR_LOGIN_NAME,游客登录,Visitor login
 PLEASE_LOGIN_FIRST_NAME,请先登录,Please log in first
 VISITOR_NAME,游客,Visitor
-IDENTITY_NAME,身份,Identity
+IDENTITY_NAME,手机号,Identity
 PASSWORD_NAME,密码,Password
 AUTOMATIC_LOGIN_NAME,自动登录,Automatic login
 ENTER_NAME,进入,Enter
 RETRY_NAME,重试,Retry
 NEXT_NAME,下一个,Next
 FIND_NAME,查找,Find
+SEARCH_NAME,搜索,Search
 CONTINUE_NAME,继续,Continue
 CANCEL_NAME,取消,Cancel
 OK_NAME,确定,OK
@@ -28,6 +29,8 @@ PUBLISH_TIME_NAME,发布时间,Publish time
 MORE_WORKS_NAME,更多作品,More works
 RECOMMENDED_WORKS_NAME,推荐作品,Recommended works
 WORKSHOP_NAME,工作室,Workshop
+RECOMMENDED_NAME,推荐,Recommended
+ALL_NAME,全部,All
 GO_TO_THE_NAME,前往,Go to the 
 MANAGER_NAME,室长,Manager
 SUB_MANAGER_NAME,副室长,Sub manager
@@ -84,6 +87,12 @@ SOURCE_CODE_NAME,源代码,Source code
 JOIN_US_NAME,加入我们,Join us
 JOIN_US_DESCRIPTION,QQ群,QQ group chat
 OPEN_THE_USER_DATA_FOLDER_NAME,打开用户数据文件夹,Open the User Data folder
+CHECK_FOR_UPDATES_NAME,检查更新,Check for updates
+CHECKING_FOR_UPDATES_NAME,正在检查更新...,Checking for updates...
+YOU_ARE_USING_THE_LATEST_VERSION_NAME,你使用的是最新版本,You're using the latest version
+LAST_CHECK_TIME_NAME,上次检查时间,Last check time
+FAILED_TO_GET_UPDATES_NAME,获取更新失败？,Failed to get updates?
+FAILED_TO_GET_UPDATES_DESCRIPTION,检查和https://api.github.com的连接，若连接失败可下载加速器（如Watt Toolkit），打开加速后再检查连接,"Check the connection with the https://api.github.com, if the connection fails, you can download the accelerator (such as Watt Toolkit), turn on the acceleration and check the connection again"
 USER_NAME,用户,User
 FOLLOW_NAME,关注,Follow
 FOLLOWED_NAME,已关注,Followed

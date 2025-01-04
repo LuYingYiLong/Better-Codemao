@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://dxmuchrxdh1vs" path="res://Resources/Themes/LineEditTheme2.tres" id="5_l1qr1"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="5_w1vcs"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_1sra0"]
-[ext_resource type="Texture2D" uid="uid://bna4a2cy0skgn" path="res://Resources/Textures/Copy.svg" id="6_3i245"]
+[ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="6_3i245"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="7_7jojy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vp7v"]

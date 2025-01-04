@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://drbgm8oplu7mk"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/HyperlinkButton.gd" id="1_yflxn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rl1x6"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+draw_center = false
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8m1j"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0, 0, 0, 0.0980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="HyperlinkButton" type="Button"]
+custom_minimum_size = Vector2(0, 40)
+offset_right = 48.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.490196)
+theme_override_colors/font_hover_pressed_color = Color(0, 0.101961, 0.407843, 1)
+theme_override_colors/font_hover_color = Color(0, 0.101961, 0.407843, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.101961, 0.407843, 1)
+theme_override_colors/font_focus_color = Color(0, 0.243137, 0.572549, 1)
+theme_override_colors/font_color = Color(0, 0.243137, 0.572549, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_rl1x6")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_rl1x6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rl1x6")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_g8m1j")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_g8m1j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_g8m1j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g8m1j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_g8m1j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g8m1j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_rl1x6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rl1x6")
+text = "Link"
+script = ExtResource("1_yflxn")
+
+[connection signal="pressed" from="." to="." method="parse_hyperlink"]

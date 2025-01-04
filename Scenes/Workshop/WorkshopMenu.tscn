@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://qvuj5812nkeq"]
+[gd_scene load_steps=19 format=3 uid="uid://qvuj5812nkeq"]
 
 [ext_resource type="Script" path="res://Scripts/WorkshopMenu.gd" id="1_j6pax"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_ksf5l"]
@@ -7,6 +7,38 @@
 [ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="2_uu257"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_n8alm"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="4_hp73l"]
+[ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="6_prnkx"]
+[ext_resource type="Script" path="res://Scripts/SelectorBarItem.gd" id="7_shp27"]
+[ext_resource type="PackedScene" uid="uid://b70w7s5k2wnp7" path="res://Scenes/BaseUIComponents/AutoSuggestBox.tscn" id="8_klqll"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="11_86mxm"]
+
+[sub_resource type="Resource" id="Resource_t1vfs"]
+script = ExtResource("7_shp27")
+text = "RECOMMENDED_NAME"
+
+[sub_resource type="Resource" id="Resource_fqbja"]
+script = ExtResource("7_shp27")
+text = "ALL_NAME"
+
+[sub_resource type="Resource" id="Resource_w0nae"]
+script = ExtResource("7_shp27")
+text = "Lv0"
+
+[sub_resource type="Resource" id="Resource_dhkru"]
+script = ExtResource("7_shp27")
+text = "Lv1"
+
+[sub_resource type="Resource" id="Resource_s575l"]
+script = ExtResource("7_shp27")
+text = "Lv2"
+
+[sub_resource type="Resource" id="Resource_iss5w"]
+script = ExtResource("7_shp27")
+text = "Lv3"
+
+[sub_resource type="Resource" id="Resource_186nd"]
+script = ExtResource("7_shp27")
+text = "Lv4"
 
 [node name="WorkshopMenu" type="Control"]
 layout_mode = 3
@@ -22,42 +54,46 @@ unique_name_in_owner = true
 
 [node name="ShopsRequest" parent="." instance=ExtResource("2_st6xx")]
 unique_name_in_owner = true
-progress_bar = NodePath("../MarginContainer/PanelContainer/ProgressBar")
+progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ProgressBar")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_nwk3k")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="PanelContainer" parent="MarginContainer" instance=ExtResource("2_ksf5l")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 32
 
-[node name="ProgressBar" parent="MarginContainer/PanelContainer" instance=ExtResource("3_n8alm")]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="SelectorBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_prnkx")]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+selector_bar_items = Array[ExtResource("7_shp27")]([SubResource("Resource_t1vfs"), SubResource("Resource_fqbja"), SubResource("Resource_w0nae"), SubResource("Resource_dhkru"), SubResource("Resource_s575l"), SubResource("Resource_iss5w"), SubResource("Resource_186nd")])
+items_width = 70.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-theme = ExtResource("2_nwk3k")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="AutoSuggestBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("8_klqll")]
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "SEARCH_NAME"
 
-[node name="GoToButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="GoToButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -66,56 +102,87 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("4_hp73l")
 text = "GO_TO_THE_NAME"
 
-[node name="AdvancedWorkshopLabe" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_ksf5l")]
+layout_mode = 2
+
+[node name="ProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer" instance=ExtResource("3_n8alm")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AdvancedWorkshopLabe" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL4"
 
-[node name="AdvancedWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="AdvancedWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="UpperIntermediateWorkshopLabe" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="UpperIntermediateWorkshopLabe" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL3"
 
-[node name="UpperIntermediateWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="UpperIntermediateWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="LowerIntermediateWorkshopLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="LowerIntermediateWorkshopLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL2"
 
-[node name="LowerIntermediateWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="LowerIntermediateWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ElementaryWorkshopLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ElementaryWorkshopLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL1"
 
-[node name="ElementaryWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ElementaryWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="BeginnerWorkshopLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="BeginnerWorkshopLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL0"
 
-[node name="BeginnerWorkshopCardContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="BeginnerWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="WorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="PaginationBar" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("11_86mxm")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size = 10
+
 [connection signal="request_completed" from="SimpleRequest" to="." method="_on_simple_request_request_completed"]
 [connection signal="request_completed" from="ShopsRequest" to="." method="_on_shops_request_request_completed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GoToButton" to="." method="_on_go_to_button_pressed"]
+[connection signal="index_pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SelectorBar" to="." method="_on_selector_bar_index_pressed"]
+[connection signal="search_pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoSuggestBox" to="." method="_on_auto_suggest_box_search_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/GoToButton" to="." method="_on_go_to_button_pressed"]
+[connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]

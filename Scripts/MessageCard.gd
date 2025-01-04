@@ -66,7 +66,7 @@ func set_message_card_data(_data: Dictionary):
 	content_label.visible = !content_label.text.is_empty()
 	comment_panel.visible = !comment_label.text.is_empty()
 	nickname_label.text = sender.get("nickname")
-	avatar_texture.load_image(sender.get("avatar_url"))
+	avatar_texture.load_image(sender.get("avatar_url"), sender.get("nickname"))
 
 func _on_avatar_texture_gui_input(event):
 	if event is InputEventMouseButton and \

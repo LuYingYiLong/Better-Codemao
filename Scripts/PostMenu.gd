@@ -104,18 +104,18 @@ func populate_content():
 			image_url_loader.load_image(content_type)
 		elif content_type.contains("|CODE|"):
 			var split: PackedStringArray = content_type.split("|CODE|")
-			for content: String in split:
-				if content.is_empty(): continue
-				elif content.begins_with("|BEGIN|") and content.ends_with("|END|"):
+			for _content: String in split:
+				if _content.is_empty(): continue
+				elif _content.begins_with("|BEGIN|") and _content.ends_with("|END|"):
 					var code_viewer_scene = load("res://Scenes/Forum/CodeViewer.tscn").instantiate()
 					contents.add_child(code_viewer_scene)
-					code_viewer_scene.text = content.trim_prefix("|BEGIN|").trim_suffix("|END|")
+					code_viewer_scene.text = _content.trim_prefix("|BEGIN|").trim_suffix("|END|")
 					code_viewer_scene.type = ""
 				else:
 					var content_label = CONTENT_LABEL_SCENE.instantiate()
 					contents.add_child(content_label)
-					if rich_text_enabled: content_label.append_text(content)
-					else: content_label.add_text(content)
+					if rich_text_enabled: content_label.append_text(_content)
+					else: content_label.add_text(_content)
 		else:
 			var content_label = CONTENT_LABEL_SCENE.instantiate()
 			contents.add_child(content_label)

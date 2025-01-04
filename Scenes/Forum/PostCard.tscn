@@ -190,7 +190,7 @@ self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("8_0pe6i")
-text = "999"
+text = "--"
 
 [node name="Replies" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -208,7 +208,7 @@ self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("8_0pe6i")
-text = "999"
+text = "--"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_gui_input"]

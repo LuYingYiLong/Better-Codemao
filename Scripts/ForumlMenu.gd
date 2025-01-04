@@ -1,6 +1,7 @@
 extends Control
 
 @onready var boards_request = %BoardsRequest
+@onready var search_request = %SearchRequest
 @onready var all_request = %AllRequest
 @onready var board_request = %BoardRequest
 @onready var mine_posts_request = %MinePostsRequest
@@ -19,13 +20,14 @@ extends Control
 
 @onready var forum_board_card_container = %ForumBoardCardContainer
 
-enum status_type{Forum, Board, MinePosts, MineReplied, History}
+enum status_type{Forum, Board, MinePosts, MineReplied, History, Search}
 
 const POST_CARD_SCENE = preload("res://Scenes/Forum/PostCard.tscn")
 const BASE_BUTTON_SCENE = preload("res://Scenes/BaseUIComponents/BaseButton.tscn")
 
 const LOADS_NUMBER: int = 30
 
+var search: String
 var boards_customized_res: Dictionary = {
 	"17": {
 		"name": TranslationServer.translate("POPULAR_ACTIVITIES_NAME")
@@ -78,6 +80,7 @@ var status = status_type.Forum:
 		elif status == status_type.History: load_history()
 		elif status == status_type.MinePosts: mine_posts_request.request("https://api.codemao.cn/web/forums/posts/mine/created?page=1&limit=%s" %LOADS_NUMBER, [Application.generate_cookie_header()])
 		elif status == status_type.MineReplied: mine_replied_request.request("https://api.codemao.cn/web/forums/posts/mine/replied?page=1&limit=%s" %LOADS_NUMBER, [Application.generate_cookie_header()])
+		elif status == status_type.Search: search_request.request("https://api.codemao.cn/web/forums/posts/search?title=%s&limit=%s&page=1" %[Application.string_to_hex(search), LOADS_NUMBER])
 		clear_history_button.visible = status == status_type.History
 
 func _ready() -> void:
@@ -101,8 +104,7 @@ func load_history() -> void:
 	scroll_container.scroll_vertical = 0
 	var forum_history: Dictionary = Application.load_json_file(Application.FORUM_HISTORY_PATH)
 	var items: Array = forum_history.get("items", [])
-	@warning_ignore("integer_division")
-	pagination_bar.total = ceili(items.size() / LOADS_NUMBER)
+	pagination_bar.total = ceili(float(items.size()) / LOADS_NUMBER)
 	pagination_bar.update_pager_total()
 	pagination_bar.visible = pagination_bar.total > 0
 	for _i in range((pagination_bar.current_page - 1) * LOADS_NUMBER):
@@ -117,6 +119,10 @@ func load_history() -> void:
 		post_card_container.add_child(post_card_scene)
 		post_card_scene.set_post_card_data(item)
 		post_card_scene.pressed.connect(on_post_card_scene_pressed)
+
+func _on_auto_suggest_box_search_pressed(text: String) -> void:
+	search = text
+	status = status_type.Search
 
 func on_user_avatar_update() -> void:
 	mine_posts_request.request("https://api.codemao.cn/web/forums/posts/mine/created?page=1&limit=%s" %LOADS_NUMBER, [Application.generate_cookie_header()])
@@ -160,6 +166,29 @@ func _on_board_button_metadata_output(metadata: Dictionary) -> void:
 		status = status_type.Board
 		board_request.request("https://api.codemao.cn/web/forums/boards/%s/posts?page=1&limit=%s" %[board_id, LOADS_NUMBER])
 
+func _on_search_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json_class: JSON = JSON.new()
+	if json_class.parse(body.get_string_from_utf8()) != OK:
+		Application.emit_system_error_message("JSON parsing failed")
+		return
+	var json: Dictionary = json_class.data
+	if result != HTTPRequest.RESULT_SUCCESS: return
+	if json.has("error_code"):
+		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
+		return
+
+	for node in post_card_container.get_children():
+		node.queue_free()
+	pagination_bar.total = json.get("total")
+	pagination_bar.update_pager_total()
+	pagination_bar.visible = pagination_bar.total > 0
+	var items: Array = json.get("items")
+	for item: Dictionary in items:
+		var post_card_scene = POST_CARD_SCENE.instantiate()
+		post_card_container.add_child(post_card_scene)
+		post_card_scene.set_post_card_data(item)
+		post_card_scene.pressed.connect(on_post_card_scene_pressed)
+
 func on_all_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 	if result != HTTPRequest.RESULT_SUCCESS:
@@ -168,10 +197,10 @@ func on_all_received(result: int, _response_code: int, _headers: PackedStringArr
 
 	for node in post_card_container.get_children():
 		node.queue_free()
-	pagination_bar.total = ceili(json.get("items").size() / LOADS_NUMBER)
+	var items: Array = json.get("items")
+	pagination_bar.total = ceili(float(items.size()) / LOADS_NUMBER)
 	pagination_bar.update_pager_total()
 	pagination_bar.visible = pagination_bar.total > 0
-	var items: Array = json.get("items")
 	for _i in range((pagination_bar.current_page - 1) * LOADS_NUMBER):
 		items.remove_at(0)
 	var count: int = -1
@@ -193,6 +222,10 @@ func _on_pagination_bar_page_changed(page: int) -> void:
 		mine_posts_request.request("https://api.codemao.cn/web/forums/posts/mine/created?page=%s&limit=%s" %[page, LOADS_NUMBER], [Application.generate_cookie_header()])
 	elif status == status_type.MineReplied:
 		mine_replied_request.request("https://api.codemao.cn/web/forums/posts/mine/replied?page=%s&limit=%s" %[page, LOADS_NUMBER], [Application.generate_cookie_header()])
+	elif status == status_type.History:
+		load_history()
+	elif status == status_type.Search:
+		search_request.request("https://api.codemao.cn/web/forums/posts/search?title=%s&limit=%s&page=%s" %[Application.string_to_hex(search), LOADS_NUMBER, page])
 
 func _on_board_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -202,7 +235,7 @@ func _on_board_request_request_completed(result: int, _response_code: int, _head
 
 	for node in post_card_container.get_children():
 		node.queue_free()
-	pagination_bar.total = ceili(json.get("total") / LOADS_NUMBER)
+	pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
 	pagination_bar.update_pager_total()
 	pagination_bar.visible = pagination_bar.total > 0
 	var items: Array = json.get("items")
@@ -225,7 +258,7 @@ func _on_mine_posts_request_request_completed(result: int, _response_code: int, 
 	if status == status_type.MinePosts:
 		for node in post_card_container.get_children():
 			node.queue_free()
-		pagination_bar.total = ceili(json.get("total") / LOADS_NUMBER)
+		pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
 		pagination_bar.update_pager_total()
 		pagination_bar.visible = pagination_bar.total > 0
 		var items: Array = json.get("items")
@@ -248,7 +281,7 @@ func _on_mine_replied_request_request_completed(result: int, _response_code: int
 	if status == status_type.MineReplied:
 		for node in post_card_container.get_children():
 			node.queue_free()
-		pagination_bar.total = ceili(json.get("total") / LOADS_NUMBER)
+		pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
 		pagination_bar.update_pager_total()
 		pagination_bar.visible = pagination_bar.total > 0
 		var items: Array = json.get("items")

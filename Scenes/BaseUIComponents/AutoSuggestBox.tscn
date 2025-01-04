@@ -1,0 +1,241 @@
+[gd_scene load_steps=22 format=3 uid="uid://b70w7s5k2wnp7"]
+
+[ext_resource type="Texture2D" uid="uid://cjctj2jd5s8rp" path="res://Resources/Textures/Search.svg" id="1_5igej"]
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/AutoSuggestBox.gd" id="1_tydxs"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_we2mr"]
+[ext_resource type="Texture2D" uid="uid://1342meeys5vy" path="res://Resources/Textures/Clear.svg" id="3_b8y4k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8721u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qyhv"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.898039, 0.898039, 0.898039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbqdk"]
+bg_color = Color(0.984314, 0.984314, 0.984314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.898039, 0.898039, 0.898039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrb3r"]
+bg_color = Color(0.984314, 0.984314, 0.984314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.898039, 0.898039, 0.898039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg4o7"]
+bg_color = Color(0.929412, 0.929412, 0.929412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hwnh3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlo7k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpnc4"]
+bg_color = Color(0.929412, 0.929412, 0.929412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrr54"]
+bg_color = Color(0.929412, 0.929412, 0.929412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c2pm"]
+bg_color = Color(0.929412, 0.929412, 0.929412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4upc"]
+bg_color = Color(0.929412, 0.929412, 0.929412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xnb8"]
+bg_color = Color(0.929412, 0.929412, 0.929412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71lc7"]
+bg_color = Color(0.929412, 0.929412, 0.929412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xc017"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jtsoo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwrse"]
+draw_center = false
+border_width_bottom = 1
+border_color = Color(0.52549, 0.52549, 0.52549, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf2lk"]
+draw_center = false
+border_width_bottom = 2
+border_color = Color(0, 0.403922, 0.752941, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="AutoSuggestBox" type="PanelContainer"]
+offset_right = 506.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8721u")
+script = ExtResource("1_tydxs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/selection_color = Color(0, 0.443137, 0.784314, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.380392, 0.380392, 0.380392, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_we2mr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7qyhv")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_mbqdk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qrb3r")
+caret_blink = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/LineEdit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/LineEdit/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="ClearButton" type="Button" parent="VBoxContainer/LineEdit/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_focus_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_pressed_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_hover_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_disabled_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_constants/icon_max_width = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_pg4o7")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_hwnh3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nlo7k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_dpnc4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_nrr54")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_1c2pm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o4upc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_4xnb8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_71lc7")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_xc017")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jtsoo")
+icon = ExtResource("3_b8y4k")
+icon_alignment = 1
+
+[node name="SearchButton" type="Button" parent="VBoxContainer/LineEdit/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_focus_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_pressed_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_hover_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/icon_disabled_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_constants/icon_max_width = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_pg4o7")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_hwnh3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nlo7k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_dpnc4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_nrr54")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_1c2pm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o4upc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_4xnb8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_71lc7")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_xc017")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jtsoo")
+icon = ExtResource("1_5igej")
+icon_alignment = 1
+
+[node name="FocusExitedLine" type="PanelContainer" parent="VBoxContainer/LineEdit"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hwrse")
+
+[node name="FocusEnteredLine" type="PanelContainer" parent="VBoxContainer/LineEdit"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tf2lk")
+
+[connection signal="focus_entered" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/LineEdit/MarginContainer/HBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LineEdit/MarginContainer/HBoxContainer/SearchButton" to="." method="_on_search_button_pressed"]
