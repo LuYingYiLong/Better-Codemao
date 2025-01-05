@@ -35,6 +35,10 @@ window/per_pixel_transparency/allowed=true
 naming/scene_name_casing=1
 naming/script_name_casing=1
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/systemdarkmode/plugin.cfg")
+
 [gui]
 
 theme/custom_font="res://Resources/Fonts/SystemFontMedium.tres"

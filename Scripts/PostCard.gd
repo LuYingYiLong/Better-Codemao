@@ -25,10 +25,14 @@ func set_post_card_id(id: String) -> void:
 	details_request.request("https://api.codemao.cn/web/forums/posts/%s/details" %id)
 
 func on_details_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-	if result != HTTPRequest.RESULT_SUCCESS:
+	var json_class: JSON = JSON.new()
+	if json_class.parse(body.get_string_from_utf8()) != OK:
+		Application.emit_system_error_message("JSON parsing failed")
+		return
+	var json: Dictionary = json_class.data
+	if result != HTTPRequest.RESULT_SUCCESS: return
+	if json.has("error_code"):
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
-		queue_free()
 		return
 
 	set_post_card_data(json)

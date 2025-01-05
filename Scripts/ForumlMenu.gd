@@ -179,7 +179,7 @@ func _on_search_completed(result: int, _response_code: int, _headers: PackedStri
 
 	for node in post_card_container.get_children():
 		node.queue_free()
-	pagination_bar.total = json.get("total")
+	pagination_bar.total = ceil(float(json.get("total")) / LOADS_NUMBER)
 	pagination_bar.update_pager_total()
 	pagination_bar.visible = pagination_bar.total > 0
 	var items: Array = json.get("items")
