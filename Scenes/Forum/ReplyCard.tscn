@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://f855sygoy2lw"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_ayk0x"]
-[ext_resource type="Script" path="res://Scripts/ReplyCard.gd" id="2_qbosl"]
+[ext_resource type="Script" path="res://Scripts/Forum/ReplyCard.gd" id="2_qbosl"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_x1wks"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="4_6o03u"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_wmkx4"]

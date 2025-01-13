@@ -90,6 +90,7 @@ func jump_to_user_menu() -> void:
 
 func _on_settings_config_update() -> void:
 	if Settings.dark_mode == 0:
+		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelStyle.tres"))
 		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
 		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
 		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
@@ -103,6 +104,7 @@ func _on_settings_config_update() -> void:
 		replies_icon.self_modulate = Color.html(GlobalTheme.light_mode_translucent_icon_color)
 		replies.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
 	else:
+		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelDarknessStyle.tres"))
 		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
 		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))

@@ -137,7 +137,8 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="DownArrowIcon" type="TextureRect" parent="Button/MarginContainer/HBoxContainer/DownArrowMarginContainer"]
-self_modulate = Color(0.403922, 0.403922, 0.403922, 1)
+unique_name_in_owner = true
+self_modulate = Color(0.11, 0.11, 0.11, 0.490196)
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 8

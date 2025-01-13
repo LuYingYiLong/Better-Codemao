@@ -25,6 +25,10 @@ var data: Dictionary
 
 var menu
 
+func _ready() -> void:
+	Settings.settings_config_update.connect(_on_settings_config_update)
+	_on_settings_config_update()
+
 func set_reply_card_data(json: Dictionary):
 	data = json
 	var user: Dictionary = json.get("user")
@@ -131,3 +135,21 @@ func _on_gui_input(event):
 		NativeMenu.add_item(menu, TranslationServer.translate("REPLY_NAME"), _menu_callback, Callable(), 0)
 		if data.get("user").get("id").to_int() == Application.user_id: NativeMenu.add_item(menu, TranslationServer.translate("DELETE_NAME"), _menu_callback, Callable(), 1)
 		NativeMenu.popup(menu, DisplayServer.mouse_get_position())
+
+func _on_settings_config_update() -> void:
+	if Settings.dark_mode == 0:
+		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelStyle.tres"))
+		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		updated_at.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+	else:
+		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelDarknessStyle.tres"))
+		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		updated_at.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))

@@ -5,12 +5,11 @@ extends Control
 @onready var add_reply_request = %AddReplyRequest
 @onready var comments_request = %CommentsRequest
 
-@onready var h_split_container = %HSplitContainer
-
 @onready var title_label = %TitleLabel
 @onready var avatar_texture = %AvatarTexture
 @onready var nickname_label = %NicknameLabel
 @onready var work_shop_tag = %WorkShopTag
+@onready var info_container = %InfoContainer
 @onready var views = %Views
 @onready var replies = %Replies
 @onready var to_rich_text_button = %ToRichTextButton
@@ -46,9 +45,8 @@ var parent_id: int
 
 func _ready():
 	pagination_bar.size = 3
-
-func _process(_delta):
-	h_split_container.split_offset = int(get_viewport().get_window().size.x / 1.75)
+	Settings.settings_config_update.connect(_on_settings_config_update)
+	_on_settings_config_update()
 
 func set_data(data: Dictionary):
 	post_id = int(data.get("id", 0))
@@ -141,7 +139,6 @@ func on_repiles_received(result: int, _response_code: int, _headers: PackedStrin
 	pagination_bar.total = ceili(json.get("total") / 30)
 	pagination_bar.visible = pagination_bar.total > 1
 	pagination_bar.update_pager_total()
-	scroll_container.scroll_vertical = 0
 
 	for node in top_reply_card_container.get_children():
 		node.queue_free()
@@ -291,3 +288,23 @@ func _on_secure_text_edit_send(text: String, send_type: int) -> void:
 
 func _on_pagination_bar_page_changed(page):
 	repiles_request.request("https://api.codemao.cn/web/forums/posts/%s/replies?page=%s&limit=30&sort=-created_at" %[post_id, page])
+
+func _on_settings_config_update() -> void:
+	if Settings.dark_mode == 0:
+		title_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		info_container.modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
+		all_replies_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+	else:
+		title_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		info_container.modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)
+		all_replies_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))

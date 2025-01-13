@@ -32,6 +32,9 @@ unique_name_in_owner = true
 [node name="MessageRecordRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15

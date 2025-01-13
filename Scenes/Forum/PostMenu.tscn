@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://di7yxffcqkw44"]
 
-[ext_resource type="Script" path="res://Scripts/PostMenu.gd" id="1_na1xp"]
+[ext_resource type="Script" path="res://Scripts/Forum/PostMenu.gd" id="1_na1xp"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_e7c64"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_hyegb"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_qpd8g"]
@@ -49,7 +49,7 @@ corner_radius_bottom_left = 28
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k0qjr"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_1w6wk"]
-color = Color(0, 0, 0, 0.196078)
+color = Color(0, 0, 0, 0.490196)
 grow_begin = -6.0
 grow_end = -6.0
 vertical = true
@@ -65,11 +65,11 @@ script = ExtResource("1_na1xp")
 
 [node name="DetailsRequest" parent="." instance=ExtResource("2_e7c64")]
 unique_name_in_owner = true
-progress_bar = NodePath("../MarginContainer/HSplitContainer/Details/DetailsProgressBar")
+progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/Details/DetailsProgressBar")
 
 [node name="RepilesRequest" parent="." instance=ExtResource("2_e7c64")]
 unique_name_in_owner = true
-progress_bar = NodePath("../MarginContainer/HSplitContainer/VBoxContainer/Replies/RepliesProgressBar")
+progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/Replies/RepliesProgressBar")
 
 [node name="AddReplyRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
@@ -80,20 +80,25 @@ unique_name_in_owner = true
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_ri125")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
-unique_name_in_owner = true
+[node name="HSplitContainer" type="HSplitContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 32
 theme_override_constants/minimum_grab_thickness = 6
@@ -101,17 +106,17 @@ theme_override_constants/autohide = 1
 split_offset = 820
 dragger_visibility = 1
 
-[node name="Details" parent="MarginContainer/HSplitContainer" instance=ExtResource("2_qpd8g")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Details" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_qpd8g")]
 layout_mode = 2
 
-[node name="DetailsProgressBar" parent="MarginContainer/HSplitContainer/Details" instance=ExtResource("3_4qe0f")]
+[node name="DetailsProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/Details" instance=ExtResource("3_4qe0f")]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/Details"]
-layout_mode = 2
-theme = ExtResource("3_ri125")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -120,12 +125,12 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -136,28 +141,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 
-[node name="Mask" type="PanelContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer"]
 clip_children = 1
 custom_minimum_size = Vector2(56, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j4781")
 
-[node name="AvatarTexture" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("5_ytj6e")]
+[node name="AvatarTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("5_ytj6e")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_hyegb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -4
 
-[node name="NicknameLabel" type="Button" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="NicknameLabel" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -185,28 +190,29 @@ flat = true
 alignment = 0
 text_overrun_behavior = 3
 
-[node name="WorkShopTag" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_svy5b")]
+[node name="WorkShopTag" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_svy5b")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="InfoContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.0588235, 0.0588235, 0.0588235, 0.490196)
 layout_mode = 2
 theme_override_constants/separation = -6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Views" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="Views" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="ViewsIcon" type="TextureRect" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/Views"]
-self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+[node name="ViewsIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Views"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -214,19 +220,16 @@ size_flags_vertical = 4
 texture = ExtResource("10_4n3yp")
 expand_mode = 1
 
-[node name="Views" type="Label" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/Views"]
+[node name="Views" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Views"]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("9_vrxlf")
 text = "999"
 
-[node name="Replies" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="Replies" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="RepliesIcon" type="TextureRect" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/Replies"]
-self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+[node name="RepliesIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Replies"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -234,26 +237,23 @@ size_flags_vertical = 4
 texture = ExtResource("12_wwoe7")
 expand_mode = 1
 
-[node name="Replies" type="Label" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer/Replies"]
+[node name="Replies" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Replies"]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("9_vrxlf")
 text = "999"
 
-[node name="Control" type="Control" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
-[node name="Line" type="PanelContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="Line" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxLine_1w6wk")
 
-[node name="MirroringButton" type="Button" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
-self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+[node name="MirroringButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
 custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -264,9 +264,8 @@ icon = ExtResource("9_idpnt")
 flat = true
 icon_alignment = 1
 
-[node name="ToRichTextButton" type="Button" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="ToRichTextButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
 unique_name_in_owner = true
-self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
 custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -277,9 +276,8 @@ icon = ExtResource("8_8nsta")
 flat = true
 icon_alignment = 1
 
-[node name="ToTextButton" type="Button" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="ToTextButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
 unique_name_in_owner = true
-self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
 custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -290,8 +288,7 @@ icon = ExtResource("9_w60un")
 flat = true
 icon_alignment = 1
 
-[node name="OpenInBrowserButton" type="Button" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
-self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
+[node name="OpenInBrowserButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
 custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -302,9 +299,8 @@ icon = ExtResource("8_ums52")
 flat = true
 icon_alignment = 1
 
-[node name="PublishOn" type="Label" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="PublishOn" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer"]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("9_vrxlf")
@@ -313,33 +309,28 @@ horizontal_alignment = 2
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Contents" type="VBoxContainer" parent="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Contents" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer"]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Replies" parent="MarginContainer/HSplitContainer/VBoxContainer" instance=ExtResource("2_qpd8g")]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RepliesProgressBar" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies" instance=ExtResource("3_4qe0f")]
+[node name="Replies" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_qpd8g")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies"]
+[node name="RepliesProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies" instance=ExtResource("3_4qe0f")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer"]
 layout_mode = 2
 
-[node name="AllRepliesLabel" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer"]
+[node name="AllRepliesLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -348,48 +339,42 @@ theme_override_font_sizes/font_size = 24
 text = "ALL_REPLIES_NAME"
 text_overrun_behavior = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("3_ri125")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TopReplyCardContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="TopReplyCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ReplyCardContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ReplyCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PaginationBar" parent="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("16_0gukb")]
+[node name="PaginationBar" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("16_0gukb")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 current_page = 1
 
-[node name="SecureTextEdit" parent="MarginContainer/HSplitContainer/VBoxContainer" instance=ExtResource("13_fdfjd")]
+[node name="SecureTextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("13_fdfjd")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(210, 200)
+custom_minimum_size = Vector2(210, 250)
 layout_mode = 2
 
 [connection signal="request_completed" from="DetailsRequest" to="." method="on_details_received"]
 [connection signal="request_completed" from="RepilesRequest" to="." method="on_repiles_received"]
 [connection signal="request_completed" from="AddReplyRequest" to="." method="_on_add_reply_request_request_completed"]
 [connection signal="request_completed" from="CommentsRequest" to="." method="_on_comments_request_request_completed"]
-[connection signal="gui_input" from="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/MirroringButton" to="." method="_on_mirroring_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/ToRichTextButton" to="." method="_on_to_rich_text_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/ToTextButton" to="." method="_on_to_text_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/Details/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/OpenInBrowserButton" to="." method="_on_open_in_browser_button_pressed"]
-[connection signal="page_changed" from="MarginContainer/HSplitContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
-[connection signal="send" from="MarginContainer/HSplitContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_send"]
+[connection signal="gui_input" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/MirroringButton" to="." method="_on_mirroring_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/ToRichTextButton" to="." method="_on_to_rich_text_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/ToTextButton" to="." method="_on_to_text_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/OpenInBrowserButton" to="." method="_on_open_in_browser_button_pressed"]
+[connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
+[connection signal="send" from="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_send"]

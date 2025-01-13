@@ -42,7 +42,7 @@ func load_image(url: String, _name_: String = "") -> void:
 	else:
 		image_request.request(url, ["Content-Type: image/png"])
 
-func _on_image_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+func _on_image_request_request_completed(result: int, _response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS:
 		push_error("Could not get data")
 	else:
@@ -54,16 +54,16 @@ func _on_image_request_request_completed(result: int, _response_code: int, _head
 			thread_helper.join_function(func(): _load_gif_from_thread(animated_sprite_2d, body, my_size))
 			thread_helper.start()
 		else:
-			thread_helper.join_function(func(): _load_image_from_thread(body))
+			thread_helper.join_function(func(): _load_image_from_thread(body, headers))
 			thread_helper.start()
 
-func _load_image_from_thread(buffer: PackedByteArray) -> void:
+func _load_image_from_thread(buffer: PackedByteArray, headers: PackedStringArray) -> void:
 	if buffer.is_empty(): return
 	var image = Image.new()
 	var error
-	if _url.ends_with(".jpeg") or _url.ends_with(".jpg") or _url.ends_with(".cover"):
+	if headers.has("Content-Type: image/jpeg"):
 		error = image.load_jpg_from_buffer(buffer)
-	elif _url.ends_with(".png"):
+	elif headers.has("Content-Type: image/png"):
 		error = image.load_png_from_buffer(buffer)
 
 	if error != OK and !_name.is_empty():
@@ -80,8 +80,10 @@ func _load_gif_from_thread(animated_sprite_2d: AnimatedSprite2D, buffer: PackedB
 	animated_sprite_2d.call_deferred_thread_group("set_sprite_frames", sprite_frames)
 	var texture_2d: Texture2D = sprite_frames.get_frame_texture("gif", 1)
 	if texture_2d == null: return
-	var k: float = (texture_2d.get_size().x / my_size.x) / 3
-	animated_sprite_2d.call_deferred_thread_group("set_scale", Vector2(k, k))
+	var texture_size = Vector2(texture_2d.get_width(), texture_2d.get_height())
+	var scale_x = my_size.x / texture_size.x
+	var scale_y = my_size.y / texture_size.y
+	animated_sprite_2d.call_deferred_thread_group("set_scale", Vector2(scale_x, scale_y))
 	animated_sprite_2d.call_deferred_thread_group("play", "gif")
 	animated_sprite_2d.call_deferred_thread_group("set_position", my_size / 2)
 

@@ -1,5 +1,11 @@
 extends Node
 
+#浅色&深色模式调色板
+var light_mode_palette: String = "#1b1b1b"
+var light_mode_translucent_palette: String = "#0f0f0f7d"
+var dark_mode_palette: String = "#ffffff"
+var dark_mode_translucent_palette: String = "#ccccce"
+
 #浅色&深色模式下的字体颜色
 var light_mode_font_color: String = "#1b1b1b"
 var dark_mode_font_color: String = "#ffffff"

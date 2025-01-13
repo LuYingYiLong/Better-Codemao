@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1a4son7e2wes"]
+[gd_scene load_steps=9 format=3 uid="uid://d1a4son7e2wes"]
 
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_wp3qx"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="2_44vxr"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_gv7s4"]
+[ext_resource type="Script" path="res://Scripts/Forum/ContentLabel.gd" id="4_on4jv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijp3g"]
 
@@ -35,3 +36,4 @@ scroll_active = false
 context_menu_enabled = true
 threaded = true
 selection_enabled = true
+script = ExtResource("4_on4jv")
