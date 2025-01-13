@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ch1opqjbbmh08"]
+[gd_scene load_steps=19 format=3 uid="uid://ch1opqjbbmh08"]
 
 [ext_resource type="Script" path="res://Scripts/ShopMenu.gd" id="1_qrmlk"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_qnk5i"]
@@ -6,9 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="4_t47l6"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="5_5g74v"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="6_h4dsv"]
-[ext_resource type="Theme" uid="uid://70upt1e30r52" path="res://Resources/Themes/ButtonTheme3.tres" id="7_2gl16"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_vcg38"]
+[ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="8_bvv4d"]
 [ext_resource type="PackedScene" uid="uid://bpwr61ayi2fxj" path="res://Scenes/Work/WorkCard.tscn" id="8_ndjir"]
+[ext_resource type="Script" path="res://Scripts/SelectorBarItem.gd" id="9_ntuvk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wumf"]
 bg_color = Color(1, 1, 1, 1)
@@ -30,11 +31,17 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6inuk"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_42cmu"]
-color = Color(0, 0, 0, 0.196078)
-grow_begin = -6.0
-grow_end = -6.0
-vertical = true
+[sub_resource type="Resource" id="Resource_mdo0y"]
+script = ExtResource("9_ntuvk")
+text = "SUBMITTED_WORKS_NAME"
+
+[sub_resource type="Resource" id="Resource_y0wp4"]
+script = ExtResource("9_ntuvk")
+text = "FORUM_NAME"
+
+[sub_resource type="Resource" id="Resource_pjsod"]
+script = ExtResource("9_ntuvk")
+text = "WORKSHOP_MEMBER"
 
 [node name="ShopMenu" type="Control"]
 layout_mode = 3
@@ -50,6 +57,9 @@ unique_name_in_owner = true
 
 [node name="WorksRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -134,13 +144,12 @@ vertical_alignment = 1
 
 [node name="DescriptionLabel" type="TextEdit" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_2r0k4")
-theme_override_colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_readonly_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_readonly_color = Color(0.06, 0.06, 0.06, 0.490196)
+theme_override_colors/selection_color = Color(0, 0.470588, 0.831373, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("7_vcg38")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_k5hoo")
@@ -161,47 +170,10 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_vcg38")
 text = "TOTAL_SCORE_NAME"
 
-[node name="TabBar" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
+[node name="SelectorBar" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("8_bvv4d")]
 layout_mode = 2
-
-[node name="SubmittedWorksLabel" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/TabBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme = ExtResource("7_2gl16")
-theme_override_fonts/font = ExtResource("6_h4dsv")
-text = "SUBMITTED_WORKS_NAME"
-flat = true
-text_overrun_behavior = 3
-
-[node name="BeginLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/TabBar"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxLine_42cmu")
-
-[node name="ForumLabel" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/TabBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme = ExtResource("7_2gl16")
-theme_override_fonts/font = ExtResource("6_h4dsv")
-text = "FORUM_NAME"
-flat = true
-text_overrun_behavior = 3
-
-[node name="EndLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/TabBar"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxLine_42cmu")
-
-[node name="WorkshopMemberLabel" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/TabBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme = ExtResource("7_2gl16")
-theme_override_fonts/font = ExtResource("6_h4dsv")
-text = "WORKSHOP_MEMBER"
-flat = true
-text_overrun_behavior = 3
+selector_bar_items = Array[ExtResource("9_ntuvk")]([SubResource("Resource_mdo0y"), SubResource("Resource_y0wp4"), SubResource("Resource_pjsod")])
+item_alignment = 1
 
 [node name="WorkCardContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer"]
 unique_name_in_owner = true

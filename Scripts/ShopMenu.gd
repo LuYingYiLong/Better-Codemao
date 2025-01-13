@@ -16,6 +16,10 @@ extends Control
 
 const WORK_CARD_SCENE = preload("res://Scenes/Work/WorkCard.tscn")
 
+func _ready() -> void:
+	Settings.settings_config_update.connect(_on_settings_config_update)
+	_on_settings_config_update()
+
 func _process(_delta):
 	work_card_container.columns = clampi(floori(scroll_container.size.x / 155), 1, 999)
 
@@ -55,3 +59,13 @@ func _on_works_request_request_completed(result: int, _response_code: int, _head
 		var work_card_scene = WORK_CARD_SCENE.instantiate()
 		work_card_container.add_child(work_card_scene)
 		work_card_scene.set_work_card_data(item)
+
+func _on_settings_config_update() -> void:
+	if Settings.dark_mode == 0:
+		name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		description_label.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.light_mode_translucent_palette))
+		total_score_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+	else:
+		name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		description_label.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.dark_mode_translucent_palette))
+		total_score_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))

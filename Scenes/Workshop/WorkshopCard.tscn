@@ -76,6 +76,7 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="ManagerLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 text = "MANAGER_NAME"
@@ -93,6 +94,7 @@ layout_mode = 2
 texture = ExtResource("3_i2t4w")
 
 [node name="SubManagerLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 text = "SUB_MANAGER_NAME"

@@ -89,6 +89,7 @@ theme_override_constants/separation = 16
 [node name="SelectorBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_prnkx")]
 layout_mode = 2
 selector_bar_items = Array[ExtResource("7_shp27")]([SubResource("Resource_t1vfs"), SubResource("Resource_fqbja"), SubResource("Resource_w0nae"), SubResource("Resource_dhkru"), SubResource("Resource_s575l"), SubResource("Resource_iss5w"), SubResource("Resource_186nd")])
+size_fill = null
 items_width = 70.0
 
 [node name="AutoSuggestBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("8_klqll")]
@@ -122,7 +123,8 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="AdvancedWorkshopLabe" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
+[node name="AdvancedWorkshopLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
@@ -132,7 +134,8 @@ text = "WORK_SHOP_LEVEL4"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="UpperIntermediateWorkshopLabe" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
+[node name="UpperIntermediateWorkshopLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
@@ -143,6 +146,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="LowerIntermediateWorkshopLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
@@ -153,6 +157,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ElementaryWorkshopLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
@@ -163,6 +168,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="BeginnerWorkshopLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")

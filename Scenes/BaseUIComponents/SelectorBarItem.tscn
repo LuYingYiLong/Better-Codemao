@@ -75,8 +75,8 @@ _data = {
 "Selected": SubResource("Animation_mvafe")
 }
 
-[node name="SelectorBarItem" type="Button"]
-offset_right = 44.0
+[node name="SelectorBarItem" type="Button" node_paths=PackedStringArray("icon_texture", "text_label")]
+offset_right = 181.0
 offset_bottom = 40.0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
@@ -94,11 +94,39 @@ theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 
 theme_override_constants/icon_max_width = 32
 theme_override_fonts/font = ExtResource("1_xbu64")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_b0rft")
-text = "Item"
-icon = ExtResource("2_06avt")
 flat = true
 text_overrun_behavior = 3
 script = ExtResource("3_ymf3k")
+icon_texture = NodePath("MarginContainer2/HBoxContainer/IconTexture")
+text_label = NodePath("MarginContainer2/HBoxContainer/TextLabel")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+unique_name_in_owner = true
+modulate = Color(0.105882, 0.105882, 0.105882, 1)
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="IconTexture" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_06avt")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="TextLabel" type="Label" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
