@@ -56,6 +56,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ProgressBar")
 
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1

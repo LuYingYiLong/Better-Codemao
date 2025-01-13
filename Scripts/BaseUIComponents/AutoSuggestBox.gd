@@ -17,6 +17,8 @@ extends PanelContainer
 signal search_pressed(text: String)
 
 func _ready():
+	Settings.settings_config_update.connect(_on_settings_config_update)
+	_on_settings_config_update()
 	line_edit.placeholder_text = placeholder_text
 
 func _on_line_edit_text_changed(new_text: String) -> void:
@@ -39,3 +41,13 @@ func _on_clear_button_pressed() -> void:
 
 func _on_search_button_pressed() -> void:
 	search_pressed.emit(line_edit.text)
+
+func _on_settings_config_update() -> void:
+	if Settings.dark_mode == 0:
+		line_edit.add_theme_stylebox_override("focus", load("res://Resources/Themes/DefaultPanelStyle.tres"))
+		line_edit.add_theme_stylebox_override("normal", load("res://Resources/Themes/DefaultPanelStyle.tres"))
+		line_edit.add_theme_stylebox_override("read_only", load("res://Resources/Themes/DefaultPanelStyle.tres"))
+	else:
+		line_edit.add_theme_stylebox_override("focus", load("res://Resources/Themes/DefaultPanelDarknessStyle.tres"))
+		line_edit.add_theme_stylebox_override("normal", load("res://Resources/Themes/DefaultPanelDarknessStyle.tres"))
+		line_edit.add_theme_stylebox_override("read_only", load("res://Resources/Themes/DefaultPanelDarknessStyle.tres"))

@@ -1,5 +1,21 @@
 extends Node
 
+#浅色&深色模式下的字体颜色
+var light_mode_font_color: String = "#1b1b1b"
+var dark_mode_font_color: String = "#ffffff"
+
+#浅色&深色模式下的地址栏字体颜色
+var light_mode_address_tab_bar_font_selected_color: String = "#1b1b1b"
+var light_mode_address_tab_bar_font_unselected_color: String = "#747474"
+var dark_mode_address_tab_bar_font_selected_color: String = "#ffffff"
+var dark_mode_address_tab_bar_font_unselected_color: String = "#ccccce"
+
+#浅色&深色模式下的图标颜色
+var light_mode_icon_color: String = "#1b1b1b"
+var light_mode_translucent_icon_color: String = "#0f0f0f7d"
+var dark_mode_icon_color: String = "#ffffff"
+var dark_mode_translucent_icon_color: String = "#ffffff7d"
+
 #工作室标签等级颜色
 var work_shop_level_0_tag_color: String = "#ac9093"
 var work_shop_level_1_tag_color: String = "#e5b499"

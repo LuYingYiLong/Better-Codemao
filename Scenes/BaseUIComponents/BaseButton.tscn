@@ -230,11 +230,12 @@ _data = {
 "Selected": SubResource("Animation_7nmkk")
 }
 
-[node name="BaseButton" type="PanelContainer"]
+[node name="BaseButton" type="PanelContainer" node_paths=PackedStringArray("button")]
 offset_right = 140.0
 offset_bottom = 46.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_divmj")
 script = ExtResource("3_lhgw4")
+button = NodePath("HBoxContainer/Button")
 
 [node name="ColorRect" type="PanelContainer" parent="."]
 unique_name_in_owner = true

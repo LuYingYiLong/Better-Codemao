@@ -4,6 +4,4 @@
 
 [resource]
 shader = ExtResource("1_biycb")
-shader_parameter/blur_amount = 6.0
-shader_parameter/mix_amount = 0.275
-shader_parameter/color_over = Color(1, 1, 1, 1)
+shader_parameter/amount = 5.0

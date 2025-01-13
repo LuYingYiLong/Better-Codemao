@@ -1,6 +1,0 @@
-[configuration]
-entry_symbol = "system_params_library_init"
-compatibility_minimum = "4.0"
-
-[libraries]
-windows.release.x86_64 = "res://gdextension/system_params/bin/system_params.windows.release.x86_64.dll"

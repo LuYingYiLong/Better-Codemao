@@ -13,12 +13,18 @@ extends PanelContainer
 @onready var title_label = %TitleLabel
 @onready var content_label = %ContentLabel
 
+@onready var views_icon = %ViewsIcon
 @onready var views = %Views
+@onready var replies_icon = %RepliesIcon
 @onready var replies = %Replies
 
 signal pressed(data: Dictionary)
 
 var data: Dictionary
+
+func _ready() -> void:
+	Settings.settings_config_update.connect(_on_settings_config_update)
+	_on_settings_config_update()
 
 func set_post_card_id(id: String) -> void:
 	details_request.request_completed.connect(on_details_received)
@@ -81,3 +87,31 @@ func jump_to_user_menu() -> void:
 	Application.append_address.emit(data.get("user").get("nickname"), \
 			"res://Scenes/User/UserMenu.tscn", \
 			{"id": data.get("user", {}).get("id", -1).to_int()})
+
+func _on_settings_config_update() -> void:
+	if Settings.dark_mode == 0:
+		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		create_time.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		title_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		content_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		views_icon.self_modulate = Color.html(GlobalTheme.light_mode_translucent_icon_color)
+		views.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		replies_icon.self_modulate = Color.html(GlobalTheme.light_mode_translucent_icon_color)
+		replies.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+	else:
+		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		create_time.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		title_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		content_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		views_icon.self_modulate = Color.html(GlobalTheme.dark_mode_translucent_icon_color)
+		views.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		replies_icon.self_modulate = Color.html(GlobalTheme.dark_mode_translucent_icon_color)
+		replies.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))

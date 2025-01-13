@@ -1,4 +1,0 @@
-env = Environment(tools=['mingw'])
-env.Append(CPPPATH=['F://BtterCodemao/Better-Codemao/godot-cpp/include', 'F://BtterCodemao/Better-Codemao/godot-cpp/include/core', 'F://BtterCodemao/Better-Codemao/godot-cpp/include/gen'])
-env.Append(LIBS=['user32'])
-env.SharedLibrary('system_params', ['src/system_params.cpp'])

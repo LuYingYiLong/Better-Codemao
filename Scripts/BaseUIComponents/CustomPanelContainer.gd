@@ -26,6 +26,10 @@ extends PanelContainer
 @export_group("")
 @export_node_path("PanelContainer") var blur
 
+func _ready() -> void:
+	Settings.settings_config_update.connect(_on_settings_config_update)
+	_on_settings_config_update()
+
 func update_style() -> void:
 	_set_corner_radius_top_left(top_left)
 	_set_corner_radius_top_right(top_right)
@@ -64,5 +68,10 @@ func _set_corner_radius_bottom_left(_bottom_left: int) -> void:
 	blur_stylebox.corner_radius_bottom_left = _bottom_left
 	add_theme_stylebox_override("panel", stylebox)
 
-func _on_tree_entered():
+func _on_tree_entered() -> void:
 	update_style()
+
+func _on_settings_config_update() -> void:
+	var style_box: StyleBoxFlat = get_theme_stylebox("panel")
+	if Settings.dark_mode == 0: style_box.border_color = Color.html("#bdbdbd7d")
+	else: style_box.border_color = Color.html("#0000007d")

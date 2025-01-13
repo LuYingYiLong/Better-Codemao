@@ -178,6 +178,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 
 [node name="ViewsIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views"]
+unique_name_in_owner = true
 self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
@@ -196,6 +197,7 @@ text = "--"
 layout_mode = 2
 
 [node name="RepliesIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies"]
+unique_name_in_owner = true
 self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2

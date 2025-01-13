@@ -43,9 +43,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cp50f"]
 shader = ExtResource("3_scs3j")
-shader_parameter/blur_amount = 6.0
-shader_parameter/mix_amount = 0.0
-shader_parameter/color_over = Color(1, 1, 1, 1)
+shader_parameter/amount = null
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84wbw"]
 bg_color = Color(1, 1, 1, 1)

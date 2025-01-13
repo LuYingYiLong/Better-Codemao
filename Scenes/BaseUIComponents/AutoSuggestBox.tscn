@@ -1,47 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://b70w7s5k2wnp7"]
+[gd_scene load_steps=20 format=3 uid="uid://b70w7s5k2wnp7"]
 
 [ext_resource type="Texture2D" uid="uid://cjctj2jd5s8rp" path="res://Resources/Textures/Search.svg" id="1_5igej"]
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/AutoSuggestBox.gd" id="1_tydxs"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_we2mr"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="3_1dxhy"]
 [ext_resource type="Texture2D" uid="uid://1342meeys5vy" path="res://Resources/Textures/Clear.svg" id="3_b8y4k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8721u"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qyhv"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.898039, 0.898039, 0.898039, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbqdk"]
-bg_color = Color(0.984314, 0.984314, 0.984314, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.898039, 0.898039, 0.898039, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrb3r"]
-bg_color = Color(0.984314, 0.984314, 0.984314, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.898039, 0.898039, 0.898039, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg4o7"]
 bg_color = Color(0.929412, 0.929412, 0.929412, 1)
@@ -131,9 +96,9 @@ theme_override_colors/font_placeholder_color = Color(0.380392, 0.380392, 0.38039
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_we2mr")
-theme_override_styles/focus = SubResource("StyleBoxFlat_7qyhv")
-theme_override_styles/read_only = SubResource("StyleBoxFlat_mbqdk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_qrb3r")
+theme_override_styles/focus = ExtResource("3_1dxhy")
+theme_override_styles/read_only = ExtResource("3_1dxhy")
+theme_override_styles/normal = ExtResource("3_1dxhy")
 caret_blink = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/LineEdit"]

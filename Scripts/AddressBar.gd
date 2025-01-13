@@ -19,6 +19,8 @@ var is_playing: bool
 func _ready():
 	Application.append_address.connect(append_address)
 	Application.set_root_address.connect(set_root_address)
+	Settings.settings_config_update.connect(_on_settings_config_update)
+	_on_settings_config_update()
 
 func set_root_address(address_name: String, scene_path: String = "", data: Dictionary = {}):
 	is_playing = true
@@ -115,3 +117,17 @@ func _on_address_tab_bar_tab_selected(tab: int):
 		var node = pages.get_node(id)
 		if node != null: node.queue_free()
 	is_playing = false
+
+func _on_settings_config_update() -> void:
+	if Settings.dark_mode == 0:
+		address_tab_bar.add_theme_color_override("drop_mark_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_hovered_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_selected_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_unselected_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_unselected_color))
+	else:
+		address_tab_bar.add_theme_color_override("drop_mark_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))
+		address_tab_bar.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))
+		address_tab_bar.add_theme_color_override("font_hovered_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))
+		address_tab_bar.add_theme_color_override("font_selected_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))
+		address_tab_bar.add_theme_color_override("font_unselected_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))

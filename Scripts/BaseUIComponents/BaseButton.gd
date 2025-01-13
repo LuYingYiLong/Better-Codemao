@@ -26,8 +26,9 @@ extends PanelContainer
 		info_badge.value = infobadge_value
 		info_badge_2.value = infobadge_value
 
+@export_group("Other")
+@export var button: Node
 @onready var color_rect = %ColorRect
-@onready var button = %Button
 @onready var info_badge = %InfoBadge
 @onready var info_badge_2 = %InfoBadge2
 @onready var animation_player = %AnimationPlayer
@@ -50,18 +51,14 @@ func _ready():
 		if selected:
 			selected = false
 			_on_pressed()
+		Settings.settings_config_update.connect(_on_settings_config_update)
+		_on_settings_config_update()
 
 func set_icon(_icon: Texture) -> void:
-	if Engine.is_editor_hint():
-		%Button.icon = _icon
-	else:
-		%Button.icon = _icon
+	button.icon = _icon
 
 func set_text(_text: String) -> void:
-	if Engine.is_editor_hint():
-		%Button.text = _text
-	else:
-		%Button.text = _text
+	button.text = _text
 
 func _on_pressed():
 	if not selected:
@@ -113,3 +110,19 @@ func play(anim: String):
 
 func _on_animation_player_animation_finished(anim_name):
 	animation_finished.emit(anim_name)
+
+func _on_settings_config_update() -> void:
+	if Settings.dark_mode == 0:
+		button.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+	else:
+		button.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		button.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.dark_mode_font_color))
+		button.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
+		button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
+		button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
