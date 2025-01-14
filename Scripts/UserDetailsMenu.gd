@@ -24,10 +24,11 @@ extends Control
 @onready var has_signed = %HasSigned
 @onready var voice_forbidden = %VoiceForbidden
 
-func _ready():
+func _ready() -> void:
 	details_request.request_completed.connect(on_details_received)
 	details_request.request("https://api.codemao.cn/web/users/details", \
 			[Application.generate_cookie_header()], HTTPClient.METHOD_GET)
+	Settings.update_theme()
 
 func on_details_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -72,8 +73,8 @@ func on_details_received(result: int, _response_code: int, _headers: PackedStrin
 	has_signed.text = TranslationServer.translate(("%s_NAME" %json.get("has_signed")).to_upper())
 	voice_forbidden.text = TranslationServer.translate(("%s_NAME" %json.get("voice_forbidden")).to_upper())
 
-func _on_copy_id_button_pressed():
+func _on_copy_id_button_pressed() -> void:
 	DisplayServer.clipboard_set(id.text)
 
-func _on_copy_create_time_button_pressed():
+func _on_copy_create_time_button_pressed() -> void:
 	DisplayServer.clipboard_set(create_time.text)

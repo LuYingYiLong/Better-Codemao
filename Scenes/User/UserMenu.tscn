@@ -83,9 +83,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lvrm4")
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
-copy_mode = 2
-
 [node name="HonorRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
@@ -98,49 +95,95 @@ unique_name_in_owner = true
 [node name="BasicRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_7uk8a")
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="UserPanel" type="ScrollContainer" parent="MarginContainer"]
+[node name="FlyTextEdit" parent="ScrollContainer/MarginContainer" instance=ExtResource("16_fgs5f")]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_7uk8a")
-horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel"]
+[node name="PleaseLoginFirstPanel" parent="ScrollContainer/MarginContainer" instance=ExtResource("13_i2jmu")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/PleaseLoginFirstPanel"]
+custom_minimum_size = Vector2(373, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/PleaseLoginFirstPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("7_28rkq")
+theme_override_font_sizes/font_size = 26
+text = "PLEASE_LOGIN_FIRST_NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/PleaseLoginFirstPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="ScrollContainer/MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_w1ogm")
+text = "RETRY_NAME"
+
+[node name="LoginButton" type="Button" parent="ScrollContainer/MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_w1ogm")
+text = "LOGIN_NAME"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="Mask" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer"]
+[node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 clip_children = 1
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lripq")
 
-[node name="CoverTexture" parent="MarginContainer/UserPanel/VBoxContainer/Mask" instance=ExtResource("3_4wdba")]
+[node name="CoverTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/Mask" instance=ExtResource("3_4wdba")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("4_itvox")
 stretch_mode = 6
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 material = ExtResource("5_ufplj")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_243ro")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -149,39 +192,39 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="User" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="User" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c4ca2")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Mask" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer"]
+[node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer"]
 clip_children = 1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cvr3e")
 
-[node name="AvatarTexture" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/Mask" instance=ExtResource("3_4wdba")]
+[node name="AvatarTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/Mask" instance=ExtResource("3_4wdba")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = ExtResource("6_3k5fd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="NicknameLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="NicknameLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
@@ -189,17 +232,17 @@ theme_override_fonts/font = ExtResource("7_28rkq")
 theme_override_font_sizes/font_size = 32
 text = "Nickname"
 
-[node name="AuthorLevelTag" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("8_fotsh")]
+[node name="AuthorLevelTag" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("8_fotsh")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="WorkShopTag" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("9_dhe2u")]
+[node name="WorkShopTag" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("9_dhe2u")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="DescriptionLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -212,10 +255,10 @@ text = "Description"
 autowrap_mode = 2
 text_overrun_behavior = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="IDLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="IDLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer2" groups=["theme-normal"]]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -224,7 +267,7 @@ theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("10_oqh5g")
 text = "ID"
 
-[node name="IDCopyButton" type="Button" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="IDCopyButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer2" groups=["theme-normal"]]
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -239,7 +282,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_uxpra")
 text = ""
 flat = true
 
-[node name="DetailsButton" type="Button" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer"]
+[node name="DetailsButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(128, 40)
@@ -249,34 +292,35 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("10_w1ogm")
 text = "DETAILS_NAME"
 
-[node name="Fans&Attention" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Fans&Attention" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["theme-normal"]]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = ExtResource("11_14dwl")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="FansTotal" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer"]
+[node name="FansTotal" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hq2l2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="FansLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal/VBoxContainer"]
+[node name="FansLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal/VBoxContainer" groups=["theme-normal"]]
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -284,7 +328,7 @@ theme_override_fonts/font = ExtResource("10_oqh5g")
 text = "FANS_NAME"
 uppercase = true
 
-[node name="FansTotalLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal/VBoxContainer"]
+[node name="FansTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -293,23 +337,23 @@ theme_override_font_sizes/font_size = 24
 text = "999"
 text_overrun_behavior = 3
 
-[node name="Line" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer"]
+[node name="Separator" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer" groups=["theme-v_separator"]]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxLine_e1jul")
 
-[node name="AttentionTotal" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer"]
+[node name="AttentionTotal" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4e1kx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="AttentionLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal/VBoxContainer"]
+[node name="AttentionLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal/VBoxContainer" groups=["theme-normal"]]
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -317,7 +361,7 @@ theme_override_fonts/font = ExtResource("10_oqh5g")
 text = "ATTENTION_NAME"
 uppercase = true
 
-[node name="AttentionTotalLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal/VBoxContainer"]
+[node name="AttentionTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -326,39 +370,39 @@ theme_override_font_sizes/font_size = 24
 text = "999"
 text_overrun_behavior = 3
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 split_offset = 522
 dragger_visibility = 1
 
-[node name="Honor" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="Honor" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer" groups=["theme-normal"]]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("11_14dwl")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 3
 
-[node name="ViewTimes" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
+[node name="ViewTimes" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_qik1r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ViewTimes"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ViewTimes"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ViewLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ViewTimes/VBoxContainer"]
+[node name="ViewLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ViewTimes/VBoxContainer" groups=["theme-normal"]]
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -366,7 +410,7 @@ theme_override_fonts/font = ExtResource("10_oqh5g")
 text = "VIEW_NAME1"
 uppercase = true
 
-[node name="ViewTimesLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ViewTimes/VBoxContainer"]
+[node name="ViewTimesLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ViewTimes/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -375,21 +419,22 @@ theme_override_font_sizes/font_size = 24
 text = "999"
 text_overrun_behavior = 3
 
-[node name="BeginLine" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
+[node name="BeginSeparator" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer" groups=["theme-v_separator"]]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxLine_4efyg")
 
-[node name="LikedTotal" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
+[node name="LikedTotal" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_qik1r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/LikedTotal"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/LikedTotal"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="LikedLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/LikedTotal/VBoxContainer"]
+[node name="LikedLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/LikedTotal/VBoxContainer" groups=["theme-normal"]]
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -397,7 +442,7 @@ theme_override_fonts/font = ExtResource("10_oqh5g")
 text = "LIKED_NAME1"
 uppercase = true
 
-[node name="LikedTotalLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/LikedTotal/VBoxContainer"]
+[node name="LikedTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/LikedTotal/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -406,17 +451,17 @@ theme_override_font_sizes/font_size = 24
 text = "999"
 text_overrun_behavior = 3
 
-[node name="CollectedTotal" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
+[node name="CollectedTotal" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_qik1r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/CollectedTotal"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/CollectedTotal"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="CollectedLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/CollectedTotal/VBoxContainer"]
+[node name="CollectedLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/CollectedTotal/VBoxContainer" groups=["theme-normal"]]
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -424,7 +469,7 @@ theme_override_fonts/font = ExtResource("10_oqh5g")
 text = "COLLECTED_NAME1"
 uppercase = true
 
-[node name="CollectedTotalLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/CollectedTotal/VBoxContainer"]
+[node name="CollectedTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/CollectedTotal/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -433,21 +478,22 @@ theme_override_font_sizes/font_size = 24
 text = "999"
 text_overrun_behavior = 3
 
-[node name="EndLine" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
+[node name="EndSeparator" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer" groups=["theme-v_separator"]]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxLine_ryely")
 
-[node name="ReCreatedTotal" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
+[node name="ReCreatedTotal" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_qik1r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ReCreatedTotal"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ReCreatedTotal"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ReCreatedLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ReCreatedTotal/VBoxContainer"]
+[node name="ReCreatedLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ReCreatedTotal/VBoxContainer" groups=["theme-normal"]]
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -455,7 +501,7 @@ theme_override_fonts/font = ExtResource("10_oqh5g")
 text = "RE_CREATED_NAME1"
 uppercase = true
 
-[node name="ReCreatedTotalLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ReCreatedTotal/VBoxContainer"]
+[node name="ReCreatedTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ReCreatedTotal/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -464,24 +510,26 @@ theme_override_font_sizes/font_size = 24
 text = "999"
 text_overrun_behavior = 3
 
-[node name="Doing" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="Doing" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer" groups=["theme-normal"]]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = ExtResource("11_14dwl")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="DoingLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DoingLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer" groups=["theme-normal"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
@@ -490,26 +538,32 @@ theme_override_font_sizes/font_size = 24
 text = "DOING_NAME"
 uppercase = true
 
-[node name="EditDoingButton" type="Button" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="EditDoingButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
-self_modulate = Color(0.105882, 0.105882, 0.105882, 1)
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_constants/icon_max_width = 28
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ytqbo")
 icon = ExtResource("13_3edbl")
 flat = true
 
-[node name="Doing" type="TextEdit" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer"]
+[node name="DoingEdit" type="TextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_7uk8a")
-theme_override_colors/font_placeholder_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_colors/font_readonly_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/selection_color = Color(0, 0.470588, 0.831373, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("10_oqh5g")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_d05ia")
@@ -519,26 +573,26 @@ text = "Doing"
 autowrap_mode = 2
 scroll_smooth = true
 
-[node name="ProgressBar" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing" instance=ExtResource("15_addgs")]
+[node name="ProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing" instance=ExtResource("15_addgs")]
 visible = false
 layout_mode = 2
 
-[node name="WorkList" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="WorkList" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["theme-normal"]]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("11_14dwl")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer"]
 layout_mode = 2
 
-[node name="MyWorkLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer/VBoxContainer"]
+[node name="MyWorkLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer/VBoxContainer" groups=["theme-normal"]]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
@@ -546,35 +600,35 @@ theme_override_font_sizes/font_size = 24
 text = "MY_WORK_NAME"
 uppercase = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_7uk8a")
 horizontal_scroll_mode = 3
 
-[node name="WorkCardContainer" type="HBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="WorkCardContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="CollectionWorkList" type="PanelContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="CollectionWorkList" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["theme-normal"]]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("11_14dwl")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer"]
 layout_mode = 2
 
-[node name="CollectionWorkLabel" type="Label" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer/VBoxContainer"]
+[node name="CollectionWorkLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer/VBoxContainer" groups=["theme-normal"]]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
@@ -582,71 +636,28 @@ theme_override_font_sizes/font_size = 24
 text = "MY_COLLECTION_WORK_NAME"
 uppercase = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_7uk8a")
 horizontal_scroll_mode = 3
 
-[node name="CollectionWorkCardContainer" type="HBoxContainer" parent="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="CollectionWorkCardContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="FlyTextEdit" parent="MarginContainer" instance=ExtResource("16_fgs5f")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="PleaseLoginFirstPanel" parent="MarginContainer" instance=ExtResource("13_i2jmu")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PleaseLoginFirstPanel"]
-custom_minimum_size = Vector2(373, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="MarginContainer/PleaseLoginFirstPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_fonts/font = ExtResource("7_28rkq")
-theme_override_font_sizes/font_size = 26
-text = "PLEASE_LOGIN_FIRST_NAME"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PleaseLoginFirstPanel/VBoxContainer"]
-layout_mode = 2
-
-[node name="RetryButton" type="Button" parent="MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 40)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme = ExtResource("10_w1ogm")
-text = "RETRY_NAME"
-
-[node name="LoginButton" type="Button" parent="MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 40)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme = ExtResource("10_w1ogm")
-text = "LOGIN_NAME"
-
 [connection signal="request_completed" from="HonorRequest" to="." method="on_honor_received"]
 [connection signal="request_completed" from="WorkListRequest" to="." method="on_work_list_received"]
 [connection signal="request_completed" from="CollectionWorkListRequest" to="." method="on_collection_work_list_received"]
 [connection signal="request_completed" from="BasicRequest" to="." method="_on_basic_request_request_completed"]
-[connection signal="pressed" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer2/IDCopyButton" to="." method="_on_id_copy_button_pressed"]
-[connection signal="pressed" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/DetailsButton" to="." method="_on_details_button_pressed"]
-[connection signal="gui_input" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal" to="." method="_on_fans_total_gui_input"]
-[connection signal="gui_input" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal" to="." method="_on_followers_total_gui_input"]
-[connection signal="pressed" from="MarginContainer/UserPanel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer/EditDoingButton" to="." method="_on_edit_doing_button_pressed"]
-[connection signal="finish_editing" from="MarginContainer/FlyTextEdit" to="." method="_on_fly_text_edit_finish_editing"]
-[connection signal="pressed" from="MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
-[connection signal="pressed" from="MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="finish_editing" from="ScrollContainer/MarginContainer/FlyTextEdit" to="." method="_on_fly_text_edit_finish_editing"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/PleaseLoginFirstPanel/VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/VBoxContainer/HBoxContainer2/IDCopyButton" to="." method="_on_id_copy_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/DetailsButton" to="." method="_on_details_button_pressed"]
+[connection signal="gui_input" from="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal" to="." method="_on_fans_total_gui_input"]
+[connection signal="gui_input" from="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal" to="." method="_on_followers_total_gui_input"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Doing/MarginContainer/VBoxContainer/HBoxContainer/EditDoingButton" to="." method="_on_edit_doing_button_pressed"]

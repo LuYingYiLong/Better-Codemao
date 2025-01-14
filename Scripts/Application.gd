@@ -124,12 +124,53 @@ func html_to_bbcode(html: String):
 					html = html.replace(get_string, "")
 	return html
 
+#字符串转16进制
 func string_to_hex(input: String) -> String:
 	var hex_char: String
 	var bytes: PackedByteArray = input.to_utf8_buffer()
 	for byte in bytes:
 		hex_char = hex_char + "%" + "%02x" %byte
 	return hex_char.to_upper()
+
+# 时间戳转北京时间
+func adjust_to_beijing_time_from_unix_time(unix_time_val: int) -> Dictionary:
+	return adjust_to_beijing_time(Time.get_datetime_dict_from_unix_time(unix_time_val))
+
+# UTC转北京时间
+func adjust_to_beijing_time(datetime_dict: Dictionary) -> Dictionary:
+	# 北京时间是UTC+8
+	var beijing_time: Dictionary = {
+		"year": datetime_dict["year"],
+		"month": datetime_dict["month"],
+		"day": datetime_dict["day"],
+		"weekday": datetime_dict["weekday"],
+		"hour": datetime_dict["hour"] + 8,
+		"minute": datetime_dict["minute"],
+		"second": datetime_dict["second"]
+	}
+
+	# 处理小时溢出
+	if beijing_time["hour"] >= 24:
+		beijing_time["hour"] -= 24
+		beijing_time["day"] += 1
+
+	# 处理天数溢出
+	if beijing_time["day"] > get_days_in_month(beijing_time["year"], beijing_time["month"]):
+		beijing_time["day"] = 1
+		beijing_time["month"] += 1
+
+	# 处理月份溢出
+	if beijing_time["month"] > 12:
+		beijing_time["month"] = 1
+		beijing_time["year"] += 1
+
+	return beijing_time
+
+func get_days_in_month(year: int, month: int) -> int:
+	var days_in_month: Array = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+		days_in_month[1] = 29# 闰年二月有 29 天
+	return days_in_month[month - 1]
 
 func emit_system_error_message(message: String):
 	add_system_message.emit(message, GlobalTheme.system_error_message_color, 6.0)

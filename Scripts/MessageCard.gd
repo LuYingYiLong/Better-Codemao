@@ -14,8 +14,12 @@ var user_id: int
 var post_id: int
 var work_id: int
 var subject_id: int
-	
-func set_message_card_data(_data: Dictionary):
+
+func _ready() -> void:
+	Settings.settings_config_update.connect(_on_settings_config_update)
+	_on_settings_config_update()
+
+func set_message_card_data(_data: Dictionary) -> void:
 	data = _data
 	type = data.get("type")
 	var content = JSON.parse_string(data.get("content").replace("\\", ""))
@@ -68,23 +72,23 @@ func set_message_card_data(_data: Dictionary):
 	nickname_label.text = sender.get("nickname")
 	avatar_texture.load_image(sender.get("avatar_url"), sender.get("nickname"))
 
-func _on_avatar_texture_gui_input(event):
+func _on_avatar_texture_gui_input(event) -> void:
 	if event is InputEventMouseButton and \
 			event.is_pressed and \
 			event.button_mask == 1 and \
 			event.button_index == 1:
 		jump_to_user_menu()
 
-func _on_nickname_label_pressed():
+func _on_nickname_label_pressed() -> void:
 	jump_to_user_menu()
 
-func jump_to_user_menu():
+func jump_to_user_menu() -> void:
 	if user_id == 0: return
 	Application.append_address.emit(nickname_label.text, \
 			"res://Scenes/User/UserMenu.tscn", \
 			{"id": user_id})
 
-func _on_link_button_pressed():
+func _on_link_button_pressed() -> void:
 	if type == "POST_COMMENT" or \
 			type == "POST_REPLY_AUTHOR" or \
 			type == "POST_REPLY_REPLY" or \
@@ -109,3 +113,33 @@ func _on_link_button_pressed():
 		Application.append_address.emit(TranslationServer.translate("WORKSHOP_NAME"), \
 			"res://Scenes/Workshop/ShopMenu.tscn", \
 			{"id": subject_id})
+
+func _on_settings_config_update() -> void:
+	if Settings.dark_mode == 0:
+		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelStyle.tres"))
+		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		link_button.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		link_button.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
+		link_button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
+		link_button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		link_button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		content_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		comment_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+	else:
+		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelDarknessStyle.tres"))
+		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		link_button.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		link_button.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
+		link_button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
+		link_button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		link_button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		content_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		comment_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))

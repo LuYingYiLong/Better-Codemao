@@ -87,7 +87,7 @@ custom_minimum_size = Vector2(58, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("6_bv1ut")
-text = "114514"
+text = "--"
 text_overrun_behavior = 3
 
 [node name="PraiseTimes" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
@@ -108,7 +108,7 @@ custom_minimum_size = Vector2(58, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("6_bv1ut")
-text = "1919810"
+text = "--"
 text_overrun_behavior = 3
 
 [connection signal="pressed" from="HBoxContainer/Mask/PreviewTexture" to="." method="_on_preview_texture_pressed"]

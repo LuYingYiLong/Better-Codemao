@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2cu066x1uix8"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/HSeparator.gd" id="1_ayt1g"]
+[ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="1_xwee2"]
+
+[node name="HSeparator" type="PanelContainer"]
+theme_override_styles/panel = ExtResource("1_xwee2")
+script = ExtResource("1_ayt1g")

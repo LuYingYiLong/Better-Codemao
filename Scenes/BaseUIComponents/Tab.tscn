@@ -1,0 +1,141 @@
+[gd_scene load_steps=9 format=3 uid="uid://bemvf733kqr23"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/Tab.gd" id="1_g8qba"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="1_kb4nq"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_qsy30"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a1qwe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhx4j"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="Animation" id="Animation_8lovk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:theme_override_constants/margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:theme_override_constants/margin_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m5alf"]
+resource_name = "Selected"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:theme_override_constants/margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.2, 2),
+"update": 0,
+"values": [0, -10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:theme_override_constants/margin_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.2, 2),
+"update": 0,
+"values": [0, -10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jq6o2"]
+_data = {
+"RESET": SubResource("Animation_8lovk"),
+"Selected": SubResource("Animation_m5alf")
+}
+
+[node name="Tab" type="Button" node_paths=PackedStringArray("title_label", "text_label", "animation_player")]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 60)
+offset_right = 75.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a1qwe")
+flat = true
+script = ExtResource("1_g8qba")
+title_label = NodePath("VBoxContainer/TitleLabel")
+text_label = NodePath("VBoxContainer/TextLabel")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("1_kb4nq")
+theme_override_font_sizes/font_size = 24
+text_overrun_behavior = 3
+
+[node name="TextLabel" type="Label" parent="VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("2_qsy30")
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Line" type="PanelContainer" parent="MarginContainer"]
+self_modulate = Color(0, 0.403922, 0.752941, 1)
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uhx4j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jq6o2")
+}
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

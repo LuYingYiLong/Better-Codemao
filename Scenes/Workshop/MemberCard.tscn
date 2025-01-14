@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://bejbjipheidsf"]
+
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_xv2tr"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_arlt8"]
+[ext_resource type="Script" path="res://Scripts/Workshop/MemberCard.gd" id="2_dhvnh"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_hkmmu"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_5fmiq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aa288"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjmya"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfro8"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MemberCard" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 48)
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_xv2tr")
+script = ExtResource("2_dhvnh")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aa288")
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Mask" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jjmya")
+
+[node name="AvatarTexture" parent="MarginContainer/HBoxContainer/Mask" instance=ExtResource("2_arlt8")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_hkmmu")
+
+[node name="NicknameLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_5fmiq")
+theme_override_font_sizes/font_size = 18
+text = "Nickname"
+vertical_alignment = 1
+
+[node name="ManagerInfo" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 0.439216, 0.4, 1)
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hfro8")
+
+[node name="SubManagerInfo" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.996078, 0.768627, 0.2, 1)
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hfro8")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

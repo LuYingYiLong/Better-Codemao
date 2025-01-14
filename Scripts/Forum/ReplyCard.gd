@@ -57,7 +57,7 @@ func set_reply_card_data(json: Dictionary):
 		comment_card_scene.set_comment_card_data(comment)
 		comment_card_scene.comment_pressed.connect(_on_comment_card_comment_pressed)
 		comment_card_scene.delete_pressed.connect(_on_comment_card_delete_pressed)
-	var create_time_dict: Dictionary = Time.get_datetime_dict_from_unix_time(json.get("created_at"))
+	var create_time_dict: Dictionary = Application.adjust_to_beijing_time_from_unix_time(json.get("created_at"))
 	updated_at.text = "%s%s%s%s%s%s  %s:%s" %[
 		create_time_dict.get("year"), \
 		TranslationServer.translate("YEAR_NAME"), \

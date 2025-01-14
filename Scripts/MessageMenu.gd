@@ -5,9 +5,7 @@ extends Control
 
 @onready var progress_bar = %ProgressBar
 
-@onready var comment_reply = %CommentReply
-@onready var like_fork = %LikeFork
-@onready var system = %System
+@onready var tab_bar = %TabBar
 
 @onready var message_card_container = %MessageCardContainer
 @onready var load_more_button = %LoadMoreButton
@@ -42,13 +40,14 @@ func on_message_count_received(result: int, _response_code: int, _headers: Packe
 	for query: Dictionary in json.get("query"):
 		if query.get("query_type") == "COMMENT_REPLY":
 			comment_reply_count = query.get("count")
-			comment_reply.text = str(comment_reply_count)
+			tab_bar.tab_items[0].text = str(comment_reply_count)
 		elif query.get("query_type") == "LIKE_FORK":
 			like_fork_count = query.get("count")
-			like_fork.text = str(like_fork_count)
+			tab_bar.tab_items[1].text = str(like_fork_count)
 		elif query.get("query_type") == "SYSTEM":
 			system_count = query.get("count")
-			system.text = str(system_count)
+			tab_bar.tab_items[2].text = str(system_count)
+	tab_bar.update_tab_data()
 
 func _message_record_request(reload: bool = true):
 	if reload:
@@ -84,36 +83,14 @@ func on_message_record_received(result: int, _response_code: int, _headers: Pack
 		message_card_scene.set_message_card_data(item)
 	load_more_button.visible = limit <= json.get("total")
 
-func _on_comment_reply_gui_input(event):
-	if event is InputEventMouseButton and \
-			event.is_pressed and \
-			event.button_mask == 1 and \
-			event.button_index == 1:
-		limit = 0
-		offset = 0
-		query_type = "COMMENT_REPLY"
-		_message_record_request()
-
-func _on_like_fork_gui_input(event):
-	if event is InputEventMouseButton and \
-			event.is_pressed and \
-			event.button_mask == 1 and \
-			event.button_index == 1:
-		limit = 0
-		offset = 0
-		query_type = "LIKE_FORK"
-		_message_record_request()
-
-func _on_system_gui_input(event):
-	if event is InputEventMouseButton and \
-			event.is_pressed and \
-			event.button_mask == 1 and \
-			event.button_index == 1:
-		limit = 0
-		offset = 0
-		query_type = "SYSTEM"
-		_message_record_request()
-
 func _on_load_more_button_pressed():
 	load_more_button.disabled = true
 	_message_record_request(false)
+
+func _on_tab_bar_index_pressed(index: int) -> void:
+	limit = 0
+	offset = 0
+	if index == 0: query_type = "COMMENT_REPLY"
+	elif index == 1: query_type = "LIKE_FORK"
+	elif index == 2: query_type = "SYSTEM"
+	_message_record_request()

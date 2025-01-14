@@ -1,13 +1,43 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpwr61ayi2fxj"]
+[gd_scene load_steps=18 format=3 uid="uid://bpwr61ayi2fxj"]
 
-[ext_resource type="Script" path="res://Scripts/WorkCard.gd" id="1_0bhmr"]
+[ext_resource type="Script" path="res://Scripts/Work/WorkCard.gd" id="1_0bhmr"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="1_iac10"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_r22qk"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="4_0tqyh"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="5_q85ay"]
+[ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="6_g0pfd"]
+[ext_resource type="Texture2D" uid="uid://cftybq6tll2w8" path="res://Resources/Textures/Praise.svg" id="7_5rtyt"]
+[ext_resource type="StyleBox" uid="uid://ct0x8joxnke0w" path="res://Resources/Themes/HLine-Light.tres" id="8_5wxwe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7xnc"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uqmf2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sbh81"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8pae"]
+bg_color = Color(0.6, 0.6, 0.6, 0.0980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv0s3"]
+bg_color = Color(0.6, 0.6, 0.6, 0.0980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tcqn"]
+bg_color = Color(0.6, 0.6, 0.6, 0.0980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_15ryu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5j0x"]
 bg_color = Color(1, 1, 1, 1)
@@ -16,6 +46,13 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eko4q"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [node name="WorkCard" type="PanelContainer"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(150, 216)
@@ -23,6 +60,16 @@ offset_right = 150.0
 offset_bottom = 215.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q7xnc")
 script = ExtResource("1_0bhmr")
+
+[node name="Card" type="Button" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uqmf2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_sbh81")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p8pae")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gv0s3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1tcqn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_15ryu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -58,14 +105,88 @@ text_overrun_behavior = 3
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_constants/line_spacing = -7
 theme_override_fonts/font = ExtResource("5_q85ay")
-text = "Description"
+text = "Description
+D"
 horizontal_alignment = 1
 autowrap_mode = 2
 text_overrun_behavior = 3
 
+[node name="View&PraiseContainer" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.06, 0.06, 0.06, 0.490196)
+layout_mode = 2
+
+[node name="ViewTimes" type="HBoxContainer" parent="VBoxContainer/View&PraiseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ViewIcon" type="TextureRect" parent="VBoxContainer/View&PraiseContainer/ViewTimes"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("6_g0pfd")
+expand_mode = 1
+
+[node name="ViewTimes" type="Label" parent="VBoxContainer/View&PraiseContainer/ViewTimes"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0tqyh")
+text = "--"
+text_overrun_behavior = 3
+
+[node name="PraiseTimes" type="HBoxContainer" parent="VBoxContainer/View&PraiseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PraiseIcon" type="TextureRect" parent="VBoxContainer/View&PraiseContainer/PraiseTimes"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("7_5rtyt")
+expand_mode = 1
+
+[node name="PraiseTimes" type="Label" parent="VBoxContainer/View&PraiseContainer/PraiseTimes"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0tqyh")
+text = "--"
+text_overrun_behavior = 3
+
+[node name="Line" type="PanelContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = ExtResource("8_5wxwe")
+
+[node name="UserContainer" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="VBoxContainer/UserContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eko4q")
+
+[node name="AvatarTexture" parent="VBoxContainer/UserContainer/Mask" instance=ExtResource("2_r22qk")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_iac10")
+
+[node name="NicknameLabel" type="Label" parent="VBoxContainer/UserContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_0tqyh")
+text = "Nickname"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[connection signal="pressed" from="Card" to="." method="_on_card_pressed"]
 [connection signal="pressed" from="VBoxContainer/Mask/PreviewTexture" to="." method="_on_preview_texture_pressed"]

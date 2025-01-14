@@ -109,13 +109,13 @@ func _on_sub_manager_4_avatar_texture_gui_input(event):
 
 func _on_settings_config_update() -> void:
 	if Settings.dark_mode == 0:
-		load("res://Resources/Themes/DefaultPanelStyle.tres")
+		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelStyle.tres"))
 		name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
 		description_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
 		manager_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
 		sub_manager_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
 	else:
-		load("res://Resources/Themes/DefaultPanelDarknessStyle.tres")
+		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelDarknessStyle.tres"))
 		name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 		description_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 		manager_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))

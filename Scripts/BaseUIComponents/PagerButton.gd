@@ -1,3 +1,4 @@
+@tool
 extends Button
 
 @onready var margin_container = %MarginContainer

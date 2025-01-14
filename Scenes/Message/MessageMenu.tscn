@@ -1,21 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1s8kubxqq1ee"]
+[gd_scene load_steps=11 format=3 uid="uid://c1s8kubxqq1ee"]
 
 [ext_resource type="Script" path="res://Scripts/MessageMenu.gd" id="1_06mqh"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_swuei"]
-[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_1nww6"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_clvgm"]
-[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="4_05d14"]
+[ext_resource type="PackedScene" uid="uid://bsclky2hfp00n" path="res://Scenes/BaseUIComponents/TabBar.tscn" id="4_guxdm"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="4_xbwj8"]
+[ext_resource type="Script" path="res://Scripts/TabItem.gd" id="5_l3qcc"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="6_t8nvq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0myd"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="Resource" id="Resource_bmxxx"]
+script = ExtResource("5_l3qcc")
+title = "COMMENT_REPLY_NAME"
+text = "--"
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_nefk4"]
-color = Color(0, 0, 0, 0.196078)
-grow_begin = -6.0
-grow_end = -6.0
-vertical = true
+[sub_resource type="Resource" id="Resource_dn2pl"]
+script = ExtResource("5_l3qcc")
+title = "LIKE_FORK_NAME"
+text = "--"
+
+[sub_resource type="Resource" id="Resource_ncfnf"]
+script = ExtResource("5_l3qcc")
+title = "SYSTEM_NAME"
+text = "--"
 
 [node name="MessageMenu" type="Control"]
 layout_mode = 3
@@ -68,105 +74,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="CommentReply" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_a0myd")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="CommentReplyLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_fonts/font = ExtResource("3_1nww6")
-theme_override_font_sizes/font_size = 24
-text = "COMMENT_REPLY_NAME"
-text_overrun_behavior = 3
-
-[node name="CommentReply" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply/VBoxContainer"]
+[node name="TabBar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_guxdm")]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_fonts/font = ExtResource("4_05d14")
-text = "999"
-uppercase = true
-
-[node name="BeginLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxLine_nefk4")
-
-[node name="LikeFork" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_a0myd")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="LikeForkLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_fonts/font = ExtResource("3_1nww6")
-theme_override_font_sizes/font_size = 24
-text = "LIKE_FORK_NAME"
-text_overrun_behavior = 3
-
-[node name="LikeFork" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork/VBoxContainer"]
-unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.490196)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_fonts/font = ExtResource("4_05d14")
-text = "999"
-uppercase = true
-
-[node name="EndLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxLine_nefk4")
-
-[node name="System" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_a0myd")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="SystemLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_fonts/font = ExtResource("3_1nww6")
-theme_override_font_sizes/font_size = 24
-text = "SYSTEM_NAME"
-text_overrun_behavior = 3
-
-[node name="System" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System/VBoxContainer"]
-unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.490196)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_fonts/font = ExtResource("4_05d14")
-text = "999"
-uppercase = true
+tab_items = Array[ExtResource("5_l3qcc")]([SubResource("Resource_bmxxx"), SubResource("Resource_dn2pl"), SubResource("Resource_ncfnf")])
+current_tab = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -194,7 +106,5 @@ text = "LOAD_MORE_NAME"
 
 [connection signal="request_completed" from="MessageCountRequest" to="." method="on_message_count_received"]
 [connection signal="request_completed" from="MessageRecordRequest" to="." method="on_message_record_received"]
-[connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CommentReply" to="." method="_on_comment_reply_gui_input"]
-[connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LikeFork" to="." method="_on_like_fork_gui_input"]
-[connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/System" to="." method="_on_system_gui_input"]
+[connection signal="index_pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar" to="." method="_on_tab_bar_index_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/LoadMoreButton" to="." method="_on_load_more_button_pressed"]

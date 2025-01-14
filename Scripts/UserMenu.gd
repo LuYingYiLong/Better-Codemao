@@ -5,7 +5,6 @@ extends Control
 @onready var collection_work_list_request = %CollectionWorkListRequest
 @onready var basic_request = %BasicRequest
 
-@onready var user_panel = %UserPanel
 @onready var fly_text_edit = %FlyTextEdit
 @onready var please_login_first_panel = %PleaseLoginFirstPanel
 
@@ -22,12 +21,16 @@ extends Control
 @onready var attention_total_label = %AttentionTotalLabel
 
 @onready var view_times_label = %ViewTimesLabel
+@onready var begin_separator = %BeginSeparator
 @onready var liked_total_label = %LikedTotalLabel
 @onready var collected_total_label = %CollectedTotalLabel
+@onready var end_separator = %EndSeparator
 @onready var re_created_total_label = %ReCreatedTotalLabel
 
 @onready var doing = %Doing
+@onready var doing_label = %DoingLabel
 @onready var edit_doing_button = %EditDoingButton
+@onready var doing_edit = %DoingEdit
 
 @onready var work_card_container = %WorkCardContainer
 @onready var collection_work_card_container = %CollectionWorkCardContainer
@@ -44,8 +47,20 @@ var user_id: int:
 
 var doing_text: String
 
-func _ready():
+func _ready() -> void:
 	Application.user_avatar_update.connect(user_avatar_update)
+	Settings.update_theme()
+
+func _process(_delta) -> void:
+	var number: int = floori((size.x - 80) / 162)
+	var count: int = 0
+	for node in work_card_container.get_children():
+		node.visible = count < number
+		count += 1
+	count = 0
+	for node in collection_work_card_container.get_children():
+		node.visible = count < number
+		count += 1
 
 func user_avatar_update() -> void:
 	user_id = Application.user_id
@@ -82,7 +97,7 @@ func on_honor_received(result: int, _response_code: int, _headers: PackedStringA
 	collected_total_label.text = str(json.get("collected_total"))
 	re_created_total_label.text = str(json.get("re_created_total"))
 
-	doing.text = json.get("doing")
+	doing_edit.text = json.get("doing")
 	edit_doing_button.visible = user_id == Application.user_id
 
 	work_list_request.request("https://api.codemao.cn/creation-tools/v1/user/center/work-list?user_id=%s&offset=1&limit=12" %user_id, \
@@ -94,7 +109,7 @@ func _on_id_copy_button_pressed():
 	DisplayServer.clipboard_set(str(user_id))
 
 func _on_edit_doing_button_pressed() -> void:
-	fly_text_edit.init_text = doing.text
+	fly_text_edit.init_text = doing_edit.text
 	fly_text_edit.show_fly_text_edit()
 
 func _on_fly_text_edit_finish_editing(text: String) -> void:
@@ -115,7 +130,7 @@ func _on_basic_request_request_completed(result: int, _response_code: int, _head
 		if json.has("error_code"):
 			Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
 			return
-	else: doing.text = doing_text
+	else: doing_edit.text = doing_text
 
 func on_work_list_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -126,6 +141,7 @@ func on_work_list_received(result: int, _response_code: int, _headers: PackedStr
 	for item: Dictionary in items:
 		var work_card_scene = WORK_CARD_SCENE.instantiate()
 		work_card_container.add_child(work_card_scene)
+		work_card_scene.user_visible = false
 		work_card_scene.set_work_card_data(item)
 
 func on_collection_work_list_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
@@ -137,6 +153,7 @@ func on_collection_work_list_received(result: int, _response_code: int, _headers
 	for item: Dictionary in items:
 		var work_card_scene = WORK_CARD_SCENE.instantiate()
 		collection_work_card_container.add_child(work_card_scene)
+		work_card_scene.user_visible = false
 		work_card_scene.set_work_card_data(item)
 
 func _on_details_button_pressed():

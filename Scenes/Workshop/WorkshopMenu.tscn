@@ -89,7 +89,6 @@ theme_override_constants/separation = 16
 [node name="SelectorBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_prnkx")]
 layout_mode = 2
 selector_bar_items = Array[ExtResource("7_shp27")]([SubResource("Resource_t1vfs"), SubResource("Resource_fqbja"), SubResource("Resource_w0nae"), SubResource("Resource_dhkru"), SubResource("Resource_s575l"), SubResource("Resource_iss5w"), SubResource("Resource_186nd")])
-size_fill = null
 items_width = 70.0
 
 [node name="AutoSuggestBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("8_klqll")]

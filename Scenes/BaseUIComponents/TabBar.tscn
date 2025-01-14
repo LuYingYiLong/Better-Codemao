@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsclky2hfp00n"]
+
+[ext_resource type="Script" path="res://Scripts/BaseUIComponents/TabBar.gd" id="1_33hvm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvhrh"]
+
+[node name="TabBar" type="PanelContainer" node_paths=PackedStringArray("tab_container")]
+offset_right = 696.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rvhrh")
+script = ExtResource("1_33hvm")
+current_tab = null
+tab_container = NodePath("TabContainer")
+
+[node name="TabContainer" type="HBoxContainer" parent="."]
+layout_mode = 2

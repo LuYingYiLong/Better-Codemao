@@ -36,7 +36,7 @@ func set_comment_card_data(json: Dictionary):
 		delete_popup_item.text = "DELETE_NAME"
 		drop_down_button.popup_items.append(delete_popup_item)
 	content_label.text = json.get("content")
-	var create_time_dict: Dictionary = Time.get_datetime_dict_from_unix_time(json.get("created_at"))
+	var create_time_dict: Dictionary = Application.adjust_to_beijing_time_from_unix_time(json.get("created_at"))
 	updated_at.text = "%s%s%s%s%s%s  %s:%s" %[
 		create_time_dict.get("year"), \
 		TranslationServer.translate("YEAR_NAME"), \
@@ -66,9 +66,12 @@ func _on_nickname_label_pressed():
 	jump_to_user_menu()
 
 func jump_to_user_menu():
-	Application.append_address.emit(data.get("user").get("nickname"), \
+	var user: Dictionary
+	if data.has("user"): user = data.get("user")
+	elif data.has("reply_user"): user = data.get("reply_user")
+	Application.append_address.emit(user.get("nickname", "USER_NAME"), \
 			"res://Scenes/User/UserMenu.tscn", \
-			{"id": int(data.get("user", {}).get("id", -1))})
+			{"id": int(user.get("id", -1))})
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and \
