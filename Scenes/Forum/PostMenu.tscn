@@ -49,7 +49,7 @@ corner_radius_bottom_left = 28
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k0qjr"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_1w6wk"]
-color = Color(0, 0, 0, 0.490196)
+color = Color(1, 1, 1, 0.490196)
 grow_begin = -6.0
 grow_end = -6.0
 vertical = true
@@ -130,7 +130,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TitleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -162,7 +162,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -4
 
-[node name="NicknameLabel" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="NicknameLabel" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -329,7 +329,7 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer"]
 layout_mode = 2
 
-[node name="AllRepliesLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer"]
+[node name="AllRepliesLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -340,7 +340,7 @@ text_overrun_behavior = 3
 
 [node name="SecureTextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer" instance=ExtResource("13_fdfjd")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(210, 250)
+custom_minimum_size = Vector2(210, 340)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer"]

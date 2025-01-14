@@ -17,6 +17,7 @@ border_width_bottom = 1
 border_color = Color(0.105882, 0.105882, 0.105882, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
+anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ce7qd"]
 
@@ -28,6 +29,7 @@ border_width_bottom = 1
 border_color = Color(0.10748, 0.10748, 0.10748, 1)
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7tuk"]
 bg_color = Color(0.643137, 0.643137, 0.643137, 1)

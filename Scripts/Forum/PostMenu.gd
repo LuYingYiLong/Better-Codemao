@@ -47,6 +47,7 @@ func _ready():
 	pagination_bar.size = 3
 	Settings.settings_config_update.connect(_on_settings_config_update)
 	_on_settings_config_update()
+	Settings.update_theme()
 
 func set_data(data: Dictionary):
 	post_id = int(data.get("id", 0))
@@ -290,21 +291,5 @@ func _on_pagination_bar_page_changed(page):
 	repiles_request.request("https://api.codemao.cn/web/forums/posts/%s/replies?page=%s&limit=30&sort=-created_at" %[post_id, page])
 
 func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0:
-		title_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
-		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
-		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
-		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
-		info_container.modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
-		all_replies_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-	else:
-		title_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
-		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
-		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
-		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
-		info_container.modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)
-		all_replies_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+	if Settings.dark_mode == 0: info_container.modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
+	else: info_container.modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)

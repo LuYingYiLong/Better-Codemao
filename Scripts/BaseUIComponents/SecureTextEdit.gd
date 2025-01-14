@@ -1,6 +1,10 @@
 extends PanelContainer
 
-@export_enum("Web", "String") var send_type: int = 0
+@export_enum("Web", "String") var send_type: int = 0:
+	set(value):
+		send_type = value
+		tools_bar.visible = send_type == 0
+		perview.visible = send_type == 0
 @export var text: String:
 	set(value):
 		text = value
@@ -9,10 +13,16 @@ extends PanelContainer
 	set(value):
 		placeholder_text = value
 		text_edit.placeholder_text = placeholder_text
+		
+@onready var theme_painter = %ThemePainter
 
+@onready var tools_bar = %ToolsBar
 @onready var text_edit = %TextEdit
+@onready var perview = %Perview
+@onready var rich_text_label = %RichTextLabel
 @onready var color_rect = %ColorRect
 @onready var warning_label = %WarningLabel
+@onready var sensitive_word_bar = %SensitiveWordBar
 @onready var sensitive_word_button = %SensitiveWordButton
 @onready var warning_button = %WarningButton
 
@@ -34,6 +44,9 @@ var thread_helper: ThreadHelper
 
 func _ready() -> void:
 	thread_helper = ThreadHelper.new(self)
+	theme_painter.update_theme()
+	Settings.settings_config_update.connect(_on_settings_config_update)
+	_on_settings_config_update()
 
 func clear() -> void:
 	text_edit.clear()
@@ -43,6 +56,8 @@ func clear() -> void:
 	clear_sensitive_word_tag()
 
 func _on_text_edit_text_changed() -> void:
+	rich_text_label.clear()
+	rich_text_label.append_text(text_edit.text)
 	color_rect.self_modulate = Color.html("#7b7b7b")
 	warning_label.text = TranslationServer.translate("SECURE_TEXT_EDIT_REPORT1")
 	sensitive_word_button.text = ""
@@ -107,6 +122,55 @@ func _on_sensitive_word_button_pressed() -> void:
 
 func _on_send_button_pressed() -> void:
 	if send_type == 0:
-		send.emit("<p>%s</p>" %text_edit.text, send_type)
+		var content: String = text_edit.text
+		var paragraphs: PackedStringArray = content.split("\n")
+		var count: int = 0
+		for string: String in paragraphs:
+			paragraphs.set(count, "<p>%s</p>\n" %string)
+			count += 1
+		count = 0
+		for string: String in paragraphs:
+			paragraphs.set(count, paragraphs[count].replace("[b]", "<strong>"))
+			paragraphs.set(count, paragraphs[count].replace("[/b]", "</strong>"))
+			paragraphs.set(count, paragraphs[count].replace("[u]", "<u>"))
+			paragraphs.set(count, paragraphs[count].replace("[/u]", "</u>"))
+			count += 1
+		content = ""
+		for string: String in paragraphs:
+			content += string
+		send.emit(content, send_type)
 	elif send_type == 1:
 		send.emit(text_edit.text, send_type)
+
+func insert_text_at_caret(insert_text: String) -> void:
+	text_edit.begin_complex_operation()
+	text_edit.begin_multicaret_edit()
+	for i in range(text_edit.get_caret_count()):
+		if text_edit.multicaret_edit_ignore_caret(i):
+			continue
+		text_edit.insert_text_at_caret(insert_text, i)
+	text_edit.end_multicaret_edit()
+	text_edit.end_complex_operation()
+
+func _on_bold_button_pressed():
+	insert_text_at_caret("[b][/b]")
+
+func _on_underline_button_pressed():
+	insert_text_at_caret("[u][/u]")
+
+func _on_settings_config_update() -> void:
+	if Settings.dark_mode == 0:
+		pass
+	else:
+		var tools_bar_style: StyleBoxFlat = tools_bar.get_theme_stylebox("panel")
+		tools_bar_style.bg_color = Color.html("#1c1c1c")
+		tools_bar_style.border_color = Color.html("#1b1b1b")
+		var text_edit_style: StyleBoxFlat = text_edit.get_theme_stylebox("normal")
+		text_edit_style.bg_color = Color.html("#242424")
+		text_edit_style.border_color = Color.html("#1b1b1b")
+		var perview_style: StyleBoxFlat = perview.get_theme_stylebox("panel")
+		perview_style.bg_color = Color.html("#1c1c1c")
+		perview_style.border_color = Color.html("#1b1b1b")
+		var sensitive_word_bar_style: StyleBoxFlat = sensitive_word_bar.get_theme_stylebox("panel")
+		sensitive_word_bar_style.bg_color = Color.html("#1c1c1c")
+		sensitive_word_bar_style.border_color = Color.html("#1b1b1b")

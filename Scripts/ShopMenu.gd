@@ -47,7 +47,7 @@ func _ready() -> void:
 	_on_settings_config_update()
 
 func _process(_delta) -> void:
-	work_card_container.columns = clampi(floori(scroll_container.size.x / 155), 1, 999)
+	work_card_container.columns = clampi(floori(scroll_container.size.x / 168), 1, 999)
 
 func set_data(data: Dictionary) -> void:
 	id = data.get("id", 0)

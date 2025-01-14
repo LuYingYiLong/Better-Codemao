@@ -59,6 +59,10 @@ CLEAR_HISTORY_NAME,清理历史记录,Clear history
 CLEAR_HISTORY_DESCRIPTION,清理后不会恢复,It will not be restored after cleanup
 POST_NAME,帖子,Post
 PUBLISH_ON_NAME,发布于,Publish on
+JUST_NOW_NAME,刚刚,Just now
+MINUTES_AGO_NAME,{0}分钟前,{0}Minutes ago
+HOURS_AGO_NAME,{0}小时前,{0}Hours ago
+DAYS_AGO_NAME,{0}天前,{0}Days ago
 OPEN_IN_BROWSER_NAME,在浏览器打开,Open in browser
 ALL_REPLIES_NAME,所有回帖,All replies
 REPLY_NAME,回复,Reply

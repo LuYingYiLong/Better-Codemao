@@ -43,7 +43,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cp50f"]
 shader = ExtResource("3_scs3j")
-shader_parameter/amount = null
+shader_parameter/amount = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84wbw"]
 bg_color = Color(1, 1, 1, 1)

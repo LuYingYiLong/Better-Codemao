@@ -108,6 +108,8 @@ func html_to_bbcode(html: String):
 			'<span style="font-size: x-large;">': html = html.replace(get_string, "[font_size=26]")
 			'<span style="font-size: xx-large;">': html = html.replace(get_string, "[font_size=30]")
 			'<strong>': html = html.replace(get_string, "[b]")
+			'<u>': html = html.replace(get_string, "[u]")
+			'</u>': html = html.replace(get_string, "[/u]")
 			'<code>': html = html.replace(get_string, "|CODE||BEGIN|")
 			'</code>': html = html.replace(get_string, "|END||CODE|")
 			#提取图片链接：https:\/\/cdn-community.codemao.cn\/.*?\.png|jpeg
@@ -165,6 +167,30 @@ func adjust_to_beijing_time(datetime_dict: Dictionary) -> Dictionary:
 		beijing_time["year"] += 1
 
 	return beijing_time
+
+func format_relative_time(target_time: int) -> String:
+	# 将目标时间转换为北京时间（UTC+8）
+	target_time += 3600 * 8
+
+	var current_time = Time.get_unix_time_from_system() + 3600 * 8  # 当前时间也转换为北京时间
+	var time_diff = current_time - target_time
+
+	if time_diff < 60: return "JUST_NOW_NAME"
+	elif time_diff < 3600: return TranslationServer.translate("MINUTES_AGO_NAME").format([floori(time_diff / 60)])
+	elif time_diff < 3600 * 24: return TranslationServer.translate("HOURS_AGO_NAME").format([floori(time_diff / 3600)])
+	elif time_diff < 3600 * 24 * 30: return TranslationServer.translate("DAYS_AGO_NAME").format([floori(time_diff / (3600 * 24))])
+	else:
+		var datetime_dict = Time.get_datetime_dict_from_unix_time(target_time)
+		return "%s%s%s%s%s%s %s:%s" %[
+			datetime_dict.get("year"), 
+			TranslationServer.translate("YEAR_NAME"), 
+			datetime_dict.get("month"), 
+			TranslationServer.translate("MONTH_NAME"), 
+			datetime_dict.get("day"), 
+			TranslationServer.translate("DAY_NAME1"), 
+			datetime_dict.get("hour"), 
+			datetime_dict.get("minute")
+		]
 
 func get_days_in_month(year: int, month: int) -> int:
 	var days_in_month: Array = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]

@@ -31,6 +31,7 @@ func _ready() -> void:
 	thread_helper = ThreadHelper.new(self)
 
 func load_image(url: String, _name_: String = "") -> void:
+	if url.is_empty(): return
 	_url = url
 	_name = _name_
 	var has_suffix: bool
@@ -71,6 +72,7 @@ func _load_image_from_thread(buffer: PackedByteArray, headers: PackedStringArray
 		name_panel.call_deferred("set_visible", true)
 		name_label.call_deferred("set_text", _name[0])
 	else:
+		if image.is_empty(): return
 		var _texture = ImageTexture.create_from_image(image)
 		call_deferred("set_texture", _texture)
 

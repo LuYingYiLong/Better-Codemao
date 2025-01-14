@@ -36,17 +36,7 @@ func set_comment_card_data(json: Dictionary):
 		delete_popup_item.text = "DELETE_NAME"
 		drop_down_button.popup_items.append(delete_popup_item)
 	content_label.text = json.get("content")
-	var create_time_dict: Dictionary = Application.adjust_to_beijing_time_from_unix_time(json.get("created_at"))
-	updated_at.text = "%s%s%s%s%s%s  %s:%s" %[
-		create_time_dict.get("year"), \
-		TranslationServer.translate("YEAR_NAME"), \
-		create_time_dict.get("month"), \
-		TranslationServer.translate("MONTH_NAME"), \
-		create_time_dict.get("day"), \
-		TranslationServer.translate("DAY_NAME1"), \
-		create_time_dict.get("hour"), \
-		create_time_dict.get("minute")
-		]
+	updated_at.text = Application.format_relative_time(json.get("created_at"))
 
 func _menu_callback(item_id: int) -> void:
 	if item_id == 0:

@@ -210,7 +210,7 @@ theme_override_font_sizes/font_size = 26
 text = "SecureTextEdit"
 
 [node name="SecureTextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEditPanel/MarginContainer/VBoxContainer" instance=ExtResource("9_sac5q")]
-custom_minimum_size = Vector2(210, 180)
+custom_minimum_size = Vector2(210, 320)
 layout_mode = 2
 
 [node name="ComboBoxPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]

@@ -205,6 +205,8 @@ layout_mode = 2
 [node name="WorkCardContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/SubmittedWorks"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
 columns = 8
 
 [node name="SubmittedWorksPaginationBar" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/SubmittedWorks" instance=ExtResource("11_g13d2")]

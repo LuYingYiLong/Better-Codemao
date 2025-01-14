@@ -4,6 +4,7 @@ extends PanelContainer
 @onready var pages = %Pages
 
 const ARROW_TEXTURE = preload("res://Resources/Textures/Arrow.svg")
+const LIGHT_ARROW_TEXTURE = preload("res://Resources/Textures/LightArrow.svg")
 const PAGE_CONTAINER_SCENE = preload("res://Scenes/PageContainer.tscn")
 
 const MAX_STRING_LENGTH: int = 16
@@ -40,7 +41,7 @@ func set_root_address(address_name: String, scene_path: String = "", data: Dicti
 	#获取第一页并播放向左推出动画后删除
 	var scene_node = pages.get_node("0")
 	if scene_node != null:
-		scene_node.name = "-1"
+		scene_node.name = "-999"
 		scene_node.queue_free()
 
 	var page_container_scene = PAGE_CONTAINER_SCENE.instantiate()
@@ -61,7 +62,8 @@ func append_address(address_name: String, scene_path: String = "", data: Diction
 	pages.add_child(page_container_scene)
 	page_container_scene.name = str(address_size - 1)
 	if !scene_path.is_empty(): page_container_scene.load_scene(scene_path, data)
-	address_tab_bar.add_tab(address_name, ARROW_TEXTURE)
+	if Settings.dark_mode == 0: address_tab_bar.add_tab(address_name, ARROW_TEXTURE)
+	else: address_tab_bar.add_tab(address_name, LIGHT_ARROW_TEXTURE)
 	address_tab_bar.current_tab = address_size - 1
 
 func _on_address_tab_bar_tab_selected(tab: int):
@@ -126,8 +128,8 @@ func _on_settings_config_update() -> void:
 		address_tab_bar.add_theme_color_override("font_selected_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
 		address_tab_bar.add_theme_color_override("font_unselected_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_unselected_color))
 	else:
-		address_tab_bar.add_theme_color_override("drop_mark_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))
-		address_tab_bar.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))
-		address_tab_bar.add_theme_color_override("font_hovered_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))
-		address_tab_bar.add_theme_color_override("font_selected_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))
+		address_tab_bar.add_theme_color_override("drop_mark_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_hovered_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_selected_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_selected_color))
 		address_tab_bar.add_theme_color_override("font_unselected_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))

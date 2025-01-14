@@ -55,10 +55,7 @@ func set_post_card_data(_data: Dictionary) -> void:
 	work_shop_tag.set_work_shop_data(user.get("work_shop_level", 0), \
 			user.get("work_shop_name", ""), \
 			user.get("subject_id", 0))
-	var create_time_dict: Dictionary = Application.adjust_to_beijing_time_from_unix_time(data.get("created_at"))
-	create_time.text = "%s/%s/%s" %[create_time_dict.get("year"), \
-			create_time_dict.get("month"), \
-			create_time_dict.get("day")]
+	create_time.text = Application.format_relative_time(data.get("created_at"))
 
 	post_authorized_tag.visible = data.get("is_authorized", false)
 	post_featured_tag.visible = data.get("is_featured", false)
