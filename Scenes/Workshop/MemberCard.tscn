@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bejbjipheidsf"]
 
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_xv2tr"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_xv2tr"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_arlt8"]
 [ext_resource type="Script" path="res://Scripts/Workshop/MemberCard.gd" id="2_dhvnh"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_hkmmu"]

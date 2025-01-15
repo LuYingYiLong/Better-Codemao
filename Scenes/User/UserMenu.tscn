@@ -1,8 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://b5o0hpr15s67y"]
+[gd_scene load_steps=34 format=3 uid="uid://b5o0hpr15s67y"]
 
 [ext_resource type="Script" path="res://Scripts/UserMenu.gd" id="1_lvrm4"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_7uk8a"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_7uk8a"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_4wdba"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_bgjsx"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="4_itvox"]
 [ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="5_ufplj"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="6_3k5fd"]
@@ -10,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://daq0uuavjfgf1" path="res://Scenes/AuthorLevelTag.tscn" id="8_fotsh"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="9_dhe2u"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="10_oqh5g"]
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="10_w1ogm"]
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="11_14dwl"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="10_w1ogm"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="11_14dwl"]
 [ext_resource type="FontFile" uid="uid://dndmarojekfh5" path="res://Resources/Fonts/Segoe Fluent Icons.ttf" id="11_tbaca"]
 [ext_resource type="Texture2D" uid="uid://y646rsxl202r" path="res://Resources/Textures/Edit.svg" id="13_3edbl"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="13_i2jmu"]
@@ -107,6 +108,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_7uk8a")
 horizontal_scroll_mode = 0
+
+[node name="ThemePainter" parent="ScrollContainer" instance=ExtResource("3_bgjsx")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
@@ -291,6 +294,8 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_w1ogm")
 text = "DETAILS_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer/DetailsButton" instance=ExtResource("3_bgjsx")]
 
 [node name="Fans&Attention" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["theme-normal"]]
 unique_name_in_owner = true
@@ -578,7 +583,7 @@ visible = false
 layout_mode = 2
 
 [node name="WorkList" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["theme-normal"]]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 304)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("11_14dwl")
 
@@ -603,7 +608,6 @@ uppercase = true
 [node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_7uk8a")
 horizontal_scroll_mode = 3
 
 [node name="WorkCardContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorkList/MarginContainer/VBoxContainer/ScrollContainer"]
@@ -614,7 +618,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 8
 
 [node name="CollectionWorkList" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["theme-normal"]]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 304)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("11_14dwl")
 
@@ -639,7 +643,6 @@ uppercase = true
 [node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_7uk8a")
 horizontal_scroll_mode = 3
 
 [node name="CollectionWorkCardContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CollectionWorkList/MarginContainer/VBoxContainer/ScrollContainer"]

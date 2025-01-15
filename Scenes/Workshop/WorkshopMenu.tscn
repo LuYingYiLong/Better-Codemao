@@ -1,12 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://qvuj5812nkeq"]
+[gd_scene load_steps=20 format=3 uid="uid://qvuj5812nkeq"]
 
 [ext_resource type="Script" path="res://Scripts/WorkshopMenu.gd" id="1_j6pax"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_ksf5l"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_nwk3k"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_nwk3k"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_st6xx"]
 [ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="2_uu257"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_n8alm"]
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="4_hp73l"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_eglc4"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="4_hp73l"]
 [ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="6_prnkx"]
 [ext_resource type="Script" path="res://Scripts/SelectorBarItem.gd" id="7_shp27"]
 [ext_resource type="PackedScene" uid="uid://b70w7s5k2wnp7" path="res://Scenes/BaseUIComponents/AutoSuggestBox.tscn" id="8_klqll"]
@@ -69,6 +70,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_nwk3k")
 
+[node name="ThemePainter" parent="ScrollContainer" instance=ExtResource("4_eglc4")]
+
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -104,6 +107,8 @@ size_flags_horizontal = 8
 mouse_default_cursor_shape = 2
 theme = ExtResource("4_hp73l")
 text = "GO_TO_THE_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/GoToButton" instance=ExtResource("4_eglc4")]
 
 [node name="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_ksf5l")]
 layout_mode = 2

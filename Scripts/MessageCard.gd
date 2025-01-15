@@ -15,10 +15,6 @@ var post_id: int
 var work_id: int
 var subject_id: int
 
-func _ready() -> void:
-	Settings.settings_config_update.connect(_on_settings_config_update)
-	_on_settings_config_update()
-
 func set_message_card_data(_data: Dictionary) -> void:
 	data = _data
 	type = data.get("type")
@@ -113,33 +109,3 @@ func _on_link_button_pressed() -> void:
 		Application.append_address.emit(TranslationServer.translate("WORKSHOP_NAME"), \
 			"res://Scenes/Workshop/ShopMenu.tscn", \
 			{"id": subject_id})
-
-func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0:
-		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelStyle.tres"))
-		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
-		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
-		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
-		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
-		link_button.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		link_button.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
-		link_button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
-		link_button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
-		link_button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
-		content_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		comment_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-	else:
-		add_theme_stylebox_override("panel", load("res://Resources/Themes/DefaultPanelDarknessStyle.tres"))
-		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		nickname_label.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
-		nickname_label.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
-		nickname_label.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
-		nickname_label.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
-		link_button.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		link_button.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
-		link_button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
-		link_button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
-		link_button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
-		content_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		comment_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))

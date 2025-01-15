@@ -44,22 +44,21 @@ func load_image(url: String, _name_: String = "") -> void:
 		image_request.request(url, ["Content-Type: image/png"])
 
 func _on_image_request_request_completed(result: int, _response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	if result != HTTPRequest.RESULT_SUCCESS:
+	if result != HTTPRequest.RESULT_SUCCESS or body.is_empty():
 		push_error("Could not get data")
+		return
+	if _url.ends_with(".gif") or _url.ends_with(".dll"):
+		var animated_sprite_2d := AnimatedSprite2D.new()
+		texture = null
+		add_child(animated_sprite_2d)
+		var my_size: Vector2 = size
+		thread_helper.join_function(func(): _load_gif_from_thread(animated_sprite_2d, body, my_size))
+		thread_helper.start()
 	else:
-		if _url.ends_with(".gif") or _url.ends_with(".dll"):
-			var animated_sprite_2d := AnimatedSprite2D.new()
-			texture = null
-			add_child(animated_sprite_2d)
-			var my_size: Vector2 = size
-			thread_helper.join_function(func(): _load_gif_from_thread(animated_sprite_2d, body, my_size))
-			thread_helper.start()
-		else:
-			thread_helper.join_function(func(): _load_image_from_thread(body, headers))
-			thread_helper.start()
+		thread_helper.join_function(func(): _load_image_from_thread(body, headers))
+		thread_helper.start()
 
 func _load_image_from_thread(buffer: PackedByteArray, headers: PackedStringArray) -> void:
-	if buffer.is_empty(): return
 	var image = Image.new()
 	var error
 	if headers.has("Content-Type: image/jpeg"):

@@ -6,8 +6,10 @@ extends Button
 @onready var animation_player = %AnimationPlayer
 
 const COLLAPSE_PAGE_BUTTON_SCENE = preload("res://Scenes/BaseUIComponents/CollapsePageButton.tscn")
-const BUTTON_THEME1 = preload("res://Resources/Themes/ButtonTheme1.tres")
-const BUTTON_THEME4 = preload("res://Resources/Themes/ButtonTheme4.tres")
+const ACCENT_BUTTON_LIGHT = preload("res://Resources/Themes/AccentButton-Light.tres")
+const ACCENT_BUTTON_DARK = preload("res://Resources/Themes/AccentButton-Dark.tres")
+const SIMPLE_BUTTON_LIGHT = preload("res://Resources/Themes/SimpleButton-Light.tres")
+const SIMPLE_BUTTON_DARK = preload("res://Resources/Themes/SimpleButton-Dark.tres")
 
 signal on_pressed(page: int)
 
@@ -15,8 +17,14 @@ var page: int = -1
 var current_page: int = -1:
 	set(value):
 		current_page = value
-		if page == current_page: theme = BUTTON_THEME1
-		else: theme = BUTTON_THEME4
+		var dark_mode: int = 0
+		if !Engine.is_editor_hint(): dark_mode = Settings.dark_mode
+		if page == current_page:
+			if dark_mode == 0: theme = ACCENT_BUTTON_LIGHT
+			else: theme = ACCENT_BUTTON_DARK
+		else:
+			if dark_mode == 0: theme = SIMPLE_BUTTON_LIGHT
+			else: theme = SIMPLE_BUTTON_DARK
 var collapse_pages: Vector2i
 
 func set_page(_page: int) -> void:

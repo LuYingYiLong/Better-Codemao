@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c37vy0oob4v5k"]
 
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/MainPopupMenu.gd" id="1_28uko"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_kc72k"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_kc72k"]
 [ext_resource type="PackedScene" uid="uid://ujouhqgfvlnm" path="res://Scenes/BaseUIComponents/PopupButton.tscn" id="2_paejy"]
+
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nm8o"]
 bg_color = Color(1, 1, 1, 0.941176)

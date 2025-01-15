@@ -1,19 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://bi80elkyb4v8g"]
+[gd_scene load_steps=12 format=3 uid="uid://bi80elkyb4v8g"]
 
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="1_rqsrl"]
 [ext_resource type="Script" path="res://Scripts/Library/LibraryMenu.gd" id="1_t0hba"]
-[ext_resource type="Theme" uid="uid://70upt1e30r52" path="res://Resources/Themes/ButtonTheme3.tres" id="2_0h76v"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_lbead"]
-[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_ruyu1"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="4_sd72x"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="5_cb537"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="5_cb537"]
+[ext_resource type="PackedScene" uid="uid://bsclky2hfp00n" path="res://Scenes/BaseUIComponents/TabBar.tscn" id="5_uafdj"]
 [ext_resource type="PackedScene" uid="uid://bfiqi7q8rbtwi" path="res://Scenes/Library/FanficCard.tscn" id="6_1lsxp"]
+[ext_resource type="Script" path="res://Scripts/TabItem.gd" id="6_23ykk"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_vcagn"]
-color = Color(0, 0, 0, 0.196078)
-grow_begin = -6.0
-grow_end = -6.0
-vertical = true
+[sub_resource type="Resource" id="Resource_xalsv"]
+script = ExtResource("6_23ykk")
+title = "FANFIC_NAME"
+text = ""
+
+[sub_resource type="Resource" id="Resource_bgnjb"]
+script = ExtResource("6_23ykk")
+title = "COMIC_NAME"
+text = ""
+
+[sub_resource type="Resource" id="Resource_cu3b0"]
+script = ExtResource("6_23ykk")
+title = "FACTION_NAME"
+text = ""
 
 [node name="LibraryMenu" type="Control"]
 layout_mode = 3
@@ -62,47 +71,11 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TabBar" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
+[node name="TabBar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_uafdj")]
 layout_mode = 2
-
-[node name="FanficLabel" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_0h76v")
-theme_override_fonts/font = ExtResource("3_ruyu1")
-text = "FANFIC_NAME"
-flat = true
-text_overrun_behavior = 3
-
-[node name="BeginLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxLine_vcagn")
-
-[node name="ComicLabel" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_0h76v")
-theme_override_fonts/font = ExtResource("3_ruyu1")
-text = "COMIC_NAME"
-flat = true
-text_overrun_behavior = 3
-
-[node name="EndLine" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxLine_vcagn")
-
-[node name="FactionLabel" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_0h76v")
-theme_override_fonts/font = ExtResource("3_ruyu1")
-text = "FACTION_NAME"
-flat = true
-text_overrun_behavior = 3
+tab_items = Array[ExtResource("6_23ykk")]([SubResource("Resource_xalsv"), SubResource("Resource_bgnjb"), SubResource("Resource_cu3b0")])
+current_tab = 0
+alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

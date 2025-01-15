@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bemvf733kqr23"]
+[gd_scene load_steps=10 format=3 uid="uid://bemvf733kqr23"]
 
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/Tab.gd" id="1_g8qba"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="1_kb4nq"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_qsy30"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_ferxl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a1qwe"]
 
@@ -101,17 +102,24 @@ theme_override_constants/separation = 0
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("1_kb4nq")
 theme_override_font_sizes/font_size = 24
+vertical_alignment = 1
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="VBoxContainer/TitleLabel" instance=ExtResource("3_ferxl")]
 
 [node name="TextLabel" type="Label" parent="VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_qsy30")
+vertical_alignment = 1
 uppercase = true
+
+[node name="ThemePainter" parent="VBoxContainer/TextLabel" instance=ExtResource("3_ferxl")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -127,6 +135,7 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_right = 0
 
 [node name="Line" type="PanelContainer" parent="MarginContainer"]
+unique_name_in_owner = true
 self_modulate = Color(0, 0.403922, 0.752941, 1)
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2

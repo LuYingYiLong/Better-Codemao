@@ -2,8 +2,8 @@
 
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_f3m7t"]
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/FlyTextEdit.gd" id="1_h8a38"]
-[ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/ButtonTheme4.tres" id="3_0igr5"]
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="4_783os"]
+[ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/SimpleButton-Light.tres" id="3_0igr5"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="4_783os"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyinr"]
 bg_color = Color(1, 1, 1, 1)

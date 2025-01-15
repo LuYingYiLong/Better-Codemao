@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4rrphs7froty"]
 
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="1_xr7xb"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="1_xr7xb"]
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/ContentDialogButton.gd" id="2_8ak4r"]
 
 [node name="ContentDialogButton" type="Button"]

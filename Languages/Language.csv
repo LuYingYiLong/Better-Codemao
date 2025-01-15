@@ -87,7 +87,7 @@ LANGUAGE_NAME,语言,Language
 CHINESE_NAME,中文,Chinese
 ENGLISH_NAME,英文,English
 ABOUT_NAME,关于,About
-ABOUT_DESCRIPTION,MIT License，GitHub，QQ群,"MIT License, GitHub, QQ group chat"
+ABOUT_DESCRIPTION,AGPL-3.0 License，GitHub，QQ群,"AGPL-3.0 License, GitHub, QQ group chat"
 SOURCE_CODE_NAME,源代码,Source code
 JOIN_US_NAME,加入我们,Join us
 JOIN_US_DESCRIPTION,QQ群,QQ group chat

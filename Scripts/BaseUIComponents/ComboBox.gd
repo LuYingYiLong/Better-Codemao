@@ -7,7 +7,6 @@ extends PanelContainer
 		label.text = items[selected].text
 		item_changed.emit(items[selected])
 
-@onready var focus_style = %FocusStyle
 @onready var label = %Label
 @onready var down_arrow_animation_player = %DownArrowAnimationPlayer
 
@@ -46,12 +45,6 @@ func _on_gui_input(event) -> void:
 			selected = clampi(selected - 1, 0, items.size() - 1)
 		if event.button_mask == 16 and event.button_index == 5:
 			selected = clampi(selected + 1, 0, items.size() - 1)
-
-func _on_base_style_mouse_entered() -> void:
-	focus_style.show()
-
-func _on_base_style_mouse_exited() -> void:
-	focus_style.hide()
 
 func _on_popup_menu_index_pressed(index: int) -> void:
 	selected = index

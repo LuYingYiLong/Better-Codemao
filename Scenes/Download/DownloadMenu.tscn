@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckwf8xv1rwgjp"]
 
 [ext_resource type="Script" path="res://Scripts/Download/DownloadMenu.gd" id="1_7jigl"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_sbfko"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_sbfko"]
 
 [node name="DownloadMenu" type="Control"]
 layout_mode = 3

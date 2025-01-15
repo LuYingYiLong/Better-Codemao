@@ -45,6 +45,7 @@ var user_id: int:
 			honor_request.request("https://api.codemao.cn/creation-tools/v1/user/center/honor?user_id=%s" %user_id, \
 					[], HTTPClient.METHOD_GET)
 
+var max_display_number: int
 var doing_text: String
 
 func _ready() -> void:
@@ -52,14 +53,14 @@ func _ready() -> void:
 	Settings.update_theme()
 
 func _process(_delta) -> void:
-	var number: int = floori((size.x - 80) / 162)
+	max_display_number = floori((size.x - 80) / 162)
 	var count: int = 0
 	for node in work_card_container.get_children():
-		node.visible = count < number
+		node.visible = count < max_display_number
 		count += 1
 	count = 0
 	for node in collection_work_card_container.get_children():
-		node.visible = count < number
+		node.visible = count < max_display_number
 		count += 1
 
 func user_avatar_update() -> void:

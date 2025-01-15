@@ -1,26 +1,32 @@
-[gd_scene load_steps=31 format=3 uid="uid://cymjxc2cku07l"]
+[gd_scene load_steps=40 format=3 uid="uid://cymjxc2cku07l"]
 
 [ext_resource type="Script" path="res://Scripts/Testground.gd" id="1_3r2ct"]
 [ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="1_kesxp"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="2_yyy4w"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_yyy4w"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="4_grab5"]
 [ext_resource type="Texture2D" uid="uid://dtyf6mejqb7mf" path="res://Resources/Textures/Forum.svg" id="4_gt30v"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_uhfn0"]
 [ext_resource type="Texture2D" uid="uid://dir3ebxrqxnao" path="res://Resources/Textures/Workshop.svg" id="4_unva7"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_ja422"]
 [ext_resource type="Texture2D" uid="uid://ba8o2b06nowk1" path="res://Resources/Textures/Library.svg" id="8_o14c5"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="8_vypfj"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="9_sac5q"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="10_hmxdw"]
 [ext_resource type="PackedScene" uid="uid://dhhh13oso15fl" path="res://Scenes/BaseUIComponents/ToggleSwitch.tscn" id="10_lt0ct"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="11_pmn8x"]
 [ext_resource type="PackedScene" uid="uid://cd2hiax67rgqi" path="res://Scenes/BaseUIComponents/ComboBox.tscn" id="12_b8yot"]
 [ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="13_3m03y"]
 [ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="14_c3xo4"]
 [ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="14_rp0w0"]
 [ext_resource type="Script" path="res://Scripts/SelectorBarItem.gd" id="15_i53lu"]
 [ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="15_qr6fp"]
-[ext_resource type="Texture2D" uid="uid://cwo42vvibmedn" path="res://Resources/Textures/Run.svg" id="16_8d527"]
+[ext_resource type="Texture2D" uid="uid://mb21wmt63jw" path="res://Resources/Textures/Play.svg" id="16_8d527"]
 [ext_resource type="Texture2D" uid="uid://exor33llkxq5" path="res://Resources/Textures/Save.svg" id="17_b1xk1"]
 [ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="18_0wdjv"]
 [ext_resource type="PackedScene" uid="uid://b70w7s5k2wnp7" path="res://Scenes/BaseUIComponents/AutoSuggestBox.tscn" id="21_qgycy"]
+[ext_resource type="PackedScene" uid="uid://drbgm8oplu7mk" path="res://Scenes/BaseUIComponents/HyperlinkButton.tscn" id="24_a2fpv"]
+[ext_resource type="PackedScene" uid="uid://bsclky2hfp00n" path="res://Scenes/BaseUIComponents/TabBar.tscn" id="24_moay8"]
+[ext_resource type="Script" path="res://Scripts/TabItem.gd" id="25_hu64c"]
 
 [sub_resource type="Resource" id="Resource_3ik4y"]
 script = ExtResource("13_3m03y")
@@ -56,6 +62,21 @@ icon = ExtResource("17_b1xk1")
 script = ExtResource("15_i53lu")
 text = "View"
 icon = ExtResource("18_0wdjv")
+
+[sub_resource type="Resource" id="Resource_j450x"]
+script = ExtResource("25_hu64c")
+title = "Run"
+text = "Run and run"
+
+[sub_resource type="Resource" id="Resource_y7b26"]
+script = ExtResource("25_hu64c")
+title = "Save"
+text = "Save and Save"
+
+[sub_resource type="Resource" id="Resource_c6le3"]
+script = ExtResource("25_hu64c")
+title = "View"
+text = "123"
 
 [sub_resource type="Animation" id="Animation_pgrvm"]
 resource_name = "new_animation"
@@ -101,6 +122,9 @@ theme_override_constants/separation = 16
 
 [node name="BaseButtonPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel" instance=ExtResource("5_ja422")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel"]
 layout_mode = 2
@@ -118,6 +142,8 @@ theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("4_uhfn0")
 theme_override_font_sizes/font_size = 26
 text = "BaseButton"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
 
 [node name="BaseButtonContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/BaseButtonPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -140,8 +166,39 @@ icon = ExtResource("8_o14c5")
 text = "Library"
 group = "BaseButtonGroup"
 
+[node name="ProgressBarPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/ProgressBarPanel" instance=ExtResource("5_ja422")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/ProgressBarPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/ProgressBarPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/ProgressBarPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_uhfn0")
+theme_override_font_sizes/font_size = 26
+text = "ProgressBar"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/ProgressBarPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
+[node name="ProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/ProgressBarPanel/MarginContainer/VBoxContainer" instance=ExtResource("11_pmn8x")]
+layout_mode = 2
+
 [node name="PaginationBarPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PaginationBarPanel" instance=ExtResource("5_ja422")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PaginationBarPanel"]
 layout_mode = 2
@@ -160,14 +217,20 @@ theme_override_fonts/font = ExtResource("4_uhfn0")
 theme_override_font_sizes/font_size = 26
 text = "PaginationBar"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PaginationBarPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
 [node name="PaginationBar" parent="ScrollContainer/MarginContainer/VBoxContainer/PaginationBarPanel/MarginContainer/VBoxContainer" instance=ExtResource("8_vypfj")]
 layout_mode = 2
+size_flags_horizontal = 4
 total = 8
 size = 6
 current_page = 1
 
 [node name="ToggleSwitchPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/ToggleSwitchPanel" instance=ExtResource("5_ja422")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/ToggleSwitchPanel"]
 layout_mode = 2
@@ -186,11 +249,16 @@ theme_override_fonts/font = ExtResource("4_uhfn0")
 theme_override_font_sizes/font_size = 26
 text = "ToggleSwitch"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/ToggleSwitchPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
 [node name="ToggleSwitch" parent="ScrollContainer/MarginContainer/VBoxContainer/ToggleSwitchPanel/MarginContainer/VBoxContainer" instance=ExtResource("10_lt0ct")]
 layout_mode = 2
 
 [node name="SecureTextEditPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEditPanel" instance=ExtResource("5_ja422")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEditPanel"]
 layout_mode = 2
@@ -209,12 +277,17 @@ theme_override_fonts/font = ExtResource("4_uhfn0")
 theme_override_font_sizes/font_size = 26
 text = "SecureTextEdit"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEditPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
 [node name="SecureTextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/SecureTextEditPanel/MarginContainer/VBoxContainer" instance=ExtResource("9_sac5q")]
 custom_minimum_size = Vector2(210, 320)
 layout_mode = 2
 
 [node name="ComboBoxPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/ComboBoxPanel" instance=ExtResource("5_ja422")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/ComboBoxPanel"]
 layout_mode = 2
@@ -233,12 +306,17 @@ theme_override_fonts/font = ExtResource("4_uhfn0")
 theme_override_font_sizes/font_size = 26
 text = "ComboBox"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/ComboBoxPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
 [node name="ComboBox" parent="ScrollContainer/MarginContainer/VBoxContainer/ComboBoxPanel/MarginContainer/VBoxContainer" instance=ExtResource("12_b8yot")]
 layout_mode = 2
 items = Array[ExtResource("13_3m03y")]([SubResource("Resource_3ik4y"), SubResource("Resource_kx2i8")])
 
 [node name="DropDownButtonPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DropDownButtonPanel" instance=ExtResource("5_ja422")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DropDownButtonPanel"]
 layout_mode = 2
@@ -257,6 +335,8 @@ theme_override_fonts/font = ExtResource("4_uhfn0")
 theme_override_font_sizes/font_size = 26
 text = "DropDownButton"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DropDownButtonPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
 [node name="DropDownButton" parent="ScrollContainer/MarginContainer/VBoxContainer/DropDownButtonPanel/MarginContainer/VBoxContainer" instance=ExtResource("14_c3xo4")]
 layout_mode = 2
 icon = ExtResource("15_qr6fp")
@@ -265,6 +345,9 @@ popup_items = Array[ExtResource("13_3m03y")]([SubResource("Resource_5mini"), Sub
 
 [node name="SelectorBarPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/SelectorBarPanel" instance=ExtResource("5_ja422")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/SelectorBarPanel"]
 layout_mode = 2
@@ -283,13 +366,48 @@ theme_override_fonts/font = ExtResource("4_uhfn0")
 theme_override_font_sizes/font_size = 26
 text = "SelectorBar"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/SelectorBarPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
 [node name="SelectorBar" parent="ScrollContainer/MarginContainer/VBoxContainer/SelectorBarPanel/MarginContainer/VBoxContainer" instance=ExtResource("14_rp0w0")]
 layout_mode = 2
 selector_bar_items = Array[ExtResource("15_i53lu")]([SubResource("Resource_f4r1j"), SubResource("Resource_rx6j1"), SubResource("Resource_texpb")])
 items_width = 128.0
 
+[node name="TabBarPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/TabBarPanel" instance=ExtResource("5_ja422")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/TabBarPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/TabBarPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/TabBarPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_uhfn0")
+theme_override_font_sizes/font_size = 26
+text = "TabBar"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/TabBarPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
+[node name="TabBar" parent="ScrollContainer/MarginContainer/VBoxContainer/TabBarPanel/MarginContainer/VBoxContainer" instance=ExtResource("24_moay8")]
+layout_mode = 2
+tab_items = Array[ExtResource("25_hu64c")]([SubResource("Resource_j450x"), SubResource("Resource_y7b26"), SubResource("Resource_c6le3")])
+current_tab = 0
+
 [node name="AutoSuggestBoxPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/AutoSuggestBoxPanel" instance=ExtResource("5_ja422")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/AutoSuggestBoxPanel"]
 layout_mode = 2
@@ -308,8 +426,40 @@ theme_override_fonts/font = ExtResource("4_uhfn0")
 theme_override_font_sizes/font_size = 26
 text = "AutoSuggestBox"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/AutoSuggestBoxPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
 [node name="AutoSuggestBox" parent="ScrollContainer/MarginContainer/VBoxContainer/AutoSuggestBoxPanel/MarginContainer/VBoxContainer" instance=ExtResource("21_qgycy")]
 layout_mode = 2
+
+[node name="HyperlinkPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_hmxdw")]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_grab5")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/HyperlinkPanel" instance=ExtResource("5_ja422")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HyperlinkPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HyperlinkPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HyperlinkPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_uhfn0")
+theme_override_font_sizes/font_size = 26
+text = "Hyperlink"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/HyperlinkPanel/MarginContainer/VBoxContainer/Label" instance=ExtResource("5_ja422")]
+
+[node name="HyperlinkButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HyperlinkPanel/MarginContainer/VBoxContainer" instance=ExtResource("24_a2fpv")]
+layout_mode = 2
+text = "BetterCodemao"
+hyperlink = "https://github.com/LuYingYiLong/Better-Codemao"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

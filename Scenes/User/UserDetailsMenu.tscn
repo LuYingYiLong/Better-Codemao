@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://Scripts/UserDetailsMenu.gd" id="1_jjlpv"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_jb842"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_rk1a2"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_rk1a2"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="4_rhmyc"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_xnpbd"]
 [ext_resource type="Theme" uid="uid://dxmuchrxdh1vs" path="res://Resources/Themes/LineEditTheme2.tres" id="5_l1qr1"]
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="5_w1vcs"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="5_w1vcs"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_1sra0"]
 [ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="6_3i245"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="7_7jojy"]

@@ -1,13 +1,14 @@
-[gd_scene load_steps=32 format=3 uid="uid://di7yxffcqkw44"]
+[gd_scene load_steps=33 format=3 uid="uid://di7yxffcqkw44"]
 
 [ext_resource type="Script" path="res://Scripts/Forum/PostMenu.gd" id="1_na1xp"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_e7c64"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_hyegb"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_qpd8g"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_4qe0f"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_ri125"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_ri125"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_ftsgq"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="4_svy5b"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_xut8d"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="5_ytj6e"]
 [ext_resource type="Texture2D" uid="uid://ddeh8htl365sg" path="res://Resources/Textures/RichText.svg" id="8_8nsta"]
 [ext_resource type="Texture2D" uid="uid://di1fixh8mr52o" path="res://Resources/Textures/Link.svg" id="8_ums52"]
@@ -88,6 +89,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_ri125")
+
+[node name="ThemePainter" parent="ScrollContainer" instance=ExtResource("4_xut8d")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2

@@ -90,7 +90,7 @@ func html_to_text(html: String):
 		html = html.replace(result.get_string(), "")
 	return html
 
-func html_to_bbcode(html: String):
+func html_to_bbcode(html: String) -> String:
 	var regex = RegEx.new()
 	regex.compile("(<.+?>|&nbsp;)")
 	#var results = []
@@ -98,20 +98,22 @@ func html_to_bbcode(html: String):
 		#results.push_back(result.get_string())
 		var get_string: String = result.get_string()
 		match get_string:
+			'<p style="text-align: right;">': html = html.replace(get_string, "[right]")
 			'<p style="text-align: center;">': html = html.replace(get_string, "[center]")
 			'<p style="text-align: left;">': html = html.replace(get_string, "[left]")
-			'<p style="text-align: right;">': html = html.replace(get_string, "[right]")
-			'<span style="font-size: x-喵all;">': html = html.replace(get_string, "[font_size=10]")
+			'<span style="font-size: x-喵all;">': html = html.replace(get_string, "[font_size=12]")
 			'<span style="font-size: 喵all;">': html = html.replace(get_string, "[font_size=14]")
-			'<span style="font-size: medium;">': html = html.replace(get_string, "[font_size=18]")
+			'<span style="font-size: medium;">': html = html.replace(get_string, "[font_size=16]")
 			'<span style="font-size: large;">': html = html.replace(get_string, "[font_size=22]")
 			'<span style="font-size: x-large;">': html = html.replace(get_string, "[font_size=26]")
 			'<span style="font-size: xx-large;">': html = html.replace(get_string, "[font_size=30]")
 			'<strong>': html = html.replace(get_string, "[b]")
-			'<u>': html = html.replace(get_string, "[u]")
-			'</u>': html = html.replace(get_string, "[/u]")
-			'<code>': html = html.replace(get_string, "|CODE||BEGIN|")
-			'</code>': html = html.replace(get_string, "|END||CODE|")
+			'</strong>': html = html.replace(get_string, "[/b]")
+			'<span style="text-decoration: underline;">': html = html.replace(get_string, "[u]")
+			'</span>': html = html.replace(get_string, "[/u]")
+			'<pre class="language-python">': html = html.replace(get_string, "[language=python]")
+			'<code>': html = html.replace(get_string, "[code][begin]")
+			'</code>': html = html.replace(get_string, "[end][code]")
 			#提取图片链接：https:\/\/cdn-community.codemao.cn\/.*?\.png|jpeg
 			_:
 				if get_string.contains("https://cdn-community.bcmcdn.com/47/community/"):
@@ -120,11 +122,40 @@ func html_to_bbcode(html: String):
 					var image_link_result = image_link_regex.search(get_string)
 					if image_link_result:
 						var image_link: String = image_link_result.get_string()
-						image_link = image_link.replace('"', '|SPLIT|')
+						image_link = image_link.replace('"', '[split]')
 						html = html.replace(get_string, image_link)
 				else:
 					html = html.replace(get_string, "")
 	return html
+
+func bbcode_to_html(bbcode: String) -> String:
+	var regex = RegEx.new()
+	
+	# 匹配基础标签
+	regex.compile("(\\[.+?\\])")
+	for result in regex.search_all(bbcode):
+		var get_string: String = result.get_string()
+		match get_string:
+			'[b]': bbcode = bbcode.replace(get_string, "<strong>")
+			'[/b]': bbcode = bbcode.replace(get_string, "</strong>")
+			'[u]': bbcode = bbcode.replace(get_string, '<span style="text-decoration: underline;">')
+			'[/u]': bbcode = bbcode.replace(get_string, "</span>")
+			'[right]': bbcode = bbcode.replace(get_string, '<p style="text-align: right;">')
+			'[/right]': bbcode = bbcode.replace(get_string, "</p>")
+			'[center]': bbcode = bbcode.replace(get_string, '<p style="text-align: center;">')
+			'[/center]': bbcode = bbcode.replace(get_string, "</p>")
+			'[left]': bbcode = bbcode.replace(get_string, '<p style="text-align: left;">')
+			'[/left]': bbcode = bbcode.replace(get_string, "</p>")
+			'[split]': bbcode = bbcode.replace(get_string, "")
+			'[code]': bbcode = bbcode.replace(get_string, "")
+			'[begin]': bbcode = bbcode.replace(get_string, "<code>")
+			'[end]': bbcode = bbcode.replace(get_string, "</code>")
+			'[/font_size]': bbcode = bbcode.replace(get_string, "</span>")
+			_:
+				if get_string.contains("color"): bbcode = bbcode.replace(get_string, '<span style="color: %s;">' %get_string.get_slice("=", 1).trim_suffix("]"))
+				if get_string.contains("font_size"): bbcode = bbcode.replace(get_string, '<span style="font-size: %spx;">' %get_string.get_slice("=", 1).trim_suffix("]"))
+
+	return bbcode
 
 #字符串转16进制
 func string_to_hex(input: String) -> String:

@@ -1,0 +1,53 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dyqhgkmvhqdfk"]
+
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_vf2xq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jsgm"]
+content_margin_left = 4.0
+bg_color = Color(1, 1, 1, 0.0980392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74, 0.74, 0.74, 0.490196)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwd8h"]
+content_margin_left = 4.0
+bg_color = Color(1, 1, 1, 0.0980392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74, 0.74, 0.74, 0.490196)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk20r"]
+content_margin_left = 4.0
+bg_color = Color(1, 1, 1, 0.0980392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74, 0.74, 0.74, 0.490196)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0.811765, 0.811765, 0.811765, 1)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/selection_color = Color(0, 0.443137, 0.784314, 1)
+LineEdit/fonts/font = ExtResource("1_vf2xq")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_1jsgm")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_jwd8h")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_jk20r")

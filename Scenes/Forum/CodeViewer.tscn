@@ -5,6 +5,7 @@
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_uk8jj"]
 [ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="3_neyad"]
 [ext_resource type="FontFile" uid="uid://bttiv76brd75q" path="res://Resources/Fonts/JetBrainsMono-Medium.ttf" id="4_04h34"]
+[ext_resource type="SyntaxHighlighter" uid="uid://ds4ma1237b1wu" path="res://Resources/Themes/PythonSyntaxHighlighter.tres" id="6_qvnky"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8n8q"]
 
@@ -125,12 +126,6 @@ VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_6a041")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_hcnps")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_n1jed")
 
-[sub_resource type="CodeHighlighter" id="CodeHighlighter_bwske"]
-number_color = Color(0.258824, 1, 0.760784, 1)
-symbol_color = Color(0.611765, 0.721569, 0.909804, 1)
-function_color = Color(0.988235, 0.435294, 0.513726, 1)
-member_variable_color = Color(0.321569, 0.654902, 0.933333, 1)
-
 [node name="CodeViewer" type="PanelContainer"]
 offset_right = 453.0
 offset_bottom = 294.0
@@ -191,7 +186,7 @@ text = "func _ready():
 	print(\"Hello world\")"
 editable = false
 scroll_fit_content_height = true
-syntax_highlighter = SubResource("CodeHighlighter_bwske")
+syntax_highlighter = ExtResource("6_qvnky")
 gutters_draw_line_numbers = true
 
 [connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/CopyButton" to="." method="_on_copy_button_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://w52apwwhxm62"]
+[gd_scene load_steps=9 format=3 uid="uid://w52apwwhxm62"]
 
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_jot2d"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_jot2d"]
 [ext_resource type="Script" path="res://Scripts/WorkshopCard.gd" id="1_uwlk2"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_s6kuc"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_hu32r"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_i2t4w"]
 [ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="4_7iqac"]
 
@@ -23,6 +24,8 @@ custom_minimum_size = Vector2(512, 128)
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = ExtResource("1_jot2d")
 script = ExtResource("1_uwlk2")
+
+[node name="ThemePainter" parent="." instance=ExtResource("3_hu32r")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -51,7 +54,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -7
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
@@ -59,7 +67,9 @@ theme_override_fonts/font = ExtResource("4_7iqac")
 theme_override_font_sizes/font_size = 24
 text = "Name"
 
-[node name="DescriptionLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/NameLabel" instance=ExtResource("3_hu32r")]
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -69,6 +79,8 @@ theme_override_constants/line_spacing = -4
 text = "Description"
 autowrap_mode = 2
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("3_hu32r")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -80,6 +92,8 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 text = "MANAGER_NAME"
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/ManagerLabel" instance=ExtResource("3_hu32r")]
 
 [node name="Mask" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 clip_children = 1
@@ -98,6 +112,8 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 text = "SUB_MANAGER_NAME"
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/SubManagerLabel" instance=ExtResource("3_hu32r")]
 
 [node name="Mask2" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 clip_children = 1

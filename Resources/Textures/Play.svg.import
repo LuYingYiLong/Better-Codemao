@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xwrgwh5h8skf"
-path="res://.godot/imported/Reboot.svg-44ad02644e3b4e81b7efede3b115c567.ctex"
+uid="uid://mb21wmt63jw"
+path="res://.godot/imported/Play.svg-4daa8423b7b46f33171bf82dba211b64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Reboot.svg"
-dest_files=["res://.godot/imported/Reboot.svg-44ad02644e3b4e81b7efede3b115c567.ctex"]
+source_file="res://Resources/Textures/Play.svg"
+dest_files=["res://.godot/imported/Play.svg-4daa8423b7b46f33171bf82dba211b64.ctex"]
 
 [params]
 

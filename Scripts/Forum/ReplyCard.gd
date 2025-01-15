@@ -61,7 +61,7 @@ func set_reply_card_data(json: Dictionary):
 func populate_content(content: String):
 	for node in contents_container.get_children():
 		node.queue_free()
-	var content_array: PackedStringArray = Application.html_to_bbcode(content).split("|SPLIT|")
+	var content_array: PackedStringArray = Application.html_to_bbcode(content).split("[split]")
 	for content_type: String in content_array:
 		if content_type.contains("https://cdn-community.bcmcdn.com/47/community/"):
 			var image_url_loader = IMAGE_URL_LOADER_SCENE.instantiate()
@@ -69,14 +69,14 @@ func populate_content(content: String):
 			image_url_loader.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 			image_url_loader.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 			image_url_loader.load_image(content_type)
-		elif content_type.contains("|CODE|"):
-			var split: PackedStringArray = content_type.split("|CODE|")
+		elif content_type.contains("[code]"):
+			var split: PackedStringArray = content_type.split("[code]")
 			for _content: String in split:
 				if _content.is_empty(): continue
-				elif _content.begins_with("|BEGIN|") and _content.ends_with("|END|"):
+				elif _content.begins_with("[begin]") and _content.ends_with("[end]"):
 					var code_viewer_scene = load("res://Scenes/Forum/CodeViewer.tscn").instantiate()
 					contents_container.add_child(code_viewer_scene)
-					code_viewer_scene.text = _content.trim_prefix("|BEGIN|").trim_suffix("|END|")
+					code_viewer_scene.text = _content.trim_prefix("[begin]").trim_suffix("[end]")
 					code_viewer_scene.type = ""
 				else:
 					var content_label = CONTENT_LABEL_SCENE.instantiate()

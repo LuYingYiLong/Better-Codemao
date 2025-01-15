@@ -1,9 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1m3nwa8qhnfw"]
+[gd_scene load_steps=3 format=3 uid="uid://b1m3nwa8qhnfw"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_bn4ts"]
-color = Color(0, 0, 0, 0.196078)
-grow_begin = -6.0
-grow_end = -6.0
+[ext_resource type="StyleBox" uid="uid://ct0x8joxnke0w" path="res://Resources/Themes/HLine-Light.tres" id="1_fgjmh"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_o71mn"]
 
 [node name="Separator" type="VBoxContainer"]
 offset_top = 1.0
@@ -15,7 +13,9 @@ layout_mode = 2
 
 [node name="Separator" type="PanelContainer" parent="."]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxLine_bn4ts")
+theme_override_styles/panel = ExtResource("1_fgjmh")
+
+[node name="ThemePainter" parent="Separator" instance=ExtResource("2_o71mn")]
 
 [node name="Control2" type="Control" parent="."]
 layout_mode = 2

@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="4_464f7"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="5_2oq5a"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="5_6efwq"]
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="5_tjtci"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="5_tjtci"]
 [ext_resource type="Theme" uid="uid://bb3oaxb0rt1le" path="res://Resources/Themes/LineEditTheme1.tres" id="5_wnk0n"]
 [ext_resource type="Theme" uid="uid://dhv8bp5a1k2d3" path="res://Resources/Themes/CheckBoxTheme1.tres" id="7_p24c8"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="8_trjf4"]

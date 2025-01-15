@@ -1,25 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://cd2hiax67rgqi"]
+[gd_scene load_steps=11 format=3 uid="uid://cd2hiax67rgqi"]
 
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/ComboBox.gd" id="1_5ix2a"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_51b4e"]
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="2_bupg5"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="2_bupg5"]
 [ext_resource type="Texture2D" uid="uid://3vdlgvk3ptm" path="res://Resources/Textures/DownArrow.svg" id="3_hvhpv"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_trcd2"]
 [ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/PopupMenu.tscn" id="5_apcoh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mnex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llesv"]
 bg_color = Color(1, 1, 1, 1)
 draw_center = false
 border_width_bottom = 1
 border_color = Color(0.548963, 0.548963, 0.548962, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4keto"]
-bg_color = Color(0.964706, 0.964706, 0.964706, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -100,38 +92,15 @@ offset_right = 213.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_7mnex")
+theme_override_styles/panel = ExtResource("2_bupg5")
 script = ExtResource("1_5ix2a")
 
-[node name="BaseStyle" type="PanelContainer" parent="."]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("2_bupg5")
+[node name="ThemePainter" parent="." instance=ExtResource("3_trcd2")]
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 1
-
-[node name="BottomLine" type="PanelContainer" parent="MarginContainer2"]
+[node name="BottomLine" type="PanelContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_llesv")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 1
-theme_override_constants/margin_top = 1
-theme_override_constants/margin_right = 1
-theme_override_constants/margin_bottom = 1
-
-[node name="FocusStyle" type="PanelContainer" parent="MarginContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4keto")
 
 [node name="LabelMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -146,19 +115,24 @@ theme_override_fonts/font = ExtResource("2_51b4e")
 text = "Text"
 text_overrun_behavior = 3
 
+[node name="ThemePainter" parent="LabelMarginContainer/Label" instance=ExtResource("3_trcd2")]
+
 [node name="DownArrowMarginContainer" type="MarginContainer" parent="LabelMarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="DownArrowIcon" type="TextureRect" parent="LabelMarginContainer/DownArrowMarginContainer"]
-self_modulate = Color(0.403922, 0.403922, 0.403922, 1)
+self_modulate = Color(0.11, 0.11, 0.11, 0.490196)
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("3_hvhpv")
 expand_mode = 1
+
+[node name="ThemePainter" parent="LabelMarginContainer/DownArrowMarginContainer/DownArrowIcon" instance=ExtResource("3_trcd2")]
+translucent = true
 
 [node name="DownArrowAnimationPlayer" type="AnimationPlayer" parent="LabelMarginContainer/DownArrowMarginContainer"]
 unique_name_in_owner = true
@@ -168,8 +142,7 @@ libraries = {
 
 [node name="PopupMenu" parent="." instance=ExtResource("5_apcoh")]
 unique_name_in_owner = true
+width = -1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="mouse_entered" from="BaseStyle" to="." method="_on_base_style_mouse_entered"]
-[connection signal="mouse_exited" from="BaseStyle" to="." method="_on_base_style_mouse_exited"]
 [connection signal="index_pressed" from="PopupMenu" to="." method="_on_popup_menu_index_pressed"]

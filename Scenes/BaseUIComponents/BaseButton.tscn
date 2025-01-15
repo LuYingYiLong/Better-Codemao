@@ -261,6 +261,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 46
 
 [node name="Line" type="PanelContainer" parent="HBoxContainer/Mask/_MarginContainer"]
+unique_name_in_owner = true
 self_modulate = Color(0, 0.403922, 0.752941, 1)
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2

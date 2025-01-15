@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d18nv2g7nrkrb"]
+[gd_scene load_steps=11 format=3 uid="uid://d18nv2g7nrkrb"]
 
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/DropDownButton.gd" id="1_x5hd5"]
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="2_hskg2"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="2_hskg2"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_lw60y"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_f7yaq"]
 [ext_resource type="Texture2D" uid="uid://3vdlgvk3ptm" path="res://Resources/Textures/DownArrow.svg" id="3_wc7v3"]
 [ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/PopupMenu.tscn" id="5_1l88s"]
 
@@ -77,6 +78,8 @@ mouse_filter = 2
 theme_override_styles/panel = ExtResource("2_hskg2")
 script = ExtResource("1_x5hd5")
 
+[node name="ThemePainter" parent="." instance=ExtResource("3_f7yaq")]
+
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -112,6 +115,8 @@ size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
+[node name="ThemePainter" parent="Button/MarginContainer/HBoxContainer/Texture" instance=ExtResource("3_f7yaq")]
+
 [node name="Label" type="Label" parent="Button/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
@@ -120,6 +125,8 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("2_lw60y")
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="Button/MarginContainer/HBoxContainer/Label" instance=ExtResource("3_f7yaq")]
 
 [node name="DownArrowMarginContainer" type="MarginContainer" parent="Button/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -137,6 +144,9 @@ size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("3_wc7v3")
 expand_mode = 1
+
+[node name="ThemePainter" parent="Button/MarginContainer/HBoxContainer/DownArrowMarginContainer/DownArrowIcon" instance=ExtResource("3_f7yaq")]
+translucent = true
 
 [node name="DownArrowAnimationPlayer" type="AnimationPlayer" parent="Button/MarginContainer/HBoxContainer/DownArrowMarginContainer"]
 unique_name_in_owner = true

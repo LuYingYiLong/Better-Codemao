@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c7vkhqml4gcnr"]
+
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_yb6hu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1g02e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghr0n"]
+bg_color = Color(0.11, 0.11, 0.11, 0.0980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yfog"]
+bg_color = Color(0.11, 0.11, 0.11, 0.0980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tlpcx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_undbu"]
+bg_color = Color(0.11, 0.11, 0.11, 0.0980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+Button/colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/font_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/font_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/font_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/font_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/fonts/font = ExtResource("1_yb6hu")
+Button/styles/disabled = SubResource("StyleBoxEmpty_1g02e")
+Button/styles/focus = SubResource("StyleBoxFlat_ghr0n")
+Button/styles/hover = SubResource("StyleBoxFlat_8yfog")
+Button/styles/normal = SubResource("StyleBoxEmpty_tlpcx")
+Button/styles/pressed = SubResource("StyleBoxFlat_undbu")

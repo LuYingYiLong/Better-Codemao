@@ -13,8 +13,6 @@ extends PanelContainer
 	set(value):
 		placeholder_text = value
 		text_edit.placeholder_text = placeholder_text
-		
-@onready var theme_painter = %ThemePainter
 
 @onready var tools_bar = %ToolsBar
 @onready var text_edit = %TextEdit
@@ -44,7 +42,6 @@ var thread_helper: ThreadHelper
 
 func _ready() -> void:
 	thread_helper = ThreadHelper.new(self)
-	theme_painter.update_theme()
 	Settings.settings_config_update.connect(_on_settings_config_update)
 	_on_settings_config_update()
 
@@ -122,22 +119,17 @@ func _on_sensitive_word_button_pressed() -> void:
 
 func _on_send_button_pressed() -> void:
 	if send_type == 0:
-		var content: String = text_edit.text
+		var content: String = Application.bbcode_to_html(text_edit.text)
 		var paragraphs: PackedStringArray = content.split("\n")
 		var count: int = 0
 		for string: String in paragraphs:
 			paragraphs.set(count, "<p>%s</p>\n" %string)
 			count += 1
-		count = 0
-		for string: String in paragraphs:
-			paragraphs.set(count, paragraphs[count].replace("[b]", "<strong>"))
-			paragraphs.set(count, paragraphs[count].replace("[/b]", "</strong>"))
-			paragraphs.set(count, paragraphs[count].replace("[u]", "<u>"))
-			paragraphs.set(count, paragraphs[count].replace("[/u]", "</u>"))
-			count += 1
 		content = ""
 		for string: String in paragraphs:
 			content += string
+		content = content.trim_suffix("\n")
+		print(content)
 		send.emit(content, send_type)
 	elif send_type == 1:
 		send.emit(text_edit.text, send_type)
@@ -152,11 +144,29 @@ func insert_text_at_caret(insert_text: String) -> void:
 	text_edit.end_multicaret_edit()
 	text_edit.end_complex_operation()
 
-func _on_bold_button_pressed():
+func _on_bold_button_pressed() -> void:
 	insert_text_at_caret("[b][/b]")
 
-func _on_underline_button_pressed():
+func _on_underline_button_pressed() -> void:
 	insert_text_at_caret("[u][/u]")
+
+func _on_font_size_button_pressed() -> void:
+	insert_text_at_caret("[font_size=16][/font_size]")
+
+func _on_font_color_button_pressed() -> void:
+	insert_text_at_caret("[color=black][/color]")
+
+func _on_align_right_button_pressed() -> void:
+	insert_text_at_caret("[right][/right]")
+
+func _on_align_center_button_pressed() -> void:
+	insert_text_at_caret("[center][/center]")
+
+func _on_align_left_button_pressed() -> void:
+	insert_text_at_caret("[left][/left]")
+
+func _on_code_button_pressed() -> void:
+	insert_text_at_caret("[language=python][code][begin]Here![end][code]")
 
 func _on_settings_config_update() -> void:
 	if Settings.dark_mode == 0:

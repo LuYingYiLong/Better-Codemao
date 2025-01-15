@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1s8kubxqq1ee"]
+[gd_scene load_steps=12 format=3 uid="uid://c1s8kubxqq1ee"]
 
 [ext_resource type="Script" path="res://Scripts/MessageMenu.gd" id="1_06mqh"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_swuei"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_clvgm"]
 [ext_resource type="PackedScene" uid="uid://bsclky2hfp00n" path="res://Scenes/BaseUIComponents/TabBar.tscn" id="4_guxdm"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="4_xbwj8"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="4_xbwj8"]
 [ext_resource type="Script" path="res://Scripts/TabItem.gd" id="5_l3qcc"]
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="6_t8nvq"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="6_t8nvq"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="7_05prj"]
 
 [sub_resource type="Resource" id="Resource_bmxxx"]
 script = ExtResource("5_l3qcc")
@@ -85,6 +86,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_xbwj8")
 
+[node name="ThemePainter" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" instance=ExtResource("7_05prj")]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -103,6 +106,8 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("6_t8nvq")
 text = "LOAD_MORE_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/LoadMoreButton" instance=ExtResource("7_05prj")]
 
 [connection signal="request_completed" from="MessageCountRequest" to="." method="on_message_count_received"]
 [connection signal="request_completed" from="MessageRecordRequest" to="." method="on_message_record_received"]

@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://8hpjf2xhxvx0"]
+
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_2hy24"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rfauf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6yy7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bsla"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dlxxg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kw4v5"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(1, 1, 1, 0.490196)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.196078)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_2hy24")
+Button/styles/disabled = SubResource("StyleBoxEmpty_rfauf")
+Button/styles/focus = SubResource("StyleBoxEmpty_g6yy7")
+Button/styles/hover = SubResource("StyleBoxEmpty_6bsla")
+Button/styles/normal = SubResource("StyleBoxEmpty_dlxxg")
+Button/styles/pressed = SubResource("StyleBoxEmpty_kw4v5")

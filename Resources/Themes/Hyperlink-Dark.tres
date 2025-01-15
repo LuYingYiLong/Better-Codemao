@@ -1,0 +1,66 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cl26rsggw4g6b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hy6d"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+draw_center = false
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imfto"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+draw_center = false
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trsun"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(1, 1, 1, 0.0980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ghc3"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+draw_center = false
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tvut"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(1, 1, 1, 0.0980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+Button/colors/font_color = Color(0.513726, 0.776471, 0.839216, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.490196)
+Button/colors/font_focus_color = Color(0.513726, 0.776471, 0.839216, 1)
+Button/colors/font_hover_color = Color(0.6, 0.921569, 1, 1)
+Button/colors/font_hover_pressed_color = Color(0.6, 0.921569, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 0)
+Button/colors/font_pressed_color = Color(0.6, 0.921569, 1, 1)
+Button/colors/icon_disabled_color = Color(0, 0, 0, 0.490196)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_3hy6d")
+Button/styles/focus = SubResource("StyleBoxFlat_imfto")
+Button/styles/hover = SubResource("StyleBoxFlat_trsun")
+Button/styles/normal = SubResource("StyleBoxFlat_0ghc3")
+Button/styles/pressed = SubResource("StyleBoxFlat_7tvut")

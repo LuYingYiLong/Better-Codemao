@@ -10,13 +10,8 @@ extends Control
 
 @onready var board_name_label = %BoardNameLabel
 @onready var clear_history_button = %ClearHistoryButton
-@onready var posts_progress_bar = %PostsProgressBar
 @onready var post_card_container = %PostCardContainer
 @onready var pagination_bar = %PaginationBar
-
-@onready var mine_posts_total = %MinePostsTotal
-@onready var mine_replied_total = %MineRepliedTotal
-@onready var history_total = %HistoryTotal
 
 @onready var forum_board_card_container = %ForumBoardCardContainer
 
@@ -87,15 +82,6 @@ func _ready() -> void:
 	var headers = ["Content-Type: application/json"]
 	boards_request.request("https://api.codemao.cn/web/forums/boards/simples/all", headers, HTTPClient.METHOD_GET)
 	load_forum()
-	if !Application.logged_in: Application.user_avatar_update.connect(on_user_avatar_update)
-	else: on_user_avatar_update()
-	if !FileAccess.file_exists(Application.FORUM_HISTORY_PATH):
-		Application.save_json_file(Application.FORUM_HISTORY_PATH, {"items": []})
-		history_total.text = "0"
-	else:
-		var forum_history: Dictionary = Application.load_json_file(Application.FORUM_HISTORY_PATH)
-		var items: Array = forum_history.get("items", [])
-		history_total.text = str(items.size())
 	Settings.settings_config_update.connect(_on_settings_config_update)
 	_on_settings_config_update()
 
@@ -125,10 +111,6 @@ func load_history() -> void:
 func _on_auto_suggest_box_search_pressed(text: String) -> void:
 	search = text
 	status = status_type.Search
-
-func on_user_avatar_update() -> void:
-	mine_posts_request.request("https://api.codemao.cn/web/forums/posts/mine/created?page=1&limit=%s" %LOADS_NUMBER, [Application.generate_cookie_header()])
-	mine_replied_request.request("https://api.codemao.cn/web/forums/posts/mine/replied?page=1&limit=%s" %LOADS_NUMBER, [Application.generate_cookie_header()])
 
 func on_boards_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -253,10 +235,6 @@ func _on_mine_posts_request_request_completed(result: int, _response_code: int, 
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
 		return
 
-	if mine_posts_request.progress_bar == null:
-		mine_posts_request.progress_bar = posts_progress_bar.get_path()
-		mine_posts_total.text = str(json.get("total", 0))
-
 	if status == status_type.MinePosts:
 		for node in post_card_container.get_children():
 			node.queue_free()
@@ -275,10 +253,6 @@ func _on_mine_replied_request_request_completed(result: int, _response_code: int
 	if result != HTTPRequest.RESULT_SUCCESS:
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
 		return
-
-	if mine_replied_request.progress_bar == null:
-		mine_replied_request.progress_bar = posts_progress_bar.get_path()
-		mine_replied_total.text = str(json.get("total", 0))
 
 	if status == status_type.MineReplied:
 		for node in post_card_container.get_children():
@@ -318,34 +292,21 @@ func on_post_card_scene_pressed(data: Dictionary) -> void:
 	if items.size() > 100: items.resize(100)
 	forum_history["items"] = items
 	Application.save_json_file(Application.FORUM_HISTORY_PATH, forum_history)
-	history_total.text = str(items.size())
 	Application.append_address.emit(data.get("title"), \
 			"res://Scenes/Forum/PostMenu.tscn", \
 			data)
 
-func _on_mine_posts_gui_input(event) -> void:
-	if event is InputEventMouseButton and \
-			event.is_pressed and \
-			event.button_mask == 1 and \
-			event.button_index == 1:
-		status = status_type.MinePosts
-		board_name_label.text = TranslationServer.translate("MINE_POSTS_NAME")
+func _on_mine_posts_button_pressed():
+	status = status_type.MinePosts
+	board_name_label.text = TranslationServer.translate("MINE_POSTS_NAME")
 
-func _on_mine_replied_gui_input(event) -> void:
-	if event is InputEventMouseButton and \
-			event.is_pressed and \
-			event.button_mask == 1 and \
-			event.button_index == 1:
-		status = status_type.MineReplied
-		board_name_label.text = TranslationServer.translate("MINE_REPLIED_NAME")
+func _on_mine_replied_button_pressed():
+	status = status_type.MineReplied
+	board_name_label.text = TranslationServer.translate("MINE_REPLIED_NAME")
 
-func _on_history_gui_input(event) -> void:
-	if event is InputEventMouseButton and \
-			event.is_pressed and \
-			event.button_mask == 1 and \
-			event.button_index == 1:
-		status = status_type.History
-		board_name_label.text = TranslationServer.translate("HISTORY_NAME")
+func _on_history_button_pressed():
+	status = status_type.History
+	board_name_label.text = TranslationServer.translate("HISTORY_NAME")
 
 func _on_clear_history_button_pressed():
 	var content_dialog = Application.get_content_dialog()
@@ -367,7 +328,6 @@ func _content_dialog_callback(index: int) -> void:
 		var forum_history: Dictionary = Application.load_json_file(Application.FORUM_HISTORY_PATH)
 		forum_history["items"] = []
 		Application.save_json_file(Application.FORUM_HISTORY_PATH, forum_history)
-		history_total.text = "0"
 		if status == status_type.History:
 			for node in post_card_container.get_children():
 				node.queue_free()

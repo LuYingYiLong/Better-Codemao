@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://b56q43ue36r4q"]
+[gd_scene load_steps=17 format=3 uid="uid://b56q43ue36r4q"]
 
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_4rym5"]
-[ext_resource type="Texture2D" uid="uid://xtqhdrqk18ja" path="res://Resources/Textures/Arrow.svg" id="2_emsui"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_4rym5"]
 [ext_resource type="Script" path="res://Scripts/Settings/OptionBox.gd" id="2_xn38o"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_p2xmy"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_rd6d5"]
 [ext_resource type="Texture2D" uid="uid://di1fixh8mr52o" path="res://Resources/Textures/Link.svg" id="4_0hwcg"]
+[ext_resource type="Texture2D" uid="uid://cw0oar8pbxka2" path="res://Resources/Textures/LightArrow.svg" id="5_pr178"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="5_y7p17"]
 [ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="6_fuxi7"]
 [ext_resource type="PackedScene" uid="uid://cd2hiax67rgqi" path="res://Scenes/BaseUIComponents/ComboBox.tscn" id="7_t8efv"]
@@ -98,6 +99,8 @@ script = ExtResource("2_xn38o")
 text = "Text"
 description = "Description"
 
+[node name="ThemePainter" parent="." instance=ExtResource("3_p2xmy")]
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
@@ -126,6 +129,8 @@ size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
+[node name="ThemePainter" parent="MarginContainer/HBoxContainer/Icon" instance=ExtResource("3_p2xmy")]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -140,12 +145,17 @@ theme_override_fonts/font = ExtResource("3_rd6d5")
 theme_override_font_sizes/font_size = 20
 text = "Text"
 
+[node name="ThemePainter" parent="MarginContainer/HBoxContainer/VBoxContainer/TextLabel" instance=ExtResource("3_p2xmy")]
+
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.372549, 0.372549, 0.376471, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("3_rd6d5")
 text = "Description"
+
+[node name="ThemePainter" parent="MarginContainer/HBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("3_p2xmy")]
 
 [node name="ArrowTexture" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -154,8 +164,10 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-texture = ExtResource("2_emsui")
+texture = ExtResource("5_pr178")
 expand_mode = 1
+
+[node name="ThemePainter" parent="MarginContainer/HBoxContainer/ArrowTexture" instance=ExtResource("3_p2xmy")]
 
 [node name="LinkTexture" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -167,6 +179,8 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("4_0hwcg")
 expand_mode = 1
+
+[node name="ThemePainter" parent="MarginContainer/HBoxContainer/LinkTexture" instance=ExtResource("3_p2xmy")]
 
 [node name="CopyButton" type="Button" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true

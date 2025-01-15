@@ -43,6 +43,8 @@ var content: String
 var id_to_reply: int
 var parent_id: int
 
+var code_language: String
+
 func _ready():
 	pagination_bar.size = 3
 	Settings.settings_config_update.connect(_on_settings_config_update)
@@ -93,7 +95,7 @@ func populate_content():
 		node.queue_free()
 	to_rich_text_button.visible = not rich_text_enabled
 	to_text_button.visible = rich_text_enabled
-	var content_array: PackedStringArray = Application.html_to_bbcode(content).split("|SPLIT|")
+	var content_array: PackedStringArray = Application.html_to_bbcode(content).split("[split]")
 	for content_type: String in content_array:
 		if content_type.contains("https://cdn-community.bcmcdn.com/47/community/"):
 			var image_url_loader = IMAGE_URL_LOADER_SCENE.instantiate()
@@ -101,15 +103,19 @@ func populate_content():
 			image_url_loader.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 			image_url_loader.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 			image_url_loader.load_image(content_type)
-		elif content_type.contains("|CODE|"):
-			var split: PackedStringArray = content_type.split("|CODE|")
+		elif content_type.contains("[code]"):
+			var split: PackedStringArray = content_type.split("[code]")
 			for _content: String in split:
+				if _content.contains("[language=python]"):
+					code_language = "Python"
+					_content = _content.replace("[language=python]", "")
 				if _content.is_empty(): continue
-				elif _content.begins_with("|BEGIN|") and _content.ends_with("|END|"):
+				elif _content.begins_with("[begin]") and _content.ends_with("[end]"):
 					var code_viewer_scene = load("res://Scenes/Forum/CodeViewer.tscn").instantiate()
 					contents.add_child(code_viewer_scene)
-					code_viewer_scene.text = _content.trim_prefix("|BEGIN|").trim_suffix("|END|")
-					code_viewer_scene.type = ""
+					code_viewer_scene.text = _content.trim_prefix("[begin]").trim_suffix("[end]")
+					code_viewer_scene.type = code_language
+					code_language = ""
 				else:
 					var content_label = CONTENT_LABEL_SCENE.instantiate()
 					contents.add_child(content_label)

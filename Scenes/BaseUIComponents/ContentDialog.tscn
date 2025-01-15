@@ -5,7 +5,7 @@
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_n3srp"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="4_nuq02"]
 [ext_resource type="PackedScene" uid="uid://b4rrphs7froty" path="res://Scenes/BaseUIComponents/ContentDialogButton.tscn" id="5_7svb5"]
-[ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/ButtonTheme4.tres" id="6_ornal"]
+[ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/SimpleButton-Light.tres" id="6_ornal"]
 
 [sub_resource type="Resource" id="Resource_yusyh"]
 script = ExtResource("2_q8stu")

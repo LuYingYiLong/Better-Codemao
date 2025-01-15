@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6a62cd8dkxa1"]
+[gd_scene load_steps=7 format=3 uid="uid://b6a62cd8dkxa1"]
 
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsMenu.gd" id="1_tjfs3"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_d85x3"]
 [ext_resource type="PackedScene" uid="uid://b56q43ue36r4q" path="res://Scenes/Settings/OptionBox.tscn" id="3_psrpy"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_xxu8e"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_xxu8e"]
 [ext_resource type="PackedScene" uid="uid://b1m3nwa8qhnfw" path="res://Scenes/BaseUIComponents/Separator.tscn" id="5_hbtpr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cgbof"]
@@ -24,6 +25,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_xxu8e")
+
+[node name="ThemePainter" parent="ScrollContainer" instance=ExtResource("3_d85x3")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2

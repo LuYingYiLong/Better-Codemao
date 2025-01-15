@@ -1,14 +1,15 @@
-[gd_scene load_steps=51 format=3 uid="uid://c7tf2uyqb86vx"]
+[gd_scene load_steps=41 format=3 uid="uid://c7tf2uyqb86vx"]
 
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/SecureTextEdit.gd" id="1_iqm20"]
 [ext_resource type="Texture2D" uid="uid://b3n85evynamkw" path="res://Resources/Textures/Bold.svg" id="2_b6ooh"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_jepj1"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_w7fei"]
 [ext_resource type="Texture2D" uid="uid://bqwhcyfm77k88" path="res://Resources/Textures/Warning.svg" id="3_a8ljg"]
+[ext_resource type="Theme" uid="uid://c7vkhqml4gcnr" path="res://Resources/Themes/SmallButton-Light.tres" id="3_f702g"]
 [ext_resource type="Texture2D" uid="uid://xn0ar2yw3j2l" path="res://Resources/Textures/Underline.svg" id="3_pxnxc"]
 [ext_resource type="Texture2D" uid="uid://shjwycjn81ta" path="res://Resources/Textures/FontSize.svg" id="4_3r0mh"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="4_ibb78"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="5_gdh5t"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="5_gdh5t"]
 [ext_resource type="Texture2D" uid="uid://dvcdd0m75q6jg" path="res://Resources/Textures/FontColor.svg" id="5_gxw6d"]
 [ext_resource type="Texture2D" uid="uid://dxdhuyqqvs4rd" path="res://Resources/Textures/AlignRight.svg" id="6_n2bok"]
 [ext_resource type="Texture2D" uid="uid://glv5sj0o5eqx" path="res://Resources/Textures/AlignCenter.svg" id="7_6e646"]
@@ -28,56 +29,6 @@ border_color = Color(0.898039, 0.898039, 0.898039, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2oeh"]
-bg_color = Color(0.929412, 0.929412, 0.929412, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u34bn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v038g"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gurig"]
-bg_color = Color(0.929412, 0.929412, 0.929412, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkmlo"]
-bg_color = Color(0.929412, 0.929412, 0.929412, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xk6nn"]
-bg_color = Color(0.929412, 0.929412, 0.929412, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n13le"]
-bg_color = Color(0.929412, 0.929412, 0.929412, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpaaa"]
-bg_color = Color(0.929412, 0.929412, 0.929412, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lx41w"]
-bg_color = Color(0.929412, 0.929412, 0.929412, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fbig"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e4v4b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3444"]
 bg_color = Color(0.984314, 0.984314, 0.984314, 1)
@@ -301,15 +252,10 @@ _data = {
 
 [node name="SecureTextEdit" type="PanelContainer"]
 custom_minimum_size = Vector2(210, 66)
-offset_left = 76.0
-offset_top = 137.0
-offset_right = 923.0
-offset_bottom = 532.0
+offset_right = 1152.0
+offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_j464s")
 script = ExtResource("1_iqm20")
-
-[node name="ThemePainter" parent="." instance=ExtResource("2_jepj1")]
-unique_name_in_owner = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -336,204 +282,92 @@ theme_override_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer"]
 layout_mode = 2
 
-[node name="BoldButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["theme-normal"]]
+[node name="BoldButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme = ExtResource("3_f702g")
 theme_override_constants/icon_max_width = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_t2oeh")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u34bn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v038g")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_gurig")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vkmlo")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_xk6nn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_n13le")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_rpaaa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lx41w")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0fbig")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_e4v4b")
 icon = ExtResource("2_b6ooh")
 
-[node name="UnderlineButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["theme-normal"]]
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/BoldButton" instance=ExtResource("2_jepj1")]
+
+[node name="UnderlineButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme = ExtResource("3_f702g")
 theme_override_constants/icon_max_width = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_t2oeh")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u34bn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v038g")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_gurig")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vkmlo")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_xk6nn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_n13le")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_rpaaa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lx41w")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0fbig")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_e4v4b")
 icon = ExtResource("3_pxnxc")
 
-[node name="FontSizeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["theme-normal"]]
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/UnderlineButton" instance=ExtResource("2_jepj1")]
+
+[node name="FontSizeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme = ExtResource("3_f702g")
 theme_override_constants/icon_max_width = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_t2oeh")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u34bn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v038g")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_gurig")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vkmlo")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_xk6nn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_n13le")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_rpaaa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lx41w")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0fbig")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_e4v4b")
 icon = ExtResource("4_3r0mh")
 
-[node name="FontColorButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["theme-normal"]]
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontSizeButton" instance=ExtResource("2_jepj1")]
+
+[node name="FontColorButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme = ExtResource("3_f702g")
 theme_override_constants/icon_max_width = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_t2oeh")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u34bn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v038g")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_gurig")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vkmlo")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_xk6nn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_n13le")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_rpaaa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lx41w")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0fbig")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_e4v4b")
 icon = ExtResource("5_gxw6d")
 
-[node name="AlignRightButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["theme-normal"]]
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontColorButton" instance=ExtResource("2_jepj1")]
+
+[node name="AlignRightButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme = ExtResource("3_f702g")
 theme_override_constants/icon_max_width = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_t2oeh")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u34bn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v038g")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_gurig")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vkmlo")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_xk6nn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_n13le")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_rpaaa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lx41w")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0fbig")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_e4v4b")
 icon = ExtResource("6_n2bok")
 
-[node name="AlignCenterButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["theme-normal"]]
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignRightButton" instance=ExtResource("2_jepj1")]
+
+[node name="AlignCenterButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme = ExtResource("3_f702g")
 theme_override_constants/icon_max_width = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_t2oeh")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u34bn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v038g")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_gurig")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vkmlo")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_xk6nn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_n13le")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_rpaaa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lx41w")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0fbig")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_e4v4b")
 icon = ExtResource("7_6e646")
 
-[node name="AlignLeftButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["theme-normal"]]
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignCenterButton" instance=ExtResource("2_jepj1")]
+
+[node name="AlignLeftButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme = ExtResource("3_f702g")
 theme_override_constants/icon_max_width = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_t2oeh")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u34bn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v038g")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_gurig")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vkmlo")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_xk6nn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_n13le")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_rpaaa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lx41w")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0fbig")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_e4v4b")
 icon = ExtResource("8_d2swd")
 
-[node name="CodeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["theme-normal"]]
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignLeftButton" instance=ExtResource("2_jepj1")]
+
+[node name="CodeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme = ExtResource("3_f702g")
 theme_override_constants/icon_max_width = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_t2oeh")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u34bn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v038g")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_gurig")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vkmlo")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_xk6nn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_n13le")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_rpaaa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lx41w")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0fbig")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_e4v4b")
 icon = ExtResource("9_fdheq")
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/CodeButton" instance=ExtResource("2_jepj1")]
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="TextEdit" type="TextEdit" parent="HBoxContainer/VBoxContainer/HBoxContainer2" groups=["theme-normal"]]
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer/VBoxContainer/HBoxContainer2" groups=["local_theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -541,6 +375,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("5_gdh5t")
 theme_override_colors/font_placeholder_color = Color(0.0627451, 0.0627451, 0.0627451, 0.490196)
+theme_override_colors/font_readonly_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_colors/selection_color = Color(0, 0.470588, 0.831373, 1)
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
@@ -553,6 +388,8 @@ context_menu_enabled = false
 deselect_on_focus_loss_enabled = false
 wrap_mode = 1
 caret_blink = true
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/HBoxContainer2/TextEdit" instance=ExtResource("2_jepj1")]
 
 [node name="Perview" type="PanelContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
@@ -590,7 +427,7 @@ text_overrun_behavior = 3
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="SensitiveWordBar" type="PanelContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="SensitiveWordBar" type="PanelContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer" groups=["local_theme-normal"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -657,6 +494,12 @@ libraries = {
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/BoldButton" to="." method="_on_bold_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/UnderlineButton" to="." method="_on_underline_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontSizeButton" to="." method="_on_font_size_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontColorButton" to="." method="_on_font_color_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignRightButton" to="." method="_on_align_right_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignCenterButton" to="." method="_on_align_center_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignLeftButton" to="." method="_on_align_left_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/CodeButton" to="." method="_on_code_button_pressed"]
 [connection signal="gui_input" from="HBoxContainer/VBoxContainer/HBoxContainer2/TextEdit" to="." method="_on_gui_input"]
 [connection signal="text_changed" from="HBoxContainer/VBoxContainer/HBoxContainer2/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="gui_input" from="HBoxContainer/VBoxContainer/MarginContainer/ColorRect" to="." method="_on_gui_input"]

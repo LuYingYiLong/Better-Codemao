@@ -27,8 +27,9 @@ extends PanelContainer
 @export_node_path("PanelContainer") var blur
 
 func _ready() -> void:
-	Settings.settings_config_update.connect(_on_settings_config_update)
-	_on_settings_config_update()
+	if !Engine.is_editor_hint():
+		Settings.settings_config_update.connect(_on_settings_config_update)
+		_on_settings_config_update()
 
 func update_style() -> void:
 	_set_corner_radius_top_left(top_left)

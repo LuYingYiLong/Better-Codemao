@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://biuqtci6nku4a"]
+[gd_scene load_steps=14 format=3 uid="uid://biuqtci6nku4a"]
 
 [ext_resource type="Texture2D" uid="uid://v32tggmvvt4d" path="res://Resources/Textures/Update.svg" id="1_5xwhv"]
 [ext_resource type="Script" path="res://Scripts/Settings/CheckForUpdatesPanel.gd" id="1_e8jv0"]
 [ext_resource type="Texture2D" uid="uid://b2yhjewq3yl08" path="res://Resources/Textures/OK.svg" id="2_krrou"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_p8akd"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_qpahu"]
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="4_kwnqk"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="4_kwnqk"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="5_yyro5"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="6_u7lnp"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="7_lr1dj"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="9_db7rn"]
 [ext_resource type="PackedScene" uid="uid://b56q43ue36r4q" path="res://Scenes/Settings/OptionBox.tscn" id="10_t3y0n"]
@@ -71,6 +72,8 @@ theme_override_fonts/font = ExtResource("5_yyro5")
 theme_override_font_sizes/font_size = 26
 text = "CHECKING_FOR_UPDATES_NAME"
 
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckingPanel/Label" instance=ExtResource("6_u7lnp")]
+
 [node name="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckingPanel" instance=ExtResource("3_qpahu")]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -90,12 +93,16 @@ theme_override_fonts/font = ExtResource("5_yyro5")
 theme_override_font_sizes/font_size = 26
 text = "YOU_ARE_USING_THE_LATEST_VERSION_NAME"
 
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/IsLatestVersionPanel/Label" instance=ExtResource("6_u7lnp")]
+
 [node name="LastCheckTimeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/IsLatestVersionPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.11, 0.11, 0.11, 0.490196)
 theme_override_fonts/font = ExtResource("7_lr1dj")
 text = "LAST_CHECK_TIME_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/IsLatestVersionPanel/LastCheckTimeLabel" instance=ExtResource("6_u7lnp")]
 
 [node name="HasLatestVersionPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -112,12 +119,16 @@ theme_override_fonts/font = ExtResource("5_yyro5")
 theme_override_font_sizes/font_size = 26
 text = "A_NEW_VERSION_IS_AVAILABLE_TITLE"
 
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/HasLatestVersionPanel/Label" instance=ExtResource("6_u7lnp")]
+
 [node name="ANewVersionIsAvailableLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HasLatestVersionPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.11, 0.11, 0.11, 0.490196)
 theme_override_fonts/font = ExtResource("7_lr1dj")
 text = "A_NEW_VERSION_IS_AVAILABLE_DESCRIPTION"
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/HasLatestVersionPanel/ANewVersionIsAvailableLabel" instance=ExtResource("6_u7lnp")]
 
 [node name="CheckForUpdatesButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -139,6 +150,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("9_db7rn")
 text = "GET_UPDATES_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/GetUpdatesPanel/GetUpdatesLabel" instance=ExtResource("6_u7lnp")]
 
 [node name="GitHubOptionBox" parent="MarginContainer/VBoxContainer/GetUpdatesPanel" instance=ExtResource("10_t3y0n")]
 layout_mode = 2

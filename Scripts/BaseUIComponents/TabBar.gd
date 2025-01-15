@@ -9,6 +9,10 @@ extends PanelContainer
 	set(value):
 		current_tab = value
 		update_current_tab()
+@export_enum("Left", "Center", "Right") var alignment: int = 0:
+	set(value):
+		alignment = value
+		update_tab_alignment_mode()
 @export_group("Other")
 @export var tab_container: Node
 
@@ -26,9 +30,10 @@ func populate_tab_container() -> void:
 		tab_container.add_child(tab_scene)
 		if tab_item != null:
 			if !tab_item.title.is_empty(): tab_scene.title = tab_item.title
-			if !tab_item.text.is_empty(): tab_scene.text = tab_item.text
+			tab_scene.text = tab_item.text
 		tab_scene.index = count
 		tab_scene.current_tab = current_tab
+		tab_scene.alignment = alignment
 		tab_scene.index_pressed.connect(_on_tab_index_pressed)
 		count += 1
 		if count < tab_items.size():
@@ -48,6 +53,11 @@ func update_current_tab() -> void:
 	for node in tab_container.get_children():
 		if node.has_method("is_tab"):
 			node.current_tab = current_tab
+
+func update_tab_alignment_mode() -> void:
+	for node in tab_container.get_children():
+		if node.has_method("is_tab"):
+			node.alignment = alignment
 
 func _on_tab_index_pressed(index: int) -> void:
 	current_tab = index

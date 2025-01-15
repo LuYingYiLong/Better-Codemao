@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://l0s02l8prky3"]
 
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="1_oiy2d"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="1_oiy2d"]
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/PagerButton.gd" id="2_3u6ck"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="3_atl3r"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="4_megbt"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="4_megbt"]
 
 [sub_resource type="Animation" id="Animation_vo4se"]
 resource_name = "HideCollapsePages"

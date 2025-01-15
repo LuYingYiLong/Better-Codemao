@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/ImageViewer.gd" id="1_2hnnf"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_tcup3"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="4_3ju1c"]
-[ext_resource type="Texture2D" uid="uid://xwrgwh5h8skf" path="res://Resources/Textures/Reboot.svg" id="4_w403i"]
+[ext_resource type="Texture2D" uid="uid://bkm17jqunexj3" path="res://Resources/Textures/Refresh.svg" id="4_w403i"]
 [ext_resource type="Texture2D" uid="uid://exor33llkxq5" path="res://Resources/Textures/Save.svg" id="5_0f8s3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvdob"]

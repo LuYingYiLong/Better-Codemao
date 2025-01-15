@@ -1,23 +1,25 @@
-[gd_scene load_steps=44 format=3 uid="uid://kwkpaksy2xmu"]
+[gd_scene load_steps=35 format=3 uid="uid://kwkpaksy2xmu"]
 
 [ext_resource type="Script" path="res://Scripts/Work/WorkMenu.gd" id="1_jdbwl"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_3t1v3"]
-[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollTheme1.tres" id="3_hyp1r"]
-[ext_resource type="Texture2D" uid="uid://cwo42vvibmedn" path="res://Resources/Textures/Run.svg" id="4_k470w"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_hyp1r"]
+[ext_resource type="Texture2D" uid="uid://mb21wmt63jw" path="res://Resources/Textures/Play.svg" id="4_0y431"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="4_lyxtc"]
-[ext_resource type="Texture2D" uid="uid://xwrgwh5h8skf" path="res://Resources/Textures/Reboot.svg" id="5_j5mx1"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_fdmke"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="5_y2cvy"]
-[ext_resource type="Texture2D" uid="uid://mwsgajuwl82w" path="res://Resources/Textures/FullScreen.svg" id="6_7vgtg"]
+[ext_resource type="Texture2D" uid="uid://w565eh6uxb5a" path="res://Resources/Textures/FullScreen.svg" id="6_7vgtg"]
+[ext_resource type="Texture2D" uid="uid://bkm17jqunexj3" path="res://Resources/Textures/Refresh.svg" id="6_kxv0f"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_uuxp6"]
-[ext_resource type="Texture2D" uid="uid://c4lupm1on6nj8" path="res://Resources/Textures/Link.svg" id="7_wxigk"]
+[ext_resource type="Texture2D" uid="uid://di1fixh8mr52o" path="res://Resources/Textures/Link.svg" id="7_wxigk"]
 [ext_resource type="PackedScene" uid="uid://daq0uuavjfgf1" path="res://Scenes/AuthorLevelTag.tscn" id="8_rtf2g"]
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/ButtonTheme1.tres" id="9_ll54y"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="9_ll54y"]
 [ext_resource type="Texture2D" uid="uid://bl8b6wnodhldf" path="res://Resources/Textures/Like.svg" id="10_6pgep"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="11_1udrr"]
 [ext_resource type="PackedScene" uid="uid://doovx6ujtt10p" path="res://Scenes/Work/WorkTag.tscn" id="11_dj7m7"]
 [ext_resource type="PackedScene" uid="uid://bp6dbjsjji0pq" path="res://Scenes/Work/HWorkCard.tscn" id="11_e43ck"]
 [ext_resource type="Texture2D" uid="uid://bnp1vv6ye1f2b" path="res://Resources/Textures/Collect.svg" id="13_e5rua"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="13_gm0mk"]
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="16_vn42d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4n68a"]
 bg_color = Color(1, 1, 1, 1)
@@ -52,28 +54,6 @@ corner_radius_top_left = 28
 corner_radius_top_right = 28
 corner_radius_bottom_right = 28
 corner_radius_bottom_left = 28
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_affos"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_et2vb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehhfg"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifta2"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ow7fd"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj1pj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_idts6"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0n67"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ouefy"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ane1e"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t70r5"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_6vkn7"]
 color = Color(0, 0, 0, 0.196078)
@@ -115,6 +95,9 @@ unique_name_in_owner = true
 
 [node name="RecommendedRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -162,42 +145,50 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4n68a")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="RunButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
-self_modulate = Color(0.06, 0.06, 0.06, 1)
+[node name="PlayButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+theme = ExtResource("16_vn42d")
 theme_override_constants/icon_max_width = 30
-theme_override_icons/icon = ExtResource("4_k470w")
-flat = true
+icon = ExtResource("4_0y431")
+icon_alignment = 1
 
-[node name="RebootButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
-self_modulate = Color(0.06, 0.06, 0.06, 1)
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/PlayButton" instance=ExtResource("5_fdmke")]
+
+[node name="RefreshButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+theme = ExtResource("16_vn42d")
 theme_override_constants/icon_max_width = 30
-theme_override_icons/icon = ExtResource("5_j5mx1")
-flat = true
+icon = ExtResource("6_kxv0f")
+icon_alignment = 1
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/RefreshButton" instance=ExtResource("5_fdmke")]
 
 [node name="FullScreenButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
-self_modulate = Color(0.06, 0.06, 0.06, 1)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+theme = ExtResource("16_vn42d")
 theme_override_constants/icon_max_width = 30
-theme_override_icons/icon = ExtResource("6_7vgtg")
-flat = true
+icon = ExtResource("6_7vgtg")
+icon_alignment = 1
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/FullScreenButton" instance=ExtResource("5_fdmke")]
 
 [node name="OpenInBrowserButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
-self_modulate = Color(0.06, 0.06, 0.06, 1)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 10
 mouse_default_cursor_shape = 2
+theme = ExtResource("16_vn42d")
 theme_override_constants/icon_max_width = 30
-theme_override_icons/icon = ExtResource("7_wxigk")
-flat = true
+icon = ExtResource("7_wxigk")
+icon_alignment = 1
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/OpenInBrowserButton" instance=ExtResource("5_fdmke")]
 
 [node name="Mask" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer"]
 clip_children = 1
@@ -244,6 +235,8 @@ layout_mode = 2
 texture = ExtResource("10_6pgep")
 expand_mode = 1
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/LikeIcon" instance=ExtResource("5_fdmke")]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -258,6 +251,8 @@ theme_override_font_sizes/font_size = 24
 text = "LIKE_NAME"
 text_overrun_behavior = 3
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer/LikeLabel" instance=ExtResource("5_fdmke")]
+
 [node name="PraiseTimes" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
@@ -266,6 +261,8 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("11_1udrr")
 text = "999"
 uppercase = true
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer/PraiseTimes" instance=ExtResource("5_fdmke")]
 
 [node name="LikeButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
 unique_name_in_owner = true
@@ -278,6 +275,8 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
 flat = true
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikeButton" instance=ExtResource("5_fdmke")]
+
 [node name="LikedButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
 unique_name_in_owner = true
 visible = false
@@ -289,6 +288,8 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_byxkb")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
 flat = true
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikedButton" instance=ExtResource("5_fdmke")]
 
 [node name="Line" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -311,6 +312,8 @@ layout_mode = 2
 texture = ExtResource("13_e5rua")
 expand_mode = 1
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/CollectIcon" instance=ExtResource("5_fdmke")]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -325,6 +328,8 @@ theme_override_font_sizes/font_size = 24
 text = "COLLECT_NAME"
 text_overrun_behavior = 3
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer/CollectLabel" instance=ExtResource("5_fdmke")]
+
 [node name="CollectTimes" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
@@ -333,6 +338,8 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("11_1udrr")
 text = "999"
 uppercase = true
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer/CollectTimes" instance=ExtResource("5_fdmke")]
 
 [node name="CollectButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
 unique_name_in_owner = true
@@ -345,6 +352,8 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
 flat = true
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectButton" instance=ExtResource("5_fdmke")]
+
 [node name="CollectedButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
 unique_name_in_owner = true
 visible = false
@@ -356,6 +365,8 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_byxkb")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
 flat = true
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectedButton" instance=ExtResource("5_fdmke")]
 
 [node name="Comments" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
 layout_mode = 2
@@ -379,6 +390,8 @@ theme_override_font_sizes/font_size = 24
 text = "ALL_REPLIES_NAME"
 text_overrun_behavior = 3
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/AllRepliesLabel" instance=ExtResource("5_fdmke")]
+
 [node name="TopReplyCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -396,9 +409,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 size = 11
 current_page = 1
-
-[node name="TabBar" type="TabBar" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
@@ -449,29 +459,15 @@ theme_override_constants/separation = -4
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme = ExtResource("16_vn42d")
 theme_override_fonts/font = ExtResource("7_uuxp6")
 theme_override_font_sizes/font_size = 26
-theme_override_styles/focus = SubResource("StyleBoxEmpty_affos")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_et2vb")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_ehhfg")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ifta2")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ow7fd")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_lj1pj")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_idts6")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_r0n67")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_ouefy")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ane1e")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_t70r5")
 text = "Nickname"
 flat = true
 alignment = 0
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" instance=ExtResource("5_fdmke")]
 
 [node name="AuthorLevelTag" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("8_rtf2g")]
 unique_name_in_owner = true
@@ -511,11 +507,15 @@ theme_override_font_sizes/font_size = 24
 text = "WorkName"
 autowrap_mode = 2
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/WorkNameLabel" instance=ExtResource("5_fdmke")]
+
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "DESCRIPTION_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("5_fdmke")]
 
 [node name="Description" type="TextEdit" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -538,12 +538,16 @@ autowrap_mode = 2
 scroll_fit_content_height = true
 caret_blink = true
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/Description" instance=ExtResource("5_fdmke")]
+
 [node name="OperationLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "OPERATION_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/OperationLabel" instance=ExtResource("5_fdmke")]
 
 [node name="Operation" type="TextEdit" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -566,12 +570,16 @@ autowrap_mode = 2
 scroll_fit_content_height = true
 caret_blink = true
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/Operation" instance=ExtResource("5_fdmke")]
+
 [node name="WorkTagLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "WORK_TAG_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/WorkTagLabel" instance=ExtResource("5_fdmke")]
 
 [node name="WorkTagContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -586,13 +594,17 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "VIEW_TIMES_NAME"
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/ViewTimesLabel" instance=ExtResource("5_fdmke")]
+
 [node name="ViewTimes" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("11_1udrr")
-text = "114514"
+text = "--"
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/ViewTimes" instance=ExtResource("5_fdmke")]
 
 [node name="PublishTimeLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -600,13 +612,17 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "PUBLISH_TIME_NAME"
 
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/PublishTimeLabel" instance=ExtResource("5_fdmke")]
+
 [node name="PublishTime" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("11_1udrr")
-text = "1919810"
+text = "--"
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/PublishTime" instance=ExtResource("5_fdmke")]
 
 [node name="MoreWorks" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
 layout_mode = 2
@@ -627,6 +643,8 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 theme_override_font_sizes/font_size = 24
 text = "MORE_WORKS_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer/MoreWorksLabel" instance=ExtResource("5_fdmke")]
 
 [node name="HWorkCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -654,6 +672,8 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 theme_override_font_sizes/font_size = 24
 text = "RECOMMENDED_WORKS_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer/RecommendedWorksLabel" instance=ExtResource("5_fdmke")]
 
 [node name="HRecommendedWorkCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true

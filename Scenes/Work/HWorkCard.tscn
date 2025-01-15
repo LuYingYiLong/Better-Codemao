@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp6dbjsjji0pq"]
+[gd_scene load_steps=11 format=3 uid="uid://bp6dbjsjji0pq"]
 
 [ext_resource type="Script" path="res://Scripts/Work/HWorkCard.gd" id="1_aosbv"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_ihmto"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_x5hi3"]
 [ext_resource type="FontFile" uid="uid://cphm5abmdoidd" path="res://Resources/Fonts/SourceHanSansCN-Normal.otf" id="4_1mhrh"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_fcamc"]
 [ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="5_v8p1o"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_bv1ut"]
 [ext_resource type="Texture2D" uid="uid://cftybq6tll2w8" path="res://Resources/Textures/Praise.svg" id="7_b8kd4"]
@@ -45,7 +46,12 @@ texture = ExtResource("3_x5hi3")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="WorkNameLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -7
+
+[node name="WorkNameLabel" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -54,7 +60,9 @@ text = "WorkName"
 vertical_alignment = 2
 text_overrun_behavior = 3
 
-[node name="DescriptionLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/VBoxContainer/WorkNameLabel" instance=ExtResource("4_fcamc")]
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -65,6 +73,8 @@ theme_override_fonts/font = ExtResource("4_1mhrh")
 text = "Description"
 autowrap_mode = 2
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("4_fcamc")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -80,6 +90,8 @@ layout_mode = 2
 texture = ExtResource("5_v8p1o")
 expand_mode = 1
 
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/HBoxContainer/ViewTimes/ViewIcon" instance=ExtResource("4_fcamc")]
+
 [node name="ViewTimes" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/ViewTimes"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
@@ -89,6 +101,8 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("6_bv1ut")
 text = "--"
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/HBoxContainer/ViewTimes/ViewTimes" instance=ExtResource("4_fcamc")]
 
 [node name="PraiseTimes" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -101,6 +115,8 @@ layout_mode = 2
 texture = ExtResource("7_b8kd4")
 expand_mode = 1
 
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/HBoxContainer/PraiseTimes/PraiseIcon" instance=ExtResource("4_fcamc")]
+
 [node name="PraiseTimes" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/PraiseTimes"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
@@ -110,5 +126,7 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("6_bv1ut")
 text = "--"
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/HBoxContainer/PraiseTimes/PraiseTimes" instance=ExtResource("4_fcamc")]
 
 [connection signal="pressed" from="HBoxContainer/Mask/PreviewTexture" to="." method="_on_preview_texture_pressed"]

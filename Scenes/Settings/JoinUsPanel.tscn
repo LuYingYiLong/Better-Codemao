@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh65xjbcmtmbe"]
+[gd_scene load_steps=9 format=3 uid="uid://dh65xjbcmtmbe"]
 
 [ext_resource type="Script" path="res://Scripts/Settings/JoinUsPanel.gd" id="1_5j7kf"]
 [ext_resource type="Texture2D" uid="uid://cc6i46qxistuu" path="res://Resources/Textures/BetterCodemaoCover.svg" id="2_laaug"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_0elud"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_se784"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="4_h2l6t"]
 [ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="5_mbqor"]
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="6_y3gku"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5j1l4"]
 
@@ -42,6 +44,8 @@ theme_override_fonts/font = ExtResource("3_se784")
 theme_override_font_sizes/font_size = 26
 text = "JOIN_US_NAME"
 
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/VBoxContainer/JoinUsLabel" instance=ExtResource("3_0elud")]
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -52,12 +56,15 @@ theme_override_fonts/font = ExtResource("4_h2l6t")
 theme_override_font_sizes/font_size = 20
 text = "QQ: 1014915931"
 
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/QQGroupChatLabel" instance=ExtResource("3_0elud")]
+
 [node name="CopyButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-self_modulate = Color(0.105882, 0.105882, 0.105882, 1)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+theme = ExtResource("6_y3gku")
 theme_override_constants/icon_max_width = 23
 icon = ExtResource("5_mbqor")
-flat = true
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CopyButton" instance=ExtResource("3_0elud")]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CopyButton" to="." method="_on_copy_button_pressed"]

@@ -16,6 +16,7 @@ signal index_pressed(index: int)
 @export var text_label: Node
 
 @onready var h_box_container = %HBoxContainer
+@onready var line = %Line
 @onready var animation_player = %AnimationPlayer
 
 var selected: bool:
@@ -36,5 +37,5 @@ func _on_pressed() -> void:
 		index_pressed.emit(index)
 
 func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0: h_box_container.modulate = Color.html(GlobalTheme.light_mode_palette)
-	else: h_box_container.modulate = Color.html(GlobalTheme.dark_mode_palette)
+	if Settings.dark_mode == 0: line.self_modulate = Color.html("0067c0")
+	else: line.self_modulate = Color.html("#4cc2ff")

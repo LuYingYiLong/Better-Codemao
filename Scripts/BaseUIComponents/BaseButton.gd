@@ -28,7 +28,9 @@ extends PanelContainer
 
 @export_group("Other")
 @export var button: Node
+
 @onready var color_rect = %ColorRect
+@onready var line = %Line
 @onready var info_badge = %InfoBadge
 @onready var info_badge_2 = %InfoBadge2
 @onready var animation_player = %AnimationPlayer
@@ -119,6 +121,7 @@ func _on_settings_config_update() -> void:
 		button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
 		button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
 		button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		line.self_modulate = Color.html("#0067c0")
 	else:
 		button.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 		button.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.dark_mode_font_color))
@@ -126,3 +129,4 @@ func _on_settings_config_update() -> void:
 		button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.dark_mode_font_color))
 		button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
 		button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
+		line.self_modulate = Color.html("#4cc2ff")

@@ -1,11 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://mfb2rhleqvr6"]
+[gd_scene load_steps=15 format=3 uid="uid://mfb2rhleqvr6"]
 
 [ext_resource type="Script" path="res://Scripts/Forum/PostCard.gd" id="1_5kq84"]
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/DefaultPanelStyle.tres" id="1_gtwqm"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_gtwqm"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_wn7q6"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_2fdoj"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_fnsdu"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="3_lkwnq"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_jb4pf"]
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="6_1hnhq"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_o3g1c"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="8_0pe6i"]
 [ext_resource type="PackedScene" uid="uid://5c4ths80q2t5" path="res://Scenes/Forum/PostTag.tscn" id="8_bw7th"]
@@ -19,33 +21,13 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ug44"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dnjpi"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sy4n8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6kyha"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikobt"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vupoj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_et30g"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bw0fd"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oc7ok"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7wiu0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbfrc"]
-
 [node name="PostCard" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 170)
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = ExtResource("1_gtwqm")
 script = ExtResource("1_5kq84")
+
+[node name="ThemePainter" parent="." instance=ExtResource("3_fnsdu")]
 
 [node name="DetailsRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
@@ -79,27 +61,12 @@ texture = ExtResource("2_wn7q6")
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme = ExtResource("6_1hnhq")
 theme_override_fonts/font = ExtResource("5_jb4pf")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7ug44")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dnjpi")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_sy4n8")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_6kyha")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ikobt")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vupoj")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_et30g")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_bw0fd")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_oc7ok")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7wiu0")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nbfrc")
 text = "Nickname"
-flat = true
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/NicknameLabel" instance=ExtResource("3_fnsdu")]
 
 [node name="WorkShopTag" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_lkwnq")]
 unique_name_in_owner = true
@@ -114,6 +81,8 @@ size_flags_horizontal = 10
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("8_0pe6i")
 text = "YYYYMMDD"
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/CreateTime" instance=ExtResource("3_fnsdu")]
 
 [node name="Title&Content" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -158,6 +127,8 @@ text = "Title"
 vertical_alignment = 1
 text_overrun_behavior = 3
 
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/Title&Content/HBoxContainer/TitleLabel" instance=ExtResource("3_fnsdu")]
+
 [node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer/Title&Content"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
@@ -170,6 +141,8 @@ text = "Content"
 autowrap_mode = 2
 text_overrun_behavior = 3
 
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/Title&Content/ContentLabel" instance=ExtResource("3_fnsdu")]
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
@@ -178,12 +151,13 @@ theme_override_constants/separation = 16
 layout_mode = 2
 
 [node name="ViewsIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views"]
-unique_name_in_owner = true
 self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 texture = ExtResource("9_p06k8")
 expand_mode = 1
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views/ViewsIcon" instance=ExtResource("3_fnsdu")]
 
 [node name="Views" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views"]
 unique_name_in_owner = true
@@ -193,16 +167,19 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("8_0pe6i")
 text = "--"
 
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views/Views" instance=ExtResource("3_fnsdu")]
+
 [node name="Replies" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
 [node name="RepliesIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies"]
-unique_name_in_owner = true
 self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 texture = ExtResource("9_nc8nu")
 expand_mode = 1
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies/RepliesIcon" instance=ExtResource("3_fnsdu")]
 
 [node name="Replies" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies"]
 unique_name_in_owner = true
@@ -211,6 +188,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("8_0pe6i")
 text = "--"
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies/Replies" instance=ExtResource("3_fnsdu")]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_gui_input"]

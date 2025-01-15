@@ -26,10 +26,6 @@ Settings="*res://Scripts/Settings.gd"
 SensitiveWordsManager="*res://Scripts/SensitiveWordsManager.gd"
 GlobalTheme="*res://Scripts/Theme.gd"
 
-[display]
-
-window/per_pixel_transparency/allowed=true
-
 [editor]
 
 naming/scene_name_casing=1
@@ -37,8 +33,8 @@ naming/script_name_casing=1
 
 [global_group]
 
-theme-normal=""
 theme-v_separator=""
+theme-normal=""
 
 [gui]
 
