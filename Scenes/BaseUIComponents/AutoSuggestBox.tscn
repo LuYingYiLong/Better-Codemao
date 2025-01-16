@@ -1,20 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://b70w7s5k2wnp7"]
+[gd_scene load_steps=9 format=3 uid="uid://b70w7s5k2wnp7"]
 
 [ext_resource type="Texture2D" uid="uid://cjctj2jd5s8rp" path="res://Resources/Textures/Search.svg" id="1_5igej"]
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/AutoSuggestBox.gd" id="1_tydxs"]
-[ext_resource type="Theme" uid="uid://dyqhgkmvhqdfk" path="res://Resources/Themes/LineEdit-Light.tres" id="2_11ije"]
+[ext_resource type="Theme" uid="uid://bpke6yqti6gcx" path="res://Resources/Themes/LineEdit-Light.tres" id="2_11ije"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_17n3h"]
 [ext_resource type="Texture2D" uid="uid://1342meeys5vy" path="res://Resources/Textures/Clear.svg" id="3_b8y4k"]
 [ext_resource type="Theme" uid="uid://c7vkhqml4gcnr" path="res://Resources/Themes/SmallButton-Light.tres" id="4_4a7a6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8721u"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwrse"]
-draw_center = false
-border_width_bottom = 1
-border_color = Color(0.52549, 0.52549, 0.52549, 1)
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf2lk"]
 draw_center = false
@@ -38,6 +31,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme = ExtResource("2_11ije")
+theme_override_font_sizes/font_size = 20
 caret_blink = true
 
 [node name="ThemePainter" parent="VBoxContainer/LineEdit" instance=ExtResource("3_17n3h")]
@@ -85,18 +79,6 @@ icon = ExtResource("1_5igej")
 icon_alignment = 1
 
 [node name="ThemePainter" parent="VBoxContainer/LineEdit/MarginContainer/HBoxContainer/SearchButton" instance=ExtResource("3_17n3h")]
-
-[node name="FocusExitedLine" type="PanelContainer" parent="VBoxContainer/LineEdit"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 2)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hwrse")
 
 [node name="FocusEnteredLine" type="PanelContainer" parent="VBoxContainer/LineEdit"]
 unique_name_in_owner = true

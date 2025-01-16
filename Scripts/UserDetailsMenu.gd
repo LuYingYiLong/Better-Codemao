@@ -28,7 +28,6 @@ func _ready() -> void:
 	details_request.request_completed.connect(on_details_received)
 	details_request.request("https://api.codemao.cn/web/users/details", \
 			[Application.generate_cookie_header()], HTTPClient.METHOD_GET)
-	Settings.update_theme()
 
 func on_details_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())

@@ -158,6 +158,7 @@ texture = ExtResource("9_p06k8")
 expand_mode = 1
 
 [node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views/ViewsIcon" instance=ExtResource("3_fnsdu")]
+translucent = true
 
 [node name="Views" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views"]
 unique_name_in_owner = true
@@ -168,6 +169,7 @@ theme_override_fonts/font = ExtResource("8_0pe6i")
 text = "--"
 
 [node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views/Views" instance=ExtResource("3_fnsdu")]
+translucent = true
 
 [node name="Replies" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -180,6 +182,7 @@ texture = ExtResource("9_nc8nu")
 expand_mode = 1
 
 [node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies/RepliesIcon" instance=ExtResource("3_fnsdu")]
+translucent = true
 
 [node name="Replies" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies"]
 unique_name_in_owner = true
@@ -190,6 +193,7 @@ theme_override_fonts/font = ExtResource("8_0pe6i")
 text = "--"
 
 [node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies/Replies" instance=ExtResource("3_fnsdu")]
+translucent = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_gui_input"]

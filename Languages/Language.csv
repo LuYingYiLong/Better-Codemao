@@ -81,6 +81,9 @@ SETTINGS_NAME,设置,Settings
 PERSONALIZE_NAME,个性化,Personalize
 CHANGE_BLACK_GROUND_NAME,更改背景,Change black ground
 BLACK_GROUND_MODE_NAME,背景模式,Black ground mode
+THEME_NAME,主题,Theme
+LIGHT_NAME,浅色,Light
+DARK_NAME,深色,Dark
 IMAGE_NAME,图像,Image
 SYSTEM_BASE_COLOR_NAME,系统基色,System base color
 LANGUAGE_NAME,语言,Language

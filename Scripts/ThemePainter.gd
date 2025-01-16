@@ -47,16 +47,46 @@ var relative_resources: Dictionary = {
 }
 
 func _ready() -> void:
-	if Settings.dark_mode == 1:
-		var node = get_parent()
+	Settings.settings_config_update.connect(update_theme)
+	update_theme()
+
+func update_theme() -> void:
+	var node = get_parent()
+	if Settings.dark_mode == 0:
 		if node is PanelContainer and node.get_theme_stylebox("panel") is StyleBoxFlat:
-			node.add_theme_stylebox_override("panel", relative_resources.get(node.get_theme_stylebox("panel").resource_path.get_file()))
+			var file_name: String = get_panel_resource_name(node)
+			if !has_theme_suffix(file_name): return
+			if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))
+		if node is Label:
+			if translucent: node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_translucent_palette))
+			else: node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_palette))
+		if (node is Button or \
+				node is ScrollContainer or \
+				node is LineEdit) \
+				and node.theme != null:
+			var file_name: String = get_theme_resource_name(node)
+			if !has_theme_suffix(file_name): return
+			if get_file_theme(file_name) != Settings.dark_mode: node.theme = relative_resources.get(file_name)
+		if node is TextEdit:
+			node.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.light_mode_font_color))
+			node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+			node.add_theme_color_override("caret_color", Color.html(GlobalTheme.light_mode_palette))
+		if node is TextureRect:
+			if translucent: node.self_modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
+			else: node.self_modulate = Color.html(GlobalTheme.light_mode_palette)
+	elif Settings.dark_mode == 1:
+		if node is PanelContainer and node.get_theme_stylebox("panel") is StyleBoxFlat:
+			var file_name: String = get_panel_resource_name(node)
+			if !has_theme_suffix(file_name): return
+			if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))
 		if node is Label: node.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 		if (node is Button or \
 				node is ScrollContainer or \
 				node is LineEdit) \
 				and node.theme != null:
-			node.theme = relative_resources.get(node.theme.resource_path.get_file())
+			var file_name: String = get_theme_resource_name(node)
+			if !has_theme_suffix(file_name): return
+			if get_file_theme(file_name) != Settings.dark_mode: node.theme = relative_resources.get(file_name)
 		if node is TextEdit:
 			node.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.dark_mode_font_color))
 			node.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
@@ -64,3 +94,17 @@ func _ready() -> void:
 		if node is TextureRect:
 			if translucent: node.self_modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)
 			else: node.self_modulate = Color.html(GlobalTheme.dark_mode_palette)
+
+func get_panel_resource_name(node) -> String:
+	return node.get_theme_stylebox("panel").resource_path.get_file()
+
+func get_theme_resource_name(node) -> String:
+	return node.theme.resource_path.get_file()
+
+func has_theme_suffix(file_name: String) -> bool:
+	return file_name.ends_with("Light.tres") or file_name.ends_with("Dark.tres")
+
+func get_file_theme(file_name: String) -> int:
+	if file_name.ends_with("Light.tres"): return 0
+	elif  file_name.ends_with("Dark.tres"): return 1
+	return -1

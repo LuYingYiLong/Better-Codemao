@@ -181,6 +181,7 @@ texture = ExtResource("4_0hwcg")
 expand_mode = 1
 
 [node name="ThemePainter" parent="MarginContainer/HBoxContainer/LinkTexture" instance=ExtResource("3_p2xmy")]
+translucent = true
 
 [node name="CopyButton" type="Button" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true

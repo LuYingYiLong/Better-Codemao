@@ -18,7 +18,6 @@ extends Control
 @onready var contents = %Contents
 
 @onready var all_replies_label = %AllRepliesLabel
-@onready var scroll_container = %ScrollContainer
 @onready var top_reply_card_container = %TopReplyCardContainer
 @onready var reply_card_container = %ReplyCardContainer
 @onready var pagination_bar = %PaginationBar

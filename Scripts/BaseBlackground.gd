@@ -28,5 +28,8 @@ func _on_settings_config_update():
 		image.load(Settings.blackground)
 		var _texture = ImageTexture.create_from_image(image)
 		texture = _texture
+	else:
+		if Settings.dark_mode == 0: texture = load("res://Resources/Textures/Default.png")
+		else: texture = load("res://Resources/Textures/DefaultDarkness.png")
 	if Settings.blackground_mode == 1: base_blur.color = DisplayServer.get_base_color()
 	base_blur.visible = Settings.blackground_mode == 1

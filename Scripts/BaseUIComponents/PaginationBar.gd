@@ -37,7 +37,7 @@ func update_pager_total() -> void:
 			pager_button_scene.text = str(count + 1)
 		if !Engine.is_editor_hint():
 			if pager_button_scene.text != "...": pager_button_scene.set_page(pager_button_scene.text.to_int())
-			else: pager_button_scene.collapse_pages = Vector2i(count - 1, total)
+			else: pager_button_scene.collapse_pages = Vector2i(count + 1, total)
 			pager_button_scene.on_pressed.connect(_on_pager_button_pressed)
 		pager_button_scene.current_page = current_page
 		if pager_button_scene.text.to_int() == total: break

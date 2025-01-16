@@ -86,6 +86,29 @@
 					"use": "$ combo_box->items->selected->metadata"
 				}
 			}
+		},
+		{
+			"option_box": {
+				"text": "THEME_NAME",
+				"combo_box": {
+					"selected": "$ settings_config->personalization->dark_mode",
+					"items": [
+						{
+							"text": "LIGHT_NAME",
+							"metadata": 0
+						},
+						{
+							"text": "DARK_NAME",
+							"metadata": 1
+						}
+					]
+				},
+				"change_settings_config": {
+					"path": "personalization",
+					"key": "dark_mode",
+					"use": "$ combo_box->items->selected->metadata"
+				}
+			}
 		}
 	],
 	"about_options": [

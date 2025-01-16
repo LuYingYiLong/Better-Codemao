@@ -16,6 +16,11 @@ extends PanelContainer
 func _ready():
 	var user_data: Dictionary = Application.load_json_file(Application.USER_DATA_PATH)
 	print_last_check_time(user_data.get("last_check_time", {}))
+	is_latest_version_panel.visible = !Application.has_lastest_version
+	has_latest_version_panel.visible = Application.has_lastest_version
+	get_updates_panel.visible = Application.has_lastest_version
+	var current_version: String = ProjectSettings.get_setting("application/config/version")
+	a_new_version_is_available_label.text = TranslationServer.translate("A_NEW_VERSION_IS_AVAILABLE_DESCRIPTION").format([Application.latest_version, current_version])
 
 func _on_check_for_updates_button_pressed() -> void:
 	check_for_updates_button.disabled = true
@@ -23,6 +28,7 @@ func _on_check_for_updates_button_pressed() -> void:
 	ok_icon.hide()
 	checking_panel.show()
 	is_latest_version_panel.hide()
+	has_latest_version_panel.hide()
 
 func _on_check_updates_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	check_for_updates_button.disabled = false
@@ -37,21 +43,22 @@ func _on_check_updates_request_request_completed(result: int, _response_code: in
 		return
 
 	var user_data: Dictionary = Application.load_json_file(Application.USER_DATA_PATH)
-	var current_version: PackedStringArray = ProjectSettings.get_setting("application/config/version").split(".")
-	var latest_version: PackedStringArray = json.get("body").split(".")
-	var has_lastest_version: bool
-	if latest_version.size() > current_version.size():
-		has_lastest_version = true
+	var current_version: String = ProjectSettings.get_setting("application/config/version")
+	Application.latest_version = json.get("body")
+	var current_version_array: PackedStringArray = current_version.split(".")
+	var latest_version_array: PackedStringArray = Application.latest_version.split(".")
+	if latest_version_array.size() > current_version_array.size():
+		Application.has_lastest_version = true
 	else:
 		var index: int = 0
-		for i: String in latest_version:
-			if i.to_int() > current_version[index].to_int():
-				has_lastest_version = true
+		for i: String in latest_version_array:
+			if i.to_int() > current_version_array[index].to_int():
+				Application.has_lastest_version = true
 				break
 			index += 1
 	checking_panel.hide()
-	if has_lastest_version:
-		a_new_version_is_available_label.text = TranslationServer.translate("A_NEW_VERSION_IS_AVAILABLE_DESCRIPTION").format([latest_version, current_version])
+	if Application.has_lastest_version:
+		a_new_version_is_available_label.text = TranslationServer.translate("A_NEW_VERSION_IS_AVAILABLE_DESCRIPTION").format([Application.latest_version, current_version])
 		has_latest_version_panel.show()
 		get_updates_panel.show()
 	else:

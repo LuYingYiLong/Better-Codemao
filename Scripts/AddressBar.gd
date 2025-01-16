@@ -39,10 +39,11 @@ func set_root_address(address_name: String, scene_path: String = "", data: Dicti
 		if count > 0: node.queue_free()
 
 	#获取第一页并播放向左推出动画后删除
-	var scene_node = pages.get_node("0")
-	if scene_node != null:
-		scene_node.name = "-999"
-		scene_node.queue_free()
+	if pages.has_node("0"):
+		var scene_node = pages.get_node("0")
+		if scene_node != null:
+			scene_node.name = "-999"
+			scene_node.queue_free()
 
 	var page_container_scene = PAGE_CONTAINER_SCENE.instantiate()
 	pages.add_child(page_container_scene)

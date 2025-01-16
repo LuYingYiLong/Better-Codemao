@@ -1,10 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://f855sygoy2lw"]
+[gd_scene load_steps=15 format=3 uid="uid://f855sygoy2lw"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_ayk0x"]
 [ext_resource type="Script" path="res://Scripts/Forum/ReplyCard.gd" id="2_qbosl"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_lvul8"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_x1wks"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="4_6o03u"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_wmkx4"]
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="6_gwf2p"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="6_wn6mf"]
 [ext_resource type="StyleBox" uid="uid://ltv4bwkqhnhc" path="res://Resources/Themes/PanelContainer-Dark.tres" id="7_1pn4i"]
 [ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="7_6iwvc"]
@@ -18,28 +20,6 @@ corner_radius_top_right = 28
 corner_radius_bottom_right = 28
 corner_radius_bottom_left = 28
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s3nx6"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ld7vq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfgvk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rrn1x"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ir2mv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rlye4"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_myyaj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8rwb2"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwt5d"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7ted"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_77eby"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myk3v"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 4
@@ -51,6 +31,8 @@ corner_radius_bottom_left = 4
 custom_minimum_size = Vector2(264, 0)
 theme_override_styles/panel = ExtResource("1_ayk0x")
 script = ExtResource("2_qbosl")
+
+[node name="ThemePainter" parent="." instance=ExtResource("3_lvul8")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -87,29 +69,15 @@ theme_override_constants/separation = -3
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme = ExtResource("6_gwf2p")
 theme_override_fonts/font = ExtResource("5_wmkx4")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_s3nx6")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ld7vq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_gfgvk")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rrn1x")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ir2mv")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_rlye4")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_myyaj")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8rwb2")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_uwt5d")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_f7ted")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_77eby")
 text = "Nickname"
 flat = true
 alignment = 0
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" instance=ExtResource("3_lvul8")]
 
 [node name="WorkShopTag" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("6_wn6mf")]
 unique_name_in_owner = true
@@ -152,6 +120,8 @@ theme_override_fonts/font = ExtResource("9_fqnsm")
 text = "YYY/MM/DD"
 vertical_alignment = 1
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/UpdatedAt" instance=ExtResource("3_lvul8")]
 
 [node name="CommentContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true

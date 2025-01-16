@@ -30,6 +30,9 @@ var user_avatar: Texture = null:
 		user_avatar = value
 		user_avatar_update.emit()
 
+var has_lastest_version: bool
+var latest_version: String
+
 func _notification(what):
 	if what == NOTIFICATION_APPLICATION_FOCUS_IN:
 		var clipboard_get: String = DisplayServer.clipboard_get()
