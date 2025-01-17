@@ -1,6 +1,13 @@
 extends HTTPRequest
 
 func _ready() -> void:
+	# 可恶的锂电池
+	#print(Application.html_to_bbcode('
+#<p><p><span style="color: #ff5050; font-size: x-large;"><strong>【Kitten N公测更新】超多更新：云变量、背包、分类AI...快来体验吧</strong></span></p> 
+#<p style="text-align: center;"><span>嗨~各位小训练师们</span><span>,11月过得如何？</span></p> 
+#<p style="text-align: center;"><span>喵喵这次带来了一个超级重磅消息！</span></p>
+#'
+#	))
 	request("https://api.github.com/repos/LuYingYiLong/Better-Codemao/issues/1")
 
 func _on_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:

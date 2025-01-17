@@ -113,7 +113,7 @@ func html_to_bbcode(html: String) -> String:
 			'<strong>': html = html.replace(get_string, "[b]")
 			'</strong>': html = html.replace(get_string, "[/b]")
 			'<span style="text-decoration: underline;">': html = html.replace(get_string, "[u]")
-			'</span>': html = html.replace(get_string, "[/u]")
+			#'</span>': html = html.replace(get_string, "[/u]")
 			'<pre class="language-python">': html = html.replace(get_string, "[language=python]")
 			'<code>': html = html.replace(get_string, "[code][begin]")
 			'</code>': html = html.replace(get_string, "[end][code]")

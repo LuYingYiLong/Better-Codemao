@@ -90,6 +90,7 @@ func on_details_received(result: int, _response_code: int, _headers: PackedStrin
 	populate_content()
 
 func populate_content():
+	#print(content)
 	for node in contents.get_children():
 		node.queue_free()
 	to_rich_text_button.visible = not rich_text_enabled
