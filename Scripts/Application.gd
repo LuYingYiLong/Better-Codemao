@@ -33,11 +33,7 @@ var user_avatar: Texture = null:
 var has_lastest_version: bool
 var latest_version: String
 
-func _notification(what):
-	if what == NOTIFICATION_APPLICATION_FOCUS_IN:
-		var clipboard_get: String = DisplayServer.clipboard_get()
-		if not is_valid_url(clipboard_get): return
-		shell_open(clipboard_get)
+
 
 # 识别网页链接
 func is_valid_url(url: String) -> bool:
@@ -61,20 +57,7 @@ func extract_path_from_url(url: String) -> String:
 	if result: return result.get_string(1)
 	else: return ""
 
-func shell_open(url: String) -> void:
-	if is_valid_url(url):
-		var honst: String = extract_host_from_url(url)
-		if honst != "https://shequ.codemao.cn": return
-		var path: String = extract_path_from_url(url)
-		if path.begins_with("/community/"):
-			append_address.emit(TranslationServer.translate("POST_NAME"), \
-			"res://Scenes/Forum/PostMenu.tscn", \
-			{"id": path.trim_prefix("/community/").to_int()})
-		elif path.begins_with("/work/"):
-			append_address.emit(TranslationServer.translate("WORK_NAME"), \
-			"res://Scenes/Work/WorkMenu.tscn", \
-			{"id": path.trim_prefix("/work/").to_int()})
-		DisplayServer.clipboard_set("")
+
 
 #保存json文件
 func save_json_file(file_path: String, data: Dictionary):
@@ -187,16 +170,19 @@ func html_to_bbcode(html: String) -> String:
 				end_tags.append("[/b]")
 			'</strong>':
 				tags.append(end_tags.pop_back())
+			'<code>':
+				tags.append("[code]")
+				end_tags.append("[/code]")
+			'</code>': tags.append(end_tags.pop_back())
+			'</pre>': tags.append(end_tags.pop_back())
 			'<p>':
 				tags.append("")
 			'</p>':
 				end_tags.append("")
-				#print(tags)
-				#print(end_tags)
 				for item: String in end_tags:
 					tags.append(end_tags.pop_front())
 				end_tags.clear()
-			#'<pre class="language-python">': html = html.replace(get_string, "[language=python]")
+			#'python">': html = html.replace(get_string, "[language=python]")
 			#'<code>': html = html.replace(get_string, "[code][begin]")
 			#'</code>': html = html.replace(get_string, "[end][code]")
 			#提取图片链接：https:\/\/cdn-community.codemao.cn\/.*?\.png|jpeg
@@ -222,13 +208,20 @@ func html_to_bbcode(html: String) -> String:
 								tags[prefix_index] = "%s[font_size=%s]" %[prefix, html_font_size_vlaue_to_bbcode(property_value)]
 								end_tags[end_tags_index] = "[/font_size]%s" %suffix
 
-				elif get_string.contains("https://cdn-community.bcmcdn.com/47/community/"):
+				elif get_string.contains("https://cdn-community.bcmcdn.com/47/community/") or \
+						get_string.contains("https://kn-cdn.codemao.cn/wood/image/"):
 					var image_link_regex = RegEx.new()
-					image_link_regex.compile('("https://cdn-community.bcmcdn.com/47/community/.*?")')
+					if get_string.contains("https://cdn-community.bcmcdn.com/47/community/"): image_link_regex.compile('("https://cdn-community.bcmcdn.com/47/community/.*?")')
+					elif get_string.contains("https://kn-cdn.codemao.cn/wood/image/"): image_link_regex.compile('("https://kn-cdn.codemao.cn/wood/image/.*?")')
 					var image_link_result = image_link_regex.search(get_string)
 					if image_link_result:
 						var image_link: String = image_link_result.get_string()
 						tags.append("[image=%s]" %image_link.replace('"', ''))
+
+				elif get_string.begins_with('<pre class="language-') and get_string.ends_with('">'):
+					tags.append("[language=%s]" %get_string.trim_prefix('<pre class="language-').trim_suffix('">'))
+					end_tags.append("[/language]")
+
 				else:
 					tags.append("")
 	text = text.format(tags)
