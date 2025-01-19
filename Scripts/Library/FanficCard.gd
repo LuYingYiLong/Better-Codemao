@@ -10,7 +10,7 @@ signal pressed(id: int)
 var id: int
 
 func set_fanfic_card_data(json: Dictionary) -> void:
-	id = json.get("id")
+	id = json.get("id", 0)
 	cover_texture.load_image(json.get("cover_pic"), json.get("title"))
 	title_label.text = json.get("title")
 	view_times.text = str(json.get("view_times"))

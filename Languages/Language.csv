@@ -72,6 +72,13 @@ LIBRARY_NAME,图书馆,Library
 FANFIC_NAME,同人小说,Fanfic
 COMIC_NAME,漫画连载,Comic
 FACTION_NAME,资料图鉴,Faction
+READ_NAME,阅读,Read
+COLLECT_NAME,收藏,Collect
+SHARE_NAME,分享,Share
+STATUS_NAME,状态,Status
+SERIALIZED_NAME,连载中,Serialized
+DONE_NAME,已完成,Done
+INTRODUCTION_NAME,介绍,Introduction
 MESSAGE_NAME,消息,Message
 COMMENT_REPLY_NAME,评论与回复,Comment&Reply
 LIKE_FORK_NAME,赞与购买,Like&Fork

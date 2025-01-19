@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlh0ixpfywrqf"
-path="res://.godot/imported/View.svg-b34f23a18399a32304ec00a7a959ea95.ctex"
+uid="uid://c660qdoxbhy3x"
+path="res://.godot/imported/Words.svg-73653546c3ef114bcf6b8e5e8c9a2cc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/View.svg"
-dest_files=["res://.godot/imported/View.svg-b34f23a18399a32304ec00a7a959ea95.ctex"]
+source_file="res://Resources/Textures/Words.svg"
+dest_files=["res://.godot/imported/Words.svg-73653546c3ef114bcf6b8e5e8c9a2cc3.ctex"]
 
 [params]
 

@@ -133,10 +133,16 @@ func _on_basic_request_request_completed(result: int, _response_code: int, _head
 	else: doing_edit.text = doing_text
 
 func on_work_list_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-	if result != HTTPRequest.RESULT_SUCCESS:
+	var json_class: JSON = JSON.new()
+	if json_class.parse(body.get_string_from_utf8()) != OK:
+		Application.emit_system_error_message("JSON parsing failed")
+		return
+	var json: Dictionary = json_class.data
+	if result != HTTPRequest.RESULT_SUCCESS: return
+	if json.has("error_code"):
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
 		return
+
 	var items: Array = json.get("items")
 	for item: Dictionary in items:
 		var work_card_scene = WORK_CARD_SCENE.instantiate()
@@ -145,10 +151,16 @@ func on_work_list_received(result: int, _response_code: int, _headers: PackedStr
 		work_card_scene.set_work_card_data(item)
 
 func on_collection_work_list_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-	if result != HTTPRequest.RESULT_SUCCESS:
+	var json_class: JSON = JSON.new()
+	if json_class.parse(body.get_string_from_utf8()) != OK:
+		Application.emit_system_error_message("JSON parsing failed")
+		return
+	var json: Dictionary = json_class.data
+	if result != HTTPRequest.RESULT_SUCCESS: return
+	if json.has("error_code"):
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
 		return
+
 	var items: Array = json.get("items")
 	for item: Dictionary in items:
 		var work_card_scene = WORK_CARD_SCENE.instantiate()

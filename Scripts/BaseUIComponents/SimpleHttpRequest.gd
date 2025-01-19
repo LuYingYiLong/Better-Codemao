@@ -1,10 +1,11 @@
 extends Node
 
+@export_enum("Json", "Other") var connect_type: int = 0
 @export_node_path() var progress_bar
 
 @onready var http_request = %HTTPRequest
 
-signal request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray)
+signal request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedStringArray)
 
 @warning_ignore("int_as_enum_without_cast")
 func request(url: String, custom_headers: PackedStringArray = PackedStringArray(), method: HTTPClient.Method = 0, request_data: String = ""):
@@ -15,17 +16,24 @@ func request(url: String, custom_headers: PackedStringArray = PackedStringArray(
 		return error
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	request_completed.emit(result, response_code, headers, body)
-	var json = JSON.parse_string(body.get_string_from_utf8())
-	if result != HTTPRequest.RESULT_SUCCESS:
-		_change_progress_bar_state(2, true)
-		return
-	if json is Dictionary:
-		if json.has("error_code"):
-			#Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
+	if connect_type == 0:
+		var json_class: JSON = JSON.new()
+		if json_class.parse(body.get_string_from_utf8()) != OK:
+			Application.emit_system_error_message("JSON parsing failed")
 			_change_progress_bar_state(2, true)
 			return
-	_change_progress_bar_state(0, false)
+		var json: Dictionary = json_class.data
+		if result != HTTPRequest.RESULT_SUCCESS:
+			_change_progress_bar_state(2, true)
+			return
+		if json.has("error_code"):
+			_change_progress_bar_state(2, true)
+			Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
+			return
+		_change_progress_bar_state(0, false)
+		request_completed.emit(result, response_code, headers, body)
+		
+	elif connect_type == 1: request_completed.emit(result, response_code, headers, body)
 
 func _change_progress_bar_state(state: int, visible: bool) -> void:
 	if progress_bar != null:

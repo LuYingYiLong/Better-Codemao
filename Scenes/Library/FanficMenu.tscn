@@ -1,0 +1,389 @@
+[gd_scene load_steps=21 format=3 uid="uid://b808mrffykjk0"]
+
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="1_8sumo"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_6ekja"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_au6ae"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_htqta"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="5_8ntsn"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="7_0kpou"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_axqjb"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="7_tu70e"]
+[ext_resource type="Script" path="res://Scripts/Library/TextureRect.gd" id="8_2hlrg"]
+[ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="8_f2ueh"]
+[ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/SimpleButton-Light.tres" id="8_tja5x"]
+[ext_resource type="Texture2D" uid="uid://b8eyh0ddy4c26" path="res://Resources/Textures/Star.svg" id="9_uwhiu"]
+[ext_resource type="Texture2D" uid="uid://c660qdoxbhy3x" path="res://Resources/Textures/Words.svg" id="10_n0b7u"]
+[ext_resource type="Texture2D" uid="uid://b3o645ki3oqgy" path="res://Resources/Textures/Type.svg" id="11_s53y3"]
+[ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="11_w2j0j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2kif"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwfob"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tfcxc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qpd0f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jw37s"]
+
+[node name="FanficMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_2hlrg")
+
+[node name="FanficRequest" parent="." instance=ExtResource("2_6ekja")]
+unique_name_in_owner = true
+progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/ProgressBar")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ThemePainter" parent="ScrollContainer" instance=ExtResource("1_8sumo")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="DetailsPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_au6ae")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CoverTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_htqta")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 220)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("5_8ntsn")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="ReadButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_0kpou")
+text = "READ_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/ReadButton" instance=ExtResource("1_8sumo")]
+
+[node name="CollectButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("8_tja5x")
+text = "COLLECT_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/CollectButton" instance=ExtResource("1_8sumo")]
+
+[node name="CollectedButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("8_tja5x")
+text = "COLLECT_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/CollectedButton" instance=ExtResource("1_8sumo")]
+
+[node name="ShareButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("8_tja5x")
+text = "SHARE_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/ShareButton" instance=ExtResource("1_8sumo")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("7_axqjb")
+theme_override_font_sizes/font_size = 40
+text = "Title"
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/TitleLabel" instance=ExtResource("1_8sumo")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2kif")
+
+[node name="AvatarTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/PanelContainer" instance=ExtResource("3_htqta")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("5_8ntsn")
+
+[node name="NicknameLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("7_axqjb")
+theme_override_font_sizes/font_size = 26
+text = "Nickname"
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/NicknameLabel" instance=ExtResource("1_8sumo")]
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="ViewTimesPanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kwfob")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/ViewTimesPanel"]
+layout_mode = 2
+
+[node name="ViewIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/ViewTimesPanel/HBoxContainer"]
+self_modulate = Color(0.11, 0.11, 0.11, 0.490196)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_f2ueh")
+expand_mode = 1
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/ViewTimesPanel/HBoxContainer/ViewIcon" instance=ExtResource("1_8sumo")]
+translucent = true
+
+[node name="ViewTimesLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/ViewTimesPanel/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "--"
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/ViewTimesPanel/HBoxContainer/ViewTimesLabel" instance=ExtResource("1_8sumo")]
+
+[node name="BeginSeparator" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("11_w2j0j")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/BeginSeparator" instance=ExtResource("1_8sumo")]
+
+[node name="CollectTimesPanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kwfob")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/CollectTimesPanel"]
+layout_mode = 2
+
+[node name="CollectIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/CollectTimesPanel/HBoxContainer"]
+self_modulate = Color(0.11, 0.11, 0.11, 0.490196)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_uwhiu")
+expand_mode = 1
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/CollectTimesPanel/HBoxContainer/CollectIcon" instance=ExtResource("1_8sumo")]
+translucent = true
+
+[node name="CollectTimesLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/CollectTimesPanel/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "--"
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/CollectTimesPanel/HBoxContainer/CollectTimesLabel" instance=ExtResource("1_8sumo")]
+
+[node name="TotalWordsPanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kwfob")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TotalWordsPanel"]
+layout_mode = 2
+
+[node name="WordsIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TotalWordsPanel/HBoxContainer"]
+self_modulate = Color(0.11, 0.11, 0.11, 0.490196)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("10_n0b7u")
+expand_mode = 1
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TotalWordsPanel/HBoxContainer/WordsIcon" instance=ExtResource("1_8sumo")]
+translucent = true
+
+[node name="TotalWordsLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TotalWordsPanel/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "--"
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TotalWordsPanel/HBoxContainer/TotalWordsLabel" instance=ExtResource("1_8sumo")]
+
+[node name="EndSeparator" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("11_w2j0j")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/EndSeparator" instance=ExtResource("1_8sumo")]
+
+[node name="TypePanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kwfob")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TypePanel"]
+layout_mode = 2
+
+[node name="TypeIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TypePanel/HBoxContainer"]
+self_modulate = Color(0.11, 0.11, 0.11, 0.490196)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("11_s53y3")
+expand_mode = 1
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TypePanel/HBoxContainer/TypeIcon" instance=ExtResource("1_8sumo")]
+translucent = true
+
+[node name="TypeLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TypePanel/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "--"
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GridContainer/TypePanel/HBoxContainer/TypeLabel" instance=ExtResource("1_8sumo")]
+
+[node name="StatusLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("7_axqjb")
+theme_override_font_sizes/font_size = 20
+text = "Status"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/StatusLabel" instance=ExtResource("1_8sumo")]
+
+[node name="IntroductionLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("7_axqjb")
+theme_override_font_sizes/font_size = 20
+text = "INTRODUCTION_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/IntroductionLabel" instance=ExtResource("1_8sumo")]
+
+[node name="Introduction" type="TextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_readonly_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/selection_color = Color(0, 0.470588, 0.831373, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tfcxc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qpd0f")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_jw37s")
+text = "--"
+editable = false
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/Introduction" instance=ExtResource("1_8sumo")]
+
+[node name="ProgressBar" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel" instance=ExtResource("7_tu70e")]
+layout_mode = 2
+
+[node name="SectionList" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_au6ae")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/SectionList"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SectionCardContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/SectionList/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+
+[connection signal="request_completed" from="FanficRequest" to="." method="_on_fanfic_request_request_completed"]

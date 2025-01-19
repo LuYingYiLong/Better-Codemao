@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://gfti8mt5piut"]
+
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_dn8xt"]
+[ext_resource type="Script" path="res://Scripts/Library/SectionCard.gd" id="2_174b8"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_gntan"]
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="3_yafjg"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_3n72t"]
+
+[node name="SectionCard" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 48)
+offset_right = 452.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_dn8xt")
+script = ExtResource("2_174b8")
+
+[node name="ThemePainter" parent="." instance=ExtResource("2_gntan")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="Button" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_yafjg")
+theme_override_fonts/font = ExtResource("4_3n72t")
+theme_override_font_sizes/font_size = 18
+text = "Title"
+flat = true
+alignment = 0
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="MarginContainer/Button" instance=ExtResource("2_gntan")]
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]

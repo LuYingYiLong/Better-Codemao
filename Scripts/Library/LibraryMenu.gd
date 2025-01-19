@@ -44,3 +44,9 @@ func _on_fanfic_recommend_request_request_completed(result: int, _response_code:
 		var fanfic_card_scene = FANFIC_CARD_SCENE.instantiate()
 		fanfic_card_container.add_child(fanfic_card_scene)
 		fanfic_card_scene.set_fanfic_card_data(fanfic)
+		fanfic_card_scene.pressed.connect(_on_fanfic_card_scene)
+
+func _on_fanfic_card_scene(id: int) -> void:
+	Application.append_address.emit("FANFIC_NAME", \
+			"res://Scenes/Library/FanficMenu.tscn", \
+			{"id": id})
