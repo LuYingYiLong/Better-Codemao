@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://csg0n6d7u0rvf"]
+[gd_scene load_steps=44 format=3 uid="uid://csg0n6d7u0rvf"]
 
 [ext_resource type="Script" path="res://Scripts/Application.gd" id="1_5hvyn"]
 [ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/LoginMenu.tscn" id="2_1hfjc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/CheckUpdatesRequest.gd" id="3_ctk8w"]
 [ext_resource type="Script" path="res://Scripts/BaseBlackground.gd" id="3_jr2r8"]
 [ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="3_scs3j"]
+[ext_resource type="Script" path="res://Scripts/ParseUserArgs.gd" id="4_o48c8"]
 [ext_resource type="Script" path="res://Scripts/AddressBar.gd" id="5_4xxjt"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_6l8hs"]
 [ext_resource type="Texture2D" uid="uid://xtqhdrqk18ja" path="res://Resources/Textures/Arrow.svg" id="6_rplow"]
@@ -392,6 +393,9 @@ script = ExtResource("2_epunv")
 
 [node name="CheckUpdatesRequest" type="HTTPRequest" parent="."]
 script = ExtResource("3_ctk8w")
+
+[node name="ParseUserArgs" type="Node" parent="."]
+script = ExtResource("4_o48c8")
 
 [node name="BaseBlackground" type="TextureRect" parent="."]
 layout_mode = 1

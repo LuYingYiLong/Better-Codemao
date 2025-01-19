@@ -50,7 +50,6 @@ var doing_text: String
 
 func _ready() -> void:
 	Application.user_avatar_update.connect(user_avatar_update)
-	Settings.update_theme()
 
 func _process(_delta) -> void:
 	max_display_number = floori((size.x - 80) / 162)

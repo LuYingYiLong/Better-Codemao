@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://di7yxffcqkw44"]
+[gd_scene load_steps=23 format=3 uid="uid://di7yxffcqkw44"]
 
 [ext_resource type="Script" path="res://Scripts/Forum/PostMenu.gd" id="1_na1xp"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_e7c64"]
@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="10_4n3yp"]
 [ext_resource type="Texture2D" uid="uid://b0myqocntu4ln" path="res://Resources/Textures/Replie.svg" id="12_wwoe7"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="13_fdfjd"]
+[ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="14_wyd1l"]
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="15_6alh1"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="16_0gukb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4781"]
@@ -26,34 +28,6 @@ corner_radius_top_left = 28
 corner_radius_top_right = 28
 corner_radius_bottom_right = 28
 corner_radius_bottom_left = 28
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bdfns"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jorty"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o562g"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ygwd"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_orde0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbl31"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmaxq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ebq3u"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atm57"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l88a7"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k0qjr"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_1w6wk"]
-color = Color(1, 1, 1, 0.490196)
-grow_begin = -6.0
-grow_end = -6.0
-vertical = true
 
 [node name="PostMenu" type="Control"]
 layout_mode = 3
@@ -133,7 +107,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TitleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer" groups=["theme-normal"]]
+[node name="TitleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -143,6 +117,8 @@ text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/TitleLabel" instance=ExtResource("4_xut8d")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 56)
@@ -169,29 +145,14 @@ theme_override_constants/separation = -4
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme = ExtResource("15_6alh1")
 theme_override_fonts/font = ExtResource("4_ftsgq")
 theme_override_font_sizes/font_size = 26
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bdfns")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_jorty")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o562g")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_1ygwd")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_orde0")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_pbl31")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_rmaxq")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ebq3u")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_atm57")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_l88a7")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_k0qjr")
 text = "Nickname"
-flat = true
 alignment = 0
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" instance=ExtResource("4_xut8d")]
 
 [node name="WorkShopTag" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_svy5b")]
 unique_name_in_owner = true
@@ -200,7 +161,6 @@ size_flags_horizontal = 0
 
 [node name="InfoContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-modulate = Color(0.0588235, 0.0588235, 0.0588235, 0.490196)
 layout_mode = 2
 theme_override_constants/separation = -6
 
@@ -216,6 +176,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 
 [node name="ViewsIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Views"]
+self_modulate = Color(0.11, 0.11, 0.11, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -223,16 +184,24 @@ size_flags_vertical = 4
 texture = ExtResource("10_4n3yp")
 expand_mode = 1
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Views/ViewsIcon" instance=ExtResource("4_xut8d")]
+
 [node name="Views" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Views"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("9_vrxlf")
 text = "999"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Views/Views" instance=ExtResource("4_xut8d")]
+translucent = true
 
 [node name="Replies" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="RepliesIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Replies"]
+self_modulate = Color(0.109804, 0.109804, 0.109804, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -240,11 +209,18 @@ size_flags_vertical = 4
 texture = ExtResource("12_wwoe7")
 expand_mode = 1
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Replies/RepliesIcon" instance=ExtResource("4_xut8d")]
+
 [node name="Replies" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Replies"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("9_vrxlf")
 text = "999"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Replies/Replies" instance=ExtResource("4_xut8d")]
+translucent = true
 
 [node name="Control" type="Control" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(4, 0)
@@ -254,62 +230,84 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxLine_1w6wk")
+theme_override_styles/panel = ExtResource("14_wyd1l")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/Line" instance=ExtResource("4_xut8d")]
 
 [node name="MirroringButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
 custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme = ExtResource("15_6alh1")
 theme_override_constants/icon_max_width = 26
 icon = ExtResource("9_idpnt")
 flat = true
 icon_alignment = 1
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/MirroringButton" instance=ExtResource("4_xut8d")]
+
 [node name="ToRichTextButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
 custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme = ExtResource("15_6alh1")
 theme_override_constants/icon_max_width = 26
 icon = ExtResource("8_8nsta")
 flat = true
 icon_alignment = 1
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/ToRichTextButton" instance=ExtResource("4_xut8d")]
+
 [node name="ToTextButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
 custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme = ExtResource("15_6alh1")
 theme_override_constants/icon_max_width = 26
 icon = ExtResource("9_w60un")
 flat = true
 icon_alignment = 1
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/ToTextButton" instance=ExtResource("4_xut8d")]
+
 [node name="OpenInBrowserButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
 custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme = ExtResource("15_6alh1")
 theme_override_constants/icon_max_width = 26
 icon = ExtResource("8_ums52")
 flat = true
 icon_alignment = 1
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/OpenInBrowserButton" instance=ExtResource("4_xut8d")]
+
 [node name="PublishOn" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("9_vrxlf")
 text = "PUBLISH_ON_NAME: YYY/MM/DD"
 horizontal_alignment = 2
 vertical_alignment = 1
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/PublishOn" instance=ExtResource("4_xut8d")]
 
 [node name="Contents" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -332,7 +330,7 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer"]
 layout_mode = 2
 
-[node name="AllRepliesLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer" groups=["theme-normal"]]
+[node name="AllRepliesLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -340,6 +338,8 @@ theme_override_fonts/font = ExtResource("4_ftsgq")
 theme_override_font_sizes/font_size = 24
 text = "ALL_REPLIES_NAME"
 text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/AllRepliesLabel" instance=ExtResource("4_xut8d")]
 
 [node name="SecureTextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer" instance=ExtResource("13_fdfjd")]
 unique_name_in_owner = true

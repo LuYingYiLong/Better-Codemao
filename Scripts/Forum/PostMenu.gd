@@ -46,9 +46,6 @@ var code_language: String
 
 func _ready():
 	pagination_bar.size = 3
-	Settings.settings_config_update.connect(_on_settings_config_update)
-	_on_settings_config_update()
-	Settings.update_theme()
 
 func set_data(data: Dictionary):
 	post_id = int(data.get("id", 0))
@@ -87,45 +84,66 @@ func on_details_received(result: int, _response_code: int, _headers: PackedStrin
 		create_time_dict.get("minute")
 		]
 	content = json.get("content")
-	populate_content()
+	init_contents()
 
-func populate_content():
-	#print(content)
+func init_contents() -> void:
 	for node in contents.get_children():
 		node.queue_free()
 	to_rich_text_button.visible = not rich_text_enabled
 	to_text_button.visible = rich_text_enabled
-	var content_array: PackedStringArray = Application.html_to_bbcode(content).split("[split]")
-	for content_type: String in content_array:
-		if content_type.contains("https://cdn-community.bcmcdn.com/47/community/"):
+	var bbcode_content: String = Application.html_to_bbcode(content)
+	populate_content(bbcode_content)
+
+func populate_content(bbcode_content: String) -> void:
+	var regex = RegEx.new()
+	regex.compile("(\\[.+?\\])")
+
+	for result in regex.search_all(bbcode_content):
+		var get_string: String = result.get_string()
+
+		# 添加图像
+		if get_string.begins_with("[image=") and get_string.ends_with("]"):
+			var split: PackedStringArray = bbcode_content.split(get_string)
+			var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
+			contents.add_child(content_label_scene)
+			content_label_scene.append_text(split[0])
+			
 			var image_url_loader = IMAGE_URL_LOADER_SCENE.instantiate()
 			contents.add_child(image_url_loader)
 			image_url_loader.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 			image_url_loader.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-			image_url_loader.load_image(content_type)
-		elif content_type.contains("[code]"):
-			var split: PackedStringArray = content_type.split("[code]")
-			for _content: String in split:
-				if _content.contains("[language=python]"):
-					code_language = "Python"
-					_content = _content.replace("[language=python]", "")
-				if _content.is_empty(): continue
-				elif _content.begins_with("[begin]") and _content.ends_with("[end]"):
-					var code_viewer_scene = load("res://Scenes/Forum/CodeViewer.tscn").instantiate()
-					contents.add_child(code_viewer_scene)
-					code_viewer_scene.text = _content.trim_prefix("[begin]").trim_suffix("[end]")
-					code_viewer_scene.type = code_language
-					code_language = ""
-				else:
-					var content_label = CONTENT_LABEL_SCENE.instantiate()
-					contents.add_child(content_label)
-					if rich_text_enabled: content_label.append_text(_content)
-					else: content_label.add_text(_content)
-		else:
-			var content_label = CONTENT_LABEL_SCENE.instantiate()
-			contents.add_child(content_label)
-			if rich_text_enabled: content_label.append_text(content_type)
-			else: content_label.add_text(content_type)
+			image_url_loader.load_image(get_string.trim_prefix("[image=").trim_suffix("]"))
+			
+			if split.size() >= 2:
+				populate_content(split[1])
+				return
+
+		elif get_string.begins_with("[language=]") and get_string.ends_with("]"):
+			code_language = get_string.trim_prefix("[language=]").trim_suffix("]")
+		elif get_string == "[/language]": code_language = ""
+
+	var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
+	contents.add_child(content_label_scene)
+	content_label_scene.append_text(bbcode_content)
+
+		#	if get_string.contains("[code]") and get_string.contains("[/code]"):
+		#		pass
+				#elif _content.begins_with("[begin]") and _content.ends_with("[end]"):
+				#	var code_viewer_scene = load("res://Scenes/Forum/CodeViewer.tscn").instantiate()
+				#	contents.add_child(code_viewer_scene)
+				#	code_viewer_scene.text = _content.trim_prefix("[begin]").trim_suffix("[end]")
+				#	code_viewer_scene.type = code_language
+				#	code_language = ""
+				#else:
+				#	var content_label = CONTENT_LABEL_SCENE.instantiate()
+				#	contents.add_child(content_label)
+				#	if rich_text_enabled: content_label.append_text(_content)
+				#	else: content_label.add_text(_content)
+		#	else:
+		#		var content_label = CONTENT_LABEL_SCENE.instantiate()
+		#		contents.add_child(content_label)
+		#		if rich_text_enabled: content_label.append_text(get_string)
+		#		else: content_label.add_text(get_string)
 
 func on_repiles_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json_class: JSON = JSON.new()
@@ -205,11 +223,11 @@ func _on_open_in_browser_button_pressed():
 
 func _on_to_rich_text_button_pressed():
 	rich_text_enabled = true
-	populate_content()
+	init_contents()
 
 func _on_to_text_button_pressed():
 	rich_text_enabled = false
-	populate_content()
+	init_contents()
 
 func _on_mirroring_button_pressed():
 	var zip_packer: ZIPPacker = ZIPPacker.new()
@@ -295,7 +313,3 @@ func _on_secure_text_edit_send(text: String, send_type: int) -> void:
 
 func _on_pagination_bar_page_changed(page):
 	repiles_request.request("https://api.codemao.cn/web/forums/posts/%s/replies?page=%s&limit=30&sort=-created_at" %[post_id, page])
-
-func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0: info_container.modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
-	else: info_container.modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)

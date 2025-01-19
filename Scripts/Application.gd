@@ -36,16 +36,45 @@ var latest_version: String
 func _notification(what):
 	if what == NOTIFICATION_APPLICATION_FOCUS_IN:
 		var clipboard_get: String = DisplayServer.clipboard_get()
-		if clipboard_get.begins_with("https://shequ.codemao.cn/community/"):
+		if not is_valid_url(clipboard_get): return
+		shell_open(clipboard_get)
+
+# 识别网页链接
+func is_valid_url(url: String) -> bool:
+	var regex := RegEx.new()
+	regex.compile("^https?://[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(:[0-9]+)?(/.*)?$")
+	var result = regex.search(url)
+	if result == null: return false
+	else: return true
+
+func extract_host_from_url(url: String) -> String:
+	var regex := RegEx.new()
+	regex.compile("https?://([^/]+)")
+	var result = regex.search(url)
+	if result: return result.get_string()
+	else: return ""
+
+func extract_path_from_url(url: String) -> String:
+	var regex := RegEx.new()
+	regex.compile("https?://[^/]+(/.*)")
+	var result = regex.search(url)
+	if result: return result.get_string(1)
+	else: return ""
+
+func shell_open(url: String) -> void:
+	if is_valid_url(url):
+		var honst: String = extract_host_from_url(url)
+		if honst != "https://shequ.codemao.cn": return
+		var path: String = extract_path_from_url(url)
+		if path.begins_with("/community/"):
 			append_address.emit(TranslationServer.translate("POST_NAME"), \
 			"res://Scenes/Forum/PostMenu.tscn", \
-			{"id": clipboard_get.trim_prefix("https://shequ.codemao.cn/community/").to_int()})
-			DisplayServer.clipboard_set("")
-		if clipboard_get.begins_with("https://shequ.codemao.cn/work/"):
+			{"id": path.trim_prefix("/community/").to_int()})
+		elif path.begins_with("/work/"):
 			append_address.emit(TranslationServer.translate("WORK_NAME"), \
 			"res://Scenes/Work/WorkMenu.tscn", \
-			{"id": clipboard_get.trim_prefix("https://shequ.codemao.cn/work/").to_int()})
-			DisplayServer.clipboard_set("") 
+			{"id": path.trim_prefix("/work/").to_int()})
+		DisplayServer.clipboard_set("")
 
 #保存json文件
 func save_json_file(file_path: String, data: Dictionary):
@@ -62,9 +91,9 @@ func load_json_file(file_path: String):
 		if paresd_result is Dictionary: return paresd_result
 		else: 
 			push_error("Failed to load json")
-			return null
+			return {}
 	else: push_warning("Attempts to locate the file failed")
-	return null
+	return {}
 
 #生成 Cookie 请求头
 func generate_cookie_header() -> String:
@@ -94,46 +123,130 @@ func html_to_text(html: String):
 	return html
 
 func html_to_bbcode(html: String) -> String:
+	html = html.replace("&nbsp;", " ")
+	var text: String = html
 	var regex = RegEx.new()
-	regex.compile("(<.+?>|&nbsp;)")
-	#var results = []
+	regex.compile("(<.+?>)")
+
+	# 先把 HTML标签 格式化
+	var count: int = 0
+	for result in regex.search_all(text):
+		var pos: int = text.find(result.get_string())
+		if pos >= 0:
+			var result_length: int = result.get_string().length()
+			for i: int in range(result_length):
+				text[pos] = ""
+			text = text.insert(pos, "{%s}" %count)
+		count += 1
+
+	# 将 HTML标签 转为 BBCode
+	var tags: Array
+	var end_tags: Array
 	for result in regex.search_all(html):
-		#results.push_back(result.get_string())
 		var get_string: String = result.get_string()
 		match get_string:
-			'<p style="text-align: right;">': html = html.replace(get_string, "[right]")
-			'<p style="text-align: center;">': html = html.replace(get_string, "[center]")
-			'<p style="text-align: left;">': html = html.replace(get_string, "[left]")
-			'<span style="font-size: x-喵all;">': html = html.replace(get_string, "[font_size=12]")
-			'<span style="font-size: 喵all;">': html = html.replace(get_string, "[font_size=14]")
-			'<span style="font-size: medium;">': html = html.replace(get_string, "[font_size=16]")
-			'<span style="font-size: large;">': html = html.replace(get_string, "[font_size=22]")
-			'<span style="font-size: x-large;">': html = html.replace(get_string, "[font_size=26]")
-			'<span style="font-size: xx-large;">': html = html.replace(get_string, "[font_size=30]")
-			'<strong>': html = html.replace(get_string, "[b]")
-			'</strong>': html = html.replace(get_string, "[/b]")
-			'<span style="text-decoration: underline;">': html = html.replace(get_string, "[u]")
-			#'</span>': html = html.replace(get_string, "[/u]")
-			'<pre class="language-python">': html = html.replace(get_string, "[language=python]")
-			'<code>': html = html.replace(get_string, "[code][begin]")
-			'</code>': html = html.replace(get_string, "[end][code]")
+			# 在你猫有头无尾的标签
+			'<p style="text-align: right;">':
+				tags.append("[right]")
+				end_tags.append("[/right]")
+			'<p style="text-align: center;">':
+				tags.append("[center]")
+				end_tags.append("[/center]")
+			'<p style="text-align: left;">':
+				tags.append("[left]")
+				end_tags.append("[/left]")
+			'<span style="font-size: x-喵all;">':
+				tags.append("[font_size=12]")
+				end_tags.append("[/font_size]")
+			'<span style="font-size: 喵all;">':
+				tags.append("[font_size=14]")
+				end_tags.append("[/font_size]")
+			'<span style="font-size: medium;">':
+				tags.append("[font_size=16]")
+				end_tags.append("[/font_size]")
+			'<span style="font-size: large;">':
+				tags.append("[font_size=22]")
+				end_tags.append("[/font_size]")
+			'<span style="font-size: x-large;">':
+				tags.append("[font_size=26]")
+				end_tags.append("[/font_size]")
+			'<span style="font-size: xx-large;">':
+				tags.append("[font_size=30]")
+				end_tags.append("[/font_size]")
+			'<span style="text-decoration: underline;">':
+				tags.append("[u]")
+				end_tags.append("[/u]")
+			'<span>':
+				tags.append("")
+				end_tags.append("")
+			'</span>':
+				tags.append(end_tags.pop_back())
+			# 在你猫有头有尾的标签
+			'<strong>':
+				tags.append("[b]")
+				end_tags.append("[/b]")
+			'</strong>':
+				tags.append(end_tags.pop_back())
+			'<p>':
+				tags.append("")
+			'</p>':
+				end_tags.append("")
+				#print(tags)
+				#print(end_tags)
+				for item: String in end_tags:
+					tags.append(end_tags.pop_front())
+				end_tags.clear()
+			#'<pre class="language-python">': html = html.replace(get_string, "[language=python]")
+			#'<code>': html = html.replace(get_string, "[code][begin]")
+			#'</code>': html = html.replace(get_string, "[end][code]")
 			#提取图片链接：https:\/\/cdn-community.codemao.cn\/.*?\.png|jpeg
 			_:
-				if get_string.contains("https://cdn-community.bcmcdn.com/47/community/"):
+				# 检查是否是 HTML 多样式标签，如 <span style="color: #ff5050; font-size: x-large;">
+				if get_string.begins_with('<span style="') and get_string.ends_with(';">'):
+					var style_declarations: PackedStringArray = get_string.trim_prefix('<span style="').trim_suffix(';">').replace(" ", "").split(";")
+					# 创建一个空项，让后续更好的添加标签
+					tags.append("")
+					end_tags.append("")
+					var prefix_index: int = tags.size() - 1
+					var end_tags_index: int = end_tags.size() - 1
+					for style_declaration: String in style_declarations:
+						var property_name: String = style_declaration.get_slice(":", 0)
+						var property_value: String = style_declaration.get_slice(":", 1)
+						var prefix: String = tags[prefix_index]
+						var suffix: String = end_tags[end_tags_index]
+						match property_name:
+							"color":
+								tags[prefix_index] = "%s[color=%s]" %[prefix, property_value]
+								end_tags[end_tags_index] = "[/color]%s" %suffix
+							"font-size":
+								tags[prefix_index] = "%s[font_size=%s]" %[prefix, html_font_size_vlaue_to_bbcode(property_value)]
+								end_tags[end_tags_index] = "[/font_size]%s" %suffix
+
+				elif get_string.contains("https://cdn-community.bcmcdn.com/47/community/"):
 					var image_link_regex = RegEx.new()
 					image_link_regex.compile('("https://cdn-community.bcmcdn.com/47/community/.*?")')
 					var image_link_result = image_link_regex.search(get_string)
 					if image_link_result:
 						var image_link: String = image_link_result.get_string()
-						image_link = image_link.replace('"', '[split]')
-						html = html.replace(get_string, image_link)
+						tags.append("[image=%s]" %image_link.replace('"', ''))
 				else:
-					html = html.replace(get_string, "")
-	return html
+					tags.append("")
+	text = text.format(tags)
+
+	return text
+
+func html_font_size_vlaue_to_bbcode(value: String) -> String:
+	match value:
+		"x-喵all": return "12"
+		"喵all": return "14"
+		"medium": return "16"
+		"large": return "22"
+		"x-large": return "26"
+		"xx-large": return "30"
+		_: return "16"
 
 func bbcode_to_html(bbcode: String) -> String:
 	var regex = RegEx.new()
-	
 	# 匹配基础标签
 	regex.compile("(\\[.+?\\])")
 	for result in regex.search_all(bbcode):
