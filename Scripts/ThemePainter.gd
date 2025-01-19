@@ -53,7 +53,7 @@ func _ready() -> void:
 func update_theme() -> void:
 	var node = get_parent()
 	if Settings.dark_mode == 0:
-		if node is PanelContainer and node.get_theme_stylebox("panel") is StyleBoxFlat:
+		if node is PanelContainer and node.get_theme_stylebox("panel") != null:
 			var file_name: String = get_panel_resource_name(node)
 			if !has_theme_suffix(file_name): return
 			if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))
@@ -75,7 +75,7 @@ func update_theme() -> void:
 			if translucent: node.self_modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
 			else: node.self_modulate = Color.html(GlobalTheme.light_mode_palette)
 	elif Settings.dark_mode == 1:
-		if node is PanelContainer and node.get_theme_stylebox("panel") is StyleBoxFlat:
+		if node is PanelContainer and node.get_theme_stylebox("panel") != null:
 			var file_name: String = get_panel_resource_name(node)
 			if !has_theme_suffix(file_name): return
 			if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))

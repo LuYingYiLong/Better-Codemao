@@ -101,8 +101,21 @@ func populate_content(bbcode_content: String) -> void:
 	for result in regex.search_all(bbcode_content):
 		var get_string: String = result.get_string()
 
+		if get_string.begins_with("[language=") and get_string.ends_with("]"):
+			code_language = get_string.trim_prefix("[language=").trim_suffix("]")
+			var pos: int = bbcode_content.find(get_string)
+			var result_length: int = get_string.length()
+			for i: int in range(result_length):
+				bbcode_content[pos] = ""
+		elif get_string == "[/language]":
+			code_language = ""
+			var pos: int = bbcode_content.find(get_string)
+			var result_length: int = get_string.length()
+			for i: int in range(result_length):
+				bbcode_content[pos] = ""
+
 		# 添加图像
-		if get_string.begins_with("[image=") and get_string.ends_with("]"):
+		elif get_string.begins_with("[image=") and get_string.ends_with("]"):
 			var split: PackedStringArray = bbcode_content.split(get_string)
 			var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
 			contents.add_child(content_label_scene)
@@ -110,40 +123,33 @@ func populate_content(bbcode_content: String) -> void:
 			
 			var image_url_loader = IMAGE_URL_LOADER_SCENE.instantiate()
 			contents.add_child(image_url_loader)
-			image_url_loader.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 			image_url_loader.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+			image_url_loader.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 			image_url_loader.load_image(get_string.trim_prefix("[image=").trim_suffix("]"))
 			
 			if split.size() >= 2:
 				populate_content(split[1])
 				return
 
-		elif get_string.begins_with("[language=]") and get_string.ends_with("]"):
-			code_language = get_string.trim_prefix("[language=]").trim_suffix("]")
-		elif get_string == "[/language]": code_language = ""
+		if get_string == "[code]":
+			var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
+			var code_viewer_scene = CODE_VIEWER_SCENE.instantiate()
+			var split: PackedStringArray = bbcode_content.split("[code]")
+			split.append(split[1].get_slice("[/code]", 1))
+			split.set(1, split[1].get_slice("[/code]", 0))
+			
+			contents.add_child(content_label_scene)
+			content_label_scene.append_text(split[0])
+			
+			contents.add_child(code_viewer_scene)
+			code_viewer_scene.text = split[1]
+			code_viewer_scene.type = code_language
+			if split.size() >= 3: populate_content(split[2])
+			return
 
 	var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
 	contents.add_child(content_label_scene)
 	content_label_scene.append_text(bbcode_content)
-
-		#	if get_string.contains("[code]") and get_string.contains("[/code]"):
-		#		pass
-				#elif _content.begins_with("[begin]") and _content.ends_with("[end]"):
-				#	var code_viewer_scene = load("res://Scenes/Forum/CodeViewer.tscn").instantiate()
-				#	contents.add_child(code_viewer_scene)
-				#	code_viewer_scene.text = _content.trim_prefix("[begin]").trim_suffix("[end]")
-				#	code_viewer_scene.type = code_language
-				#	code_language = ""
-				#else:
-				#	var content_label = CONTENT_LABEL_SCENE.instantiate()
-				#	contents.add_child(content_label)
-				#	if rich_text_enabled: content_label.append_text(_content)
-				#	else: content_label.add_text(_content)
-		#	else:
-		#		var content_label = CONTENT_LABEL_SCENE.instantiate()
-		#		contents.add_child(content_label)
-		#		if rich_text_enabled: content_label.append_text(get_string)
-		#		else: content_label.add_text(get_string)
 
 func on_repiles_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json_class: JSON = JSON.new()

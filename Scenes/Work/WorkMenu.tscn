@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bp6dbjsjji0pq" path="res://Scenes/Work/HWorkCard.tscn" id="11_e43ck"]
 [ext_resource type="Texture2D" uid="uid://bnp1vv6ye1f2b" path="res://Resources/Textures/Collect.svg" id="13_e5rua"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="13_gm0mk"]
+[ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="14_j04ab"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="16_vn42d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4n68a"]
@@ -41,12 +42,6 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3su1t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x2hr1"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_08ep8"]
-color = Color(0, 0, 0, 0.196078)
-grow_begin = -6.0
-grow_end = -6.0
-vertical = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djshe"]
 bg_color = Color(1, 1, 1, 1)
@@ -293,7 +288,9 @@ flat = true
 
 [node name="Line" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxLine_08ep8")
+theme_override_styles/panel = ExtResource("14_j04ab")
+
+[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Line" instance=ExtResource("5_fdmke")]
 
 [node name="Collect" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
