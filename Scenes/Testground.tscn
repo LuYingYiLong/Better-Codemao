@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="15_qr6fp"]
 [ext_resource type="Texture2D" uid="uid://mb21wmt63jw" path="res://Resources/Textures/Play.svg" id="16_8d527"]
 [ext_resource type="Texture2D" uid="uid://exor33llkxq5" path="res://Resources/Textures/Save.svg" id="17_b1xk1"]
-[ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="18_0wdjv"]
+[ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="18_0wdjv"]
 [ext_resource type="PackedScene" uid="uid://b70w7s5k2wnp7" path="res://Scenes/BaseUIComponents/AutoSuggestBox.tscn" id="21_qgycy"]
 [ext_resource type="PackedScene" uid="uid://drbgm8oplu7mk" path="res://Scenes/BaseUIComponents/HyperlinkButton.tscn" id="24_a2fpv"]
 [ext_resource type="PackedScene" uid="uid://bsclky2hfp00n" path="res://Scenes/BaseUIComponents/TabBar.tscn" id="24_moay8"]

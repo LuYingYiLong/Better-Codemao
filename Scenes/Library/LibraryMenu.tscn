@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bi80elkyb4v8g"]
+[gd_scene load_steps=11 format=3 uid="uid://bi80elkyb4v8g"]
 
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="1_rqsrl"]
 [ext_resource type="Script" path="res://Scripts/Library/LibraryMenu.gd" id="1_t0hba"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="4_sd72x"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="5_cb537"]
 [ext_resource type="PackedScene" uid="uid://bsclky2hfp00n" path="res://Scenes/BaseUIComponents/TabBar.tscn" id="5_uafdj"]
-[ext_resource type="PackedScene" uid="uid://bfiqi7q8rbtwi" path="res://Scenes/Library/FanficCard.tscn" id="6_1lsxp"]
 [ext_resource type="Script" path="res://Scripts/TabItem.gd" id="6_23ykk"]
 
 [sub_resource type="Resource" id="Resource_xalsv"]
@@ -90,9 +89,6 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 6
-
-[node name="FanficCard" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/FanficCardContainer" instance=ExtResource("6_1lsxp")]
-layout_mode = 2
 
 [connection signal="request_completed" from="FanficTypeRequest" to="." method="_on_fanfic_type_request_request_completed"]
 [connection signal="request_completed" from="FanficRecommendRequest" to="." method="_on_fanfic_recommend_request_request_completed"]

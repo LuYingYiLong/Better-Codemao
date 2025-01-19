@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_r22qk"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="4_0tqyh"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="5_q85ay"]
-[ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="6_g0pfd"]
+[ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="6_g0pfd"]
 [ext_resource type="Texture2D" uid="uid://cftybq6tll2w8" path="res://Resources/Textures/Praise.svg" id="7_5rtyt"]
 [ext_resource type="StyleBox" uid="uid://ct0x8joxnke0w" path="res://Resources/Themes/HLine-Light.tres" id="8_5wxwe"]
 

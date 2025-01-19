@@ -12,7 +12,7 @@
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="8_0pe6i"]
 [ext_resource type="PackedScene" uid="uid://5c4ths80q2t5" path="res://Scenes/Forum/PostTag.tscn" id="8_bw7th"]
 [ext_resource type="Texture2D" uid="uid://b0myqocntu4ln" path="res://Resources/Textures/Replie.svg" id="9_nc8nu"]
-[ext_resource type="Texture2D" uid="uid://bnco05uhr45c6" path="res://Resources/Textures/View.svg" id="9_p06k8"]
+[ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="9_p06k8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g8eg"]
 bg_color = Color(1, 1, 1, 1)
