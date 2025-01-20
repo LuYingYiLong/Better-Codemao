@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="7_0kpou"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_axqjb"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="7_tu70e"]
-[ext_resource type="Script" path="res://Scripts/Library/TextureRect.gd" id="8_2hlrg"]
+[ext_resource type="Script" uid="uid://cttmbuur5ffdo" path="res://Scripts/Library/TextureRect.gd" id="8_2hlrg"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="8_f2ueh"]
 [ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/SimpleButton-Light.tres" id="8_tja5x"]
 [ext_resource type="Texture2D" uid="uid://b8eyh0ddy4c26" path="res://Resources/Textures/Star.svg" id="9_uwhiu"]
@@ -158,13 +158,13 @@ text_overrun_behavior = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 clip_children = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n2kif")
 
-[node name="AvatarTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/PanelContainer" instance=ExtResource("3_htqta")]
+[node name="AvatarTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("3_htqta")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2

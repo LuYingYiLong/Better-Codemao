@@ -46,4 +46,4 @@ func _on_fanfic_request_request_completed(_result: int, _response_code: int, _he
 		section_card_scene.pressed.connect(_on_section_card_pressed)
 
 func _on_section_card_pressed(fanfic_id: int, id: int) -> void:
-	pass
+	Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"fanfic_id": fanfic_id, "id": id})

@@ -6,6 +6,8 @@ signal user_avatar_update
 signal append_address(address_name: String, scene_path: String, data: Dictionary)
 @warning_ignore("unused_signal")
 signal set_root_address(address_name: String, scene_path: String, data: Dictionary)
+@warning_ignore("unused_signal")
+signal async_load_scene(scene_path: String, data: Dictionary)
 
 @warning_ignore("unused_signal")
 signal show_login_menu
@@ -156,6 +158,24 @@ func html_to_bbcode(html: String) -> String:
 			'<span style="font-size: xx-large;">':
 				tags.append("[font_size=30]")
 				end_tags.append("[/font_size]")
+			'<h1">':
+				tags.append("[font_size=12]")
+				end_tags.append("[/font_size]")
+			'<h2">':
+				tags.append("[font_size=14]")
+				end_tags.append("[/font_size]")
+			'<h3">':
+				tags.append("[font_size=16]")
+				end_tags.append("[/font_size]")
+			'<h4">':
+				tags.append("[font_size=22]")
+				end_tags.append("[/font_size]")
+			'<h5">':
+				tags.append("[font_size=26]")
+				end_tags.append("[/font_size]")
+			'<h6">':
+				tags.append("[font_size=30]")
+				end_tags.append("[/font_size]")
 			'<span style="text-decoration: underline;">':
 				tags.append("[u]")
 				end_tags.append("[/u]")
@@ -209,10 +229,12 @@ func html_to_bbcode(html: String) -> String:
 								end_tags[end_tags_index] = "[/font_size]%s" %suffix
 
 				elif get_string.contains("https://cdn-community.bcmcdn.com/47/community/") or \
-						get_string.contains("https://kn-cdn.codemao.cn/wood/image/"):
+						get_string.contains("https://kn-cdn.codemao.cn/wood/image/") or \
+						get_string.contains("https://cdn-community.codemao.cn/47/community/"):
 					var image_link_regex = RegEx.new()
 					if get_string.contains("https://cdn-community.bcmcdn.com/47/community/"): image_link_regex.compile('("https://cdn-community.bcmcdn.com/47/community/.*?")')
 					elif get_string.contains("https://kn-cdn.codemao.cn/wood/image/"): image_link_regex.compile('("https://kn-cdn.codemao.cn/wood/image/.*?")')
+					elif get_string.contains("https://cdn-community.codemao.cn/47/community/"): image_link_regex.compile('("https://cdn-community.codemao.cn/47/community/.*?")')
 					var image_link_result = image_link_regex.search(get_string)
 					if image_link_result:
 						var image_link: String = image_link_result.get_string()

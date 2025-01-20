@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://mfb2rhleqvr6"]
 
-[ext_resource type="Script" path="res://Scripts/Forum/PostCard.gd" id="1_5kq84"]
+[ext_resource type="Script" uid="uid://c1mklwbav2c2f" path="res://Scripts/Forum/PostCard.gd" id="1_5kq84"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_gtwqm"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_wn7q6"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_2fdoj"]
@@ -11,7 +11,7 @@
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_o3g1c"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="8_0pe6i"]
 [ext_resource type="PackedScene" uid="uid://5c4ths80q2t5" path="res://Scenes/Forum/PostTag.tscn" id="8_bw7th"]
-[ext_resource type="Texture2D" uid="uid://b0myqocntu4ln" path="res://Resources/Textures/Replie.svg" id="9_nc8nu"]
+[ext_resource type="Texture2D" uid="uid://cqkfqax51setl" path="res://Resources/Textures/Comment.svg" id="9_nc8nu"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="9_p06k8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g8eg"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c37vy0oob4v5k"]
+[gd_scene load_steps=7 format=3 uid="uid://c37vy0oob4v5k"]
 
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/MainPopupMenu.gd" id="1_28uko"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_kc72k"]
 [ext_resource type="PackedScene" uid="uid://ujouhqgfvlnm" path="res://Scenes/BaseUIComponents/PopupButton.tscn" id="2_paejy"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_t8u1u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nm8o"]
 bg_color = Color(1, 1, 1, 1)
@@ -18,7 +19,6 @@ corner_radius_bottom_left = 8
 shadow_color = Color(0, 0, 0, 0.0627451)
 shadow_size = 8
 shadow_offset = Vector2(0, 8)
-anti_aliasing = false
 
 [sub_resource type="Theme" id="Theme_un3o1"]
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_0nm8o")
@@ -34,7 +34,6 @@ borderless = true
 transparent = true
 popup_window = true
 script = ExtResource("1_28uko")
-width = null
 
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -83,6 +82,8 @@ theme_override_constants/separation = 6
 [node name="PopupButton" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/ItemsContainer" instance=ExtResource("2_paejy")]
 layout_mode = 2
 text = "Popup"
+
+[node name="ThemePainter" parent="MarginContainer/PanelContainer" instance=ExtResource("4_t8u1u")]
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

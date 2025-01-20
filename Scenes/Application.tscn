@@ -1,17 +1,18 @@
-[gd_scene load_steps=44 format=3 uid="uid://csg0n6d7u0rvf"]
+[gd_scene load_steps=45 format=3 uid="uid://csg0n6d7u0rvf"]
 
-[ext_resource type="Script" path="res://Scripts/Application.gd" id="1_5hvyn"]
+[ext_resource type="Script" uid="uid://d0nrmwgp3ek3a" path="res://Scripts/Application.gd" id="1_5hvyn"]
 [ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/LoginMenu.tscn" id="2_1hfjc"]
 [ext_resource type="Texture2D" uid="uid://dir3ebxrqxnao" path="res://Resources/Textures/Workshop.svg" id="2_b44jh"]
 [ext_resource type="Texture2D" uid="uid://dtyf6mejqb7mf" path="res://Resources/Textures/Forum.svg" id="2_do58s"]
-[ext_resource type="Script" path="res://Scripts/SensitiveWordsRequest.gd" id="2_epunv"]
-[ext_resource type="Script" path="res://Scripts/NavigationBar.gd" id="2_gfkna"]
+[ext_resource type="Script" uid="uid://d3jtldyqk0ffy" path="res://Scripts/SensitiveWordsRequest.gd" id="2_epunv"]
+[ext_resource type="Script" uid="uid://0afy0dkwhuip" path="res://Scripts/NavigationBar.gd" id="2_gfkna"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="2_s4ftx"]
-[ext_resource type="Script" path="res://Scripts/CheckUpdatesRequest.gd" id="3_ctk8w"]
-[ext_resource type="Script" path="res://Scripts/BaseBlackground.gd" id="3_jr2r8"]
-[ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="3_scs3j"]
-[ext_resource type="Script" path="res://Scripts/ParseUserArgs.gd" id="4_o48c8"]
-[ext_resource type="Script" path="res://Scripts/AddressBar.gd" id="5_4xxjt"]
+[ext_resource type="Script" uid="uid://cipbup5rtw63m" path="res://Scripts/CheckUpdatesRequest.gd" id="3_ctk8w"]
+[ext_resource type="Script" uid="uid://5trx5x2px3ne" path="res://Scripts/BaseBlackground.gd" id="3_jr2r8"]
+[ext_resource type="Shader" uid="uid://blji0uwy7sqhq" path="res://Shaders/Blur.gdshader" id="3_scs3j"]
+[ext_resource type="Script" uid="uid://oe650pn8tqht" path="res://Scripts/ParseUserArgs.gd" id="4_o48c8"]
+[ext_resource type="Script" uid="uid://w4onyjwqldyw" path="res://Scripts/AddressBar.gd" id="5_4xxjt"]
+[ext_resource type="Script" uid="uid://bjutoaj5vry4h" path="res://Scripts/AsynchronousLoader.gd" id="5_w0iy8"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_6l8hs"]
 [ext_resource type="Texture2D" uid="uid://xtqhdrqk18ja" path="res://Resources/Textures/Arrow.svg" id="6_rplow"]
 [ext_resource type="Texture2D" uid="uid://dlv44xa7u53o7" path="res://Resources/Textures/Message.svg" id="7_5lsja"]
@@ -20,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bdw6wa6gmpvb5" path="res://Scenes/SystemMessageList.tscn" id="13_0uouo"]
 [ext_resource type="Texture2D" uid="uid://ba8o2b06nowk1" path="res://Resources/Textures/Library.svg" id="13_x3dak"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="14_6jx8t"]
-[ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="16_aej1e"]
+[ext_resource type="Script" uid="uid://fvyup8kkg73i" path="res://Scripts/PopupItem.gd" id="16_aej1e"]
 [ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/PopupMenu.tscn" id="16_f86f1"]
 [ext_resource type="Texture2D" uid="uid://dt4vvl5xceytj" path="res://Resources/Textures/Empty.svg" id="16_jv21r"]
 [ext_resource type="PackedScene" uid="uid://d1r6i8d7tpoqp" path="res://Scenes/BaseUIComponents/ContentDialog.tscn" id="21_4v3bv"]
@@ -59,16 +60,19 @@ corner_radius_bottom_left = 24
 [sub_resource type="Resource" id="Resource_hp763"]
 script = ExtResource("16_aej1e")
 text = "VIEW_THE_IMAGE_NAME"
+checked = false
 flat = false
 
 [sub_resource type="Resource" id="Resource_ykf6m"]
 script = ExtResource("16_aej1e")
 text = "SAVE_THE_IMAGE_NAME"
+checked = false
 flat = false
 
 [sub_resource type="Resource" id="Resource_ya1pt"]
 script = ExtResource("16_aej1e")
 text = "LOGIN_NAME"
+checked = false
 flat = false
 
 [sub_resource type="Animation" id="Animation_1pyq5"]
@@ -374,9 +378,9 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oci1q"]
 _data = {
-"Expand": SubResource("Animation_1pyq5"),
-"Fold": SubResource("Animation_a8k3p"),
-"RESET": SubResource("Animation_6fgiu")
+&"Expand": SubResource("Animation_1pyq5"),
+&"Fold": SubResource("Animation_a8k3p"),
+&"RESET": SubResource("Animation_6fgiu")
 }
 
 [node name="Application" type="Control"]
@@ -396,6 +400,9 @@ script = ExtResource("3_ctk8w")
 
 [node name="ParseUserArgs" type="Node" parent="."]
 script = ExtResource("4_o48c8")
+
+[node name="AsynchronousLoader" type="Node" parent="."]
+script = ExtResource("5_w0iy8")
 
 [node name="BaseBlackground" type="TextureRect" parent="."]
 layout_mode = 1
@@ -576,7 +583,7 @@ popup_item = Array[ExtResource("16_aej1e")]([SubResource("Resource_hp763"), SubR
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NavigationBar"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_oci1q")
+&"": SubResource("AnimationLibrary_oci1q")
 }
 
 [node name="LoginMenu" parent="." instance=ExtResource("2_1hfjc")]
@@ -591,7 +598,6 @@ layout_mode = 1
 [node name="ImageViewer" parent="." instance=ExtResource("23_omtur")]
 
 [node name="MainPopupMenu" parent="." instance=ExtResource("16_f86f1")]
-width = -1
 
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 2

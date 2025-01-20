@@ -17,8 +17,8 @@ func set_work_card_data(json: Dictionary):
 		work_name_label.text = json.get("name")
 		preview_texture.load_image(json.get("preview"), json.get("name"))
 	description_label.text = json.get("description", "")
-	view_times.text = str(json.get("view_times"))
-	praise_times.text = str(json.get("praise_times"))
+	view_times.text = str(int(json.get("view_times")))
+	praise_times.text = str(int(json.get("praise_times")))
 
 func _on_preview_texture_pressed():
 	Application.append_address.emit(work_name_label.text, \
