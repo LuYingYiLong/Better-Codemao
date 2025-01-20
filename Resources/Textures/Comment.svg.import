@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmom8jwor5eo8"
-path="res://.godot/imported/PopularActivities.svg-985110a0fd034ba3a660a65c9ed7b817.ctex"
+uid="uid://cqkfqax51setl"
+path="res://.godot/imported/Comment.svg-69f618593a962852c0cfc97b3e168903.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/PopularActivities.svg"
-dest_files=["res://.godot/imported/PopularActivities.svg-985110a0fd034ba3a660a65c9ed7b817.ctex"]
+source_file="res://Resources/Textures/Comment.svg"
+dest_files=["res://.godot/imported/Comment.svg-69f618593a962852c0cfc97b3e168903.ctex"]
 
 [params]
 

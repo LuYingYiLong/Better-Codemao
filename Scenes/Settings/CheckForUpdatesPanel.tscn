@@ -140,6 +140,8 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("4_kwnqk")
 text = "CHECK_FOR_UPDATES_NAME"
 
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckForUpdatesButton" instance=ExtResource("6_u7lnp")]
+
 [node name="GetUpdatesPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false

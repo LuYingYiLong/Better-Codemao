@@ -16,7 +16,7 @@
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="9_vrxlf"]
 [ext_resource type="Texture2D" uid="uid://hcbgfg8by3t7" path="res://Resources/Textures/Text.svg" id="9_w60un"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="10_4n3yp"]
-[ext_resource type="Texture2D" uid="uid://b0myqocntu4ln" path="res://Resources/Textures/Replie.svg" id="12_wwoe7"]
+[ext_resource type="Texture2D" uid="uid://cqkfqax51setl" path="res://Resources/Textures/Comment.svg" id="12_wwoe7"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="13_fdfjd"]
 [ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="14_wyd1l"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="15_6alh1"]

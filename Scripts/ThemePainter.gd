@@ -1,6 +1,8 @@
 extends Node
 
 @export var translucent: bool = false
+@export_group("PanelContainer")
+@export_enum("Style box", "Light color", "Dark color") var panel_container_style: int = 0
 
 const ACCENT_BUTTON_LIGHT = preload("res://Resources/Themes/AccentButton-Light.tres")
 const ACCENT_BUTTON_DARK = preload("res://Resources/Themes/AccentButton-Dark.tres")
@@ -54,9 +56,17 @@ func update_theme() -> void:
 	var node = get_parent()
 	if Settings.dark_mode == 0:
 		if node is PanelContainer and node.get_theme_stylebox("panel") != null:
-			var file_name: String = get_panel_resource_name(node)
-			if !has_theme_suffix(file_name): return
-			if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))
+			if panel_container_style == 0:
+				var file_name: String = get_panel_resource_name(node)
+				if !has_theme_suffix(file_name): return
+				if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))
+			elif panel_container_style >= 1:
+				var style_box: StyleBox = node.get_theme_stylebox("panel")
+				if style_box is StyleBoxFlat:
+					if panel_container_style == 1: style_box.bg_color = Color.html("#ffffff")
+					elif panel_container_style == 2: style_box.bg_color = Color.html("#f3f3f3")
+					style_box.border_color = Color.html("#e5e5e5")
+
 		if node is Label:
 			if translucent: node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_translucent_palette))
 			else: node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_palette))
@@ -76,9 +86,17 @@ func update_theme() -> void:
 			else: node.self_modulate = Color.html(GlobalTheme.light_mode_palette)
 	elif Settings.dark_mode == 1:
 		if node is PanelContainer and node.get_theme_stylebox("panel") != null:
-			var file_name: String = get_panel_resource_name(node)
-			if !has_theme_suffix(file_name): return
-			if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))
+			if panel_container_style == 0:
+				var file_name: String = get_panel_resource_name(node)
+				if !has_theme_suffix(file_name): return
+				if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))
+			elif panel_container_style >= 1:
+				var style_box: StyleBox = node.get_theme_stylebox("panel")
+				if style_box is StyleBoxFlat:
+					if panel_container_style == 1: style_box.bg_color = Color.html("#2b2b2b")
+					elif panel_container_style == 2: style_box.bg_color = Color.html("#202020")
+					style_box.border_color = Color.html("#3a3a3a")
+
 		if node is Label: node.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 		if (node is Button or \
 				node is ScrollContainer or \

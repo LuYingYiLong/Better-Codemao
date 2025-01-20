@@ -57,7 +57,7 @@ theme_override_constants/separation = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = -7
+theme_override_constants/separation = -4
 
 [node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -78,7 +78,7 @@ theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_constants/line_spacing = -4
 text = "Description"
 autowrap_mode = 2
-text_overrun_behavior = 3
+text_overrun_behavior = 4
 
 [node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("3_hu32r")]
 

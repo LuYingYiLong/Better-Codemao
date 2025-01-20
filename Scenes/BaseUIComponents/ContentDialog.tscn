@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1r6i8d7tpoqp"]
+[gd_scene load_steps=15 format=3 uid="uid://d1r6i8d7tpoqp"]
 
 [ext_resource type="Script" path="res://Scripts/BaseUIComponents/ContentDialog.gd" id="1_o5wa3"]
 [ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="2_q8stu"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_3j35u"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_n3srp"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="4_nuq02"]
 [ext_resource type="PackedScene" uid="uid://b4rrphs7froty" path="res://Scenes/BaseUIComponents/ContentDialogButton.tscn" id="5_7svb5"]
@@ -234,6 +235,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8rupv")
 
+[node name="ThemePainter" parent="PanelContainer" instance=ExtResource("3_3j35u")]
+panel_container_style = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
@@ -258,6 +262,8 @@ theme_override_font_sizes/font_size = 30
 text = "Title"
 text_overrun_behavior = 3
 
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TitleLabel" instance=ExtResource("3_3j35u")]
+
 [node name="TextLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -268,9 +274,14 @@ theme_override_font_sizes/font_size = 20
 text = "Text"
 autowrap_mode = 2
 
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TextLabel" instance=ExtResource("3_3j35u")]
+
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lch7b")
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/PanelContainer" instance=ExtResource("3_3j35u")]
+panel_container_style = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2

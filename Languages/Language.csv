@@ -79,6 +79,8 @@ STATUS_NAME,状态,Status
 SERIALIZED_NAME,连载中,Serialized
 DONE_NAME,已完成,Done
 INTRODUCTION_NAME,介绍,Introduction
+PREVIOUS_NAME,上一页,Previous
+NEXT_NAME,下一页,Next
 MESSAGE_NAME,消息,Message
 COMMENT_REPLY_NAME,评论与回复,Comment&Reply
 LIKE_FORK_NAME,赞与购买,Like&Fork

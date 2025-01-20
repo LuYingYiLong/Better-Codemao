@@ -158,13 +158,13 @@ text_overrun_behavior = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 clip_children = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n2kif")
 
-[node name="AvatarTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/PanelContainer" instance=ExtResource("3_htqta")]
+[node name="AvatarTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("3_htqta")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2

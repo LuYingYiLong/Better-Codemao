@@ -1,0 +1,231 @@
+[gd_scene load_steps=20 format=3 uid="uid://cicplc55f83m5"]
+
+[ext_resource type="Script" path="res://Scripts/FanficReader.gd" id="1_34i01"]
+[ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="1_jqgp2"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="1_ojtov"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_s5wnq"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_go6t7"]
+[ext_resource type="PackedScene" uid="uid://d1a4son7e2wes" path="res://Scenes/Forum/ContentLabel.tscn" id="4_n3ihe"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="6_8mkl0"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="6_423n1"]
+[ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="6_g3gpp"]
+[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="7_ik4l5"]
+[ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="7_mu1wb"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="9_6gpd3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tvv8"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74, 0.74, 0.74, 0.490196)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.0980392)
+shadow_size = 64
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0mi0h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hrtm5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3aw5b"]
+
+[sub_resource type="Theme" id="Theme_calvt"]
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_uneditable_color = Color(0.105882, 0.105882, 0.105882, 1)
+LineEdit/colors/selection_color = Color(0, 0.470588, 0.831373, 1)
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_0mi0h")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_hrtm5")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_3aw5b")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2icb6"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22f5b"]
+bg_color = Color(0.952941, 0.952941, 0.952941, 1)
+border_width_top = 1
+border_color = Color(0.898039, 0.898039, 0.898039, 1)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="FanficReader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_34i01")
+
+[node name="SectionRequest" parent="." instance=ExtResource("1_ojtov")]
+unique_name_in_owner = true
+progress_bar = NodePath("../ScrollContainer/MarginContainer/PanelContainer/ProgressBar")
+
+[node name="FanficRequest" parent="." instance=ExtResource("1_ojtov")]
+unique_name_in_owner = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("1_jqgp2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackGround" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ThemePainter" parent="ScrollContainer" instance=ExtResource("2_s5wnq")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0tvv8")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/PanelContainer" instance=ExtResource("2_s5wnq")]
+panel_container_style = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer1" type="HBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="LineEdit" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_calvt")
+theme_override_fonts/font = ExtResource("3_go6t7")
+theme_override_font_sizes/font_size = 40
+text = "Title"
+alignment = 1
+editable = false
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer1"]
+layout_mode = 2
+theme_override_constants/margin_left = -64
+
+[node name="DropDownButton" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer1/MarginContainer" instance=ExtResource("6_g3gpp")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("7_mu1wb")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+clip_children = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2icb6")
+
+[node name="AvatarTexture" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/Mask" instance=ExtResource("6_423n1")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("7_ik4l5")
+
+[node name="NicknameLabel" type="Label" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("3_go6t7")
+theme_override_font_sizes/font_size = 26
+text = "Nickname"
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/NicknameLabel" instance=ExtResource("2_s5wnq")]
+
+[node name="ContentLabel" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_n3ihe")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_22f5b")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PreviousButton" type="Button" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("9_6gpd3")
+text = "PREVIOUS_NAME"
+
+[node name="NextButton" type="Button" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("9_6gpd3")
+text = "NEXT_NAME"
+
+[node name="ProgressBar" parent="ScrollContainer/MarginContainer/PanelContainer" instance=ExtResource("6_8mkl0")]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="request_completed" from="SectionRequest" to="." method="_on_section_request_request_completed"]
+[connection signal="request_completed" from="FanficRequest" to="." method="_on_fanfic_request_request_completed"]
