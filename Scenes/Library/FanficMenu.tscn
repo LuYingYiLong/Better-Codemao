@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="7_0kpou"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_axqjb"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="7_tu70e"]
-[ext_resource type="Script" path="res://Scripts/Library/TextureRect.gd" id="8_2hlrg"]
+[ext_resource type="Script" uid="uid://cttmbuur5ffdo" path="res://Scripts/Library/TextureRect.gd" id="8_2hlrg"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="8_f2ueh"]
 [ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/SimpleButton-Light.tres" id="8_tja5x"]
 [ext_resource type="Texture2D" uid="uid://b8eyh0ddy4c26" path="res://Resources/Textures/Star.svg" id="9_uwhiu"]

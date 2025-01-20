@@ -92,10 +92,10 @@ func on_honor_received(result: int, _response_code: int, _headers: PackedStringA
 	fans_total_label.text = str(json.get("fans_total"))
 	attention_total_label.text = str(json.get("attention_total"))
 
-	view_times_label.text = str(json.get("view_times"))
-	liked_total_label.text = str(json.get("liked_total"))
-	collected_total_label.text = str(json.get("collected_total"))
-	re_created_total_label.text = str(json.get("re_created_total"))
+	view_times_label.text = str(int(json.get("view_times")))
+	liked_total_label.text = str(int(json.get("liked_total")))
+	collected_total_label.text = str(int(json.get("collected_total")))
+	re_created_total_label.text = str(int(json.get("re_created_total")))
 
 	doing_edit.text = json.get("doing")
 	edit_doing_button.visible = user_id == Application.user_id

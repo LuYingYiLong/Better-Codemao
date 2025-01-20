@@ -69,8 +69,8 @@ func on_details_received(result: int, _response_code: int, _headers: PackedStrin
 			user.get("work_shop_name", ""), \
 			user.get("subject_id", 0))
 	title_label.text = json.get("title")
-	views.text = str(json.get("n_views", 0))
-	replies.text = str(json.get("n_replies", 0))
+	views.text = str(int(json.get("n_views", 0)))
+	replies.text = str(int(json.get("n_replies", 0)))
 	var create_time_dict: Dictionary = Application.adjust_to_beijing_time_from_unix_time(json.get("created_at"))
 	publish_on.text = "%s: %s%s%s%s%s%s  %s:%s" %[
 		TranslationServer.translate("PUBLISH_ON_NAME"), \

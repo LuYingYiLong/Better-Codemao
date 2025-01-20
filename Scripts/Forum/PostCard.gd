@@ -57,8 +57,8 @@ func set_post_card_data(_data: Dictionary) -> void:
 	title_label.text = data.get("title")
 	content_label.text = Application.html_to_text(data.get("content"))
 
-	views.text = str(data.get("n_views", 0))
-	replies.text = str(data.get("n_replies", 0))
+	views.text = str(int(data.get("n_views", 0)))
+	replies.text = str(int(data.get("n_replies", 0)))
 
 func _on_gui_input(event) -> void:
 	if event is InputEventMouseButton and \

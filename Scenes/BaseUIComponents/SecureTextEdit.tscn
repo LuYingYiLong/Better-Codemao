@@ -1,6 +1,6 @@
 [gd_scene load_steps=41 format=3 uid="uid://c7tf2uyqb86vx"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/SecureTextEdit.gd" id="1_iqm20"]
+[ext_resource type="Script" uid="uid://b8qqbtg8f078r" path="res://Scripts/BaseUIComponents/SecureTextEdit.gd" id="1_iqm20"]
 [ext_resource type="Texture2D" uid="uid://b3n85evynamkw" path="res://Resources/Textures/Bold.svg" id="2_b6ooh"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_jepj1"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_w7fei"]
@@ -245,9 +245,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d0tfw"]
 _data = {
-"HideSensitiveWordTag": SubResource("Animation_jp4hj"),
-"RESET": SubResource("Animation_iq77o"),
-"ShowSensitiveWordTag": SubResource("Animation_8wrt8")
+&"HideSensitiveWordTag": SubResource("Animation_jp4hj"),
+&"RESET": SubResource("Animation_iq77o"),
+&"ShowSensitiveWordTag": SubResource("Animation_8wrt8")
 }
 
 [node name="SecureTextEdit" type="PanelContainer"]
@@ -489,7 +489,7 @@ size_flags_vertical = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_d0tfw")
+&"": SubResource("AnimationLibrary_d0tfw")
 }
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/BoldButton" to="." method="_on_bold_button_pressed"]
