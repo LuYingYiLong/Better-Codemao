@@ -15,7 +15,7 @@ extends Control
 @onready var to_rich_text_button = %ToRichTextButton
 @onready var to_text_button = %ToTextButton
 @onready var publish_on = %PublishOn
-@onready var contents = %Contents
+@onready var rich_content = %RichContent
 
 @onready var all_replies_label = %AllRepliesLabel
 @onready var top_reply_card_container = %TopReplyCardContainer
@@ -24,9 +24,6 @@ extends Control
 
 @onready var secure_text_edit = %SecureTextEdit
 
-const CONTENT_LABEL_SCENE = preload("res://Scenes/Forum/ContentLabel.tscn")
-const IMAGE_URL_LOADER_SCENE = preload("res://Scenes/ImageUrlLoader.tscn")
-const CODE_VIEWER_SCENE = preload("res://Scenes/Forum/CodeViewer.tscn")
 const REPLY_CARD_SCENE = preload("res://Scenes/Forum/ReplyCard.tscn")
 
 var rich_text_enabled: bool = true
@@ -41,8 +38,6 @@ var content: String
 
 var id_to_reply: int
 var parent_id: int
-
-var code_language: String
 
 func _ready():
 	pagination_bar.size = 3
@@ -84,72 +79,7 @@ func on_details_received(result: int, _response_code: int, _headers: PackedStrin
 		create_time_dict.get("minute")
 		]
 	content = json.get("content")
-	init_contents()
-
-func init_contents() -> void:
-	for node in contents.get_children():
-		node.queue_free()
-	to_rich_text_button.visible = not rich_text_enabled
-	to_text_button.visible = rich_text_enabled
-	var bbcode_content: String = Application.html_to_bbcode(content)
-	populate_content(bbcode_content)
-
-func populate_content(bbcode_content: String) -> void:
-	var regex = RegEx.new()
-	regex.compile("(\\[.+?\\])")
-
-	for result in regex.search_all(bbcode_content):
-		var get_string: String = result.get_string()
-
-		if get_string.begins_with("[language=") and get_string.ends_with("]"):
-			code_language = get_string.trim_prefix("[language=").trim_suffix("]")
-			var pos: int = bbcode_content.find(get_string)
-			var result_length: int = get_string.length()
-			for i: int in range(result_length):
-				bbcode_content[pos] = ""
-		elif get_string == "[/language]":
-			code_language = ""
-			var pos: int = bbcode_content.find(get_string)
-			var result_length: int = get_string.length()
-			for i: int in range(result_length):
-				bbcode_content[pos] = ""
-
-		# 添加图像
-		elif get_string.begins_with("[image=") and get_string.ends_with("]"):
-			var split: PackedStringArray = bbcode_content.split(get_string)
-			var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
-			contents.add_child(content_label_scene)
-			content_label_scene.append_text(split[0])
-			
-			var image_url_loader = IMAGE_URL_LOADER_SCENE.instantiate()
-			contents.add_child(image_url_loader)
-			image_url_loader.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-			image_url_loader.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
-			image_url_loader.load_image(get_string.trim_prefix("[image=").trim_suffix("]"))
-			
-			if split.size() >= 2:
-				populate_content(split[1])
-				return
-
-		if get_string == "[code]":
-			var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
-			var code_viewer_scene = CODE_VIEWER_SCENE.instantiate()
-			var split: PackedStringArray = bbcode_content.split("[code]")
-			split.append(split[1].get_slice("[/code]", 1))
-			split.set(1, split[1].get_slice("[/code]", 0))
-			
-			contents.add_child(content_label_scene)
-			content_label_scene.append_text(split[0])
-			
-			contents.add_child(code_viewer_scene)
-			code_viewer_scene.text = split[1]
-			code_viewer_scene.type = code_language
-			if split.size() >= 3: populate_content(split[2])
-			return
-
-	var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
-	contents.add_child(content_label_scene)
-	content_label_scene.append_text(bbcode_content)
+	rich_content.init_contents(content)
 
 func on_repiles_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json_class: JSON = JSON.new()
@@ -165,7 +95,7 @@ func on_repiles_received(result: int, _response_code: int, _headers: PackedStrin
 	#设置回帖数量和翻页器
 	repiles = json.duplicate(true)
 	all_replies_label.text = "%s: %s" %[TranslationServer.translate("ALL_REPLIES_NAME"), \
-		json.get("total")
+		int(json.get("total"))
 	]
 	pagination_bar.total = ceili(json.get("total") / 30)
 	pagination_bar.visible = pagination_bar.total > 1
@@ -229,11 +159,11 @@ func _on_open_in_browser_button_pressed():
 
 func _on_to_rich_text_button_pressed():
 	rich_text_enabled = true
-	init_contents()
+	rich_content.init_contents(content)
 
 func _on_to_text_button_pressed():
 	rich_text_enabled = false
-	init_contents()
+	rich_content.init_contents(content)
 
 func _on_mirroring_button_pressed():
 	var zip_packer: ZIPPacker = ZIPPacker.new()

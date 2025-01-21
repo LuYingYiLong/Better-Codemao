@@ -17,6 +17,7 @@ signal add_system_message(message: String, color: String, time: float)
 const USER_DATA_PATH = "user://UserData.json"
 const SETTINGS_OPTIONS_DATA_PATH = "res://Resources/SettingsOptionsData.json"
 const FORUM_HISTORY_PATH = "user://Forum-history.json"
+const LIBARAY_HISTORY_PATH = "user://Libaray-history.json"
 
 const INITI_LOGIN_DATA = {"pid": "65edCTyg",
 	"identity": "",
@@ -34,8 +35,6 @@ var user_avatar: Texture = null:
 
 var has_lastest_version: bool
 var latest_version: String
-
-
 
 # 识别网页链接
 func is_valid_url(url: String) -> bool:
@@ -59,8 +58,6 @@ func extract_path_from_url(url: String) -> String:
 	if result: return result.get_string(1)
 	else: return ""
 
-
-
 #保存json文件
 func save_json_file(file_path: String, data: Dictionary):
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
@@ -77,8 +74,7 @@ func load_json_file(file_path: String):
 		else: 
 			push_error("Failed to load json")
 			return {}
-	else: push_warning("Attempts to locate the file failed")
-	return {}
+	else: return {}
 
 #生成 Cookie 请求头
 func generate_cookie_header() -> String:
@@ -108,7 +104,14 @@ func html_to_text(html: String):
 	return html
 
 func html_to_bbcode(html: String) -> String:
-	html = html.replace("&nbsp;", " ")
+	html = html.replace("&nbsp;", " ").replace("&mdash;", "—").replace("&ndash;", "–").\
+			replace("&hellip;", "…").replace("&bull;", "•").replace("&times;", "×").\
+			replace("&divide;", "÷").replace("&copy;", "©").replace("&reg;", "®").\
+			replace("&trade;", "™").replace("&quot;", '"').replace("&apos;", "'").\
+			replace("&lsquo;", "‘").replace("&rsquo;", "’").replace("&ldquo;", "“").\
+			replace("&rdquo;", "”").replace("&plusmn;", "±").replace("&lt;", "<").\
+			replace("&gt;", ">").replace("&le;", '≤').replace("&ge;", "≥").\
+			replace("&ne;", "≠").replace("&middot;", "·")
 	var text: String = html
 	var regex = RegEx.new()
 	regex.compile("(<.+?>)")
@@ -360,20 +363,24 @@ func get_days_in_month(year: int, month: int) -> int:
 		days_in_month[1] = 29# 闰年二月有 29 天
 	return days_in_month[month - 1]
 
+# 创建 Tween 对 ScrollContainer 节点进行播放返回顶部的补间动画
+func scroll_to_top(scroll_container: ScrollContainer) -> void:
+	if scroll_container.scroll_vertical >= 0:
+		var tween: Tween = get_tree().create_tween()
+		tween.tween_property(scroll_container, "scroll_vertical", 0, 0.25)
+		tween.set_trans(Tween.TRANS_SINE)
+		tween.set_ease(Tween.EASE_OUT)
+
 func emit_system_error_message(message: String):
 	add_system_message.emit(message, GlobalTheme.system_error_message_color, 6.0)
 
-func get_popup_menu():
-	return get_node("/root/@Control@101/MainPopupMenu")
-
-func get_file_dialog():
-	return get_node("/root/@Control@101/FileDialog")
-
-func get_content_dialog():
-	return get_node("/root/@Control@101/ContentDialog")
+func get_global_node(node_name: String):
+	for node in get_tree().get_nodes_in_group("GlobalNode"):
+		if node.name == node_name: return node
+	return null
 
 func view_the_image(image: Texture):
-	var view_the_image_window = get_node("/root/@Control@101/ImageViewer")
+	var view_the_image_window = get_global_node("ImageViewer")
 	view_the_image_window.populate_image(image)
 	view_the_image_window.show_window()
 

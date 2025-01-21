@@ -59,6 +59,7 @@ func set_message_card_data(_data: Dictionary) -> void:
 	elif type == "POST_DISCUSSION_LIKED":
 		link_button.text = link_button_text.format([message.get("business_name")])
 		comment_label_text = message.get("comment", "")
+		post_id = message.get("business_id")
 	user_id = sender.get("id", 0)
 	post_id = message.get("business_id", 0)
 	content_label.text = Application.html_to_text(content_label_text)
@@ -89,7 +90,8 @@ func _on_link_button_pressed() -> void:
 			type == "POST_REPLY_AUTHOR" or \
 			type == "POST_REPLY_REPLY" or \
 			type == "POST_REPLY_REPLY_FEEDBACK" or \
-			type == "POST_REPLY":
+			type == "POST_REPLY" or \
+			type == "POST_DISCUSSION_LIKED":
 		if post_id == 0: return
 		Application.append_address.emit(TranslationServer.translate("POST_NAME"), \
 			"res://Scenes/Forum/PostMenu.tscn", \

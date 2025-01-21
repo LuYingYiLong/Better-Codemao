@@ -589,17 +589,17 @@ libraries = {
 [node name="LoginMenu" parent="." instance=ExtResource("2_1hfjc")]
 layout_mode = 1
 
-[node name="ContentDialog" parent="." instance=ExtResource("21_4v3bv")]
+[node name="ContentDialog" parent="." groups=["GlobalNode"] instance=ExtResource("21_4v3bv")]
 layout_mode = 1
 
 [node name="SystemMessageList" parent="." instance=ExtResource("13_0uouo")]
 layout_mode = 1
 
-[node name="ImageViewer" parent="." instance=ExtResource("23_omtur")]
+[node name="ImageViewer" parent="." groups=["GlobalNode"] instance=ExtResource("23_omtur")]
 
-[node name="MainPopupMenu" parent="." instance=ExtResource("16_f86f1")]
+[node name="MainPopupMenu" parent="." groups=["GlobalNode"] instance=ExtResource("16_f86f1")]
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="FileDialog" type="FileDialog" parent="." groups=["GlobalNode"]]
 initial_position = 2
 size = Vector2i(944, 592)
 force_native = true

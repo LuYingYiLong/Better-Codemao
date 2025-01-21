@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bfiqi7q8rbtwi"]
 
-[ext_resource type="Script" path="res://Scripts/Library/FanficCard.gd" id="1_3j2rn"]
+[ext_resource type="Script" uid="uid://spc0khlci45w" path="res://Scripts/Library/FanficCard.gd" id="1_3j2rn"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="1_bougr"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_jk3nt"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_5bd60"]

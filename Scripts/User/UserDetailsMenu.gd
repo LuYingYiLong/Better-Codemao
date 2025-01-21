@@ -68,7 +68,7 @@ func on_details_received(result: int, _response_code: int, _headers: PackedStrin
 			if oauth.get("is_bound"): has_bound_wechat.text = TranslationServer.translate("BOUND_NAME")
 			else: has_bound_wechat.text = TranslationServer.translate("UNBOUND_NAME")
 
-	gold.text = str(json.get("gold"))
+	gold.text = str(int(json.get("gold")))
 	has_signed.text = TranslationServer.translate(("%s_NAME" %json.get("has_signed")).to_upper())
 	voice_forbidden.text = TranslationServer.translate(("%s_NAME" %json.get("voice_forbidden")).to_upper())
 

@@ -6,6 +6,8 @@ extends PanelContainer
 		selected = value
 		label.text = items[selected].text
 		item_changed.emit(items[selected])
+@export_group("Popup menu")
+@export_enum("Left", "Center", "Right") var popup_menu_size_flags_horizontal: int = 0
 
 @onready var label = %Label
 @onready var down_arrow_animation_player = %DownArrowAnimationPlayer
@@ -38,8 +40,12 @@ func _on_gui_input(event) -> void:
 		if event.button_mask == 1:
 			if event.button_index == 1:
 				down_arrow_animation_player.play("Animation")
-				popup_menu.populate_items(items)
-				popup_menu.set_pos(Vector2i(ceili(global_position.x), ceili(global_position.y + 40)))
+				for popup_item: PopupItem in items:
+					popup_item.checked = popup_item.text == label.text
+				popup_menu.popup_items = items
+				popup_menu.set_anchor(Vector2i(ceili(global_position.x), ceili(global_position.y + 40)))
+				popup_menu.width = size.x
+				popup_menu.size_flags_horizontal = popup_menu_size_flags_horizontal
 				popup_menu.emit = true
 		if event.button_mask == 8 and event.button_index == 4:
 			selected = clampi(selected - 1, 0, items.size() - 1)

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://p6qpvhy7k7xv"]
+
+[ext_resource type="Script" uid="uid://douxr3g7rd5mt" path="res://Scripts/Forum/RichContent.gd" id="1_rlv6d"]
+
+[node name="RichContent" type="VBoxContainer"]
+theme_override_constants/separation = 0
+script = ExtResource("1_rlv6d")

@@ -79,7 +79,7 @@ func _on_shop_request_request_completed(result: int, _response_code: int, _heade
 		4: level_tag.self_modulate = Color.html(GlobalTheme.work_shop_level_4_tag_color)
 	
 	total_score_label.text = "%s: %s" %[TranslationServer.translate("TOTAL_SCORE_NAME"), \
-			json.get("total_score")]
+			int(json.get("total_score"))]
 
 func _on_works_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json_class: JSON = JSON.new()
@@ -157,7 +157,7 @@ func _on_member_request_request_completed(result: int, _response_code: int, _hea
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
 		return
 
-	member_total_label.text = "%s: %s" %[TranslationServer.translate("MEMBER_TOTAL_NAME"), json.get("total")]
+	member_total_label.text = "%s: %s" %[TranslationServer.translate("MEMBER_TOTAL_NAME"), int(json.get("total"))]
 	member_pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
 	member_pagination_bar.update_pager_total()
 	member_pagination_bar.visible = member_pagination_bar.total > 0
@@ -184,15 +184,15 @@ func _on_selector_bar_index_pressed(index: int)-> void:
 	member.visible = index == 2
 
 func _on_submitted_works_pagination_bar_page_changed(page: int) -> void:
-	scroll_container.scroll_vertical = 218
+	Application.scroll_to_top(scroll_container)
 	works_request.request("https://api.codemao.cn/web/works/subjects/%s/works?&offset=%s&limit=%s&sort=-created_at,-id&user_id=%s&work_subject_id=%s" %[id, (page - 1) * LOADS_NUMBER, LOADS_NUMBER, Application.user_id, id])
 
 func _on_forum_pagination_bar_page_changed(page: int) -> void:
-	scroll_container.scroll_vertical = 218
+	Application.scroll_to_top(scroll_container)
 	forum_request.request("https://api.codemao.cn/web/works/subjects/labels/%s/posts?limit=%s&offset=%s" %[id, LOADS_NUMBER, (page - 1) * LOADS_NUMBER])
 
 func _on_member_pagination_bar_page_changed(page: int) -> void:
-	scroll_container.scroll_vertical = 218
+	Application.scroll_to_top(scroll_container)
 	member_request.request("https://api.codemao.cn/web/shops/%s/users?limit=%s&offset=%s" %[id, MEMBER_CARD_LOADS_NUMBER, (page - 1) * MEMBER_CARD_LOADS_NUMBER])
 
 func _on_comments_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
@@ -206,7 +206,7 @@ func _on_comments_request_request_completed(result: int, _response_code: int, _h
 		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
 		return
 
-	comments_total_label.text = "%s: %s" %[TranslationServer.translate("ALL_REPLIES_NAME"), (json.get("total") + json.get("totalReply"))]
+	comments_total_label.text = "%s: %s" %[TranslationServer.translate("ALL_REPLIES_NAME"), (int(json.get("total")) + int(json.get("totalReply")))]
 	comments_pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
 	comments_pagination_bar.update_pager_total()
 	comments_pagination_bar.visible = comments_pagination_bar.total > 0

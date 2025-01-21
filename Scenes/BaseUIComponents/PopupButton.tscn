@@ -1,27 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://ujouhqgfvlnm"]
+[gd_scene load_steps=13 format=3 uid="uid://ujouhqgfvlnm"]
 
 [ext_resource type="Texture2D" uid="uid://bet1gduyitqqc" path="res://Resources/Textures/ButtonIcon.svg" id="1_ccuk2"]
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/PopupButton.gd" id="2_c5ypo"]
+[ext_resource type="Script" uid="uid://cokdwdx1orm0l" path="res://Scripts/BaseUIComponents/PopupButton.gd" id="2_c5ypo"]
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="3_gsu8r"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_nn5kl"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_2vsc8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07veu"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fvry0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1c1hf"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upmh7"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4yd80"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pw8bv"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpklg"]
 bg_color = Color(0.6, 0.6, 0.6, 0.0980392)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wkel"]
 
@@ -33,13 +25,17 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbyuy"]
 
-[node name="PopupButton" type="PanelContainer"]
+[node name="PopupButton" type="PanelContainer" node_paths=PackedStringArray("button", "checked_icon", "control", "color_rect")]
 custom_minimum_size = Vector2(0, 36)
-offset_right = 20.0
+offset_right = 201.0
 offset_bottom = 36.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_07veu")
 script = ExtResource("2_c5ypo")
+button = NodePath("HBoxContainer/Button")
+checked_icon = NodePath("HBoxContainer/CheckedIcon")
+control = NodePath("HBoxContainer/Control")
+color_rect = NodePath("ColorRect")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -64,20 +60,14 @@ mouse_filter = 2
 [node name="Button" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+size_flags_horizontal = 3
+theme = ExtResource("3_gsu8r")
 theme_override_fonts/font = ExtResource("3_nn5kl")
 theme_override_font_sizes/font_size = 18
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fvry0")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_1c1hf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_upmh7")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_4yd80")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_pw8bv")
-flat = true
+alignment = 0
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="HBoxContainer/Button" instance=ExtResource("5_2vsc8")]
 
 [node name="ColorRect" type="PanelContainer" parent="."]
 unique_name_in_owner = true

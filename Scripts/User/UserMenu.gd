@@ -86,11 +86,11 @@ func on_honor_received(result: int, _response_code: int, _headers: PackedStringA
 				json.get("work_shop_name", ""), \
 				json.get("subject_id", 0))
 		work_shop_tag.show()
-	id_label.text = "ID: %s" %json.get("user_id")
+	id_label.text = "ID: %s" %int(json.get("user_id"))
 	details_button.visible = json.get("user_id") == Application.user_id
 
-	fans_total_label.text = str(json.get("fans_total"))
-	attention_total_label.text = str(json.get("attention_total"))
+	fans_total_label.text = str(int(json.get("fans_total")))
+	attention_total_label.text = str(int(json.get("attention_total")))
 
 	view_times_label.text = str(int(json.get("view_times")))
 	liked_total_label.text = str(int(json.get("liked_total")))

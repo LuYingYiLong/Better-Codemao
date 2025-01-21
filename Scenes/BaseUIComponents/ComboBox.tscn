@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cd2hiax67rgqi"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/ComboBox.gd" id="1_5ix2a"]
+[ext_resource type="Script" uid="uid://b7molnuiybik5" path="res://Scripts/BaseUIComponents/ComboBox.gd" id="1_5ix2a"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_51b4e"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="2_bupg5"]
 [ext_resource type="Texture2D" uid="uid://3vdlgvk3ptm" path="res://Resources/Textures/DownArrow.svg" id="3_hvhpv"]
@@ -75,8 +75,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2eb0"]
 _data = {
-"Animation": SubResource("Animation_1cq44"),
-"RESET": SubResource("Animation_ijbwx")
+&"Animation": SubResource("Animation_1cq44"),
+&"RESET": SubResource("Animation_ijbwx")
 }
 
 [node name="ComboBox" type="PanelContainer"]
@@ -137,12 +137,11 @@ translucent = true
 [node name="DownArrowAnimationPlayer" type="AnimationPlayer" parent="LabelMarginContainer/DownArrowMarginContainer"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_x2eb0")
+&"": SubResource("AnimationLibrary_x2eb0")
 }
 
 [node name="PopupMenu" parent="." instance=ExtResource("5_apcoh")]
 unique_name_in_owner = true
-width = -1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="index_pressed" from="PopupMenu" to="." method="_on_popup_menu_index_pressed"]

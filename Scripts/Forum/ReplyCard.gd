@@ -5,7 +5,7 @@ extends PanelContainer
 @onready var work_shop_tag = %WorkShopTag
 @onready var drop_down_button = %DropDownButton
 @onready var is_top = %IsTop
-@onready var contents_container = %ContentsContainer
+@onready var rich_content = %RichContent
 @onready var updated_at = %UpdatedAt
 
 @onready var comment_container = %CommentContainer
@@ -43,7 +43,7 @@ func set_reply_card_data(json: Dictionary):
 		var delete_popup_item: PopupItem = PopupItem.new()
 		delete_popup_item.text = "DELETE_NAME"
 		drop_down_button.popup_items.append(delete_popup_item)
-	init_contents(Application.html_to_bbcode(json.get("content")))
+	rich_content.init_contents(json.get("content"))
 	var earliest_comments: Array
 	if json.has("earliest_comments"): earliest_comments = json.get("earliest_comments")
 	elif json.has("replies"): earliest_comments = json.get("replies").get("items")
@@ -55,69 +55,6 @@ func set_reply_card_data(json: Dictionary):
 		comment_card_scene.comment_pressed.connect(_on_comment_card_comment_pressed)
 		comment_card_scene.delete_pressed.connect(_on_comment_card_delete_pressed)
 	updated_at.text = Application.format_relative_time(json.get("created_at"))
-
-func init_contents(content: String) -> void:
-	for node in contents_container.get_children():
-		node.queue_free()
-	var bbcode_content: String = Application.html_to_bbcode(content)
-	populate_content(bbcode_content)
-
-func populate_content(bbcode_content: String) -> void:
-	var regex = RegEx.new()
-	regex.compile("(\\[.+?\\])")
-
-	for result in regex.search_all(bbcode_content):
-		var get_string: String = result.get_string()
-
-		if get_string.begins_with("[language=") and get_string.ends_with("]"):
-			code_language = get_string.trim_prefix("[language=").trim_suffix("]")
-			var pos: int = bbcode_content.find(get_string)
-			var result_length: int = get_string.length()
-			for i: int in range(result_length):
-				bbcode_content[pos] = ""
-		elif get_string == "[/language]":
-			code_language = ""
-			var pos: int = bbcode_content.find(get_string)
-			var result_length: int = get_string.length()
-			for i: int in range(result_length):
-				bbcode_content[pos] = ""
-
-		# 添加图像
-		elif get_string.begins_with("[image=") and get_string.ends_with("]"):
-			var split: PackedStringArray = bbcode_content.split(get_string)
-			var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
-			contents_container.add_child(content_label_scene)
-			content_label_scene.append_text(split[0])
-			
-			var image_url_loader = IMAGE_URL_LOADER_SCENE.instantiate()
-			contents_container.add_child(image_url_loader)
-			image_url_loader.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-			image_url_loader.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
-			image_url_loader.load_image(get_string.trim_prefix("[image=").trim_suffix("]"))
-			
-			if split.size() >= 2:
-				populate_content(split[1])
-				return
-
-		if get_string == "[code]":
-			var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
-			var code_viewer_scene = CODE_VIEWER_SCENE.instantiate()
-			var split: PackedStringArray = bbcode_content.split("[code]")
-			split.append(split[1].get_slice("[/code]", 1))
-			split.set(1, split[1].get_slice("[/code]", 0))
-			
-			contents_container.add_child(content_label_scene)
-			content_label_scene.append_text(split[0])
-			
-			contents_container.add_child(code_viewer_scene)
-			code_viewer_scene.text = split[1]
-			code_viewer_scene.type = code_language
-			if split.size() >= 3: populate_content(split[2])
-			return
-
-	var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
-	contents_container.add_child(content_label_scene)
-	content_label_scene.append_text(bbcode_content)
 
 func _on_comment_card_comment_pressed(id: int, nickname: String) -> void:
 	comment_pressed.emit(data.get("id").to_int(), id, nickname)

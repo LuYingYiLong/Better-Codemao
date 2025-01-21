@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://du2ukdd0rn8o7"]
 
-[ext_resource type="Script" path="res://Scripts/Forum/ForumlMenu.gd" id="1_kph02"]
+[ext_resource type="Script" uid="uid://ereenb8en5x0" path="res://Scripts/Forum/ForumlMenu.gd" id="1_kph02"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_1yq0c"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_yn624"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_4h4qy"]
@@ -96,6 +96,7 @@ placeholder_text = "SEARCH_NAME"
 
 [node name="ClearHistoryButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2

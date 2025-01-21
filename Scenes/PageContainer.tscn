@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://vjpqlhmjq3yu"]
 
-[ext_resource type="Script" path="res://Scripts/PageContainer.gd" id="1_ja0r5"]
+[ext_resource type="Script" uid="uid://bnxj8uap03mdn" path="res://Scripts/PageContainer.gd" id="1_ja0r5"]
 
 [sub_resource type="Animation" id="Animation_0tiga"]
 resource_name = "PushInLeft"
@@ -272,12 +272,12 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_osdm4"]
 _data = {
-"PushInLeft": SubResource("Animation_0tiga"),
-"PushInRight": SubResource("Animation_qxbdr"),
-"PushInTop": SubResource("Animation_p288d"),
-"PushOutLeft": SubResource("Animation_npr13"),
-"PushOutRight": SubResource("Animation_qubph"),
-"RESET": SubResource("Animation_7cdbq")
+&"PushInLeft": SubResource("Animation_0tiga"),
+&"PushInRight": SubResource("Animation_qxbdr"),
+&"PushInTop": SubResource("Animation_p288d"),
+&"PushOutLeft": SubResource("Animation_npr13"),
+&"PushOutRight": SubResource("Animation_qubph"),
+&"RESET": SubResource("Animation_7cdbq")
 }
 
 [node name="PageContainer" type="MarginContainer"]
@@ -298,7 +298,7 @@ script = ExtResource("1_ja0r5")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_osdm4")
+&"": SubResource("AnimationLibrary_osdm4")
 }
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
