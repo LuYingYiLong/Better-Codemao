@@ -13,6 +13,10 @@ func init_contents(rich_text: String) -> void:
 	var bbcode_content: String = Application.html_to_bbcode(rich_text)
 	populate_content(bbcode_content)
 
+func clear() -> void:
+	for node in get_children():
+		node.queue_free()
+
 # 递归装载富内容
 func populate_content(bbcode_content: String) -> void:
 	var content_label_scene = CONTENT_LABEL_SCENE.instantiate()

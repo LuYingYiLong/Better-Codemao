@@ -58,6 +58,7 @@ func _ready() -> void:
 
 func clear() -> void:
 	text_edit.clear()
+	rich_content.clear()
 	color_rect.self_modulate = Color.html("#7b7b7b")
 	warning_label.text = TranslationServer.translate("SECURE_TEXT_EDIT_REPORT1")
 	sensitive_word_button.text = ""

@@ -205,10 +205,6 @@ func html_to_bbcode(html: String) -> String:
 				for item: String in end_tags:
 					tags.append(end_tags.pop_front())
 				end_tags.clear()
-			#'python">': html = html.replace(get_string, "[language=python]")
-			#'<code>': html = html.replace(get_string, "[code][begin]")
-			#'</code>': html = html.replace(get_string, "[end][code]")
-			#提取图片链接：https:\/\/cdn-community.codemao.cn\/.*?\.png|jpeg
 			_:
 				# 检查是否是 HTML 多样式标签，如 <span style="color: #ff5050; font-size: x-large;">
 				if get_string.begins_with('<span style="') and get_string.ends_with(';">'):
@@ -280,14 +276,19 @@ func bbcode_to_html(bbcode: String) -> String:
 			'[/center]': bbcode = bbcode.replace(get_string, "</p>")
 			'[left]': bbcode = bbcode.replace(get_string, '<p style="text-align: left;">')
 			'[/left]': bbcode = bbcode.replace(get_string, "</p>")
-			'[split]': bbcode = bbcode.replace(get_string, "")
-			'[code]': bbcode = bbcode.replace(get_string, "")
-			'[begin]': bbcode = bbcode.replace(get_string, "<code>")
-			'[end]': bbcode = bbcode.replace(get_string, "</code>")
+			'[/color]': bbcode = bbcode.replace(get_string, "</span>")
 			'[/font_size]': bbcode = bbcode.replace(get_string, "</span>")
+			'[code]': bbcode = bbcode.replace(get_string, "<code>")
+			'[/code]': bbcode = bbcode.replace(get_string, "</code>")
+			'[/language]': bbcode = bbcode.replace(get_string, "</pre>")
 			_:
-				if get_string.contains("color"): bbcode = bbcode.replace(get_string, '<span style="color: %s;">' %get_string.get_slice("=", 1).trim_suffix("]"))
-				if get_string.contains("font_size"): bbcode = bbcode.replace(get_string, '<span style="font-size: %spx;">' %get_string.get_slice("=", 1).trim_suffix("]"))
+				if get_string.begins_with("[color="): bbcode = bbcode.replace(get_string, '<span style="color: %s;">' %get_string.get_slice("=", 1).trim_suffix("]"))
+				if get_string.begins_with("[font_size="): bbcode = bbcode.replace(get_string, '<span style="font-size: %spx;">' %get_string.get_slice("=", 1).trim_suffix("]"))
+				if get_string.begins_with("[image="):
+					var str_result: String = '<img style="max-width: 100%; display: block; margin: 0 auto;" src="' + get_string.get_slice("=", 1).trim_suffix("]") + '" alt="center_image">'
+					print(str_result)
+					bbcode = bbcode.replace(get_string, str_result)
+				if get_string.begins_with("[language="): bbcode = bbcode.replace(get_string, '<pre class="language-%s">' %get_string.get_slice("=", 1).trim_suffix("]"))
 
 	return bbcode
 

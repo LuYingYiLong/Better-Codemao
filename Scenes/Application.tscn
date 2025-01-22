@@ -290,7 +290,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(80, 0)]
+"values": [Vector2(76, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -302,7 +302,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(80, 0)]
+"values": [Vector2(76, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -436,7 +436,7 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 
 [node name="Control" type="Control" parent="HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(76, 0)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
@@ -489,7 +489,7 @@ size_flags_vertical = 3
 
 [node name="NavigationBar" type="PanelContainer" parent="."]
 material = SubResource("ShaderMaterial_cp50f")
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(76, 0)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
