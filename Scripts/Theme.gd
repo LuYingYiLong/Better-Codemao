@@ -1,5 +1,25 @@
 extends Node
 
+const PRESET_COLOR_JSON: String = "user://Preset-color.json"
+
+func get_preset_color_array() -> Array:
+	var preset_color_json: Dictionary = Application.load_json_file(PRESET_COLOR_JSON)
+	return preset_color_json.get("preset_color", [])
+
+func add_preset_color(color: Color) -> void:
+	var preset_color_json: Dictionary = Application.load_json_file(PRESET_COLOR_JSON)
+	var preset_color: Array = preset_color_json.get("preset_color", [])
+	preset_color.insert(0, color.to_html(false))
+	preset_color_json["preset_color"] = preset_color
+	Application.save_json_file(PRESET_COLOR_JSON, preset_color_json)
+
+func remove_preset_color(pos: int) -> void:
+	var preset_color_json: Dictionary = Application.load_json_file(PRESET_COLOR_JSON)
+	var preset_color: Array = preset_color_json.get("preset_color", [])
+	preset_color.remove_at(pos)
+	preset_color_json["preset_color"] = preset_color
+	Application.save_json_file(PRESET_COLOR_JSON, preset_color_json)
+
 #浅色&深色模式调色板
 var light_mode_palette: String = "#1b1b1b"
 var light_mode_translucent_palette: String = "#0f0f0f7d"

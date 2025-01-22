@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://guycskdfsy8d"]
+
+[ext_resource type="Theme" uid="uid://dclql4fn5j5ts" path="res://Resources/Themes/TextEdit-Light.tres" id="1_cywe7"]
+[ext_resource type="Script" uid="uid://oesu2itkaqrq" path="res://Scripts/BaseUIComponents/TextEdit.gd" id="2_1yco8"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_ee2yi"]
+[ext_resource type="StyleBox" uid="uid://dv6o32wr4y4m1" path="res://Resources/Themes/FocusedLine-Dark.tres" id="3_1yco8"]
+[ext_resource type="StyleBox" uid="uid://dq5byxb6hhe7n" path="res://Resources/Themes/UnfocusedLine-Dark.tres" id="4_1yco8"]
+
+[node name="TextEdit" type="TextEdit"]
+offset_right = 615.0
+offset_bottom = 465.0
+size_flags_vertical = 3
+theme = ExtResource("1_cywe7")
+wrap_mode = 1
+caret_blink = true
+script = ExtResource("2_1yco8")
+
+[node name="ThemePainter" parent="." instance=ExtResource("2_ee2yi")]
+
+[node name="UnfocusedLine" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("4_1yco8")
+
+[node name="ThemePainter" parent="UnfocusedLine" instance=ExtResource("2_ee2yi")]
+
+[node name="FocusedLine" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_1yco8")
+
+[node name="ThemePainter" parent="FocusedLine" instance=ExtResource("2_ee2yi")]
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

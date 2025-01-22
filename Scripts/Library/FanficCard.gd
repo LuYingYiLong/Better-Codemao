@@ -13,7 +13,7 @@ func set_fanfic_card_data(json: Dictionary) -> void:
 	id = json.get("id", 0)
 	cover_texture.load_image(json.get("cover_pic"), json.get("title"))
 	title_label.text = json.get("title")
-	view_times.text = str(json.get("view_times"))
+	view_times.text = str(int(json.get("view_times")))
 	type_label.text = json.get("fanfic_type_name")
 
 func _on_gui_input(event) -> void:

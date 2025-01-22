@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://fyelirhqcxkx"]
+
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="1_sffv1"]
+[ext_resource type="Script" uid="uid://ck21b8sk5duw1" path="res://Scripts/BaseUIComponents/PresetColorCard.gd" id="2_igi75"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qqs2d"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="PresetColorCard" type="Button"]
+custom_minimum_size = Vector2(46, 40)
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_sffv1")
+script = ExtResource("2_igi75")
+
+[node name="Mask" type="PanelContainer" parent="."]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qqs2d")
+
+[node name="ColorRect" type="ColorRect" parent="Mask"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

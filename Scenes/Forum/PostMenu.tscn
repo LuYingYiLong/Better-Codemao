@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://di7yxffcqkw44"]
+[gd_scene load_steps=25 format=3 uid="uid://di7yxffcqkw44"]
 
 [ext_resource type="Script" uid="uid://b6svpfkr2qi5j" path="res://Scripts/Forum/PostMenu.gd" id="1_na1xp"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_e7c64"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="4_svy5b"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_xut8d"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="5_ytj6e"]
+[ext_resource type="Theme" uid="uid://b7x5m4i1tmwo1" path="res://Resources/Themes/TitleLine-Light.tres" id="7_pggwr"]
 [ext_resource type="Texture2D" uid="uid://ddeh8htl365sg" path="res://Resources/Textures/RichText.svg" id="8_8nsta"]
 [ext_resource type="Texture2D" uid="uid://di1fixh8mr52o" path="res://Resources/Textures/Link.svg" id="8_ums52"]
 [ext_resource type="Texture2D" uid="uid://crt23j26ryky" path="res://Resources/Textures/Mirroring.svg" id="9_idpnt"]
@@ -21,6 +22,7 @@
 [ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="14_wyd1l"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="15_6alh1"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="16_0gukb"]
+[ext_resource type="PackedScene" uid="uid://p6qpvhy7k7xv" path="res://Scenes/Forum/RichContent.tscn" id="21_5fnrt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4781"]
 bg_color = Color(1, 1, 1, 1)
@@ -107,16 +109,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TitleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme = ExtResource("7_pggwr")
 theme_override_fonts/font = ExtResource("4_ftsgq")
 theme_override_font_sizes/font_size = 40
 text = "Title"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+alignment = 1
+editable = false
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/TitleLabel" instance=ExtResource("4_xut8d")]
 
@@ -185,6 +186,7 @@ texture = ExtResource("10_4n3yp")
 expand_mode = 1
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Views/ViewsIcon" instance=ExtResource("4_xut8d")]
+translucent = true
 
 [node name="Views" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Views"]
 unique_name_in_owner = true
@@ -210,6 +212,7 @@ texture = ExtResource("12_wwoe7")
 expand_mode = 1
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Replies/RepliesIcon" instance=ExtResource("4_xut8d")]
+translucent = true
 
 [node name="Replies" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/HBoxContainer/Replies"]
 unique_name_in_owner = true
@@ -309,10 +312,9 @@ text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/PublishOn" instance=ExtResource("4_xut8d")]
 
-[node name="Contents" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer"]
+[node name="RichContent" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer" instance=ExtResource("21_5fnrt")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 0
 
 [node name="Replies" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_qpd8g")]
 layout_mode = 2

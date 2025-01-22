@@ -12,12 +12,12 @@ signal index_pressed(index: int)
 		text = value
 		text_label.text = text
 @export_group("other")
-@export var icon_texture: Node
-@export var text_label: Node
+@export var icon_texture: TextureRect
+@export var text_label: Label
+@export var animation_player: AnimationPlayer
 
 @onready var h_box_container = %HBoxContainer
 @onready var line = %Line
-@onready var animation_player = %AnimationPlayer
 
 var selected: bool:
 	set(value):

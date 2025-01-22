@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dqghcbj735rvu"]
 
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_xbu64"]
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/SelectorBarItem.gd" id="3_ymf3k"]
+[ext_resource type="Script" uid="uid://0xnmandud2gs" path="res://Scripts/BaseUIComponents/SelectorBarItem.gd" id="3_ymf3k"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_8fmw1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b0rft"]
@@ -71,26 +71,26 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dcned"]
 _data = {
-"RESET": SubResource("Animation_3uywr"),
-"Selected": SubResource("Animation_mvafe")
+&"RESET": SubResource("Animation_3uywr"),
+&"Selected": SubResource("Animation_mvafe")
 }
 
-[node name="SelectorBarItem" type="Button" node_paths=PackedStringArray("icon_texture", "text_label")]
+[node name="SelectorBarItem" type="Button" node_paths=PackedStringArray("icon_texture", "text_label", "animation_player")]
 offset_right = 181.0
 offset_bottom = 40.0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.360784, 0.360784, 0.360784, 1)
 theme_override_colors/font_hover_color = Color(0.360784, 0.360784, 0.360784, 1)
-theme_override_colors/font_pressed_color = Color(0.360784, 0.360784, 0.360784, 1)
-theme_override_colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/icon_pressed_color = Color(0.360784, 0.360784, 0.360784, 1)
-theme_override_colors/icon_hover_color = Color(0.360784, 0.360784, 0.360784, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.360784, 0.360784, 0.360784, 1)
 theme_override_colors/icon_disabled_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.360784, 0.360784, 0.360784, 1)
+theme_override_colors/icon_hover_color = Color(0.360784, 0.360784, 0.360784, 1)
+theme_override_colors/icon_pressed_color = Color(0.360784, 0.360784, 0.360784, 1)
+theme_override_colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.360784, 0.360784, 0.360784, 1)
 theme_override_constants/icon_max_width = 32
 theme_override_fonts/font = ExtResource("1_xbu64")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_b0rft")
@@ -99,6 +99,7 @@ text_overrun_behavior = 3
 script = ExtResource("3_ymf3k")
 icon_texture = NodePath("MarginContainer2/HBoxContainer/IconTexture")
 text_label = NodePath("MarginContainer2/HBoxContainer/TextLabel")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -127,6 +128,7 @@ stretch_mode = 4
 
 [node name="TextLabel" type="Label" parent="MarginContainer2/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.168627, 0.168627, 0.168627, 1)
 
 [node name="ThemePainter" parent="MarginContainer2/HBoxContainer/TextLabel" instance=ExtResource("4_8fmw1")]
 
@@ -155,7 +157,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ww72k")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_dcned")
+&"": SubResource("AnimationLibrary_dcned")
 }
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

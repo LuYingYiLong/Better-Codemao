@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://d18nv2g7nrkrb"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/DropDownButton.gd" id="1_x5hd5"]
+[ext_resource type="Script" uid="uid://l0eg5irotsk5" path="res://Scripts/BaseUIComponents/DropDownButton.gd" id="1_x5hd5"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="2_hskg2"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_lw60y"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_f7yaq"]
@@ -67,8 +67,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2eb0"]
 _data = {
-"Animation": SubResource("Animation_1cq44"),
-"RESET": SubResource("Animation_ijbwx")
+&"Animation": SubResource("Animation_1cq44"),
+&"RESET": SubResource("Animation_ijbwx")
 }
 
 [node name="DropDownButton" type="PanelContainer"]
@@ -151,12 +151,11 @@ translucent = true
 [node name="DownArrowAnimationPlayer" type="AnimationPlayer" parent="Button/MarginContainer/HBoxContainer/DownArrowMarginContainer"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_x2eb0")
+&"": SubResource("AnimationLibrary_x2eb0")
 }
 
 [node name="PopupMenu" parent="." instance=ExtResource("5_1l88s")]
 unique_name_in_owner = true
-width = -1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="index_pressed" from="PopupMenu" to="." method="_on_popup_menu_index_pressed"]

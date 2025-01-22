@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://34lgt2x4qna7"]
+
+[ext_resource type="Script" uid="uid://cm64nkasfp446" path="res://Scripts/BaseUIComponents/ShareButton.gd" id="1_3ptvt"]
+[ext_resource type="PackedScene" uid="uid://k6rdpsr3s81k" path="res://Scenes/BaseUIComponents/FlyShareMenu.tscn" id="2_eoi2l"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_eoi2l"]
+
+[node name="ShareButton" type="Button"]
+custom_minimum_size = Vector2(0, 40)
+offset_left = 71.565
+offset_top = -3.0
+offset_right = 210.565
+offset_bottom = 37.0
+text_overrun_behavior = 4
+script = ExtResource("1_3ptvt")
+
+[node name="FlyShareMenu" parent="." instance=ExtResource("2_eoi2l")]
+unique_name_in_owner = true
+
+[node name="ThemePainter" parent="." instance=ExtResource("3_eoi2l")]
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

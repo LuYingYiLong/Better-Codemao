@@ -122,7 +122,7 @@ func _on_auto_suggest_box_search_pressed(text: String) -> void:
 	status = status_type.Search
 
 func _on_pagination_bar_page_changed(page: int) -> void:
-	scroll_container.scroll_vertical = 0
+	Application.scroll_to_top(scroll_container)
 	if status == status_type.All: shops_request.request("https://api.codemao.cn/web/work-shops/search?&works_limit=4&offset=%s&limit=%s&sort=-latest_joined_at,-created_at" %[(page - 1) * LOADS_NUMBER, LOADS_NUMBER])
 	elif status == status_type.Lv0: shops_request.request("https://api.codemao.cn/web/work-shops/search?level=0&works_limit=4&offset=%s&limit=%s&sort=-latest_joined_at,-created_at" %[(page - 1) * LOADS_NUMBER, LOADS_NUMBER])
 	elif status == status_type.Lv1: shops_request.request("https://api.codemao.cn/web/work-shops/search?level=1&works_limit=4&offset=%s&limit=%s&sort=-latest_joined_at,-created_at" %[(page - 1) * LOADS_NUMBER, LOADS_NUMBER])

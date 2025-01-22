@@ -5,7 +5,6 @@ extends Control
 @onready var collection_work_list_request = %CollectionWorkListRequest
 @onready var basic_request = %BasicRequest
 
-@onready var fly_text_edit = %FlyTextEdit
 @onready var please_login_first_panel = %PleaseLoginFirstPanel
 
 @onready var cover_texture = %CoverTexture
@@ -86,11 +85,11 @@ func on_honor_received(result: int, _response_code: int, _headers: PackedStringA
 				json.get("work_shop_name", ""), \
 				json.get("subject_id", 0))
 		work_shop_tag.show()
-	id_label.text = "ID: %s" %json.get("user_id")
+	id_label.text = "ID: %s" %int(json.get("user_id"))
 	details_button.visible = json.get("user_id") == Application.user_id
 
-	fans_total_label.text = str(json.get("fans_total"))
-	attention_total_label.text = str(json.get("attention_total"))
+	fans_total_label.text = str(int(json.get("fans_total")))
+	attention_total_label.text = str(int(json.get("attention_total")))
 
 	view_times_label.text = str(int(json.get("view_times")))
 	liked_total_label.text = str(int(json.get("liked_total")))
@@ -109,7 +108,9 @@ func _on_id_copy_button_pressed():
 	DisplayServer.clipboard_set(str(user_id))
 
 func _on_edit_doing_button_pressed() -> void:
-	fly_text_edit.init_text = doing_edit.text
+	var fly_text_edit: Control = Application.get_global_node("FlyTextEdit")
+	fly_text_edit.text = doing_edit.text
+	fly_text_edit.finish_editing.connect(_on_fly_text_edit_finish_editing)
 	fly_text_edit.show_fly_text_edit()
 
 func _on_fly_text_edit_finish_editing(text: String) -> void:
@@ -121,6 +122,8 @@ func _on_fly_text_edit_finish_editing(text: String) -> void:
 			headers, \
 			HTTPClient.METHOD_PUT, \
 			'{"doing":"%s"}' %text)
+	var fly_text_edit: Control = Application.get_global_node("FlyTextEdit")
+	fly_text_edit.disconnect("finish_editing", _on_fly_text_edit_finish_editing)
 
 func _on_basic_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json_class: JSON = JSON.new()

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c37vy0oob4v5k"]
+[gd_scene load_steps=6 format=3 uid="uid://c37vy0oob4v5k"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/MainPopupMenu.gd" id="1_28uko"]
+[ext_resource type="Script" uid="uid://ccwb62x7p0b3l" path="res://Scripts/BaseUIComponents/MainPopupMenu.gd" id="1_28uko"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_kc72k"]
-[ext_resource type="PackedScene" uid="uid://ujouhqgfvlnm" path="res://Scenes/BaseUIComponents/PopupButton.tscn" id="2_paejy"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_t8u1u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nm8o"]
@@ -23,22 +22,20 @@ shadow_offset = Vector2(0, 8)
 [sub_resource type="Theme" id="Theme_un3o1"]
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_0nm8o")
 
-[node name="PopupMenu" type="Window"]
+[node name="PopupMenu" type="Window" node_paths=PackedStringArray("items_container", "scroll_container")]
 disable_3d = true
 transparent_bg = true
-position = Vector2i(526, 274)
-size = Vector2i(200, 74)
+position = Vector2i(-8, 236)
+size = Vector2i(200, 78)
 visible = false
 unresizable = true
 borderless = true
 transparent = true
 popup_window = true
 script = ExtResource("1_28uko")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 40.0
+items_container = NodePath("MarginContainer/PanelContainer/MarginContainer/ScrollContainer/ItemsContainer")
+scroll_container = NodePath("MarginContainer/PanelContainer/MarginContainer/ScrollContainer")
+metadata/_edit_vertical_guides_ = [545.0]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
@@ -58,6 +55,9 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_un3o1")
 
+[node name="ThemePainter" parent="MarginContainer/PanelContainer" instance=ExtResource("4_t8u1u")]
+panel_container_style = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
@@ -72,18 +72,14 @@ theme = ExtResource("2_kc72k")
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 0
 
+[node name="ThemePainter" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer" instance=ExtResource("4_t8u1u")]
+
 [node name="ItemsContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 6
-
-[node name="PopupButton" parent="MarginContainer/PanelContainer/MarginContainer/ScrollContainer/ItemsContainer" instance=ExtResource("2_paejy")]
-layout_mode = 2
-text = "Popup"
-
-[node name="ThemePainter" parent="MarginContainer/PanelContainer" instance=ExtResource("4_t8u1u")]
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

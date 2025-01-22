@@ -28,7 +28,7 @@ func _on_request_completed(result: int, _response_code: int, _headers: PackedStr
 				break
 			index += 1
 	if !Application.has_lastest_version: return
-	var content_dialog = Application.get_content_dialog()
+	var content_dialog = Application.get_global_node("ContentDialog")
 	if !content_dialog.is_connected("callback", _content_dialog_callback): content_dialog.callback.connect(_content_dialog_callback)
 	content_dialog.title = TranslationServer.translate("A_NEW_VERSION_IS_AVAILABLE_TITLE")
 	content_dialog.text = TranslationServer.translate("A_NEW_VERSION_IS_AVAILABLE_DESCRIPTION").format([Application.latest_version, current_version])

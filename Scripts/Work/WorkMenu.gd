@@ -88,8 +88,8 @@ func _on_work_request_request_completed(result: int, _response_code: int, _heade
 	is_praised = abilities.get("is_praised")
 	is_collected = abilities.get("is_collected")
 	update_like_collect_data()
-	praise_times.text = str(json.get("praise_times"))
-	collect_times.text = str(json.get("collect_times"))
+	praise_times.text = str(int(json.get("praise_times")))
+	collect_times.text = str(int(json.get("collect_times")))
 
 	comments_request.request("https://api.codemao.cn/creation-tools/v1/works/%s/comments?offset=%s&limit=%s" %[work_id, offset, limit])
 	all_replies_label.text = "%s: %s" %[TranslationServer.translate("ALL_REPLIES_NAME"), \

@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cbxnfno4eba6m"]
 
 [ext_resource type="Theme" uid="uid://70upt1e30r52" path="res://Resources/Themes/ButtonTheme3.tres" id="1_kpnky"]
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/BaseButton.gd" id="3_lhgw4"]
+[ext_resource type="Script" uid="uid://d01geg0ikpqex" path="res://Scripts/BaseUIComponents/BaseButton.gd" id="3_lhgw4"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_y3dj7"]
 [ext_resource type="PackedScene" uid="uid://bnd8cbgyjwj6g" path="res://Scenes/BaseUIComponents/InfoBadge.tscn" id="5_mwhat"]
 
@@ -35,10 +35,10 @@ tracks/0/path = NodePath("../Mask/_MarginContainer:theme_override_constants/marg
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(0.2, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [46, 12]
+"values": [12]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -47,8 +47,8 @@ tracks/1/path = NodePath("../Mask/_MarginContainer:theme_override_constants/marg
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.05, 0.15),
-"transitions": PackedFloat32Array(1, 0.2),
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(0.3, 6),
 "update": 0,
 "values": [0, 12]
 }
@@ -64,8 +64,8 @@ tracks/0/path = NodePath("../Mask/_MarginContainer:theme_override_constants/marg
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.05, 0.15),
-"transitions": PackedFloat32Array(1, 0.2),
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(0.3, 6),
 "update": 0,
 "values": [0, 12]
 }
@@ -76,10 +76,10 @@ tracks/1/path = NodePath("../Mask/_MarginContainer:theme_override_constants/marg
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(0.2, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [46, 12]
+"values": [12]
 }
 
 [sub_resource type="Animation" id="Animation_biily"]
@@ -222,12 +222,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ie7y1"]
 _data = {
-"PushInBottom": SubResource("Animation_01uhb"),
-"PushInTop": SubResource("Animation_pjnxe"),
-"PushOutBottom": SubResource("Animation_biily"),
-"PushOutTop": SubResource("Animation_4fy4d"),
-"RESET": SubResource("Animation_28wu7"),
-"Selected": SubResource("Animation_7nmkk")
+&"PushInBottom": SubResource("Animation_01uhb"),
+&"PushInTop": SubResource("Animation_pjnxe"),
+&"PushOutBottom": SubResource("Animation_biily"),
+&"PushOutTop": SubResource("Animation_4fy4d"),
+&"RESET": SubResource("Animation_28wu7"),
+&"Selected": SubResource("Animation_7nmkk")
 }
 
 [node name="BaseButton" type="PanelContainer" node_paths=PackedStringArray("button")]
@@ -276,7 +276,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_kpnky")
-theme_override_constants/icon_max_width = 46
+theme_override_constants/icon_max_width = 42
 theme_override_fonts/font = ExtResource("3_y3dj7")
 alignment = 0
 text_overrun_behavior = 3
@@ -303,7 +303,7 @@ layout_mode = 2
 unique_name_in_owner = true
 root_node = NodePath("../HBoxContainer/Button")
 libraries = {
-"": SubResource("AnimationLibrary_ie7y1")
+&"": SubResource("AnimationLibrary_ie7y1")
 }
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

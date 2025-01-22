@@ -1,17 +1,19 @@
-[gd_scene load_steps=20 format=3 uid="uid://cicplc55f83m5"]
+[gd_scene load_steps=22 format=3 uid="uid://cicplc55f83m5"]
 
-[ext_resource type="Script" path="res://Scripts/FanficReader.gd" id="1_34i01"]
+[ext_resource type="Script" uid="uid://bosp1golkkhdg" path="res://Scripts/FanficReader.gd" id="1_34i01"]
 [ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="1_jqgp2"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="1_ojtov"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_s5wnq"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_go6t7"]
-[ext_resource type="PackedScene" uid="uid://d1a4son7e2wes" path="res://Scenes/Forum/ContentLabel.tscn" id="4_n3ihe"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="4_3apaj"]
+[ext_resource type="Theme" uid="uid://b7x5m4i1tmwo1" path="res://Resources/Themes/TitleLine-Light.tres" id="5_vb45f"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="6_8mkl0"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="6_423n1"]
 [ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="6_g3gpp"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="7_ik4l5"]
 [ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="7_mu1wb"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="9_6gpd3"]
+[ext_resource type="PackedScene" uid="uid://p6qpvhy7k7xv" path="res://Scenes/Forum/RichContent.tscn" id="11_vb45f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tvv8"]
 bg_color = Color(1, 1, 1, 1)
@@ -27,22 +29,6 @@ corner_radius_bottom_left = 12
 shadow_color = Color(0, 0, 0, 0.0980392)
 shadow_size = 64
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0mi0h"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hrtm5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3aw5b"]
-
-[sub_resource type="Theme" id="Theme_calvt"]
-LineEdit/colors/caret_color = Color(0, 0, 0, 1)
-LineEdit/colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
-LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
-LineEdit/colors/font_uneditable_color = Color(0.105882, 0.105882, 0.105882, 1)
-LineEdit/colors/selection_color = Color(0, 0.470588, 0.831373, 1)
-LineEdit/styles/focus = SubResource("StyleBoxEmpty_0mi0h")
-LineEdit/styles/normal = SubResource("StyleBoxEmpty_hrtm5")
-LineEdit/styles/read_only = SubResource("StyleBoxEmpty_3aw5b")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2icb6"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 16
@@ -57,7 +43,150 @@ border_color = Color(0.898039, 0.898039, 0.898039, 1)
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="Animation" id="Animation_qnjax"]
+resource_name = "Hide"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer/MarginContainer:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [32, 288]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6ansv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer/MarginContainer:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [32]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3apaj"]
+resource_name = "Show"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer/MarginContainer:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [288, 32]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xptv7"]
+_data = {
+&"Hide": SubResource("Animation_qnjax"),
+&"RESET": SubResource("Animation_6ansv"),
+&"Show": SubResource("Animation_3apaj")
+}
+
 [node name="FanficReader" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,7 +214,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BlackGround" type="ColorRect" parent="."]
+[node name="BlackGround" type="ColorRect" parent="Blur"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,12 +224,14 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.784314)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_3apaj")
 
 [node name="ThemePainter" parent="ScrollContainer" instance=ExtResource("2_s5wnq")]
 
@@ -135,30 +266,34 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer1" type="HBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="LineEdit" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer1"]
+[node name="TitleLabel" type="LineEdit" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = SubResource("Theme_calvt")
+theme = ExtResource("5_vb45f")
 theme_override_fonts/font = ExtResource("3_go6t7")
 theme_override_font_sizes/font_size = 40
 text = "Title"
 alignment = 1
 editable = false
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer1"]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/TitleLabel" instance=ExtResource("2_s5wnq")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = -64
 
-[node name="DropDownButton" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer1/MarginContainer" instance=ExtResource("6_g3gpp")]
+[node name="DropDownButton" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" instance=ExtResource("6_g3gpp")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_vertical = 4
 icon = ExtResource("7_mu1wb")
+popup_menu_width = 360
+popup_menu_size_flags_horizontal = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -188,13 +323,16 @@ text_overrun_behavior = 4
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/NicknameLabel" instance=ExtResource("2_s5wnq")]
 
-[node name="ContentLabel" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_n3ihe")]
+[node name="RichContent" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("11_vb45f")]
 unique_name_in_owner = true
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_22f5b")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer" instance=ExtResource("2_s5wnq")]
+panel_container_style = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -207,6 +345,7 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 
 [node name="PreviousButton" type="Button" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -214,7 +353,20 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("9_6gpd3")
 text = "PREVIOUS_NAME"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PreviousButton" instance=ExtResource("2_s5wnq")]
+
+[node name="GoBackToTheHomePageButton" type="Button" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("9_6gpd3")
+text = "GO_BACK_TO_THE_HOME_PAGE_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/GoBackToTheHomePageButton" instance=ExtResource("2_s5wnq")]
+
 [node name="NextButton" type="Button" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -222,10 +374,21 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("9_6gpd3")
 text = "NEXT_NAME"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/NextButton" instance=ExtResource("2_s5wnq")]
+
 [node name="ProgressBar" parent="ScrollContainer/MarginContainer/PanelContainer" instance=ExtResource("6_8mkl0")]
 layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_xptv7")
+}
+autoplay = "Show"
 
 [connection signal="request_completed" from="SectionRequest" to="." method="_on_section_request_request_completed"]
 [connection signal="request_completed" from="FanficRequest" to="." method="_on_fanfic_request_request_completed"]
+[connection signal="index_pressed" from="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/DropDownButton" to="." method="_on_drop_down_button_index_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/GoBackToTheHomePageButton" to="." method="_on_go_back_to_the_home_page_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

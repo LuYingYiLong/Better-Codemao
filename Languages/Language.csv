@@ -80,6 +80,7 @@ SERIALIZED_NAME,连载中,Serialized
 DONE_NAME,已完成,Done
 INTRODUCTION_NAME,介绍,Introduction
 PREVIOUS_NAME,上一页,Previous
+GO_BACK_TO_THE_HOME_PAGE_NAME,返回到主页,Go back to the home page
 NEXT_NAME,下一页,Next
 MESSAGE_NAME,消息,Message
 COMMENT_REPLY_NAME,评论与回复,Comment&Reply
@@ -103,6 +104,7 @@ ABOUT_DESCRIPTION,AGPL-3.0 License，GitHub，QQ群,"AGPL-3.0 License, GitHub, Q
 SOURCE_CODE_NAME,源代码,Source code
 JOIN_US_NAME,加入我们,Join us
 JOIN_US_DESCRIPTION,QQ群,QQ group chat
+DEVELOPER_TOOLS_NAME,开发者工具,Developer tools
 OPEN_THE_USER_DATA_FOLDER_NAME,打开用户数据文件夹,Open the User Data folder
 CHECK_FOR_UPDATES_NAME,检查更新,Check for updates
 CHECKING_FOR_UPDATES_NAME,正在检查更新...,Checking for updates...

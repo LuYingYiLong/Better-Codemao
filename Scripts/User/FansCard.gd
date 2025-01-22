@@ -18,8 +18,8 @@ func set_fans_card_data(json: Dictionary) -> void:
 	avatar_texture.load_image(data.get("avatar_url"))
 	nickname_label.text = data.get("nickname")
 	description_label.text = data.get("description")
-	total_likes_label.text = str(data.get("total_likes"))
-	total_works_label.text = str(data.get("n_works"))
+	total_likes_label.text = str(int(data.get("total_likes")))
+	total_works_label.text = str(int(data.get("n_works")))
 	follow_button.visible = !data.get("is_followed")
 	followed_button.visible = data.get("is_followed")
 

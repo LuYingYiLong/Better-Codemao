@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://mem6wfaaptwm"]
 
-[ext_resource type="Script" path="res://Scripts/Forum/CommentCard.gd" id="1_nrvkg"]
+[ext_resource type="Script" uid="uid://clmtytyjaqylp" path="res://Scripts/Forum/CommentCard.gd" id="1_nrvkg"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_auwcy"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_6b1el"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_6rxos"]
@@ -85,9 +85,9 @@ mouse_default_cursor_shape = 2
 theme_override_colors/font_disabled_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_colors/font_hover_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_focus_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_colors/font_pressed_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("4_6rxos")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q0hcf")
@@ -117,6 +117,7 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_vertical = 4
 icon = ExtResource("7_osu5c")
+popup_menu_size_flags_horizontal = 2
 
 [node name="ContentLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource("8_opac8")]
 unique_name_in_owner = true

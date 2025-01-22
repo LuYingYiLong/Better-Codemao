@@ -89,7 +89,7 @@ func load_forum() -> void:
 	all_request.request("https://api.codemao.cn/web/forums/posts/hots/all")
 
 func load_history() -> void:
-	scroll_container.scroll_vertical = 0
+	Application.scroll_to_top(scroll_container)
 	var forum_history: Dictionary = Application.load_json_file(Application.FORUM_HISTORY_PATH)
 	var items: Array = forum_history.get("items", [])
 	pagination_bar.total = ceili(float(items.size()) / LOADS_NUMBER)
@@ -140,7 +140,7 @@ func on_boards_received(result: int, _response_code: int, _headers: PackedString
 func _on_board_button_metadata_output(metadata: Dictionary) -> void:
 	board_id = metadata.get("id")
 	board_name_label.text = metadata.get("name")
-	scroll_container.scroll_vertical = 0
+	Application.scroll_to_top(scroll_container)
 	pagination_bar.current_page = 1
 	pagination_bar.update_current_page()
 	if board_id == "0":
@@ -197,7 +197,7 @@ func on_all_received(result: int, _response_code: int, _headers: PackedStringArr
 		post_card_scene.pressed.connect(on_post_card_scene_pressed)
 
 func _on_pagination_bar_page_changed(page: int) -> void:
-	scroll_container.scroll_vertical = 0
+	Application.scroll_to_top(scroll_container)
 	if status == status_type.Forum:
 		all_request.request("https://api.codemao.cn/web/forums/posts/hots/all")
 	elif status == status_type.Board:

@@ -22,8 +22,8 @@ const SUFFIX_TYPES: Dictionary = {
 var _url: String
 var _name: String
 var thread_helper: ThreadHelper
-var popup_menu: Window = Application.get_popup_menu()
-var file_dialog: FileDialog = Application.get_file_dialog()
+var popup_menu: Window
+var file_dialog: FileDialog
 
 var menu
 
@@ -130,7 +130,7 @@ func _menu_callback(item_id: String) -> void:
 	if id == 0:
 		Application.view_the_image(texture)
 	elif id == 1:
-		if file_dialog == null: file_dialog = Application.get_file_dialog()
+		if file_dialog == null: file_dialog = Application.get_global_node("FileDialog")
 		file_dialog.get_line_edit().text = Time.get_datetime_string_from_system(false, true).replace(":", "-")
 		file_dialog.clear_filters()
 		file_dialog.add_filter("*.png")

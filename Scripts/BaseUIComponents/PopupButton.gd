@@ -4,21 +4,19 @@ extends PanelContainer
 @export var text: String:
 	set(value):
 		text = value
-		if Engine.is_editor_hint():
-			%Button.text = text
+		button.text = text
 @export var checked: bool:
 	set(value):
 		checked = value
-		if Engine.is_editor_hint():
-			%CheckedIcon.visible = checked
-			%ColorRect.visible = checked
-			if checked: %Control.custom_minimum_size = Vector2(14, 0)
-			else: %Control.custom_minimum_size = Vector2(20, 0)
-
-@onready var checked_icon = %CheckedIcon
-@onready var control = %Control
-@onready var button = %Button
-@onready var color_rect = %ColorRect
+		checked_icon.visible = checked
+		color_rect.visible = checked
+		if checked: control.custom_minimum_size = Vector2(14, 0)
+		else: control.custom_minimum_size = Vector2(20, 0)
+@export_group("Other")
+@export var button: Button
+@export var checked_icon: TextureRect
+@export var control: Control
+@export var color_rect: PanelContainer
 
 signal pressed(index: int)
 
@@ -31,10 +29,6 @@ func _ready() -> void:
 		color_rect.visible = checked
 		if checked: control.custom_minimum_size = Vector2(14, 0)
 		else: control.custom_minimum_size = Vector2(20, 0)
-
-func set_item_text(_text: String) -> void:
-	text = _text
-	button.text = text
 
 func _on_mouse_entered() -> void:
 	color_rect.show()

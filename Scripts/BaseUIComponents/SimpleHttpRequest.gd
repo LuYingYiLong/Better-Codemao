@@ -15,6 +15,10 @@ func request(url: String, custom_headers: PackedStringArray = PackedStringArray(
 		_change_progress_bar_state(2, true)
 		return error
 
+@warning_ignore("int_as_enum_without_cast")
+func request_raw(url: String, custom_headers: PackedStringArray = PackedStringArray(), method: HTTPClient.Method = 0, request_data_raw: PackedByteArray = PackedByteArray()):
+	http_request.request_raw(url, custom_headers, method, request_data_raw)
+
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if connect_type == 0:
 		var json_class: JSON = JSON.new()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://ch1opqjbbmh08"]
 
-[ext_resource type="Script" path="res://Scripts/Workshop/ShopMenu.gd" id="1_qrmlk"]
+[ext_resource type="Script" uid="uid://c4bbjgihy8ojb" path="res://Scripts/Workshop/ShopMenu.gd" id="1_qrmlk"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_g2wf0"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_qnk5i"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_2r0k4"]
@@ -10,7 +10,7 @@
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="6_h4dsv"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_vcg38"]
 [ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="8_bvv4d"]
-[ext_resource type="Script" path="res://Scripts/SelectorBarItem.gd" id="9_ntuvk"]
+[ext_resource type="Script" uid="uid://37mnb2dbt3cr" path="res://Scripts/SelectorBarItem.gd" id="9_ntuvk"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="11_g13d2"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="13_fplrq"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="13_nfj1b"]

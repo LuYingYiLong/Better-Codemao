@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://f855sygoy2lw"]
+[gd_scene load_steps=16 format=3 uid="uid://f855sygoy2lw"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_ayk0x"]
-[ext_resource type="Script" path="res://Scripts/Forum/ReplyCard.gd" id="2_qbosl"]
+[ext_resource type="Script" uid="uid://cmkm1q5fe0q7m" path="res://Scripts/Forum/ReplyCard.gd" id="2_qbosl"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_lvul8"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_x1wks"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="4_6o03u"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="7_6iwvc"]
 [ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="8_h12ad"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="9_fqnsm"]
+[ext_resource type="PackedScene" uid="uid://p6qpvhy7k7xv" path="res://Scenes/Forum/RichContent.tscn" id="11_wgmkr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qr7g"]
 bg_color = Color(1, 1, 1, 1)
@@ -106,8 +107,9 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_vertical = 4
 icon = ExtResource("8_h12ad")
+popup_menu_size_flags_horizontal = 2
 
-[node name="ContentsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="RichContent" parent="MarginContainer/VBoxContainer" instance=ExtResource("11_wgmkr")]
 unique_name_in_owner = true
 layout_mode = 2
 

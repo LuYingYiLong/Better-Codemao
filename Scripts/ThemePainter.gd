@@ -4,49 +4,7 @@ extends Node
 @export_group("PanelContainer")
 @export_enum("Style box", "Light color", "Dark color") var panel_container_style: int = 0
 
-const ACCENT_BUTTON_LIGHT = preload("res://Resources/Themes/AccentButton-Light.tres")
-const ACCENT_BUTTON_DARK = preload("res://Resources/Themes/AccentButton-Dark.tres")
-const SIMPLE_BUTTON_LIGHT = preload("res://Resources/Themes/SimpleButton-Light.tres")
-const SIMPLE_BUTTON_DARK = preload("res://Resources/Themes/SimpleButton-Dark.tres")
-const PANEL_CONTAINER_LIGHT = preload("res://Resources/Themes/PanelContainer-Light.tres")
-const PANEL_CONTAINER_DARK = preload("res://Resources/Themes/PanelContainer-Dark.tres")
-const HLINE_LIGHT = preload("res://Resources/Themes/HLine-Light.tres")
-const HLINE_DARK = preload("res://Resources/Themes/HLine-Dark.tres")
-const VLINE_LIGHT = preload("res://Resources/Themes/VLine-Light.tres")
-const VLINE_DARK = preload("res://Resources/Themes/VLine-Dark.tres")
-const FLAT_BUTTON_LIGHT = preload("res://Resources/Themes/FlatButton-Light.tres")
-const FLAT_BUTTON_DARK = preload("res://Resources/Themes/FlatButton-Dark.tres")
-const SMALL_BUTTON_LIGHT = preload("res://Resources/Themes/SmallButton-Light.tres")
-const SMALL_BUTTON_DARK = preload("res://Resources/Themes/SmallButton-Dark.tres")
-const SCROLL_CONTAINER_LIGHT = preload("res://Resources/Themes/ScrollContainer-Light.tres")
-const SCROLL_CONTAINER_DARK = preload("res://Resources/Themes/SmallButton-Dark.tres")
-const LINE_EDIT_LIGHT = preload("res://Resources/Themes/LineEdit-Light.tres")
-const LINE_EDIT_DARK = preload("res://Resources/Themes/LineEdit-Dark.tres")
-const HYPERLINK_LIGHT = preload("res://Resources/Themes/Hyperlink-Light.tres")
-const HYPERLINK_DARK = preload("res://Resources/Themes/Hyperlink-Dark.tres")
-
-var relative_resources: Dictionary = {
-	"AccentButton-Light.tres": ACCENT_BUTTON_DARK, 
-	"AccentButton-Dark.tres": ACCENT_BUTTON_LIGHT, 
-	"SimpleButton-Light.tres": SIMPLE_BUTTON_DARK, 
-	"SimpleButton-Dark.tres": SIMPLE_BUTTON_LIGHT, 
-	"PanelContainer-Light.tres": PANEL_CONTAINER_DARK, 
-	"PanelContainer-Dark.tres": PANEL_CONTAINER_LIGHT, 
-	"HLine-Light.tres": HLINE_DARK, 
-	"HLine-Dark.tres": HLINE_LIGHT, 
-	"VLine-Light.tres": VLINE_DARK, 
-	"VLine-Dark.tres": VLINE_LIGHT, 
-	"FlatButton-Light.tres": FLAT_BUTTON_DARK, 
-	"FlatButton-Dark.tres": FLAT_BUTTON_LIGHT, 
-	"SmallButton-Light.tres": SMALL_BUTTON_DARK, 
-	"SmallButton-Dark.tres": SMALL_BUTTON_LIGHT, 
-	"ScrollContainer-Light.tres": SCROLL_CONTAINER_DARK, 
-	"ScrollContainer-Dark.tres": SCROLL_CONTAINER_LIGHT, 
-	"LineEdit-Light.tres": LINE_EDIT_DARK, 
-	"LineEdit-Dark.tres": LINE_EDIT_LIGHT, 
-	"Hyperlink-Light.tres": HYPERLINK_DARK, 
-	"Hyperlink-Dark.tres": HYPERLINK_LIGHT
-}
+@onready var resource_preloader = %ResourcePreloader
 
 func _ready() -> void:
 	Settings.settings_config_update.connect(update_theme)
@@ -59,7 +17,7 @@ func update_theme() -> void:
 			if panel_container_style == 0:
 				var file_name: String = get_panel_resource_name(node)
 				if !has_theme_suffix(file_name): return
-				if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))
+				if get_res_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", get_opposite_theme(node.get_theme_stylebox("panel")))
 			elif panel_container_style >= 1:
 				var style_box: StyleBox = node.get_theme_stylebox("panel")
 				if style_box is StyleBoxFlat:
@@ -72,24 +30,22 @@ func update_theme() -> void:
 			else: node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_palette))
 		if (node is Button or \
 				node is ScrollContainer or \
-				node is LineEdit) \
+				node is LineEdit or \
+				node is TextEdit) \
 				and node.theme != null:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
-			if get_file_theme(file_name) != Settings.dark_mode: node.theme = relative_resources.get(file_name)
-		if node is TextEdit:
-			node.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.light_mode_font_color))
-			node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-			node.add_theme_color_override("caret_color", Color.html(GlobalTheme.light_mode_palette))
+			if get_res_theme(file_name) != Settings.dark_mode: node.theme = get_opposite_theme(node.theme)
 		if node is TextureRect:
 			if translucent: node.self_modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
 			else: node.self_modulate = Color.html(GlobalTheme.light_mode_palette)
+
 	elif Settings.dark_mode == 1:
 		if node is PanelContainer and node.get_theme_stylebox("panel") != null:
 			if panel_container_style == 0:
 				var file_name: String = get_panel_resource_name(node)
 				if !has_theme_suffix(file_name): return
-				if get_file_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", relative_resources.get(file_name))
+				if get_res_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", get_opposite_theme(node.get_theme_stylebox("panel")))
 			elif panel_container_style >= 1:
 				var style_box: StyleBox = node.get_theme_stylebox("panel")
 				if style_box is StyleBoxFlat:
@@ -100,29 +56,41 @@ func update_theme() -> void:
 		if node is Label: node.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 		if (node is Button or \
 				node is ScrollContainer or \
-				node is LineEdit) \
+				node is LineEdit or \
+				node is TextEdit) \
 				and node.theme != null:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
-			if get_file_theme(file_name) != Settings.dark_mode: node.theme = relative_resources.get(file_name)
-		if node is TextEdit:
-			node.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.dark_mode_font_color))
-			node.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-			node.add_theme_color_override("caret_color", Color.html(GlobalTheme.dark_mode_palette))
+			if get_res_theme(file_name) != Settings.dark_mode: node.theme = get_opposite_theme(node.theme)
 		if node is TextureRect:
 			if translucent: node.self_modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)
 			else: node.self_modulate = Color.html(GlobalTheme.dark_mode_palette)
+		if node is QRCodeRect:
+			node.light_module_color = Color.html("2b2b2b")
+			node.dark_module_color = Color.html("ffffff")
 
 func get_panel_resource_name(node) -> String:
-	return node.get_theme_stylebox("panel").resource_path.get_file()
+	return node.get_theme_stylebox("panel").resource_path.get_file().trim_suffix(".tres")
 
 func get_theme_resource_name(node) -> String:
-	return node.theme.resource_path.get_file()
+	return node.theme.resource_path.get_file().trim_suffix(".tres")
 
 func has_theme_suffix(file_name: String) -> bool:
-	return file_name.ends_with("Light.tres") or file_name.ends_with("Dark.tres")
+	return file_name.ends_with("Light") or file_name.ends_with("Dark")
 
-func get_file_theme(file_name: String) -> int:
-	if file_name.ends_with("Light.tres"): return 0
-	elif  file_name.ends_with("Dark.tres"): return 1
+# 获取相反的主题样式
+func get_opposite_theme(res: Resource) -> Resource:
+	if null: return null
+	var res_name: StringName = res.resource_path.get_file().trim_suffix(".tres")
+	if get_res_theme(res_name) == 0:
+		res_name = res_name.trim_suffix("-Light")
+		return resource_preloader.get_resource("%s-Dark" %res_name)
+	elif get_res_theme(res_name) == 1:
+		res_name = res_name.trim_suffix("-Dark")
+		return resource_preloader.get_resource("%s-Light" %res_name)
+	else: return res
+
+func get_res_theme(file_name: String) -> int:
+	if file_name.ends_with("Light"): return 0
+	elif  file_name.ends_with("Dark"): return 1
 	return -1

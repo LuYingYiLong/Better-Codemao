@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bs1klj0fhpf8e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xtutd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nx4jc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06tk0"]
+
+[resource]
+LineEdit/colors/caret_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_uneditable_color = Color(1, 1, 1, 1)
+LineEdit/colors/selection_color = Color(0, 0.470588, 0.831373, 1)
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_xtutd")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_nx4jc")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_06tk0")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b808mrffykjk0"]
+[gd_scene load_steps=22 format=3 uid="uid://b808mrffykjk0"]
 
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="1_8sumo"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_6ekja"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cttmbuur5ffdo" path="res://Scripts/Library/TextureRect.gd" id="8_2hlrg"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="8_f2ueh"]
 [ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/SimpleButton-Light.tres" id="8_tja5x"]
+[ext_resource type="PackedScene" uid="uid://34lgt2x4qna7" path="res://Scenes/BaseUIComponents/ShareButton.tscn" id="9_gn5oe"]
 [ext_resource type="Texture2D" uid="uid://b8eyh0ddy4c26" path="res://Resources/Textures/Star.svg" id="9_uwhiu"]
 [ext_resource type="Texture2D" uid="uid://c660qdoxbhy3x" path="res://Resources/Textures/Words.svg" id="10_n0b7u"]
 [ext_resource type="Texture2D" uid="uid://b3o645ki3oqgy" path="res://Resources/Textures/Type.svg" id="11_s53y3"]
@@ -43,6 +44,9 @@ script = ExtResource("8_2hlrg")
 [node name="FanficRequest" parent="." instance=ExtResource("2_6ekja")]
 unique_name_in_owner = true
 progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/ProgressBar")
+
+[node name="CollectRequest" parent="." instance=ExtResource("2_6ekja")]
+unique_name_in_owner = true
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
@@ -104,6 +108,17 @@ text = "READ_NAME"
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/ReadButton" instance=ExtResource("1_8sumo")]
 
+[node name="CollectedButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_0kpou")
+text = "COLLECTED_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/CollectedButton" instance=ExtResource("1_8sumo")]
+
 [node name="CollectButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
@@ -114,25 +129,12 @@ text = "COLLECT_NAME"
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/CollectButton" instance=ExtResource("1_8sumo")]
 
-[node name="CollectedButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ShareButton" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("9_gn5oe")]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = ExtResource("8_tja5x")
-text = "COLLECT_NAME"
-
-[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/CollectedButton" instance=ExtResource("1_8sumo")]
-
-[node name="ShareButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_tja5x")
 text = "SHARE_NAME"
-
-[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/ShareButton" instance=ExtResource("1_8sumo")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -387,3 +389,7 @@ layout_mode = 2
 columns = 3
 
 [connection signal="request_completed" from="FanficRequest" to="." method="_on_fanfic_request_request_completed"]
+[connection signal="request_completed" from="CollectRequest" to="." method="_on_collect_request_request_completed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/ReadButton" to="." method="_on_read_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/CollectedButton" to="." method="_on_collected_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/CollectButton" to="." method="_on_collect_button_pressed"]

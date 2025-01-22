@@ -1,6 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://b5o0hpr15s67y"]
+[gd_scene load_steps=29 format=3 uid="uid://b5o0hpr15s67y"]
 
-[ext_resource type="Script" path="res://Scripts/User/UserMenu.gd" id="1_lvrm4"]
+[ext_resource type="Script" uid="uid://88psikuj1jib" path="res://Scripts/User/UserMenu.gd" id="1_lvrm4"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_7uk8a"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_4wdba"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_bgjsx"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dnpj1qtwe4hfr" path="res://Scenes/BaseUIComponents/FlyTextEdit.tscn" id="16_fgs5f"]
 [ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="17_vubgb"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="18_qnmeu"]
+[ext_resource type="Theme" uid="uid://dqxa7m6xsrw3" path="res://Resources/Themes/FlatTextEdit-Light.tres" id="20_k2yle"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lripq"]
 bg_color = Color(1, 1, 1, 1)
@@ -48,12 +49,6 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qik1r"]
 bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d05ia"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nigqu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rt75g"]
 
 [node name="UserMenu" type="Control"]
 layout_mode = 3
@@ -429,6 +424,8 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = ExtResource("17_vubgb")
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/BeginSeparator" instance=ExtResource("3_bgjsx")]
+
 [node name="LikedTotal" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
@@ -579,17 +576,11 @@ unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_7uk8a")
-theme_override_colors/font_readonly_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_colors/selection_color = Color(0, 0.470588, 0.831373, 1)
-theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme = ExtResource("20_k2yle")
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("10_oqh5g")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_d05ia")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_nigqu")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_rt75g")
 text = "Doing"
+editable = false
 autowrap_mode = 2
 scroll_smooth = true
 
