@@ -1,24 +1,24 @@
 [gd_scene load_steps=40 format=3 uid="uid://cymjxc2cku07l"]
 
-[ext_resource type="Script" path="res://Scripts/Testground.gd" id="1_3r2ct"]
+[ext_resource type="Script" uid="uid://d27kkpgcxwvm8" path="res://Scripts/Testground.gd" id="1_3r2ct"]
 [ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="1_kesxp"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_yyy4w"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="4_grab5"]
-[ext_resource type="Texture2D" uid="uid://dtyf6mejqb7mf" path="res://Resources/Textures/Forum.svg" id="4_gt30v"]
+[ext_resource type="Texture2D" uid="uid://4rpkqdeqpcla" path="res://Resources/Textures/Forum.svg" id="4_gt30v"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_uhfn0"]
-[ext_resource type="Texture2D" uid="uid://dir3ebxrqxnao" path="res://Resources/Textures/Workshop.svg" id="4_unva7"]
+[ext_resource type="Texture2D" uid="uid://dvw5rmq3qqeoa" path="res://Resources/Textures/Workshop.svg" id="4_unva7"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_ja422"]
-[ext_resource type="Texture2D" uid="uid://ba8o2b06nowk1" path="res://Resources/Textures/Library.svg" id="8_o14c5"]
+[ext_resource type="Texture2D" uid="uid://c070s2dlx5ae2" path="res://Resources/Textures/Library.svg" id="8_o14c5"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="8_vypfj"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="9_sac5q"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="10_hmxdw"]
 [ext_resource type="PackedScene" uid="uid://dhhh13oso15fl" path="res://Scenes/BaseUIComponents/ToggleSwitch.tscn" id="10_lt0ct"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="11_pmn8x"]
 [ext_resource type="PackedScene" uid="uid://cd2hiax67rgqi" path="res://Scenes/BaseUIComponents/ComboBox.tscn" id="12_b8yot"]
-[ext_resource type="Script" path="res://Scripts/PopupItem.gd" id="13_3m03y"]
+[ext_resource type="Script" uid="uid://fvyup8kkg73i" path="res://Scripts/PopupItem.gd" id="13_3m03y"]
 [ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="14_c3xo4"]
 [ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="14_rp0w0"]
-[ext_resource type="Script" path="res://Scripts/SelectorBarItem.gd" id="15_i53lu"]
+[ext_resource type="Script" uid="uid://37mnb2dbt3cr" path="res://Scripts/SelectorBarItem.gd" id="15_i53lu"]
 [ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="15_qr6fp"]
 [ext_resource type="Texture2D" uid="uid://mb21wmt63jw" path="res://Resources/Textures/Play.svg" id="16_8d527"]
 [ext_resource type="Texture2D" uid="uid://exor33llkxq5" path="res://Resources/Textures/Save.svg" id="17_b1xk1"]
@@ -26,26 +26,30 @@
 [ext_resource type="PackedScene" uid="uid://b70w7s5k2wnp7" path="res://Scenes/BaseUIComponents/AutoSuggestBox.tscn" id="21_qgycy"]
 [ext_resource type="PackedScene" uid="uid://drbgm8oplu7mk" path="res://Scenes/BaseUIComponents/HyperlinkButton.tscn" id="24_a2fpv"]
 [ext_resource type="PackedScene" uid="uid://bsclky2hfp00n" path="res://Scenes/BaseUIComponents/TabBar.tscn" id="24_moay8"]
-[ext_resource type="Script" path="res://Scripts/TabItem.gd" id="25_hu64c"]
+[ext_resource type="Script" uid="uid://dmshud7sasn2w" path="res://Scripts/TabItem.gd" id="25_hu64c"]
 
 [sub_resource type="Resource" id="Resource_3ik4y"]
 script = ExtResource("13_3m03y")
 text = "Hello"
+checked = false
 flat = false
 
 [sub_resource type="Resource" id="Resource_kx2i8"]
 script = ExtResource("13_3m03y")
 text = "World"
+checked = false
 flat = false
 
 [sub_resource type="Resource" id="Resource_5mini"]
 script = ExtResource("13_3m03y")
 text = "Hello"
+checked = false
 flat = false
 
 [sub_resource type="Resource" id="Resource_kt3gc"]
 script = ExtResource("13_3m03y")
 text = "World"
+checked = false
 flat = false
 
 [sub_resource type="Resource" id="Resource_f4r1j"]
@@ -83,7 +87,7 @@ resource_name = "new_animation"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wqo3k"]
 _data = {
-"new_animation": SubResource("Animation_pgrvm")
+&"new_animation": SubResource("Animation_pgrvm")
 }
 
 [node name="Testground" type="Control"]
@@ -463,5 +467,5 @@ hyperlink = "https://github.com/LuYingYiLong/Better-Codemao"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_wqo3k")
+&"": SubResource("AnimationLibrary_wqo3k")
 }

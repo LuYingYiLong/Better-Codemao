@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://qvuj5812nkeq"]
 
-[ext_resource type="Script" path="res://Scripts/WorkshopMenu.gd" id="1_j6pax"]
+[ext_resource type="Script" uid="uid://ct5xlw7pe1a7w" path="res://Scripts/WorkshopMenu.gd" id="1_j6pax"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_ksf5l"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="2_nwk3k"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_st6xx"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_eglc4"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="4_hp73l"]
 [ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="6_prnkx"]
-[ext_resource type="Script" path="res://Scripts/SelectorBarItem.gd" id="7_shp27"]
+[ext_resource type="Script" uid="uid://37mnb2dbt3cr" path="res://Scripts/SelectorBarItem.gd" id="7_shp27"]
 [ext_resource type="PackedScene" uid="uid://b70w7s5k2wnp7" path="res://Scenes/BaseUIComponents/AutoSuggestBox.tscn" id="8_klqll"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="11_86mxm"]
 
@@ -91,6 +91,7 @@ theme_override_constants/separation = 16
 
 [node name="SelectorBar" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_prnkx")]
 layout_mode = 2
+size_flags_horizontal = 3
 selector_bar_items = Array[ExtResource("7_shp27")]([SubResource("Resource_t1vfs"), SubResource("Resource_fqbja"), SubResource("Resource_w0nae"), SubResource("Resource_dhkru"), SubResource("Resource_s575l"), SubResource("Resource_iss5w"), SubResource("Resource_186nd")])
 items_width = 70.0
 

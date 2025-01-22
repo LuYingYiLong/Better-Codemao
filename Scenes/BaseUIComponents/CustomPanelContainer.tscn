@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfa41l48uuw85"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/CustomPanelContainer.gd" id="1_p5b25"]
+[ext_resource type="Script" uid="uid://cup35sqfnifef" path="res://Scripts/BaseUIComponents/CustomPanelContainer.gd" id="1_p5b25"]
 [ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="1_s7j0w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glb71"]
@@ -8,7 +8,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.11, 0.11, 0.11, 0.490196)
+border_color = Color(0.741176, 0.741176, 0.741176, 0.490196)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8

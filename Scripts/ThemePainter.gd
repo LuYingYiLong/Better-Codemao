@@ -30,15 +30,12 @@ func update_theme() -> void:
 			else: node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_palette))
 		if (node is Button or \
 				node is ScrollContainer or \
-				node is LineEdit) \
+				node is LineEdit or \
+				node is TextEdit) \
 				and node.theme != null:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
 			if get_res_theme(file_name) != Settings.dark_mode: node.theme = get_opposite_theme(node.theme)
-		if node is TextEdit:
-			node.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.light_mode_font_color))
-			node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-			node.add_theme_color_override("caret_color", Color.html(GlobalTheme.light_mode_palette))
 		if node is TextureRect:
 			if translucent: node.self_modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
 			else: node.self_modulate = Color.html(GlobalTheme.light_mode_palette)
@@ -59,15 +56,12 @@ func update_theme() -> void:
 		if node is Label: node.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 		if (node is Button or \
 				node is ScrollContainer or \
-				node is LineEdit) \
+				node is LineEdit or \
+				node is TextEdit) \
 				and node.theme != null:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
 			if get_res_theme(file_name) != Settings.dark_mode: node.theme = get_opposite_theme(node.theme)
-		if node is TextEdit:
-			node.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.dark_mode_font_color))
-			node.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-			node.add_theme_color_override("caret_color", Color.html(GlobalTheme.dark_mode_palette))
 		if node is TextureRect:
 			if translucent: node.self_modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)
 			else: node.self_modulate = Color.html(GlobalTheme.dark_mode_palette)

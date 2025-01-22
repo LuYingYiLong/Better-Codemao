@@ -1,20 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b70w7s5k2wnp7"]
+[gd_scene load_steps=10 format=3 uid="uid://b70w7s5k2wnp7"]
 
 [ext_resource type="Texture2D" uid="uid://cjctj2jd5s8rp" path="res://Resources/Textures/Search.svg" id="1_5igej"]
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/AutoSuggestBox.gd" id="1_tydxs"]
+[ext_resource type="Script" uid="uid://dbaow277nst77" path="res://Scripts/BaseUIComponents/AutoSuggestBox.gd" id="1_tydxs"]
 [ext_resource type="Theme" uid="uid://bpke6yqti6gcx" path="res://Resources/Themes/LineEdit-Light.tres" id="2_11ije"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_17n3h"]
 [ext_resource type="Texture2D" uid="uid://1342meeys5vy" path="res://Resources/Textures/Clear.svg" id="3_b8y4k"]
 [ext_resource type="Theme" uid="uid://c7vkhqml4gcnr" path="res://Resources/Themes/SmallButton-Light.tres" id="4_4a7a6"]
+[ext_resource type="StyleBox" uid="uid://bqp8phgmcc4lm" path="res://Resources/Themes/UnfocusedLine-Light.tres" id="7_3wvia"]
+[ext_resource type="StyleBox" uid="uid://ci60xj1bwhcjk" path="res://Resources/Themes/FocusedLine-Light.tres" id="8_0585n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8721u"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf2lk"]
-draw_center = false
-border_width_bottom = 2
-border_color = Color(0, 0.403922, 0.752941, 1)
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [node name="AutoSuggestBox" type="PanelContainer"]
 offset_right = 506.0
@@ -80,7 +75,21 @@ icon_alignment = 1
 
 [node name="ThemePainter" parent="VBoxContainer/LineEdit/MarginContainer/HBoxContainer/SearchButton" instance=ExtResource("3_17n3h")]
 
-[node name="FocusEnteredLine" type="PanelContainer" parent="VBoxContainer/LineEdit"]
+[node name="UnfocusedLine" type="PanelContainer" parent="VBoxContainer/LineEdit"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("7_3wvia")
+
+[node name="ThemePainter" parent="VBoxContainer/LineEdit/UnfocusedLine" instance=ExtResource("3_17n3h")]
+
+[node name="FocusedLine" type="PanelContainer" parent="VBoxContainer/LineEdit"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 2)
@@ -91,7 +100,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tf2lk")
+theme_override_styles/panel = ExtResource("8_0585n")
+
+[node name="ThemePainter" parent="VBoxContainer/LineEdit/FocusedLine" instance=ExtResource("3_17n3h")]
 
 [connection signal="focus_entered" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_focus_entered"]
 [connection signal="focus_exited" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_focus_exited"]

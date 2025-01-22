@@ -2,7 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_ekoyo"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_ghtjt"]
-[ext_resource type="Script" path="res://Scripts/User/FansCard.gd" id="2_iqxt4"]
+[ext_resource type="Script" uid="uid://h5a6bebuorh8" path="res://Scripts/User/FansCard.gd" id="2_iqxt4"]
 [ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_kkiyt"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_nxmy1"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_nnym4"]
@@ -143,6 +143,8 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("8_x1ax2")
 text = "FOLLOW_NAME"
 
+[node name="ThemePainter" parent="MarginContainer/HBoxContainer/FollowButton" instance=ExtResource("3_nxmy1")]
+
 [node name="FollowedButton" type="Button" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
@@ -152,6 +154,8 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_x1ax2")
 text = "FOLLOWED_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/HBoxContainer/FollowedButton" instance=ExtResource("3_nxmy1")]
 
 [connection signal="gui_input" from="." to="." method="_on_avatar_gui_input"]
 [connection signal="request_completed" from="FollowRequest" to="." method="_on_follow_request_request_completed"]

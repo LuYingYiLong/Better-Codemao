@@ -6,12 +6,14 @@ const CODE_VIEWER_SCENE = preload("res://Scenes/Forum/CodeViewer.tscn")
 
 var code_language: String
 
+# 初始化富内容
 func init_contents(rich_text: String) -> void:
 	for node in get_children():
 		node.queue_free()
 	var bbcode_content: String = Application.html_to_bbcode(rich_text)
 	populate_content(bbcode_content)
 
+# 递归装载富内容
 func populate_content(bbcode_content: String) -> void:
 	var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
 	var image_url_loader = IMAGE_URL_LOADER_SCENE.instantiate()

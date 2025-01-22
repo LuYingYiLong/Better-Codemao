@@ -1,9 +1,8 @@
-[gd_scene load_steps=45 format=3 uid="uid://csg0n6d7u0rvf"]
+[gd_scene load_steps=46 format=3 uid="uid://csg0n6d7u0rvf"]
 
 [ext_resource type="Script" uid="uid://d0nrmwgp3ek3a" path="res://Scripts/Application.gd" id="1_5hvyn"]
 [ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/LoginMenu.tscn" id="2_1hfjc"]
-[ext_resource type="Texture2D" uid="uid://dir3ebxrqxnao" path="res://Resources/Textures/Workshop.svg" id="2_b44jh"]
-[ext_resource type="Texture2D" uid="uid://dtyf6mejqb7mf" path="res://Resources/Textures/Forum.svg" id="2_do58s"]
+[ext_resource type="Texture2D" uid="uid://dvw5rmq3qqeoa" path="res://Resources/Textures/Workshop.svg" id="2_b44jh"]
 [ext_resource type="Script" uid="uid://d3jtldyqk0ffy" path="res://Scripts/SensitiveWordsRequest.gd" id="2_epunv"]
 [ext_resource type="Script" uid="uid://0afy0dkwhuip" path="res://Scripts/NavigationBar.gd" id="2_gfkna"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="2_s4ftx"]
@@ -15,16 +14,18 @@
 [ext_resource type="Script" uid="uid://bjutoaj5vry4h" path="res://Scripts/AsynchronousLoader.gd" id="5_w0iy8"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_6l8hs"]
 [ext_resource type="Texture2D" uid="uid://xtqhdrqk18ja" path="res://Resources/Textures/Arrow.svg" id="6_rplow"]
-[ext_resource type="Texture2D" uid="uid://dlv44xa7u53o7" path="res://Resources/Textures/Message.svg" id="7_5lsja"]
 [ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="9_2koew"]
-[ext_resource type="Texture2D" uid="uid://cs3rexsdqsp0m" path="res://Resources/Textures/Settings.svg" id="12_tealn"]
+[ext_resource type="Texture2D" uid="uid://chfkitgkphv77" path="res://Resources/Textures/Settings.svg" id="12_tealn"]
 [ext_resource type="PackedScene" uid="uid://bdw6wa6gmpvb5" path="res://Scenes/SystemMessageList.tscn" id="13_0uouo"]
-[ext_resource type="Texture2D" uid="uid://ba8o2b06nowk1" path="res://Resources/Textures/Library.svg" id="13_x3dak"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="14_6jx8t"]
+[ext_resource type="Texture2D" uid="uid://4rpkqdeqpcla" path="res://Resources/Textures/Forum.svg" id="15_m37u7"]
 [ext_resource type="Script" uid="uid://fvyup8kkg73i" path="res://Scripts/PopupItem.gd" id="16_aej1e"]
+[ext_resource type="Texture2D" uid="uid://c070s2dlx5ae2" path="res://Resources/Textures/Library.svg" id="16_f4m3o"]
 [ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/PopupMenu.tscn" id="16_f86f1"]
 [ext_resource type="Texture2D" uid="uid://dt4vvl5xceytj" path="res://Resources/Textures/Empty.svg" id="16_jv21r"]
+[ext_resource type="Texture2D" uid="uid://cajejdglei48j" path="res://Resources/Textures/Message.svg" id="17_wwp2o"]
 [ext_resource type="PackedScene" uid="uid://d1r6i8d7tpoqp" path="res://Scenes/BaseUIComponents/ContentDialog.tscn" id="21_4v3bv"]
+[ext_resource type="PackedScene" uid="uid://dnpj1qtwe4hfr" path="res://Scenes/BaseUIComponents/FlyTextEdit.tscn" id="23_m37u7"]
 [ext_resource type="PackedScene" uid="uid://ccy1pjbdx7xby" path="res://Scenes/ImageViewer.tscn" id="23_omtur"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lemjn"]
@@ -520,7 +521,7 @@ group = "NavigationButtonsGroup"
 [node name="ForumTab" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-icon = ExtResource("2_do58s")
+icon = ExtResource("15_m37u7")
 text = "FORUM_NAME"
 group = "NavigationButtonsGroup"
 selected = true
@@ -528,7 +529,7 @@ selected = true
 [node name="LibraryTab" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-icon = ExtResource("13_x3dak")
+icon = ExtResource("16_f4m3o")
 text = "LIBRARY_NAME"
 group = "NavigationButtonsGroup"
 
@@ -537,7 +538,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
-icon = ExtResource("7_5lsja")
+icon = ExtResource("17_wwp2o")
 text = "MESSAGE_NAME"
 group = "NavigationButtonsGroup"
 
@@ -587,6 +588,9 @@ libraries = {
 }
 
 [node name="LoginMenu" parent="." instance=ExtResource("2_1hfjc")]
+layout_mode = 1
+
+[node name="FlyTextEdit" parent="." groups=["GlobalNode"] instance=ExtResource("23_m37u7")]
 layout_mode = 1
 
 [node name="ContentDialog" parent="." groups=["GlobalNode"] instance=ExtResource("21_4v3bv")]

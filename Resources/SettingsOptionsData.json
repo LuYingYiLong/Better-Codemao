@@ -39,7 +39,8 @@
 		},
 		{
 			"option_box": {
-				"text": "TestGround",
+				"icon": "res://Resources/Textures/DeveloperTools.svg",
+				"text": "DEVELOPER_TOOLS_NAME",
 				"jump_to": "res://Scenes/Testground.tscn"
 			}
 		},

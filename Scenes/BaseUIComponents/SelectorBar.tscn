@@ -1,14 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://nkl814adk865"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/SelectorBar.gd" id="1_ofxs3"]
+[ext_resource type="Script" uid="uid://4jfvfdr2swok" path="res://Scripts/BaseUIComponents/SelectorBar.gd" id="1_ofxs3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cva8l"]
 
-[node name="SelectorBar" type="PanelContainer"]
+[node name="SelectorBar" type="PanelContainer" node_paths=PackedStringArray("selector_bar_item_container")]
 offset_right = 304.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_cva8l")
 script = ExtResource("1_ofxs3")
+selector_bar_item_container = NodePath("SelectorBarItemContainer")
 
 [node name="SelectorBarItemContainer" type="HBoxContainer" parent="."]
 unique_name_in_owner = true

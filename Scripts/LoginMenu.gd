@@ -50,7 +50,7 @@ func on_login_received(result: int, response_code: int, headers: PackedStringArr
 		for header: String in headers:
 			response_headers[header.get_slice(": ", 0)] = header.get_slice(": ", 1)
 
-		#读取响应头
+		# 读取响应头
 		if response_headers.has("Set-Cookie"):
 			store_cookies(response_headers)
 
@@ -70,7 +70,7 @@ func on_login_received(result: int, response_code: int, headers: PackedStringArr
 			animation_player.play("ShowWelcomeMenu")
 		else: hide()
 		
-		#如果没有UserData则创建一个
+		# 如果没有UserData则创建一个
 		if !FileAccess.file_exists(ProjectSettings.globalize_path("user://UserData.json")):
 			var user_data: Dictionary = {
 				"nickname": user_info.get("nickname", ""),

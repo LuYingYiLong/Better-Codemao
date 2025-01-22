@@ -13,11 +13,18 @@ extends PanelContainer
 	set(value):
 		placeholder_text = value
 		text_edit.placeholder_text = placeholder_text
+		
+@onready var uploading_request = %UploadingRequest
+@onready var upload_request = %UploadRequest
 
 @onready var tools_bar = %ToolsBar
+@onready var font_color_button = %FontColorButton
+@onready var fly_color_picker = %FlyColorPicker
+
 @onready var text_edit = %TextEdit
 @onready var perview = %Perview
-@onready var rich_text_label = %RichTextLabel
+@onready var rich_content = %RichContent
+
 @onready var color_rect = %ColorRect
 @onready var warning_label = %WarningLabel
 @onready var sensitive_word_bar = %SensitiveWordBar
@@ -26,6 +33,7 @@ extends PanelContainer
 
 @onready var sensitive_word_tag_container = %SensitiveWordTagContainer
 
+@onready var file_dialog = %FileDialog
 @onready var animation_player = %AnimationPlayer
 
 signal send(text: String, send_type: int)
@@ -37,6 +45,9 @@ const SENSITIVE_WORD_TAG_SCENE = preload("res://Scenes/BaseUIComponents/Sensitiv
 var sensitive_word_tag_visible: bool
 
 var sensitive_words: PackedStringArray
+
+var bucket_url: String
+var file_path: String
 
 var thread_helper: ThreadHelper
 
@@ -53,8 +64,7 @@ func clear() -> void:
 	clear_sensitive_word_tag()
 
 func _on_text_edit_text_changed() -> void:
-	rich_text_label.clear()
-	rich_text_label.append_text(text_edit.text)
+	rich_content.init_contents(text_edit.text)
 	color_rect.self_modulate = Color.html("#7b7b7b")
 	warning_label.text = TranslationServer.translate("SECURE_TEXT_EDIT_REPORT1")
 	sensitive_word_button.text = ""
@@ -154,7 +164,12 @@ func _on_font_size_button_pressed() -> void:
 	insert_text_at_caret("[font_size=16][/font_size]")
 
 func _on_font_color_button_pressed() -> void:
-	insert_text_at_caret("[color=black][/color]")
+	fly_color_picker.position.x = font_color_button.global_position.x - 8
+	fly_color_picker.position.y = font_color_button.global_position.y + 40
+	fly_color_picker.show()
+
+func _on_fly_color_picker_color_selected(color: Color) -> void:
+	insert_text_at_caret("[color=#%s][/color]" %color.to_html(false))
 
 func _on_align_right_button_pressed() -> void:
 	insert_text_at_caret("[right][/right]")
@@ -165,8 +180,11 @@ func _on_align_center_button_pressed() -> void:
 func _on_align_left_button_pressed() -> void:
 	insert_text_at_caret("[left][/left]")
 
+func _on_photo_button_pressed():
+	file_dialog.show()
+
 func _on_code_button_pressed() -> void:
-	insert_text_at_caret("[language=python][code][begin]Here![end][code]")
+	insert_text_at_caret("[language=python][code][/code][/language]")
 
 func _on_settings_config_update() -> void:
 	if Settings.dark_mode == 0:
@@ -184,3 +202,81 @@ func _on_settings_config_update() -> void:
 		var sensitive_word_bar_style: StyleBoxFlat = sensitive_word_bar.get_theme_stylebox("panel")
 		sensitive_word_bar_style.bg_color = Color.html("#1c1c1c")
 		sensitive_word_bar_style.border_color = Color.html("#1b1b1b")
+
+func _on_file_dialog_file_selected(path: String) -> void:
+	file_path = path
+	var unique_filename = generate_unique_filename(path)
+	uploading_request.request("https://open-service.codemao.cn/cdn/qi-niu/tokens/uploading?projectName=community_frontend&filePaths=community/%s&filePath=community/%s&tokensCount=1&fileSign=p1&cdnName=qiniu" %[
+				unique_filename, \
+				unique_filename
+			], \
+			[Application.generate_cookie_header()])
+
+func generate_unique_filename(path: String) -> String:
+	# 固定前缀
+	var prefix = "d2ViXz"
+	# 获取当前时间戳（毫秒级）
+	var timestamp = str(int(Time.get_unix_time_from_system()))
+	# 读取文件内容并计算哈希值
+	var file_access: FileAccess = FileAccess.open(path, FileAccess.READ)
+	var file_data: PackedByteArray = file_access.get_buffer(file_access.get_length())
+	file_access.close()
+	# 计算文件内容的 MD5 哈希值
+	var ctx = HashingContext.new()
+	ctx.start(HashingContext.HASH_MD5)
+	ctx.update(file_data)
+	var file_hash = ctx.finish().hex_encode()
+	# 获取文件扩展名
+	var file_extension = path.get_extension().to_lower()
+	# 生成唯一文件名
+	var unique_filename = prefix + timestamp + file_hash + "." + file_extension
+	return unique_filename
+
+func _on_uploading_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(_body.get_string_from_utf8())
+	bucket_url = json.get("bucket_url", "")
+	var upload_url: String = json.get("upload_url", "")
+	var tokens: Dictionary = json.get("tokens", [{}])[0]
+	var key: String = tokens.get("file_path", "")
+	var token: String = tokens.get("token", "")
+	
+	# 获取文件数据
+	var file_access: FileAccess = FileAccess.open(file_path, FileAccess.READ)
+	var file_data: PackedByteArray = file_access.get_buffer(file_access.get_length())
+	file_access.close()
+
+	# 创建请求头，携带 token
+	var headers: PackedStringArray = ["Content-Type: multipart/form-data; boundary=----WebKitFormBoundary"]
+	headers.append("Authorization: UpToken " + token)
+	# 创建请求体（multipart/form-data）
+	var boundary = "----WebKitFormBoundary"
+	var body: PackedByteArray = []
+
+	# 添加 token 参数
+	body += _string_to_bytes("--" + boundary + "\r\n")
+	body += _string_to_bytes("Content-Disposition: form-data; name=\"token\"\r\n\r\n")
+	body += _string_to_bytes(token + "\r\n")
+
+	# 添加 key 参数（可选）
+	body += _string_to_bytes("--" + boundary + "\r\n")
+	body += _string_to_bytes("Content-Disposition: form-data; name=\"key\"\r\n\r\n")
+	body += _string_to_bytes(key + "\r\n")
+
+	# 添加文件数据
+	body += _string_to_bytes("--" + boundary + "\r\n")
+	body += _string_to_bytes("Content-Disposition: form-data; name=\"file\"; filename=\"" + file_path.get_file() + "\"\r\n")
+	body += _string_to_bytes("Content-Type: image/png\r\n\r\n")  # 根据文件类型修改
+	body += file_data  # 添加文件数据
+	body += _string_to_bytes("\r\n")
+
+	# 结束边界
+	body += _string_to_bytes("--" + boundary + "--\r\n")
+	upload_request.request_raw(upload_url, headers, HTTPClient.METHOD_POST, body)
+	
+# 将字符串转换为字节数组
+func _string_to_bytes(string: String) -> PackedByteArray:
+	return string.to_utf8_buffer()  
+
+func _on_upload_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	insert_text_at_caret("[image=%s%s]" %[bucket_url, json.get("key")])

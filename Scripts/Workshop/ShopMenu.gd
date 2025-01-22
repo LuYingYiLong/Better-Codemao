@@ -211,7 +211,7 @@ func _on_comments_request_request_completed(result: int, _response_code: int, _h
 	comments_pagination_bar.update_pager_total()
 	comments_pagination_bar.visible = comments_pagination_bar.total > 0
 	var items: Array = json.get("items")
-	for node in member_card_container.get_children():
+	for node in reply_card_container.get_children():
 		node.queue_free()
 	for item: Dictionary in items:
 		var replay_card_scene = REPLY_CARD_SCENE.instantiate()
