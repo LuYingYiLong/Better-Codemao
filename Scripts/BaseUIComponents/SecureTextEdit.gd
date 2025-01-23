@@ -3,9 +3,7 @@ extends PanelContainer
 @export_enum("Comment", "Reply") var type: int = 0:
 	set(value):
 		type = value
-		for node in get_tree().get_nodes_in_group("tool_buttons_group"):
-			node.disabled = type == 1
-		perview.visible = type == 0
+		set_toolbar_disabled(type == 1)
 @export var post_id: int
 @export var reply_id: int
 @export var parent_id: int
@@ -63,7 +61,7 @@ func _ready() -> void:
 	Settings.settings_config_update.connect(_on_settings_config_update)
 	_on_settings_config_update()
 
-# 完全重置文本编辑器
+# 重置文本编辑器
 func clear() -> void:
 	type = 0
 	reply_id = 0
@@ -98,6 +96,11 @@ func set_reply(_reply_id: int = 0, _parent_id: int = 0, nickname: String = "") -
 		TranslationServer.translate("REPLY_NAME"),
 		nickname
 	]
+
+func set_toolbar_disabled(disabled: bool) -> void:
+	for node in get_tree().get_nodes_in_group("tool_buttons_group"):
+		node.disabled = disabled
+	perview.visible = !disabled
 
 func _on_text_edit_text_changed() -> void:
 	text = text_edit.text

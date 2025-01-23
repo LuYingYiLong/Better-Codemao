@@ -33,6 +33,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 		if json.has("error_code"):
 			_change_progress_bar_state(2, true)
 			Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
+			print(json)
 			return
 		_change_progress_bar_state(0, false)
 		request_completed.emit(result, response_code, headers, body)

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dvw5rmq3qqeoa" path="res://Resources/Textures/Workshop.svg" id="4_unva7"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_ja422"]
 [ext_resource type="Texture2D" uid="uid://c070s2dlx5ae2" path="res://Resources/Textures/Library.svg" id="8_o14c5"]
-[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="8_vypfj"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBarComponents/PaginationBar.tscn" id="8_vypfj"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="9_sac5q"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="10_hmxdw"]
 [ext_resource type="PackedScene" uid="uid://dhhh13oso15fl" path="res://Scenes/BaseUIComponents/ToggleSwitch.tscn" id="10_lt0ct"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://i2r6lk07rh6d"]
 
-[ext_resource type="Script" path="res://Scripts/User/Fans&FollowesMenu.gd" id="1_qe1e5"]
+[ext_resource type="Script" uid="uid://bpv05cnpi5ljc" path="res://Scripts/User/Fans&FollowesMenu.gd" id="1_qe1e5"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_6w7ph"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="3_hsydp"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="4_rvetd"]
 [ext_resource type="PackedScene" uid="uid://dqlb3s0adss3h" path="res://Scenes/User/FansCard.tscn" id="5_22jkb"]
-[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="6_mfgkw"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBarComponents/PaginationBar.tscn" id="6_mfgkw"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="7_uednh"]
 
 [node name="Fans&FollowesMenu" type="Control"]

@@ -39,6 +39,12 @@ naming/script_name_casing=1
 
 enabled=PackedStringArray("res://addons/qr_code/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Scenes/BaseUIComponents/": "yellow"
+}
+
 [global_group]
 
 GlobalNode=""

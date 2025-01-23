@@ -227,6 +227,7 @@ func html_to_bbcode(html: String) -> String:
 								tags[prefix_index] = "%s[font_size=%s]" %[prefix, html_font_size_vlaue_to_bbcode(property_value)]
 								end_tags[end_tags_index] = "[/font_size]%s" %suffix
 
+				# 检查是否是图片链接
 				elif get_string.contains("https://cdn-community.bcmcdn.com/47/community/") or \
 						get_string.contains("https://kn-cdn.codemao.cn/wood/image/") or \
 						get_string.contains("https://cdn-community.codemao.cn/47/community/"):
@@ -239,6 +240,7 @@ func html_to_bbcode(html: String) -> String:
 						var image_link: String = image_link_result.get_string()
 						tags.append("[image=%s]" %image_link.replace('"', ''))
 
+				# 检查是否是代码
 				elif get_string.begins_with('<pre class="language-') and get_string.ends_with('">'):
 					tags.append("[language=%s]" %get_string.trim_prefix('<pre class="language-').trim_suffix('">'))
 					end_tags.append("[/language]")
@@ -257,7 +259,8 @@ func html_font_size_vlaue_to_bbcode(value: String) -> String:
 		"large": return "22"
 		"x-large": return "26"
 		"xx-large": return "30"
-		_: return "16"
+		_:
+			return value.trim_suffix('px')
 
 func bbcode_to_html(bbcode: String) -> String:
 	var regex = RegEx.new()

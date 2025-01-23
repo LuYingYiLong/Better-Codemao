@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://kwkpaksy2xmu"]
 
-[ext_resource type="Script" path="res://Scripts/Work/WorkMenu.gd" id="1_jdbwl"]
+[ext_resource type="Script" uid="uid://b5y7gr3kog4xv" path="res://Scripts/Work/WorkMenu.gd" id="1_jdbwl"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_3t1v3"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_hyp1r"]
 [ext_resource type="Texture2D" uid="uid://mb21wmt63jw" path="res://Resources/Textures/Play.svg" id="4_0y431"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://doovx6ujtt10p" path="res://Scenes/Work/WorkTag.tscn" id="11_dj7m7"]
 [ext_resource type="PackedScene" uid="uid://bp6dbjsjji0pq" path="res://Scenes/Work/HWorkCard.tscn" id="11_e43ck"]
 [ext_resource type="Texture2D" uid="uid://bnp1vv6ye1f2b" path="res://Resources/Textures/Collect.svg" id="13_e5rua"]
-[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="13_gm0mk"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBarComponents/PaginationBar.tscn" id="13_gm0mk"]
 [ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="14_j04ab"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="16_vn42d"]
 

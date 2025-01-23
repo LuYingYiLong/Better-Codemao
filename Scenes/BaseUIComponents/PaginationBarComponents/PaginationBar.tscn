@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dfb7taf7dr0jb"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/PaginationBar.gd" id="1_ycgga"]
+[ext_resource type="Script" uid="uid://bccsfy8ycvese" path="res://Scripts/BaseUIComponents/PaginationBarComponents/PaginationBar.gd" id="1_ycgga"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="2_d5we3"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_oewf6"]
 

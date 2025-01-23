@@ -18,7 +18,7 @@ extends Node
 
 signal page_changed(page: int)
 
-const PAGER_BUTTON_SCENE = preload("res://Scenes/BaseUIComponents/PagerButton.tscn")
+const PAGER_BUTTON_SCENE = preload("res://Scenes/BaseUIComponents/PaginationBarComponents/PagerButton.tscn")
 
 func _ready() -> void:
 	update_pager_total()

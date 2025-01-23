@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ch1opqjbbmh08"]
+[gd_scene load_steps=21 format=3 uid="uid://ch1opqjbbmh08"]
 
 [ext_resource type="Script" uid="uid://c4bbjgihy8ojb" path="res://Scripts/Workshop/ShopMenu.gd" id="1_qrmlk"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_g2wf0"]
@@ -10,8 +10,9 @@
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="6_h4dsv"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_vcg38"]
 [ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="8_bvv4d"]
+[ext_resource type="Theme" uid="uid://dqxa7m6xsrw3" path="res://Resources/Themes/FlatTextEdit-Light.tres" id="9_4xcvp"]
 [ext_resource type="Script" uid="uid://37mnb2dbt3cr" path="res://Scripts/SelectorBarItem.gd" id="9_ntuvk"]
-[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="11_g13d2"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBarComponents/PaginationBar.tscn" id="11_g13d2"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="13_fplrq"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="13_nfj1b"]
 
@@ -28,12 +29,6 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k5hoo"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l83ly"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6inuk"]
 
 [sub_resource type="Resource" id="Resource_mdo0y"]
 script = ExtResource("9_ntuvk")
@@ -74,6 +69,13 @@ progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/Detail
 [node name="CommentsRequest" parent="." instance=ExtResource("2_g2wf0")]
 unique_name_in_owner = true
 progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/Comments/ProgressBar")
+
+[node name="CommentRequest" parent="." instance=ExtResource("2_g2wf0")]
+unique_name_in_owner = true
+
+[node name="DiscussionsRequest" parent="." instance=ExtResource("2_g2wf0")]
+unique_name_in_owner = true
+connect_type = 1
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
@@ -150,6 +152,8 @@ theme_override_fonts/font = ExtResource("6_h4dsv")
 theme_override_font_sizes/font_size = 32
 text = "Name"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/NameLabel" instance=ExtResource("4_hawn1")]
+
 [node name="LevelTag" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(0.67451, 0.564706, 0.576471, 1)
@@ -170,23 +174,19 @@ vertical_alignment = 1
 
 [node name="DescriptionLabel" type="TextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("3_2r0k4")
-theme_override_colors/font_readonly_color = Color(0.06, 0.06, 0.06, 0.490196)
-theme_override_colors/selection_color = Color(0, 0.470588, 0.831373, 1)
-theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme = ExtResource("9_4xcvp")
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("7_vcg38")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_k5hoo")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_l83ly")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_6inuk")
 text = "Description"
 editable = false
 context_menu_enabled = false
 wrap_mode = 1
-autowrap_mode = 2
 caret_blink = true
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("4_hawn1")]
 
 [node name="TotalScoreLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -195,6 +195,8 @@ size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_vcg38")
 text = "TOTAL_SCORE_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/TotalScoreLabel" instance=ExtResource("4_hawn1")]
 
 [node name="SelectorBar" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer" instance=ExtResource("8_bvv4d")]
 layout_mode = 2
@@ -247,6 +249,8 @@ theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("6_h4dsv")
 text = "MemberTotal"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/Member/MemberTotalLabel" instance=ExtResource("4_hawn1")]
+
 [node name="MemberCardContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/Member"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -283,8 +287,11 @@ theme_override_fonts/font = ExtResource("6_h4dsv")
 theme_override_font_sizes/font_size = 24
 text = "CommentsTotal"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/CommentsTotalLabel" instance=ExtResource("4_hawn1")]
+
 [node name="SecureTextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer" instance=ExtResource("13_fplrq")]
-custom_minimum_size = Vector2(210, 200)
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 340)
 layout_mode = 2
 
 [node name="ReplyCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
@@ -306,8 +313,11 @@ layout_mode = 2
 [connection signal="request_completed" from="ForumRequest" to="." method="_on_forum_request_request_completed"]
 [connection signal="request_completed" from="MemberRequest" to="." method="_on_member_request_request_completed"]
 [connection signal="request_completed" from="CommentsRequest" to="." method="_on_comments_request_request_completed"]
+[connection signal="request_completed" from="CommentRequest" to="." method="_on_comment_request_request_completed"]
+[connection signal="request_completed" from="DiscussionsRequest" to="." method="_on_discussions_request_request_completed"]
 [connection signal="index_pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/SelectorBar" to="." method="_on_selector_bar_index_pressed"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/SubmittedWorks/SubmittedWorksPaginationBar" to="." method="_on_submitted_works_pagination_bar_page_changed"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/Forum/ForumPaginationBar" to="." method="_on_forum_pagination_bar_page_changed"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/Member/MemberPaginationBar" to="." method="_on_member_pagination_bar_page_changed"]
+[connection signal="comment" from="ScrollContainer/MarginContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_comment"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/CommentsPaginationBar" to="." method="_on_comments_pagination_bar_page_changed"]

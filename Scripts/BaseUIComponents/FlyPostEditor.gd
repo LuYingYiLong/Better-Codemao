@@ -34,8 +34,8 @@ func _on_publish_button_pressed():
 	var headers: PackedStringArray = [Application.generate_cookie_header()]
 	headers.append("content-type: Application/json;charset=UTF-8")
 	var request_data: Dictionary = {
-		"title": title_edit.text,
-		"content": content_edit.text
+		"title": title_edit.text, 
+		"content": Application.bbcode_to_html(content_edit.text)
 	}
 	post_request.request("https://api.codemao.cn/web/forums/boards/%s/posts" %board_id, \
 			headers, \

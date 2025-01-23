@@ -273,7 +273,7 @@ theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("4_nuq02")
 theme_override_font_sizes/font_size = 20
 text = "Text"
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="ThemePainter" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TextLabel" instance=ExtResource("3_3j35u")]
 

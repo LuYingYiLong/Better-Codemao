@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://biuqtci6nku4a"]
 
 [ext_resource type="Texture2D" uid="uid://v32tggmvvt4d" path="res://Resources/Textures/Update.svg" id="1_5xwhv"]
-[ext_resource type="Script" path="res://Scripts/Settings/CheckForUpdatesPanel.gd" id="1_e8jv0"]
+[ext_resource type="Script" uid="uid://b2vhn57fjkhld" path="res://Scripts/Settings/CheckForUpdatesPanel.gd" id="1_e8jv0"]
 [ext_resource type="Texture2D" uid="uid://b2yhjewq3yl08" path="res://Resources/Textures/OK.svg" id="2_krrou"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_p8akd"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_qpahu"]

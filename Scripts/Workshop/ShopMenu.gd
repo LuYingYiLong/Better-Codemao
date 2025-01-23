@@ -5,6 +5,8 @@ extends Control
 @onready var forum_request = %ForumRequest
 @onready var member_request = %MemberRequest
 @onready var comments_request = %CommentsRequest
+@onready var comment_request = %CommentRequest
+@onready var discussions_request = %DiscussionsRequest
 
 @onready var scroll_container = %ScrollContainer
 
@@ -29,6 +31,7 @@ extends Control
 @onready var member_pagination_bar = %MemberPaginationBar
 
 @onready var comments_total_label = %CommentsTotalLabel
+@onready var secure_text_edit = %SecureTextEdit
 @onready var reply_card_container = %ReplyCardContainer
 @onready var comments_pagination_bar = %CommentsPaginationBar
 
@@ -42,18 +45,16 @@ const COMMENTS_LOADS_NUMBER: int = 20
 
 var id: int
 
-func _ready() -> void:
-	Settings.settings_config_update.connect(_on_settings_config_update)
-	_on_settings_config_update()
-
 func _process(_delta) -> void:
 	work_card_container.columns = clampi(floori(scroll_container.size.x / 168), 1, 999)
 
 func set_data(data: Dictionary) -> void:
 	id = data.get("id", 0)
+	secure_text_edit.set_comment(id)
 	shop_request.request("https://api.codemao.cn/web/shops/%s" %id)
 	works_request.request("https://api.codemao.cn/web/works/subjects/%s/works?&offset=0&limit=%s&sort=-created_at,-id&user_id=%s&work_subject_id=%s" %[id, LOADS_NUMBER, Application.user_id, id])
 	comments_request.request("https://api.codemao.cn/web/discussions/%s/comments?source=WORK_SHOP&sort=-created_at&limit=%s&offset=0" %[id, COMMENTS_LOADS_NUMBER])
+	secure_text_edit.set_toolbar_disabled(true)
 
 func _on_shop_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json_class: JSON = JSON.new()
@@ -81,16 +82,8 @@ func _on_shop_request_request_completed(result: int, _response_code: int, _heade
 	total_score_label.text = "%s: %s" %[TranslationServer.translate("TOTAL_SCORE_NAME"), \
 			int(json.get("total_score"))]
 
-func _on_works_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	var json_class: JSON = JSON.new()
-	if json_class.parse(body.get_string_from_utf8()) != OK:
-		Application.emit_system_error_message("JSON parsing failed")
-		return
-	var json: Dictionary = json_class.data
-	if result != HTTPRequest.RESULT_SUCCESS: return
-	if json.has("error_code"):
-		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
-		return
+func _on_works_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 	
 	submitted_works_pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
 	submitted_works_pagination_bar.update_pager_total()
@@ -104,16 +97,8 @@ func _on_works_request_request_completed(result: int, _response_code: int, _head
 		work_card_scene.description_visible = false
 		work_card_scene.set_work_card_data(item)
 
-func _on_forum_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	var json_class: JSON = JSON.new()
-	if json_class.parse(body.get_string_from_utf8()) != OK:
-		Application.emit_system_error_message("JSON parsing failed")
-		return
-	var json: Dictionary = json_class.data
-	if result != HTTPRequest.RESULT_SUCCESS: return
-	if json.has("error_code"):
-		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
-		return
+func _on_forum_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 
 	forum_pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
 	forum_pagination_bar.update_pager_total()
@@ -146,16 +131,8 @@ func on_post_card_scene_pressed(data: Dictionary) -> void:
 			"res://Scenes/Forum/PostMenu.tscn", \
 			data)
 
-func _on_member_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	var json_class: JSON = JSON.new()
-	if json_class.parse(body.get_string_from_utf8()) != OK:
-		Application.emit_system_error_message("JSON parsing failed")
-		return
-	var json: Dictionary = json_class.data
-	if result != HTTPRequest.RESULT_SUCCESS: return
-	if json.has("error_code"):
-		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
-		return
+func _on_member_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 
 	member_total_label.text = "%s: %s" %[TranslationServer.translate("MEMBER_TOTAL_NAME"), int(json.get("total"))]
 	member_pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
@@ -195,16 +172,8 @@ func _on_member_pagination_bar_page_changed(page: int) -> void:
 	Application.scroll_to_top(scroll_container)
 	member_request.request("https://api.codemao.cn/web/shops/%s/users?limit=%s&offset=%s" %[id, MEMBER_CARD_LOADS_NUMBER, (page - 1) * MEMBER_CARD_LOADS_NUMBER])
 
-func _on_comments_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	var json_class: JSON = JSON.new()
-	if json_class.parse(body.get_string_from_utf8()) != OK:
-		Application.emit_system_error_message("JSON parsing failed")
-		return
-	var json: Dictionary = json_class.data
-	if result != HTTPRequest.RESULT_SUCCESS: return
-	if json.has("error_code"):
-		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
-		return
+func _on_comments_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 
 	comments_total_label.text = "%s: %s" %[TranslationServer.translate("ALL_REPLIES_NAME"), (int(json.get("total")) + int(json.get("totalReply")))]
 	comments_pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
@@ -217,20 +186,40 @@ func _on_comments_request_request_completed(result: int, _response_code: int, _h
 		var replay_card_scene = REPLY_CARD_SCENE.instantiate()
 		reply_card_container.add_child(replay_card_scene)
 		replay_card_scene.set_reply_card_data(item)
+		replay_card_scene.delete_pressed.connect(_on_reply_card_delete_pressed)
 
 func _on_comments_pagination_bar_page_changed(page: int) -> void:
 	comments_request.request("https://api.codemao.cn/web/discussions/%s/comments?source=WORK_SHOP&sort=-created_at&limit=%s&offset=%s" %[id, COMMENTS_LOADS_NUMBER, (page - 1) * LOADS_NUMBER])
 
-func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0:
-		name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		description_label.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.light_mode_translucent_palette))
-		total_score_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		member_total_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		comments_total_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-	else:
-		name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		description_label.add_theme_color_override("font_readonly_color", Color.html(GlobalTheme.dark_mode_translucent_palette))
-		total_score_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		member_total_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		comments_total_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+func _on_secure_text_edit_comment(post_id: int, text: String) -> void:
+	var headers: PackedStringArray = [Application.generate_cookie_header()]
+	headers.append("content-type: Application/json;charset=UTF-8")
+	var request_data: Dictionary = {
+		"content": text.trim_prefix('<p>').trim_suffix('</p>'), 
+		"rich_content": text.trim_prefix('<p>').trim_suffix('</p>'), 
+		"source": "WORK_SHOP"
+	}
+	comment_request.request("https://api.codemao.cn/web/discussions/%s/comment" %post_id, \
+			headers, \
+			HTTPClient.METHOD_POST, \
+			JSON.stringify(request_data))
+	secure_text_edit.clear()
+	secure_text_edit.set_comment(id)
+
+func _on_comment_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+
+	if json.has("id"):
+		comments_pagination_bar.current_page = 0
+		comments_pagination_bar.update_current_page()
+		comments_request.request("https://api.codemao.cn/web/discussions/%s/comments?source=WORK_SHOP&sort=-created_at&limit=%s&offset=0" %[id, COMMENTS_LOADS_NUMBER])
+
+func _on_reply_card_delete_pressed(_id: int) -> void:
+	discussions_request.request("https://api.codemao.cn/web/discussions/comments/%s?source=WORK_SHOP" %_id, \
+			[Application.generate_cookie_header()], \
+			HTTPClient.METHOD_DELETE)
+
+func _on_discussions_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
+	comments_pagination_bar.current_page = 0
+	comments_pagination_bar.update_current_page()
+	comments_request.request("https://api.codemao.cn/web/discussions/%s/comments?source=WORK_SHOP&sort=-created_at&limit=%s&offset=0" %[id, COMMENTS_LOADS_NUMBER])
