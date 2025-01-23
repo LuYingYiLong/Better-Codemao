@@ -1,11 +1,11 @@
-[gd_scene load_steps=46 format=3 uid="uid://c7tf2uyqb86vx"]
+[gd_scene load_steps=45 format=3 uid="uid://c7tf2uyqb86vx"]
 
 [ext_resource type="Script" uid="uid://b8qqbtg8f078r" path="res://Scripts/BaseUIComponents/SecureTextEdit.gd" id="1_iqm20"]
 [ext_resource type="Texture2D" uid="uid://b3n85evynamkw" path="res://Resources/Textures/Bold.svg" id="2_b6ooh"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_jepj1"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_n0xdi"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_w7fei"]
-[ext_resource type="Texture2D" uid="uid://bqwhcyfm77k88" path="res://Resources/Textures/Warning.svg" id="3_a8ljg"]
+[ext_resource type="Texture2D" uid="uid://cbmuc54ipansf" path="res://Resources/Textures/Warning.svg" id="3_a8ljg"]
 [ext_resource type="Theme" uid="uid://c7vkhqml4gcnr" path="res://Resources/Themes/SmallButton-Light.tres" id="3_f702g"]
 [ext_resource type="Texture2D" uid="uid://xn0ar2yw3j2l" path="res://Resources/Textures/Underline.svg" id="3_pxnxc"]
 [ext_resource type="Texture2D" uid="uid://shjwycjn81ta" path="res://Resources/Textures/FontSize.svg" id="4_3r0mh"]
@@ -21,6 +21,8 @@
 [ext_resource type="Theme" uid="uid://dqxa7m6xsrw3" path="res://Resources/Themes/FlatTextEdit-Light.tres" id="12_evsb4"]
 [ext_resource type="PackedScene" uid="uid://p6qpvhy7k7xv" path="res://Scenes/Forum/RichContent.tscn" id="14_evsb4"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="15_1rvj5"]
+[ext_resource type="Texture2D" uid="uid://c660qdoxbhy3x" path="res://Resources/Textures/Words.svg" id="20_1rvj5"]
+[ext_resource type="Texture2D" uid="uid://b58pwpi68au8w" path="res://Resources/Textures/Reply.svg" id="20_4eskq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j464s"]
 
@@ -45,14 +47,6 @@ border_color = Color(0.898039, 0.898039, 0.898039, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8i76"]
 bg_color = Color(0.952941, 0.952941, 0.952941, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16077"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nhk7"]
-content_margin_left = 8.0
-bg_color = Color(1, 1, 1, 1)
-draw_center = false
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bblfe"]
 bg_color = Color(0.952941, 0.952941, 0.952941, 1)
 border_width_left = 1
@@ -62,8 +56,6 @@ border_width_bottom = 1
 border_color = Color(0.898039, 0.898039, 0.898039, 1)
 corner_radius_bottom_left = 8
 anti_aliasing = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4kul"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pi3hc"]
 bg_color = Color(4.62055e-06, 0.425628, 0.791154, 1)
@@ -255,12 +247,13 @@ _data = {
 &"ShowSensitiveWordTag": SubResource("Animation_8wrt8")
 }
 
-[node name="SecureTextEdit" type="PanelContainer"]
+[node name="SecureTextEdit" type="PanelContainer" node_paths=PackedStringArray("text_edit")]
 custom_minimum_size = Vector2(210, 66)
 offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_j464s")
 script = ExtResource("1_iqm20")
+text_edit = NodePath("HBoxContainer/VBoxContainer/HBoxContainer2/TextEdit")
 
 [node name="UploadingRequest" parent="." instance=ExtResource("2_n0xdi")]
 unique_name_in_owner = true
@@ -295,7 +288,7 @@ theme_override_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer"]
 layout_mode = 2
 
-[node name="BoldButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
+[node name="BoldButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -305,7 +298,7 @@ icon = ExtResource("2_b6ooh")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/BoldButton" instance=ExtResource("2_jepj1")]
 
-[node name="UnderlineButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
+[node name="UnderlineButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -315,7 +308,7 @@ icon = ExtResource("3_pxnxc")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/UnderlineButton" instance=ExtResource("2_jepj1")]
 
-[node name="FontSizeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
+[node name="FontSizeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -325,7 +318,7 @@ icon = ExtResource("4_3r0mh")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontSizeButton" instance=ExtResource("2_jepj1")]
 
-[node name="FontColorButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
+[node name="FontColorButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -339,7 +332,7 @@ icon = ExtResource("5_gxw6d")
 [node name="FlyColorPicker" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontColorButton" instance=ExtResource("8_no7xv")]
 unique_name_in_owner = true
 
-[node name="AlignRightButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
+[node name="AlignRightButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -349,7 +342,7 @@ icon = ExtResource("6_n2bok")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignRightButton" instance=ExtResource("2_jepj1")]
 
-[node name="AlignCenterButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
+[node name="AlignCenterButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -359,7 +352,7 @@ icon = ExtResource("7_6e646")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignCenterButton" instance=ExtResource("2_jepj1")]
 
-[node name="AlignLeftButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
+[node name="AlignLeftButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -369,7 +362,7 @@ icon = ExtResource("8_d2swd")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignLeftButton" instance=ExtResource("2_jepj1")]
 
-[node name="PhotoButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
+[node name="PhotoButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -379,7 +372,7 @@ icon = ExtResource("11_3n6bf")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/PhotoButton" instance=ExtResource("2_jepj1")]
 
-[node name="CodeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
+[node name="CodeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -403,7 +396,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="TextEdit" type="TextEdit" parent="HBoxContainer/VBoxContainer/HBoxContainer2" groups=["local_theme-normal"]]
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -417,6 +410,7 @@ theme_override_styles/read_only = SubResource("StyleBoxFlat_u3444")
 context_menu_enabled = false
 deselect_on_focus_loss_enabled = false
 wrap_mode = 1
+scroll_past_end_of_file = true
 caret_blink = true
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/HBoxContainer2/TextEdit" instance=ExtResource("2_jepj1")]
@@ -439,32 +433,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = -23
-theme_override_constants/margin_bottom = 0
-
-[node name="ColorRect" type="PanelContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
-unique_name_in_owner = true
-self_modulate = Color(0.481789, 0.48179, 0.481789, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_16077")
-
-[node name="WarningLabel" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_w7fei")
-theme_override_styles/normal = SubResource("StyleBoxFlat_6nhk7")
-text = "SECURE_TEXT_EDIT_REPORT1"
-vertical_alignment = 1
-text_overrun_behavior = 3
-
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="SensitiveWordBar" type="PanelContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer" groups=["local_theme-normal"]]
+[node name="SensitiveWordBar" type="PanelContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -473,29 +446,48 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bblfe")
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar"]
 layout_mode = 2
 
-[node name="SensitiveWordButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer"]
+[node name="ReplyButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer"]
 unique_name_in_owner = true
-self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
+visible = false
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("2_w7fei")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_l4kul")
-flat = true
+theme = ExtResource("3_f702g")
+theme_override_constants/icon_max_width = 32
+icon = ExtResource("20_4eskq")
 alignment = 0
-text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer/ReplyButton" instance=ExtResource("2_jepj1")]
+
+[node name="WordsButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_f702g")
+theme_override_constants/icon_max_width = 32
+disabled = true
+text = "0"
+icon = ExtResource("20_1rvj5")
+alignment = 0
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer/WordsButton" instance=ExtResource("2_jepj1")]
 
 [node name="WarningButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer"]
 unique_name_in_owner = true
-visible = false
-self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-theme_override_constants/icon_max_width = 31
+theme = ExtResource("3_f702g")
+theme_override_constants/icon_max_width = 32
 icon = ExtResource("3_a8ljg")
-flat = true
-icon_alignment = 1
+alignment = 0
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer/WarningButton" instance=ExtResource("2_jepj1")]
 
 [node name="SendButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(128, 40)
@@ -551,10 +543,8 @@ libraries = {
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignLeftButton" to="." method="_on_align_left_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/PhotoButton" to="." method="_on_photo_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/CodeButton" to="." method="_on_code_button_pressed"]
-[connection signal="gui_input" from="HBoxContainer/VBoxContainer/HBoxContainer2/TextEdit" to="." method="_on_gui_input"]
 [connection signal="text_changed" from="HBoxContainer/VBoxContainer/HBoxContainer2/TextEdit" to="." method="_on_text_edit_text_changed"]
-[connection signal="gui_input" from="HBoxContainer/VBoxContainer/MarginContainer2/ColorRect" to="." method="_on_gui_input"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer/SensitiveWordButton" to="." method="_on_sensitive_word_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer/ReplyButton" to="." method="_on_reply_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/SensitiveWordBar/HBoxContainer/WarningButton" to="." method="_on_warning_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

@@ -296,19 +296,23 @@ func on_post_card_scene_pressed(data: Dictionary) -> void:
 			"res://Scenes/Forum/PostMenu.tscn", \
 			data)
 
-func _on_mine_posts_button_pressed():
+func _on_publish_post_button_pressed() -> void:
+	Application.async_load_scene.emit("res://Scenes/BaseUIComponents/FlyPostEditor.tscn", \
+			{"boards": boards_data.get("items", [])})
+
+func _on_mine_posts_button_pressed() -> void:
 	status = status_type.MinePosts
 	board_name_label.text = TranslationServer.translate("MINE_POSTS_NAME")
 
-func _on_mine_replied_button_pressed():
+func _on_mine_replied_button_pressed() -> void:
 	status = status_type.MineReplied
 	board_name_label.text = TranslationServer.translate("MINE_REPLIED_NAME")
 
-func _on_history_button_pressed():
+func _on_history_button_pressed() -> void:
 	status = status_type.History
 	board_name_label.text = TranslationServer.translate("HISTORY_NAME")
 
-func _on_clear_history_button_pressed():
+func _on_clear_history_button_pressed() -> void:
 	var content_dialog = Application.get_content_dialog()
 	if !content_dialog.is_connected("callback", _content_dialog_callback): content_dialog.callback.connect(_content_dialog_callback)
 	content_dialog.title = "%s?" %TranslationServer.translate("HISTORY_NAME")
