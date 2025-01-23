@@ -380,5 +380,6 @@ current_page = 1
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/ToRichTextButton" to="." method="_on_to_rich_text_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/ToTextButton" to="." method="_on_to_text_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/InfoContainer/HBoxContainer/OpenInBrowserButton" to="." method="_on_open_in_browser_button_pressed"]
-[connection signal="send" from="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_send"]
+[connection signal="comment" from="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_comment"]
+[connection signal="reply" from="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_reply"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Replies/MarginContainer/VBoxContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]

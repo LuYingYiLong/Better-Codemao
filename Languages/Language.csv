@@ -39,6 +39,8 @@ SUBMITTED_WORKS_NAME,投稿作品,Submitted works
 WORKSHOP_MEMBER,工作室成员,Workshop member
 MEMBER_TOTAL_NAME,成员总数,Member total
 FORUM_NAME,论坛,Forum
+PUBLISH_POST_NAME,发布帖子,Publish post
+PUBLISH_NAME,发布,Publish
 FORUM_SQUARE_NAME,论坛广场,Forum square
 POPULAR_ACTIVITIES_NAME,热门活动,Popular activities
 CODING_PARADISE_NAME,编程乐园,Coding paradise
@@ -66,6 +68,7 @@ DAYS_AGO_NAME,{0}天前,{0}Days ago
 OPEN_IN_BROWSER_NAME,在浏览器打开,Open in browser
 ALL_REPLIES_NAME,所有回帖,All replies
 REPLY_NAME,回复,Reply
+EXPAND_MORE_NAME,展开更多,Expand more
 DELETE_NAME,删除,Delete
 SEND_NAME,发送,Send
 LIBRARY_NAME,图书馆,Library
@@ -165,9 +168,6 @@ WORK_SHOP_LEVEL1,实习工作室,Elementary workshop
 WORK_SHOP_LEVEL2,进阶工作室,Lower-intermediate workshop
 WORK_SHOP_LEVEL3,精英工作室,Upper-intermediate workshop
 WORK_SHOP_LEVEL4,大神工作室,Advanced workshop
-SECURE_TEXT_EDIT_REPORT1,检查潜在屏蔽词...,Checking for potential blocked words...
-SECURE_TEXT_EDIT_REPORT2,发现潜在的屏蔽词！,Discover words that may be blocked!
-SECURE_TEXT_EDIT_REPORT3,未找到,No found
 POST_COMMENT_NAME,回复了你的帖子 {0},replied to your post {0}
 WORK_COMMENT_NAME,评论了你的作品 {0},commented on your post {0}
 WORK_REPLY_AUTHOR_NAME,回复了你在作品 {0} 下的 {1} 的评论,replied to your comment {1} on the work {0}

@@ -1,19 +1,27 @@
 extends PanelContainer
 
-@export_enum("Web", "String") var send_type: int = 0:
+@export_enum("Comment", "Reply") var type: int = 0:
 	set(value):
-		send_type = value
-		tools_bar.visible = send_type == 0
-		perview.visible = send_type == 0
-@export var text: String:
-	set(value):
-		text = value
-		text_edit.text = text
+		type = value
+		for node in get_tree().get_nodes_in_group("tool_buttons_group"):
+			node.disabled = type == 1
+		perview.visible = type == 0
+@export var post_id: int
+@export var reply_id: int
+@export var parent_id: int
+@export var text: String
 @export var placeholder_text: String:
 	set(value):
 		placeholder_text = value
 		text_edit.placeholder_text = placeholder_text
-		
+@export_group("Scroll")
+@export var scroll_fit_content_height: bool = false:
+	set(value):
+		scroll_fit_content_height = value
+		text_edit.scroll_fit_content_height = scroll_fit_content_height
+@export_group("Other")
+@export var text_edit: TextEdit
+
 @onready var uploading_request = %UploadingRequest
 @onready var upload_request = %UploadRequest
 
@@ -21,14 +29,12 @@ extends PanelContainer
 @onready var font_color_button = %FontColorButton
 @onready var fly_color_picker = %FlyColorPicker
 
-@onready var text_edit = %TextEdit
 @onready var perview = %Perview
 @onready var rich_content = %RichContent
 
-@onready var color_rect = %ColorRect
-@onready var warning_label = %WarningLabel
 @onready var sensitive_word_bar = %SensitiveWordBar
-@onready var sensitive_word_button = %SensitiveWordButton
+@onready var reply_button = %ReplyButton
+@onready var words_button = %WordsButton
 @onready var warning_button = %WarningButton
 
 @onready var sensitive_word_tag_container = %SensitiveWordTagContainer
@@ -36,7 +42,8 @@ extends PanelContainer
 @onready var file_dialog = %FileDialog
 @onready var animation_player = %AnimationPlayer
 
-signal send(text: String, send_type: int)
+signal comment(post_id: int, text: String)
+signal reply(reply_id: int, parent_id: int, text: String)
 
 enum Error{CHECKING, OK, WARNING}
 
@@ -56,50 +63,70 @@ func _ready() -> void:
 	Settings.settings_config_update.connect(_on_settings_config_update)
 	_on_settings_config_update()
 
+# 完全重置文本编辑器
 func clear() -> void:
+	type = 0
+	reply_id = 0
+	parent_id = 0
 	text_edit.clear()
+	text_edit.placeholder_text = ""
 	rich_content.clear()
-	color_rect.self_modulate = Color.html("#7b7b7b")
-	warning_label.text = TranslationServer.translate("SECURE_TEXT_EDIT_REPORT1")
-	sensitive_word_button.text = ""
+	reply_button.hide()
+	reply_button.text = ""
+	words_button.text = "0"
+	warning_button.text = ""
 	clear_sensitive_word_tag()
 
+# 设置评论
+func set_comment(_post_id: int = 0):
+	type = 0
+	post_id = _post_id
+	reply_id = 0
+	parent_id = 0
+	reply_button.hide()
+	text_edit.placeholder_text = ""
+
+# 设置回复
+func set_reply(_reply_id: int = 0, _parent_id: int = 0, nickname: String = "") -> void:
+	type = 1
+	reply_id = _reply_id
+	parent_id = _parent_id
+	reply_button.visible = reply_id > 0
+	reply_button.text = nickname
+	text_edit.text = ""
+	text_edit.placeholder_text = "%s %s" %[
+		TranslationServer.translate("REPLY_NAME"),
+		nickname
+	]
+
 func _on_text_edit_text_changed() -> void:
+	text = text_edit.text
 	rich_content.init_contents(text_edit.text)
-	color_rect.self_modulate = Color.html("#7b7b7b")
-	warning_label.text = TranslationServer.translate("SECURE_TEXT_EDIT_REPORT1")
-	sensitive_word_button.text = ""
+	words_button.text = str(text_edit.text.length())
+	warning_button.text = ""
 	if !thread_helper.is_running():
 		clear_sensitive_word_tag()
-		thread_helper.join_function(func(): check_text_from_thread(text_edit.text))
+		thread_helper.join_function(func(): _check_text_from_thread(text_edit.text))
 		thread_helper.start()
 
-func _on_gui_input(event) -> void:
-	if event is InputEventMouseButton and event.is_pressed and sensitive_word_tag_visible: _on_sensitive_word_button_pressed()
-
-func check_text_from_thread(_text: String) -> void:
+# 检查是否存在屏蔽词
+func _check_text_from_thread(_text: String) -> void:
 	sensitive_words = SensitiveWordsManager.check_text(_text)
-	if sensitive_words.is_empty():
-		color_rect.call_deferred("set_self_modulate", Color.html(GlobalTheme.default_ok_color))
-		warning_label.call_deferred("set_text", TranslationServer.translate("SECURE_TEXT_EDIT_REPORT3"))
+	if sensitive_words.is_empty(): warning_button.call_deferred("set_text", "")
 	else:
-		color_rect.call_deferred("set_self_modulate", Color.html(GlobalTheme.default_error_color))
-		warning_label.call_deferred("set_text", TranslationServer.translate("SECURE_TEXT_EDIT_REPORT2"))
 		var sensitive_word: String
 		for word: String in sensitive_words:
 			sensitive_word = "%s%s, " %[sensitive_word, word]
 			call_deferred_thread_group("add_sensitive_word_tag", word)
 		sensitive_word = sensitive_word.trim_suffix(", ")
-		sensitive_word_button.call_deferred("set_text", sensitive_word)
-	warning_button.call_deferred("set_visible", not sensitive_words.is_empty())
+		warning_button.call_deferred("set_text", sensitive_word)
 
 func replace(word: String) -> void:
 	text_edit.text = text_edit.text.replace(word, "")
-	color_rect.self_modulate = Color.html("#7b7b7b")
 	clear_sensitive_word_tag()
-	sensitive_word_button.text = ""
+	warning_button.text = ""
 	if !thread_helper.is_running():
-		thread_helper.join_function(func(): check_text_from_thread(text_edit.text))
+		thread_helper.join_function(func(): _check_text_from_thread(text_edit.text))
 		thread_helper.start()
 
 func clear_sensitive_word_tag() -> void:
@@ -112,24 +139,20 @@ func add_sensitive_word_tag(word: String) -> void:
 	sensitive_word_tag_scene.set_word(word)
 	sensitive_word_tag_scene.pressed.connect(replace)
 
+func _on_reply_button_pressed():
+	set_comment(post_id)
+
 func _on_warning_button_pressed() -> void:
-	warning_button.hide()
 	for word: String in sensitive_words:
 		text_edit.text = text_edit.text.replace(word, "")
-	color_rect.self_modulate = Color.html("#7b7b7b")
 	clear_sensitive_word_tag()
-	sensitive_word_button.text = ""
+	warning_button.text = ""
 	if !thread_helper.is_running():
-		thread_helper.join_function(func(): check_text_from_thread(text_edit.text))
+		thread_helper.join_function(func(): _check_text_from_thread(text_edit.text))
 		thread_helper.start()
 
-func _on_sensitive_word_button_pressed() -> void:
-	if sensitive_word_tag_visible: animation_player.play("HideSensitiveWordTag")
-	else: animation_player.play("ShowSensitiveWordTag")
-	sensitive_word_tag_visible = not sensitive_word_tag_visible
-
 func _on_send_button_pressed() -> void:
-	if send_type == 0:
+	if type == 0:
 		var content: String = Application.bbcode_to_html(text_edit.text)
 		var paragraphs: PackedStringArray = content.split("\n")
 		var count: int = 0
@@ -140,10 +163,9 @@ func _on_send_button_pressed() -> void:
 		for string: String in paragraphs:
 			content += string
 		content = content.trim_suffix("\n")
-		print(content)
-		send.emit(content, send_type)
-	elif send_type == 1:
-		send.emit(text_edit.text, send_type)
+		comment.emit(post_id, content)
+	elif type == 1:
+		reply.emit(reply_id, parent_id, text_edit.text)
 
 func insert_text_at_caret(insert_text: String) -> void:
 	text_edit.begin_complex_operation()

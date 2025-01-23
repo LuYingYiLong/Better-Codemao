@@ -150,6 +150,15 @@ current_page = 1
 layout_mode = 2
 theme_override_constants/separation = 32
 
+[node name="PublishPostButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_yjx67")
+text = "PUBLISH_POST_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PublishPostButton" instance=ExtResource("4_bkv22")]
+
 [node name="Mine" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("2_1yq0c")]
 layout_mode = 2
 
@@ -212,6 +221,7 @@ layout_mode = 2
 [connection signal="search_pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoSuggestBox" to="." method="_on_auto_suggest_box_search_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/ClearHistoryButton" to="." method="_on_clear_history_button_pressed"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PublishPostButton" to="." method="_on_publish_post_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MinePostsButton" to="." method="_on_mine_posts_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/MineRepliedButton" to="." method="_on_mine_replied_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Mine/MarginContainer/VBoxContainer/HistoryButton" to="." method="_on_history_button_pressed"]

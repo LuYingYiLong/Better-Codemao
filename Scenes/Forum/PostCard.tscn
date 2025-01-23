@@ -138,7 +138,7 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 0.4901
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("8_0pe6i")
 text = "Content"
-autowrap_mode = 2
+autowrap_mode = 3
 text_overrun_behavior = 4
 
 [node name="ThemePainter" parent="MarginContainer/VBoxContainer/Title&Content/ContentLabel" instance=ExtResource("3_fnsdu")]

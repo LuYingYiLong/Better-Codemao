@@ -261,7 +261,7 @@ func html_font_size_vlaue_to_bbcode(value: String) -> String:
 
 func bbcode_to_html(bbcode: String) -> String:
 	var regex = RegEx.new()
-	# 匹配基础标签
+	# 使用正则表达式匹配 BBCode 标签
 	regex.compile("(\\[.+?\\])")
 	for result in regex.search_all(bbcode):
 		var get_string: String = result.get_string()
@@ -286,7 +286,6 @@ func bbcode_to_html(bbcode: String) -> String:
 				if get_string.begins_with("[font_size="): bbcode = bbcode.replace(get_string, '<span style="font-size: %spx;">' %get_string.get_slice("=", 1).trim_suffix("]"))
 				if get_string.begins_with("[image="):
 					var str_result: String = '<img style="max-width: 100%; display: block; margin: 0 auto;" src="' + get_string.get_slice("=", 1).trim_suffix("]") + '" alt="center_image">'
-					print(str_result)
 					bbcode = bbcode.replace(get_string, str_result)
 				if get_string.begins_with("[language="): bbcode = bbcode.replace(get_string, '<pre class="language-%s">' %get_string.get_slice("=", 1).trim_suffix("]"))
 

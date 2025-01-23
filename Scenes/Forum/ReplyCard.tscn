@@ -1,18 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://f855sygoy2lw"]
+[gd_scene load_steps=17 format=3 uid="uid://f855sygoy2lw"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_ayk0x"]
 [ext_resource type="Script" uid="uid://cmkm1q5fe0q7m" path="res://Scripts/Forum/ReplyCard.gd" id="2_qbosl"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_lvul8"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="3_wol24"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_x1wks"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="4_6o03u"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_wmkx4"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="6_gwf2p"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="6_wn6mf"]
-[ext_resource type="StyleBox" uid="uid://ltv4bwkqhnhc" path="res://Resources/Themes/PanelContainer-Dark.tres" id="7_1pn4i"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="6_wol24"]
 [ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="7_6iwvc"]
 [ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="8_h12ad"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="9_fqnsm"]
 [ext_resource type="PackedScene" uid="uid://p6qpvhy7k7xv" path="res://Scenes/Forum/RichContent.tscn" id="11_wgmkr"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="14_ufyyu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qr7g"]
 bg_color = Color(1, 1, 1, 1)
@@ -34,6 +35,10 @@ theme_override_styles/panel = ExtResource("1_ayk0x")
 script = ExtResource("2_qbosl")
 
 [node name="ThemePainter" parent="." instance=ExtResource("3_lvul8")]
+
+[node name="CommentsRequest" parent="." instance=ExtResource("3_wol24")]
+unique_name_in_owner = true
+progress_bar = NodePath("../MarginContainer/VBoxContainer/CommentContainer/PanelContainer/ProgressBar")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -59,7 +64,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4qr7g")
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture = ExtResource("4_6o03u")
+texture = ExtResource("6_wol24")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -132,20 +137,41 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/CommentContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("7_1pn4i")
+theme_override_styles/panel = ExtResource("1_ayk0x")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/CommentContainer/PanelContainer"]
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/CommentContainer/PanelContainer" instance=ExtResource("3_lvul8")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CommentContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/CommentContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="CommentCardContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CommentContainer/PanelContainer/MarginContainer"]
+[node name="CommentCardContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CommentContainer/PanelContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="ExpandMoreButton" type="Button" parent="MarginContainer/VBoxContainer/CommentContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_gwf2p")
+text = "EXPAND_MORE_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/CommentContainer/PanelContainer/VBoxContainer/ExpandMoreButton" instance=ExtResource("3_lvul8")]
+
+[node name="ProgressBar" parent="MarginContainer/VBoxContainer/CommentContainer/PanelContainer" instance=ExtResource("14_ufyyu")]
+visible = false
+layout_mode = 2
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="request_completed" from="CommentsRequest" to="." method="_on_comments_request_request_completed"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_texture_gui_input"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="_on_nickname_label_pressed"]
 [connection signal="index_pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DropDownButton" to="." method="_menu_callback"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CommentContainer/PanelContainer/VBoxContainer/ExpandMoreButton" to="." method="_on_expand_more_button_pressed"]
