@@ -24,6 +24,7 @@ extends PanelContainer
 @export_enum("Left", "Center", "Right") var item_alignment: int = 0:
 	set(value):
 		item_alignment = value
+		@warning_ignore("int_as_enum_without_cast")
 		selector_bar_item_container.alignment = item_alignment
 @export var size_fill: bool = true
 @export var items_width: float = 0.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://csg0n6d7u0rvf"]
+[gd_scene load_steps=45 format=3 uid="uid://csg0n6d7u0rvf"]
 
 [ext_resource type="Script" uid="uid://d0nrmwgp3ek3a" path="res://Scripts/Application.gd" id="1_5hvyn"]
 [ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/LoginMenu.tscn" id="2_1hfjc"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://w4onyjwqldyw" path="res://Scripts/AddressBar.gd" id="5_4xxjt"]
 [ext_resource type="Script" uid="uid://bjutoaj5vry4h" path="res://Scripts/AsynchronousLoader.gd" id="5_w0iy8"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_6l8hs"]
-[ext_resource type="Texture2D" uid="uid://xtqhdrqk18ja" path="res://Resources/Textures/Arrow.svg" id="6_rplow"]
 [ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="9_2koew"]
 [ext_resource type="Texture2D" uid="uid://chfkitgkphv77" path="res://Resources/Textures/Settings.svg" id="12_tealn"]
 [ext_resource type="PackedScene" uid="uid://bdw6wa6gmpvb5" path="res://Scenes/SystemMessageList.tscn" id="13_0uouo"]
@@ -476,11 +475,6 @@ theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_0i0j7")
 theme_override_styles/tab_selected = SubResource("StyleBoxEmpty_qw8lr")
 theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_sn45s")
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_gtgo6")
-current_tab = 1
-tab_count = 2
-tab_0/title = "ADDRESS1"
-tab_1/title = "ADDRESS2"
-tab_1/icon = ExtResource("6_rplow")
 
 [node name="Pages" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true

@@ -54,7 +54,9 @@ func _ready() -> void:
 	_on_settings_config_update()
 
 func _on_simple_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
+	if result != HTTPRequest.RESULT_SUCCESS:
+		push_error("Could not get data")
+		return
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 	if !json.get("has_joined"):
 		go_to_button.hide()

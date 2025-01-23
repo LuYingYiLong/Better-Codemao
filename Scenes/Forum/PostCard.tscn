@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://mfb2rhleqvr6"]
+[gd_scene load_steps=16 format=3 uid="uid://mfb2rhleqvr6"]
 
 [ext_resource type="Script" uid="uid://c1mklwbav2c2f" path="res://Scripts/Forum/PostCard.gd" id="1_5kq84"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_gtwqm"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://cqkfqax51setl" path="res://Resources/Textures/Comment.svg" id="9_nc8nu"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="9_p06k8"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3lc8r"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g8eg"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 15
@@ -23,7 +25,6 @@ corner_radius_bottom_left = 15
 
 [node name="PostCard" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 170)
-mouse_default_cursor_shape = 2
 theme_override_styles/panel = ExtResource("1_gtwqm")
 script = ExtResource("1_5kq84")
 
@@ -32,8 +33,15 @@ script = ExtResource("1_5kq84")
 [node name="DetailsRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 
+[node name="Card" type="Button" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3lc8r")
+flat = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -41,6 +49,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -87,10 +96,12 @@ text = "YYYYMMDD"
 [node name="Title&Content" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/separation = -4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Title&Content"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="PostAuthorizedTag" parent="MarginContainer/VBoxContainer/Title&Content/HBoxContainer" instance=ExtResource("8_bw7th")]
 unique_name_in_owner = true
@@ -143,24 +154,27 @@ text_overrun_behavior = 4
 
 [node name="ThemePainter" parent="MarginContainer/VBoxContainer/Title&Content/ContentLabel" instance=ExtResource("3_fnsdu")]
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ViewTimes&Replies" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="Views" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Views" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ViewTimes&Replies"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="ViewsIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views"]
+[node name="ViewsIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/ViewTimes&Replies/Views"]
 self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("9_p06k8")
 expand_mode = 1
 
-[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views/ViewsIcon" instance=ExtResource("3_fnsdu")]
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/ViewTimes&Replies/Views/ViewsIcon" instance=ExtResource("3_fnsdu")]
 translucent = true
 
-[node name="Views" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views"]
+[node name="Views" type="Label" parent="MarginContainer/VBoxContainer/ViewTimes&Replies/Views"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -168,23 +182,25 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("8_0pe6i")
 text = "--"
 
-[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Views/Views" instance=ExtResource("3_fnsdu")]
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/ViewTimes&Replies/Views/Views" instance=ExtResource("3_fnsdu")]
 translucent = true
 
-[node name="Replies" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Replies" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ViewTimes&Replies"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="RepliesIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies"]
+[node name="RepliesIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/ViewTimes&Replies/Replies"]
 self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("9_nc8nu")
 expand_mode = 1
 
-[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies/RepliesIcon" instance=ExtResource("3_fnsdu")]
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/ViewTimes&Replies/Replies/RepliesIcon" instance=ExtResource("3_fnsdu")]
 translucent = true
 
-[node name="Replies" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies"]
+[node name="Replies" type="Label" parent="MarginContainer/VBoxContainer/ViewTimes&Replies/Replies"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -192,9 +208,9 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("8_0pe6i")
 text = "--"
 
-[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/Replies/Replies" instance=ExtResource("3_fnsdu")]
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/ViewTimes&Replies/Replies/Replies" instance=ExtResource("3_fnsdu")]
 translucent = true
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="Card" to="." method="_on_card_pressed"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_avatar_gui_input"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NicknameLabel" to="." method="jump_to_user_menu"]

@@ -36,9 +36,6 @@ var repiles: Dictionary
 
 var content: String
 
-func _ready():
-	pagination_bar.size = 3
-
 func set_data(data: Dictionary):
 	post_id = int(data.get("id", 0))
 	secure_text_edit.post_id = post_id
@@ -190,7 +187,7 @@ func _on_mirroring_button_pressed():
 	zip_packer.close()
 
 func _on_reply_card_reply_pressed(id: int, nickname: String) -> void:
-	secure_text_edit.set_reply(id, -1, nickname)
+	secure_text_edit.set_reply(id, 0, nickname)
 
 func _on_comment_card_comment_pressed(id: int, parent_id: int, nickname: String) -> void:
 	secure_text_edit.set_reply(id, parent_id, nickname)

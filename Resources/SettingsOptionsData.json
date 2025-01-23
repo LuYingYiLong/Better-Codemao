@@ -129,6 +129,13 @@
 		},
 		{
 			"option_box": {
+				"text": "Aumiao",
+				"description": "Aumiao room",
+				"go_to": "aumiao_room" 
+			}
+		},
+		{
+			"option_box": {
 				"text": "JOIN_US_NAME",
 				"description": "JOIN_US_DESCRIPTION",
 				"go_to": "join_us_options"
@@ -157,6 +164,13 @@
 					"key": "language",
 					"use": "$ combo_box->items->selected->metadata"
 				}
+			}
+		}
+	],
+	"aumiao_room": [
+		{
+			"scene": {
+				"path": "res://Scenes/Settings/AumiaoRoomPanel.tscn"
 			}
 		}
 	],

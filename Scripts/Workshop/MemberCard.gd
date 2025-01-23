@@ -10,7 +10,7 @@ signal pressed(nick_name: String, user_id: int)
 var user_id: int
 
 func set_member_card_data(data: Dictionary) -> void:
-	user_id = data.get("id")
+	user_id = data.get("user_id")
 	avatar_texture.load_image(data.get("avatar_url"), data.get("name"))
 	nickname_label.text = data.get("name")
 	var pos: String = data.get("position")

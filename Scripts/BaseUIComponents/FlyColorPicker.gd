@@ -46,7 +46,7 @@ func populate_preset_color() -> void:
 func _on_preset_color_card_select_color(color: Color) -> void:
 	color_picker.color = color
 	color_rect.self_modulate = color
-	hex_line_edit.text = color.to_html(false)
+	hex_line_edit.text = "#%s" %color.to_html(false)
 
 func _on_ok_button_pressed() -> void:
 	color_selected.emit(color_picker.color)

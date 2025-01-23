@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="6_prnkx"]
 [ext_resource type="Script" uid="uid://37mnb2dbt3cr" path="res://Scripts/SelectorBarItem.gd" id="7_shp27"]
 [ext_resource type="PackedScene" uid="uid://b70w7s5k2wnp7" path="res://Scenes/BaseUIComponents/AutoSuggestBox.tscn" id="8_klqll"]
-[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBar.tscn" id="11_86mxm"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBarComponents/PaginationBar.tscn" id="11_86mxm"]
 
 [sub_resource type="Resource" id="Resource_t1vfs"]
 script = ExtResource("7_shp27")
