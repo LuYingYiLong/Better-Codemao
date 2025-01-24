@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/3c0420d4-94e7-42a5-a78c-cce5b1bd655b)# Better-Codemao
+# Better-Codemao
 
 > 旨在打造更好的编程猫社区
 
