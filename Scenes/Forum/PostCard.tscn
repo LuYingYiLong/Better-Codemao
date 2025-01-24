@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://mfb2rhleqvr6"]
+[gd_scene load_steps=17 format=3 uid="uid://mfb2rhleqvr6"]
 
 [ext_resource type="Script" uid="uid://c1mklwbav2c2f" path="res://Scripts/Forum/PostCard.gd" id="1_5kq84"]
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_gtwqm"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_wn7q6"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_3lc8r"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_2fdoj"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_fnsdu"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="3_lkwnq"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="4_3lc8r"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_jb4pf"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="6_1hnhq"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_o3g1c"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://5c4ths80q2t5" path="res://Scenes/Forum/PostTag.tscn" id="8_bw7th"]
 [ext_resource type="Texture2D" uid="uid://cqkfqax51setl" path="res://Resources/Textures/Comment.svg" id="9_nc8nu"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="9_p06k8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05tpx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3lc8r"]
 
@@ -25,10 +27,11 @@ corner_radius_bottom_left = 15
 
 [node name="PostCard" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 170)
-theme_override_styles/panel = ExtResource("1_gtwqm")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_05tpx")
 script = ExtResource("1_5kq84")
 
-[node name="ThemePainter" parent="." instance=ExtResource("3_fnsdu")]
+[node name="CustomPanelContainer" parent="." instance=ExtResource("2_3lc8r")]
+layout_mode = 2
 
 [node name="DetailsRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
@@ -64,7 +67,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0g8eg")
 [node name="AvatarTexture" parent="MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("3_2fdoj")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("2_wn7q6")
+texture = ExtResource("4_3lc8r")
 
 [node name="NicknameLabel" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true

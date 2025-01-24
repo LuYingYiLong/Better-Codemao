@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://b5uc6qfh6miet"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_5p0si"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="1_20btv"]
 [ext_resource type="Script" uid="uid://gmw6ix0ht4ou" path="res://Scripts/Message/MessageCard.gd" id="1_n4bih"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_u0a0q"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_5oost"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="5_p7uhc"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_pxg82"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="6_bql1m"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_mkxi2"]
@@ -57,7 +57,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jdpl1")
 [node name="AvatarTexture" parent="MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("2_u0a0q")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("1_20btv")
+texture = ExtResource("5_p7uhc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

@@ -3,7 +3,7 @@
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_wp3qx"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="2_44vxr"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_gv7s4"]
-[ext_resource type="Script" path="res://Scripts/Forum/ContentLabel.gd" id="4_on4jv"]
+[ext_resource type="Script" uid="uid://cmijrdrh2h6rt" path="res://Scripts/Forum/ContentLabel.gd" id="4_on4jv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijp3g"]
 

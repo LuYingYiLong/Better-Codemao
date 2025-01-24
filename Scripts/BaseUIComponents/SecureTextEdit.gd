@@ -17,6 +17,8 @@ extends PanelContainer
 	set(value):
 		scroll_fit_content_height = value
 		text_edit.scroll_fit_content_height = scroll_fit_content_height
+		if scroll_fit_content_height: %ScrollContainer.vertical_scroll_mode = 0
+		else: %ScrollContainer.vertical_scroll_mode = 1
 @export_group("Other")
 @export var text_edit: TextEdit
 
@@ -27,6 +29,7 @@ extends PanelContainer
 @onready var font_color_button = %FontColorButton
 @onready var fly_color_picker = %FlyColorPicker
 
+@onready var scroll_container = %ScrollContainer
 @onready var perview = %Perview
 @onready var rich_content = %RichContent
 
@@ -46,13 +49,38 @@ signal reply(reply_id: int, parent_id: int, text: String)
 enum Error{CHECKING, OK, WARNING}
 
 const SENSITIVE_WORD_TAG_SCENE = preload("res://Scenes/BaseUIComponents/SensitiveWordTag.tscn")
+const FILE_LANGUAGE_TYPE: Dictionary = {
+	"py": "python",
+	"java": "java",
+	"c": "c",
+	"cpp": "c++",
+	"cc": "c++",
+	"cs": "c#",
+	"js": "java_script",
+	"ts": "type_script",
+	"rb": "ruby",
+	"php": "php",
+	"go": "go",
+	"swift": "swift",
+	"kt": "kotlin",
+	"rs": "rust",
+	"html": "html",
+	"htm": "html",
+	"css": "css",
+	"sql": "sql",
+	"sh": "bash",
+	"pl": "perl",
+	"lua": "lua",
+	"gd": "gdscript",
+	"gdshader": "gdshader"
+}
 
 var sensitive_word_tag_visible: bool
 
 var sensitive_words: PackedStringArray
 
 var bucket_url: String
-var file_path: String
+var files_path: Array
 
 var thread_helper: ThreadHelper
 
@@ -60,6 +88,21 @@ func _ready() -> void:
 	thread_helper = ThreadHelper.new(self)
 	Settings.settings_config_update.connect(_on_settings_config_update)
 	_on_settings_config_update()
+	get_window().files_dropped.connect(on_files_dropped)
+
+func on_files_dropped(files: PackedStringArray) -> void:
+	for path in files:
+		if FILE_LANGUAGE_TYPE.has(path.get_extension()):
+			var file_access: FileAccess = FileAccess.open(path, FileAccess.READ)
+			text_edit.text += "\n[language=%s][code]%s[/code][/language]" %[FILE_LANGUAGE_TYPE.get(path.get_extension()), file_access.get_as_text()]
+			file_access.close()
+		elif path.get_extension() == "txt":
+			var file_access: FileAccess = FileAccess.open(path, FileAccess.READ)
+			text_edit.text += "\n%s" %file_access.get_as_text()
+			file_access.close()
+		elif path.get_extension() == "png" or path.get_extension() == "jpg" or path.get_extension() == "jpeg":
+			_on_file_dialog_file_selected(path)
+	rich_content.init_contents(text_edit.text)
 
 # 重置文本编辑器
 func clear() -> void:
@@ -92,6 +135,7 @@ func set_reply(_reply_id: int = 0, _parent_id: int = 0, nickname: String = "") -
 	reply_button.visible = reply_id > 0
 	reply_button.text = nickname
 	text_edit.text = ""
+	words_button.text = "0"
 	text_edit.placeholder_text = "%s %s" %[
 		TranslationServer.translate("REPLY_NAME"),
 		nickname
@@ -213,9 +257,7 @@ func _on_code_button_pressed() -> void:
 	insert_text_at_caret("[language=python][code][/code][/language]")
 
 func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0:
-		pass
-	else:
+	if Settings.get_dark_mode():
 		var tools_bar_style: StyleBoxFlat = tools_bar.get_theme_stylebox("panel")
 		tools_bar_style.bg_color = Color.html("#1c1c1c")
 		tools_bar_style.border_color = Color.html("#1b1b1b")
@@ -230,7 +272,7 @@ func _on_settings_config_update() -> void:
 		sensitive_word_bar_style.border_color = Color.html("#1b1b1b")
 
 func _on_file_dialog_file_selected(path: String) -> void:
-	file_path = path
+	files_path.append(path)
 	var unique_filename = generate_unique_filename(path)
 	uploading_request.request("https://open-service.codemao.cn/cdn/qi-niu/tokens/uploading?projectName=community_frontend&filePaths=community/%s&filePath=community/%s&tokensCount=1&fileSign=p1&cdnName=qiniu" %[
 				unique_filename, \
@@ -267,7 +309,7 @@ func _on_uploading_request_request_completed(_result: int, _response_code: int, 
 	var token: String = tokens.get("token", "")
 	
 	# 获取文件数据
-	var file_access: FileAccess = FileAccess.open(file_path, FileAccess.READ)
+	var file_access: FileAccess = FileAccess.open(files_path[files_path.size() - 1], FileAccess.READ)
 	var file_data: PackedByteArray = file_access.get_buffer(file_access.get_length())
 	file_access.close()
 
@@ -290,7 +332,7 @@ func _on_uploading_request_request_completed(_result: int, _response_code: int, 
 
 	# 添加文件数据
 	body += _string_to_bytes("--" + boundary + "\r\n")
-	body += _string_to_bytes("Content-Disposition: form-data; name=\"file\"; filename=\"" + file_path.get_file() + "\"\r\n")
+	body += _string_to_bytes("Content-Disposition: form-data; name=\"file\"; filename=\"" + files_path.pop_back().get_file() + "\"\r\n")
 	body += _string_to_bytes("Content-Type: image/png\r\n\r\n")  # 根据文件类型修改
 	body += file_data  # 添加文件数据
 	body += _string_to_bytes("\r\n")
@@ -305,4 +347,5 @@ func _string_to_bytes(string: String) -> PackedByteArray:
 
 func _on_upload_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-	insert_text_at_caret("[image=%s%s]" %[bucket_url, json.get("key")])
+	text_edit.text += "\n[image=%s%s]" %[bucket_url, json.get("key")]
+	rich_content.init_contents(text_edit.text)

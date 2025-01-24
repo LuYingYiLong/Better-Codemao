@@ -20,8 +20,9 @@ signal settings_config_update
 signal settings_config_loaded
 
 func _ready():
-	if !FileAccess.file_exists(ProjectSettings.globalize_path("user://SettingsConfig.cfg")):
+	if !FileAccess.file_exists(ProjectSettings.globalize_path(SETTINGS_CONFIG_PATH)):
 		save_settings_config()
+	print(ProjectSettings.globalize_path(SETTINGS_CONFIG_PATH))
 	var dir_access: DirAccess = DirAccess.open("user://")
 	dir_access.make_dir("Personalization")
 	dir_access.make_dir("Files")
@@ -59,3 +60,9 @@ func load_settings_config():
 
 func open_user_folder():
 	OS.shell_open(ProjectSettings.globalize_path("user://"))
+
+func get_dark_mode() -> bool:
+	if dark_mode == 2:
+		var dark_mode_checker: DarkModeChecker = DarkModeChecker.new()
+		return dark_mode_checker.is_dark_mode_enabled()
+	return dark_mode == 1

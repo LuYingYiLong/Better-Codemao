@@ -63,8 +63,8 @@ func append_address(address_name: String, scene_path: String = "", data: Diction
 	pages.add_child(page_container_scene)
 	page_container_scene.name = str(address_size - 1)
 	if !scene_path.is_empty(): page_container_scene.load_scene(scene_path, data)
-	if Settings.dark_mode == 0: address_tab_bar.add_tab(address_name, ARROW_TEXTURE)
-	else: address_tab_bar.add_tab(address_name, LIGHT_ARROW_TEXTURE)
+	if Settings.get_dark_mode(): address_tab_bar.add_tab(address_name, LIGHT_ARROW_TEXTURE)
+	else: address_tab_bar.add_tab(address_name, ARROW_TEXTURE)
 	address_tab_bar.current_tab = address_size - 1
 
 func _on_address_tab_bar_tab_selected(tab: int):
@@ -122,15 +122,15 @@ func _on_address_tab_bar_tab_selected(tab: int):
 	is_playing = false
 
 func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0:
-		address_tab_bar.add_theme_color_override("drop_mark_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
-		address_tab_bar.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
-		address_tab_bar.add_theme_color_override("font_hovered_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
-		address_tab_bar.add_theme_color_override("font_selected_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
-		address_tab_bar.add_theme_color_override("font_unselected_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_unselected_color))
-	else:
+	if Settings.get_dark_mode():
 		address_tab_bar.add_theme_color_override("drop_mark_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_selected_color))
 		address_tab_bar.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_selected_color))
 		address_tab_bar.add_theme_color_override("font_hovered_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_selected_color))
 		address_tab_bar.add_theme_color_override("font_selected_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_selected_color))
 		address_tab_bar.add_theme_color_override("font_unselected_color", Color.html(GlobalTheme.dark_mode_address_tab_bar_font_unselected_color))
+	else:
+		address_tab_bar.add_theme_color_override("drop_mark_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_hovered_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_selected_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_selected_color))
+		address_tab_bar.add_theme_color_override("font_unselected_color", Color.html(GlobalTheme.light_mode_address_tab_bar_font_unselected_color))

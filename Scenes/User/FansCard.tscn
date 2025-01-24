@@ -3,9 +3,9 @@
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_ekoyo"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_ghtjt"]
 [ext_resource type="Script" uid="uid://h5a6bebuorh8" path="res://Scripts/User/FansCard.gd" id="2_iqxt4"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_kkiyt"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_nxmy1"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_nnym4"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="5_ixm76"]
 [ext_resource type="Texture2D" uid="uid://cftybq6tll2w8" path="res://Resources/Textures/Praise.svg" id="5_xj81q"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_mau3q"]
 [ext_resource type="Texture2D" uid="uid://bs8tg7fui1e36" path="res://Resources/Textures/Work.svg" id="7_y4qht"]
@@ -50,7 +50,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6x1yh")
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("3_kkiyt")
+texture = ExtResource("5_ixm76")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

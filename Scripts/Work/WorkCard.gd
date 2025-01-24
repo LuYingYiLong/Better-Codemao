@@ -25,10 +25,6 @@ extends PanelContainer
 @onready var nickname_label = %NicknameLabel
 
 var id: int
-
-func _ready() -> void:
-	Settings.settings_config_update.connect(_on_settings_config_update)
-	_on_settings_config_update()
 	
 func set_work_card_data(json: Dictionary) -> void:
 	id = json.get("id")
@@ -55,20 +51,6 @@ func jump_to_work_menu() -> void:
 
 func _on_preview_texture_pressed() -> void:
 	jump_to_work_menu()
-
-func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0:
-		work_name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		description_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		view_praise_container.modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
-		line.add_theme_stylebox_override("panel", load("res://Resources/Themes/HLine-Light.tres"))
-		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-	else:
-		work_name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		description_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		view_praise_container.modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)
-		line.add_theme_stylebox_override("panel", load("res://Resources/Themes/HLine-Dark.tres"))
-		nickname_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 
 func _on_card_pressed() -> void:
 	jump_to_work_menu()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwc26dqxus8j8" path="res://Scripts/Work/HWorkCard.gd" id="1_aosbv"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_ihmto"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_x5hi3"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="3_b0qtd"]
 [ext_resource type="FontFile" uid="uid://cphm5abmdoidd" path="res://Resources/Fonts/SourceHanSansCN-Normal.otf" id="4_1mhrh"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_fcamc"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="5_v8p1o"]
@@ -40,7 +40,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_phxa8")
 [node name="PreviewTexture" parent="HBoxContainer/Mask" instance=ExtResource("2_ihmto")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("3_x5hi3")
+texture = ExtResource("3_b0qtd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2

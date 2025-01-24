@@ -10,11 +10,11 @@ var current_page: int = -1:
 	set(value):
 		current_page = value
 		if page == current_page:
-			if Settings.dark_mode == 0: theme = ACCENT_BUTTON_LIGHT
-			else: theme = ACCENT_BUTTON_DARK
+			if Settings.get_dark_mode(): theme = ACCENT_BUTTON_DARK
+			else: theme = ACCENT_BUTTON_LIGHT
 		else:
-			if Settings.dark_mode == 0: theme = SIMPLE_BUTTON_LIGHT
-			else: theme = SIMPLE_BUTTON_DARK
+			if Settings.get_dark_mode(): theme = SIMPLE_BUTTON_DARK
+			else: theme = SIMPLE_BUTTON_LIGHT
 
 signal page_pressed(page: int)
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bemvf733kqr23"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/Tab.gd" id="1_g8qba"]
+[ext_resource type="Script" uid="uid://b7mfqhm6nhbty" path="res://Scripts/BaseUIComponents/Tab.gd" id="1_g8qba"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="1_kb4nq"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_qsy30"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_ferxl"]
@@ -72,8 +72,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jq6o2"]
 _data = {
-"RESET": SubResource("Animation_8lovk"),
-"Selected": SubResource("Animation_m5alf")
+&"RESET": SubResource("Animation_8lovk"),
+&"Selected": SubResource("Animation_m5alf")
 }
 
 [node name="Tab" type="Button" node_paths=PackedStringArray("title_label", "text_label", "animation_player")]
@@ -144,7 +144,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_uhx4j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_jq6o2")
+&"": SubResource("AnimationLibrary_jq6o2")
 }
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

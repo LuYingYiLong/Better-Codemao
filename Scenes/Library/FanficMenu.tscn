@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_6ekja"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_au6ae"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_htqta"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="5_8ntsn"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="6_gn5oe"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="7_0kpou"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_axqjb"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="7_tu70e"]
@@ -95,7 +95,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 220)
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("5_8ntsn")
+texture = ExtResource("6_gn5oe")
 expand_mode = 4
 stretch_mode = 6
 
@@ -170,7 +170,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_n2kif")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("5_8ntsn")
+texture = ExtResource("6_gn5oe")
 
 [node name="NicknameLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true

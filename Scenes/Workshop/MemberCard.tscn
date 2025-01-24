@@ -3,9 +3,9 @@
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_xv2tr"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_arlt8"]
 [ext_resource type="Script" uid="uid://c1yf6ayyt8etf" path="res://Scripts/Workshop/MemberCard.gd" id="2_dhvnh"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_hkmmu"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_rvmkp"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_5fmiq"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="5_jyxoh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aa288"]
 
@@ -58,7 +58,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jjmya")
 [node name="AvatarTexture" parent="MarginContainer/HBoxContainer/Mask" instance=ExtResource("2_arlt8")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("3_hkmmu")
+texture = ExtResource("5_jyxoh")
 
 [node name="NicknameLabel" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true

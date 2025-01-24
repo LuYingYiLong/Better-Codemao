@@ -97,6 +97,7 @@ BLACK_GROUND_MODE_NAME,背景模式,Black ground mode
 THEME_NAME,主题,Theme
 LIGHT_NAME,浅色,Light
 DARK_NAME,深色,Dark
+FOLLOW_THE_SYSTEM_NAME,跟随系统,Follow the system
 IMAGE_NAME,图像,Image
 SYSTEM_BASE_COLOR_NAME,系统基色,System base color
 LANGUAGE_NAME,语言,Language

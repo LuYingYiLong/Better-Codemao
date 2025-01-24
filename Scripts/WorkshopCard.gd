@@ -49,14 +49,10 @@ func set_workshop_card_data(json: Dictionary) -> void:
 				sub_manager_4_avatar_texture.load_image(manager.get("avatar_url"))
 				sub_manager_4_avatar_texture.show()
 
-func _on_gui_input(event) -> void:
-	if event is InputEventMouseButton and \
-			event.is_pressed and \
-			event.button_mask == 1 and \
-			event.button_index == 1:
-		Application.append_address.emit(name_label.text, \
-			"res://Scenes/Workshop/ShopMenu.tscn", \
-			{"id": workshop_id})
+func _on_card_pressed() -> void:
+	Application.append_address.emit(name_label.text, \
+		"res://Scenes/Workshop/ShopMenu.tscn", \
+		{"id": workshop_id})
 
 func _on_manager_avatar_texture_gui_input(event) -> void:
 	if event is InputEventMouseButton and \

@@ -25,7 +25,7 @@ func parse_user_args(user_args: PackedStringArray) -> void:
 		"--user":
 			var json: Dictionary = parse_json_text(user_args[1])
 			if json.is_empty() or !json.has("id"): return
-			Application.append_address.emit("USER_NAME", "res://Scenes/User/UserDetailsMenu.tscn", json)
+			Application.append_address.emit("USER_NAME", "res://Scenes/User/UserMenu.tscn", json)
 
 func _notification(what) -> void:
 	if what == NOTIFICATION_APPLICATION_FOCUS_IN:

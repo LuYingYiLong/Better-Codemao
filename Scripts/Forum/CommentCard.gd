@@ -1,5 +1,7 @@
 extends PanelContainer
 
+@export_enum("Post", "Shop") var scene_type: int = 0
+
 @onready var avatar_texture = %AvatarTexture
 @onready var nickname_label = %NicknameLabel
 @onready var work_shop_tag = %WorkShopTag
@@ -32,7 +34,7 @@ func set_comment_card_data(json: Dictionary):
 		delete_popup_item.text = "DELETE_NAME"
 		drop_down_button.popup_items.append(delete_popup_item)
 	var content: String = json.get("content")
-	if json.has("reply_user"):
+	if json.has("reply_user") and scene_type == 0:
 		var reply_user: Dictionary = json.get("reply_user", {})
 		content = "%s %s %s: %s" %[
 			user.get("nickname"), 
@@ -45,7 +47,9 @@ func set_comment_card_data(json: Dictionary):
 
 func _menu_callback(item_id: int) -> void:
 	if item_id == 0:
-		var user: Dictionary = data.get("user")
+		var user: Dictionary
+		if scene_type == 0: user = data.get("user")
+		elif scene_type == 1: user = data.get("reply_user")
 		comment_pressed.emit(data.get("id").to_int(), user.get("nickname"))
 	elif item_id == 1:
 		delete_pressed.emit(data.get("id").to_int())

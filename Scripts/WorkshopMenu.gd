@@ -50,8 +50,6 @@ var status = status_type.Recommended:
 func _ready() -> void:
 	simple_request.request("https://api.codemao.cn/web/work_shops/simple", [Application.generate_cookie_header()], HTTPClient.METHOD_GET)
 	shops_request.request("https://api.codemao.cn/web/shops?levels=0,1,2,3,4&max_number=4&works_limit=4&sort=-ordinal,-updated_at")
-	Settings.settings_config_update.connect(_on_settings_config_update)
-	_on_settings_config_update()
 
 func _on_simple_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS:
@@ -132,17 +130,3 @@ func _on_pagination_bar_page_changed(page: int) -> void:
 	elif status == status_type.Lv3: shops_request.request("https://api.codemao.cn/web/work-shops/search?level=3&works_limit=4&offset=%s&limit=%s&sort=-latest_joined_at,-created_at" %[(page - 1) * LOADS_NUMBER, LOADS_NUMBER])
 	elif status == status_type.Lv4: shops_request.request("https://api.codemao.cn/web/work-shops/search?level=4&works_limit=4&offset=%s&limit=%s&sort=-latest_joined_at,-created_at" %[(page - 1) * LOADS_NUMBER, LOADS_NUMBER])
 	elif status == status_type.Search: shops_request.request("https://api.codemao.cn/web/work-shops/search?name=%s&works_limit=4&offset=%s&limit=%s&sort=-latest_joined_at,-created_at" %[Application.string_to_hex(search), (page - 1) * LOADS_NUMBER, LOADS_NUMBER])
-
-func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0:
-		advanced_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		upper_intermediate_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		lower_intermediate_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		elementary_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		beginner_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-	else:
-		advanced_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		upper_intermediate_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		lower_intermediate_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		elementary_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		beginner_workshop_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
