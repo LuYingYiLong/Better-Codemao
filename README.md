@@ -1,10 +1,10 @@
-# Better-Codemao
+![image](https://github.com/user-attachments/assets/3c0420d4-94e7-42a5-a78c-cce5b1bd655b)# Better-Codemao
 
 > 旨在打造更好的编程猫社区
 
 # 前往下载
 
-正在构建新版本...
+[v2.4.11.20250124](https://github.com/LuYingYiLong/Better-Codemao/releases/tag/v2.4.11.20250124)
 
 # 加入我们
 
