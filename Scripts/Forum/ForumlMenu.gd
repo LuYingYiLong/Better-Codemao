@@ -82,8 +82,6 @@ func _ready() -> void:
 	var headers = ["Content-Type: application/json"]
 	boards_request.request("https://api.codemao.cn/web/forums/boards/simples/all", headers, HTTPClient.METHOD_GET)
 	load_forum()
-	Settings.settings_config_update.connect(_on_settings_config_update)
-	_on_settings_config_update()
 
 func load_forum() -> void:
 	all_request.request("https://api.codemao.cn/web/forums/posts/hots/all")
@@ -339,7 +337,3 @@ func _content_dialog_callback(index: int) -> void:
 	var content_dialog = Application.get_content_dialog()
 	content_dialog.hide_content_dialog()
 	content_dialog.disconnect("callback", _content_dialog_callback)
-
-func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0: board_name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-	else: board_name_label.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))

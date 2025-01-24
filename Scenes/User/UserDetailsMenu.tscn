@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://em7v0wfes015" path="res://Scripts/User/UserDetailsMenu.gd" id="1_jjlpv"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_jb842"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_rk1a2"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="4_rhmyc"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_xnpbd"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_fq4xo"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="5_w1vcs"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_1sra0"]
 [ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="6_3i245"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="7_7jojy"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="9_y7j27"]
 [ext_resource type="Theme" uid="uid://bpke6yqti6gcx" path="res://Resources/Themes/LineEdit-Light.tres" id="10_5b0au"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="11_mk6so"]
 
@@ -113,7 +113,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1vp7v")
 [node name="AvatarTexture" parent="ScrollContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Avatar/MarginContainer/HBoxContainer/Mask" instance=ExtResource("7_7jojy")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("4_rhmyc")
+texture = ExtResource("9_y7j27")
 
 [node name="Nickname" type="PanelContainer" parent="ScrollContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)

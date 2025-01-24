@@ -6,6 +6,7 @@ extends Control
 @onready var member_request = %MemberRequest
 @onready var comments_request = %CommentsRequest
 @onready var comment_request = %CommentRequest
+@onready var reply_request = %ReplyRequest
 @onready var discussions_request = %DiscussionsRequest
 
 @onready var scroll_container = %ScrollContainer
@@ -185,11 +186,31 @@ func _on_comments_request_request_completed(_result: int, _response_code: int, _
 	for item: Dictionary in items:
 		var replay_card_scene = REPLY_CARD_SCENE.instantiate()
 		reply_card_container.add_child(replay_card_scene)
+		replay_card_scene.scene_type = 1
 		replay_card_scene.set_reply_card_data(item)
-		replay_card_scene.delete_pressed.connect(_on_reply_card_delete_pressed)
+		replay_card_scene.reply_pressed.connect(_on_reply_card_reply_pressed)
+		replay_card_scene.delete_pressed.connect(_on_reply_card_reply_delete_pressed)
+		replay_card_scene.comment_pressed.connect(_on_reply_card_comment_pressed)
+		replay_card_scene.comment_delete_pressed.connect(_on_reply_card_comment_delete_pressed)
 
 func _on_comments_pagination_bar_page_changed(page: int) -> void:
 	comments_request.request("https://api.codemao.cn/web/discussions/%s/comments?source=WORK_SHOP&sort=-created_at&limit=%s&offset=%s" %[id, COMMENTS_LOADS_NUMBER, (page - 1) * LOADS_NUMBER])
+
+func _on_reply_card_reply_pressed(_id: int, nickname: String) -> void:
+	secure_text_edit.set_reply(_id, 0, nickname)
+
+func _on_reply_card_reply_delete_pressed(_id: int) -> void:
+	discussions_request.request("https://api.codemao.cn/web/discussions/comments/%s?source=WORK_SHOP" %_id, \
+			[Application.generate_cookie_header()], \
+			HTTPClient.METHOD_DELETE)
+
+func _on_reply_card_comment_pressed(_id: int, nickname: String) -> void:
+	secure_text_edit.set_reply(_id, 0, nickname)
+
+func _on_reply_card_comment_delete_pressed(_id: int) -> void:
+	discussions_request.request("https://api.codemao.cn/web/discussions/replies/%s?source=WORK_SHOP" %_id, \
+			[Application.generate_cookie_header()], \
+			HTTPClient.METHOD_DELETE)
 
 func _on_secure_text_edit_comment(post_id: int, text: String) -> void:
 	var headers: PackedStringArray = [Application.generate_cookie_header()]
@@ -206,6 +227,19 @@ func _on_secure_text_edit_comment(post_id: int, text: String) -> void:
 	secure_text_edit.clear()
 	secure_text_edit.set_comment(id)
 
+func _on_secure_text_edit_reply(reply_id: int, parent_id: int, text: String) -> void:
+	var headers: PackedStringArray = [Application.generate_cookie_header()]
+	headers.append("content-type: Application/json;charset=UTF-8")
+	var request_data: Dictionary = {
+		"content": text, 
+		"parent_id": parent_id, 
+		"source": "WORK_SHOP"
+	}
+	reply_request.request("https://api.codemao.cn/web/discussions/%s/comments/%s/reply" %[id, reply_id], \
+			headers, \
+			HTTPClient.METHOD_POST, \
+			JSON.stringify(request_data))
+
 func _on_comment_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 
@@ -213,13 +247,16 @@ func _on_comment_request_request_completed(_result: int, _response_code: int, _h
 		comments_pagination_bar.current_page = 0
 		comments_pagination_bar.update_current_page()
 		comments_request.request("https://api.codemao.cn/web/discussions/%s/comments?source=WORK_SHOP&sort=-created_at&limit=%s&offset=0" %[id, COMMENTS_LOADS_NUMBER])
-
-func _on_reply_card_delete_pressed(_id: int) -> void:
-	discussions_request.request("https://api.codemao.cn/web/discussions/comments/%s?source=WORK_SHOP" %_id, \
-			[Application.generate_cookie_header()], \
-			HTTPClient.METHOD_DELETE)
-
+ 
 func _on_discussions_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
 	comments_pagination_bar.current_page = 0
 	comments_pagination_bar.update_current_page()
 	comments_request.request("https://api.codemao.cn/web/discussions/%s/comments?source=WORK_SHOP&sort=-created_at&limit=%s&offset=0" %[id, COMMENTS_LOADS_NUMBER])
+
+func _on_reply_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+
+	if json.has("id"):
+		comments_pagination_bar.current_page = 0
+		comments_pagination_bar.update_current_page()
+		comments_request.request("https://api.codemao.cn/web/discussions/%s/comments?source=WORK_SHOP&sort=-created_at&limit=%s&offset=0" %[id, COMMENTS_LOADS_NUMBER])

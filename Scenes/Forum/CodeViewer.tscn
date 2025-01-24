@@ -1,11 +1,11 @@
 [gd_scene load_steps=22 format=3 uid="uid://cy12otxv78kgc"]
 
-[ext_resource type="Script" path="res://Scripts/Forum/CodeViewer.gd" id="1_m182g"]
+[ext_resource type="Script" uid="uid://b81bfc0g68c14" path="res://Scripts/Forum/CodeViewer.gd" id="1_m182g"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="1_wk5cr"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="2_uk8jj"]
 [ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="3_neyad"]
 [ext_resource type="FontFile" uid="uid://bttiv76brd75q" path="res://Resources/Fonts/JetBrainsMono-Medium.ttf" id="4_04h34"]
-[ext_resource type="SyntaxHighlighter" uid="uid://ds4ma1237b1wu" path="res://Resources/Themes/PythonSyntaxHighlighter.tres" id="6_qvnky"]
+[ext_resource type="CodeHighlighter" uid="uid://b4d0o4034umyw" path="res://Resources/Themes/CodeHighlighters/PythonHighlighter.tres" id="6_0pq11"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8n8q"]
 
@@ -182,12 +182,13 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_kmfl7")
-text = "func _ready():
-	print(\"Hello world\")"
+text = "def main():
+	print(\"helloworld\")"
 editable = false
 scroll_fit_content_height = true
-syntax_highlighter = ExtResource("6_qvnky")
+syntax_highlighter = ExtResource("6_0pq11")
 gutters_draw_line_numbers = true
 
 [connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/CopyButton" to="." method="_on_copy_button_pressed"]
 [connection signal="timeout" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/CopyButton/Timer" to="." method="_on_timer_timeout"]
+[connection signal="text_changed" from="VBoxContainer/CodeEdit" to="." method="_on_code_edit_text_changed"]

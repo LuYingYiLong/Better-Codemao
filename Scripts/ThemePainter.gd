@@ -12,12 +12,16 @@ func _ready() -> void:
 
 func update_theme() -> void:
 	var node = get_parent()
-	if Settings.dark_mode == 0:
+	var dark_mode = Settings.dark_mode
+	if dark_mode == 2:
+		var dark_mode_checker: DarkModeChecker = DarkModeChecker.new()
+		dark_mode = int(dark_mode_checker.is_dark_mode_enabled())
+	if dark_mode == 0:
 		if node is PanelContainer and node.get_theme_stylebox("panel") != null:
 			if panel_container_style == 0:
 				var file_name: String = get_panel_resource_name(node)
 				if !has_theme_suffix(file_name): return
-				if get_res_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", get_opposite_theme(node.get_theme_stylebox("panel")))
+				if get_res_theme(file_name) != dark_mode: node.add_theme_stylebox_override("panel", get_opposite_theme(node.get_theme_stylebox("panel")))
 			elif panel_container_style >= 1:
 				var style_box: StyleBox = node.get_theme_stylebox("panel")
 				if style_box is StyleBoxFlat:
@@ -35,17 +39,17 @@ func update_theme() -> void:
 				and node.theme != null:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
-			if get_res_theme(file_name) != Settings.dark_mode: node.theme = get_opposite_theme(node.theme)
+			if get_res_theme(file_name) != dark_mode: node.theme = get_opposite_theme(node.theme)
 		if node is TextureRect:
 			if translucent: node.self_modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
 			else: node.self_modulate = Color.html(GlobalTheme.light_mode_palette)
 
-	elif Settings.dark_mode == 1:
+	elif dark_mode == 1:
 		if node is PanelContainer and node.get_theme_stylebox("panel") != null:
 			if panel_container_style == 0:
 				var file_name: String = get_panel_resource_name(node)
 				if !has_theme_suffix(file_name): return
-				if get_res_theme(file_name) != Settings.dark_mode: node.add_theme_stylebox_override("panel", get_opposite_theme(node.get_theme_stylebox("panel")))
+				if get_res_theme(file_name) != dark_mode: node.add_theme_stylebox_override("panel", get_opposite_theme(node.get_theme_stylebox("panel")))
 			elif panel_container_style >= 1:
 				var style_box: StyleBox = node.get_theme_stylebox("panel")
 				if style_box is StyleBoxFlat:
@@ -61,7 +65,7 @@ func update_theme() -> void:
 				and node.theme != null:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
-			if get_res_theme(file_name) != Settings.dark_mode: node.theme = get_opposite_theme(node.theme)
+			if get_res_theme(file_name) != dark_mode: node.theme = get_opposite_theme(node.theme)
 		if node is TextureRect:
 			if translucent: node.self_modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)
 			else: node.self_modulate = Color.html(GlobalTheme.dark_mode_palette)

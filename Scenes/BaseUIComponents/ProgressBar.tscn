@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://brxq8kk53a3hx"]
 
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/ProgressBar.gd" id="1_kliit"]
+[ext_resource type="Script" uid="uid://di8bk4yqebegt" path="res://Scripts/BaseUIComponents/ProgressBar.gd" id="1_kliit"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8imxx"]
 
@@ -110,9 +110,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j12yy"]
 _data = {
-"Paused&Error": SubResource("Animation_llpp8"),
-"RESET": SubResource("Animation_v1lhq"),
-"Running": SubResource("Animation_d26ai")
+&"Paused&Error": SubResource("Animation_llpp8"),
+&"RESET": SubResource("Animation_v1lhq"),
+&"Running": SubResource("Animation_d26ai")
 }
 
 [node name="ProgressBar" type="PanelContainer"]
@@ -181,7 +181,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_korfd")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_j12yy")
+&"": SubResource("AnimationLibrary_j12yy")
 }
 
 [connection signal="draw" from="." to="." method="_on_draw"]

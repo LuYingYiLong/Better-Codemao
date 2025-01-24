@@ -101,6 +101,10 @@
 						{
 							"text": "DARK_NAME",
 							"metadata": 1
+						},
+						{
+							"text": "FOLLOW_THE_SYSTEM_NAME",
+							"metadata": 2
 						}
 					]
 				},

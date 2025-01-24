@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_bgjsx"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="4_itvox"]
 [ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="5_ufplj"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="6_3k5fd"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_28rkq"]
 [ext_resource type="PackedScene" uid="uid://daq0uuavjfgf1" path="res://Scenes/AuthorLevelTag.tscn" id="8_fotsh"]
 [ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="9_dhe2u"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="10_oqh5g"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="10_w1ogm"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="11_14dwl"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="11_k2yle"]
 [ext_resource type="FontFile" uid="uid://dndmarojekfh5" path="res://Resources/Fonts/Segoe Fluent Icons.ttf" id="11_tbaca"]
 [ext_resource type="Texture2D" uid="uid://y646rsxl202r" path="res://Resources/Textures/Edit.svg" id="13_3edbl"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="13_i2jmu"]
@@ -192,7 +192,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_cvr3e")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("6_3k5fd")
+texture = ExtResource("11_k2yle")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/User/HBoxContainer"]
 layout_mode = 2

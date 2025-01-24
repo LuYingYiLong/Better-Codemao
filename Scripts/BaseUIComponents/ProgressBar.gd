@@ -31,8 +31,8 @@ func _on_animation_player_animation_finished(anim_name: String) -> void:
 	match anim_name:
 		"Running":
 			if progress_state == 0:
-				if Settings.dark_mode == 0: progress_color = Color.html(GlobalTheme.progress_running_color)
-				else: progress_color = Color.html("#4cc2ff")
+				if Settings.get_dark_mode(): progress_color = Color.html("#4cc2ff")
+				else: progress_color = Color.html(GlobalTheme.progress_running_color)
 				animation_player.play("Running")
 			elif progress_state == 1:
 				progress_color = Color.html(GlobalTheme.progress_paused_color)
@@ -51,5 +51,5 @@ func _on_hidden() -> void:
 	current_anim_finished_name = "Running"
 
 func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 1:
+	if Settings.get_dark_mode():
 		progress_color = Color.html("#4cc2ff")

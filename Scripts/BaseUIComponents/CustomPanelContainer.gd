@@ -74,7 +74,7 @@ func _on_tree_entered() -> void:
 
 func _on_settings_config_update() -> void:
 	var style_box: StyleBoxFlat = get_theme_stylebox("panel")
-	if Settings.dark_mode == 0:
-		style_box.border_color = Color.html("#bdbdbd7d")
-	else:
+	if Settings.get_dark_mode():
 		style_box.border_color = Color.html("#0000007d")
+	else:
+		style_box.border_color = Color.html("#bdbdbd7d")

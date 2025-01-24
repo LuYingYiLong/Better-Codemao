@@ -13,14 +13,13 @@ var page: int = -1
 var current_page: int = -1:
 	set(value):
 		current_page = value
-		var dark_mode: int = 0
-		if !Engine.is_editor_hint(): dark_mode = Settings.dark_mode
-		if page == current_page:
-			if dark_mode == 0: theme = ACCENT_BUTTON_LIGHT
-			else: theme = ACCENT_BUTTON_DARK
-		else:
-			if dark_mode == 0: theme = SIMPLE_BUTTON_LIGHT
-			else: theme = SIMPLE_BUTTON_DARK
+		if !Engine.is_editor_hint():
+			if page == current_page:
+				if Settings.get_dark_mode(): theme = ACCENT_BUTTON_DARK
+				else: theme = ACCENT_BUTTON_LIGHT
+			else:
+				if Settings.get_dark_mode(): theme = SIMPLE_BUTTON_DARK
+				else: theme = SIMPLE_BUTTON_LIGHT
 var collapse_pages: Vector2i
 
 func set_page(_page: int) -> void:

@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://w52apwwhxm62"]
+[gd_scene load_steps=11 format=3 uid="uid://w52apwwhxm62"]
 
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_jot2d"]
-[ext_resource type="Script" path="res://Scripts/WorkshopCard.gd" id="1_uwlk2"]
+[ext_resource type="Script" uid="uid://ch1p64hjrkwbw" path="res://Scripts/WorkshopCard.gd" id="1_uwlk2"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_s6kuc"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_wuool"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_hu32r"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="3_i2t4w"]
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="3_st5ph"]
 [ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="4_7iqac"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="4_st5ph"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5rbi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mijra"]
 bg_color = Color(1, 1, 1, 1)
@@ -22,13 +25,20 @@ corner_radius_bottom_left = 12
 [node name="WorkshopCard" type="PanelContainer"]
 custom_minimum_size = Vector2(512, 128)
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = ExtResource("1_jot2d")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_g5rbi")
 script = ExtResource("1_uwlk2")
 
-[node name="ThemePainter" parent="." instance=ExtResource("3_hu32r")]
+[node name="PanelContainer" parent="." instance=ExtResource("2_wuool")]
+layout_mode = 2
+
+[node name="Card" type="Button" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_st5ph")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Mask" type="PanelContainer" parent="HBoxContainer"]
 clip_children = 1
@@ -41,22 +51,25 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mijra")
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("3_i2t4w")
+texture = ExtResource("4_st5ph")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/separation = -4
 
 [node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
@@ -86,6 +99,7 @@ text_overrun_behavior = 4
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 2
 
 [node name="ManagerLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -105,7 +119,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
 [node name="ManagerAvatarTexture" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("2_s6kuc")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("3_i2t4w")
+texture = ExtResource("4_st5ph")
 
 [node name="SubManagerLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -126,7 +140,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-texture = ExtResource("3_i2t4w")
+texture = ExtResource("4_st5ph")
 
 [node name="Mask3" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 clip_children = 1
@@ -139,7 +153,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-texture = ExtResource("3_i2t4w")
+texture = ExtResource("4_st5ph")
 
 [node name="Mask4" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 clip_children = 1
@@ -152,7 +166,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-texture = ExtResource("3_i2t4w")
+texture = ExtResource("4_st5ph")
 
 [node name="Mask5" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 clip_children = 1
@@ -165,9 +179,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8upmj")
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-texture = ExtResource("3_i2t4w")
+texture = ExtResource("4_st5ph")
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="Card" to="." method="_on_card_pressed"]
 [connection signal="gui_input" from="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask" to="." method="_on_manager_avatar_texture_gui_input"]
 [connection signal="gui_input" from="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask2" to="." method="_on_sub_manager_1_avatar_texture_gui_input"]
 [connection signal="gui_input" from="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Mask3" to="." method="_on_sub_manager_2_avatar_texture_gui_input"]

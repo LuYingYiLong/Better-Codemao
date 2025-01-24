@@ -114,15 +114,7 @@ func _on_animation_player_animation_finished(anim_name):
 	animation_finished.emit(anim_name)
 
 func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0:
-		button.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
-		button.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.light_mode_font_color))
-		button.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
-		button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
-		button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
-		button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
-		line.self_modulate = Color.html("#0067c0")
-	else:
+	if Settings.get_dark_mode():
 		button.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
 		button.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.dark_mode_font_color))
 		button.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.dark_mode_font_color))
@@ -130,3 +122,11 @@ func _on_settings_config_update() -> void:
 		button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
 		button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.dark_mode_font_color))
 		line.self_modulate = Color.html("#4cc2ff")
+	else:
+		button.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_disabled_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_focus_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_hover_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_hover_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		button.add_theme_color_override("font_pressed_color", Color.html(GlobalTheme.light_mode_font_color))
+		line.self_modulate = Color.html("#0067c0")

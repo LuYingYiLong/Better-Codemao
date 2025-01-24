@@ -135,6 +135,8 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL4"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/AdvancedWorkshopLabel" instance=ExtResource("4_eglc4")]
+
 [node name="AdvancedWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true
 layout_mode = 2
@@ -145,6 +147,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL3"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/UpperIntermediateWorkshopLabel" instance=ExtResource("4_eglc4")]
 
 [node name="UpperIntermediateWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true
@@ -157,6 +161,8 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL2"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/LowerIntermediateWorkshopLabel" instance=ExtResource("4_eglc4")]
+
 [node name="LowerIntermediateWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true
 layout_mode = 2
@@ -168,6 +174,8 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL1"
 
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ElementaryWorkshopLabel" instance=ExtResource("4_eglc4")]
+
 [node name="ElementaryWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true
 layout_mode = 2
@@ -178,6 +186,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("2_uu257")
 text = "WORK_SHOP_LEVEL0"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/BeginnerWorkshopLabel" instance=ExtResource("4_eglc4")]
 
 [node name="BeginnerWorkshopCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" groups=["Recommended"]]
 unique_name_in_owner = true

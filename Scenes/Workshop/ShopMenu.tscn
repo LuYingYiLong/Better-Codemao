@@ -6,8 +6,8 @@
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_2r0k4"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_hawn1"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="4_t47l6"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="5_5g74v"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="6_h4dsv"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="7_4xcvp"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="7_vcg38"]
 [ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="8_bvv4d"]
 [ext_resource type="Theme" uid="uid://dqxa7m6xsrw3" path="res://Resources/Themes/FlatTextEdit-Light.tres" id="9_4xcvp"]
@@ -73,6 +73,9 @@ progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/Commen
 [node name="CommentRequest" parent="." instance=ExtResource("2_g2wf0")]
 unique_name_in_owner = true
 
+[node name="ReplyRequest" parent="." instance=ExtResource("2_g2wf0")]
+unique_name_in_owner = true
+
 [node name="DiscussionsRequest" parent="." instance=ExtResource("2_g2wf0")]
 unique_name_in_owner = true
 connect_type = 1
@@ -134,7 +137,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5wumf")
 [node name="PreviewTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/HBoxContainer/Mask" instance=ExtResource("4_t47l6")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("5_5g74v")
+texture = ExtResource("7_4xcvp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -314,10 +317,12 @@ layout_mode = 2
 [connection signal="request_completed" from="MemberRequest" to="." method="_on_member_request_request_completed"]
 [connection signal="request_completed" from="CommentsRequest" to="." method="_on_comments_request_request_completed"]
 [connection signal="request_completed" from="CommentRequest" to="." method="_on_comment_request_request_completed"]
+[connection signal="request_completed" from="ReplyRequest" to="." method="_on_reply_request_request_completed"]
 [connection signal="request_completed" from="DiscussionsRequest" to="." method="_on_discussions_request_request_completed"]
 [connection signal="index_pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/SelectorBar" to="." method="_on_selector_bar_index_pressed"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/SubmittedWorks/SubmittedWorksPaginationBar" to="." method="_on_submitted_works_pagination_bar_page_changed"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/Forum/ForumPaginationBar" to="." method="_on_forum_pagination_bar_page_changed"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/HBoxContainer/Member/MemberPaginationBar" to="." method="_on_member_pagination_bar_page_changed"]
 [connection signal="comment" from="ScrollContainer/MarginContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_comment"]
+[connection signal="reply" from="ScrollContainer/MarginContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_reply"]
 [connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/CommentsPaginationBar" to="." method="_on_comments_pagination_bar_page_changed"]

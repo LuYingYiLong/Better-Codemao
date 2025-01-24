@@ -422,6 +422,7 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_r8i76")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer2/Perview"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_gdh5t")
 

@@ -9,19 +9,6 @@ func _ready():
 	Settings.settings_config_update.connect(_on_settings_config_update)
 	_on_settings_config_update()
 
-#func _notification(what):
-	#if what == NOTIFICATION_APPLICATION_FOCUS_IN:
-		#base_blur.color = Color.html("#eff4f9")
-	#elif what == NOTIFICATION_APPLICATION_FOCUS_OUT:
-		#base_blur.color = DisplayServer.get_base_color()
-
-#func _process(delta):
-	#var image: Image = Image.new()
-#	image = DisplayServer.screen_get_image(DisplayServer.get_primary_screen())
-	#base_blur.color.r = lerpf(base_blur.color.r, color.r, delta)
-	#base_blur.color.g = lerpf(base_blur.color.g, color.g, delta)
-	#base_blur.color.b = lerpf(base_blur.color.b, color.b, delta)
-
 func _on_settings_config_update():
 	if !Settings.blackground.is_empty():
 		var image = Image.new()
@@ -29,7 +16,7 @@ func _on_settings_config_update():
 		var _texture = ImageTexture.create_from_image(image)
 		texture = _texture
 	else:
-		if Settings.dark_mode == 0: texture = load("res://Resources/Textures/Default.png")
-		else: texture = load("res://Resources/Textures/DefaultDarkness.png")
+		if Settings.get_dark_mode(): texture = load("res://Resources/Textures/DefaultDarkness.png")
+		else: texture = load("res://Resources/Textures/Default.png")
 	if Settings.blackground_mode == 1: base_blur.color = DisplayServer.get_base_color()
 	base_blur.visible = Settings.blackground_mode == 1

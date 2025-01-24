@@ -42,5 +42,5 @@ func is_tab() -> void:
 	pass
 
 func _on_settings_config_update() -> void:
-	if Settings.dark_mode == 0: line.self_modulate = Color.html("0067c0")
-	else: line.self_modulate = Color.html("#4cc2ff")
+	if Settings.get_dark_mode(): line.self_modulate = Color.html("#4cc2ff")
+	else: line.self_modulate = Color.html("0067c0")

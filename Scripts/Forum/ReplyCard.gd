@@ -1,5 +1,7 @@
 extends PanelContainer
 
+@export_enum("Post", "Shop") var scene_type: int = 0
+
 @onready var comments_request = %CommentsRequest
 
 @onready var avatar_texture = %AvatarTexture
@@ -65,6 +67,7 @@ func populate_comments(comments: Array, append: bool = false) -> void:
 	for comment: Dictionary in comments:
 		var comment_card_scene = COMMENT_CARD_SCENE.instantiate()
 		comment_card_container.add_child(comment_card_scene)
+		comment_card_scene.scene_type = scene_type
 		comment_card_scene.set_comment_card_data(comment)
 		comment_card_scene.comment_pressed.connect(_on_comment_card_comment_pressed)
 		comment_card_scene.delete_pressed.connect(_on_comment_card_delete_pressed)
