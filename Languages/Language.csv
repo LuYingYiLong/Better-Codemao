@@ -185,9 +185,11 @@ WORK_SHOP_USER_LEAVE_NAME,{0} 已退出 {1} 工作室, {0} leave the workshop {1
 POST_DELETE_NAME,你的帖子 {0} 被举报为 {1}，经管理员核实被判定为违规帖，已被 {2}，如有问题可前往反馈,"Your post {0} was reported as a {1}, and the post was verified by the moderator as a violating post, and has been {2}, if you have any questions, you can go to the feedback"
 PERSONALIZE_DESCRIPTION,背景图片，背景模式,"Black ground image, Black ground mode"
 LANGUAGE_DESCRIPTION,语言,Language
-INIT_CONFIG_NAME,初始化配置,Init config
-INIT_CONFIG_PROCESS1,开始之前，我们先设置初始化配置,"Before we begin, let's set up the initialization config"
-INIT_CONFIG_PROCESS2,查找最新帖子ID,Find the most recent post ID
+BY_LOGGING_IN_YOU_AGREE_TO_THE_USER_AGREEMENT_NAME,登录即代表您同意用户协议,"By logging in, you agree to the User Agreement"
+USER_AGREEMENT_NAME,用户协议,User Agreement
+USER_AGREEMENT_DESCRIPTION,**引言**\n欢迎您使用BetterCodemao。本项目旨在作为一个技术交流与学习的平台，促进开发者之间的互动与知识共享。在这里，您可以探索各种技术资源，提升自己的编程技能。然而，请注意，本项目并不保障用户的账户安全，用户需要对其使用本项目所产生的后果自行承担责任。\n**免责声明**\n使用BetterCodemao项目即表示您理解并同意以下条款：\n1. 本项目仅供技术交流与学习使用。我们对因使用本项目而导致的任何账号盗取、数据丢失、信息泄露或其他安全问题不承担任何责任。\n2. 用户在使用本项目时，应自行采取必要的安全措施以保护自己的账户信息和个人数据。\n3. 使用本项目即表示您承认并承担因使用本项目而产生的所有风险与责任。\n感谢您选择BetterCodemao!,"**Introduction**\nWelcome to BetterCodemao. This project aims to serve as a platform for technical exchange and learning, promoting interaction and knowledge sharing among developers. Here, you can explore various technical resources and enhance your programming skills. However, please note that this project does not guarantee the security of user accounts, and users are responsible for any consequences arising from their use of this project.\n**Disclaimer**\nBy using the BetterCodemao project, you understand and agree to the following terms:\n1. This project is for technical exchange and learning purposes only. We are not responsible for any account theft, data loss, information leakage, or other security issues arising from the use of this project.\n2. Users should take necessary security measures to protect their account information and personal data while using this project.\n3. By using this project, you acknowledge and assume all risks and responsibilities arising from its use.\nThank you for choosing BetterCodemao!"
+I_AGREE_TO_THE_USER_AGREEMENT_NAME,我同意用户协议,I agree to the User Agreement
+WELCOME_TO_BETTERCODEMAO_NAME,欢迎来到BetterCodemao！,Welcome to BetterCodemao!
 INIT_CONFIG_DESCRIPTION2,从编程猫社区获取一个最近的帖子ID并输入,Get a recent post ID from the Codemao community and input
 VIEW_THE_IMAGE_NAME,查看图像,View the image
 SAVE_THE_IMAGE_NAME,保存图像,Save the image

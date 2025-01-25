@@ -5,11 +5,11 @@ extends Button
 	set(value):
 		style_type = value
 		if style_type == 0:
-			if Settings.dark_mode == 0: theme = SIMPLE_BUTTON_LIGHT
-			else: theme = SIMPLE_BUTTON_DARK
+			if Settings.get_dark_mode(): theme = SIMPLE_BUTTON_DARK
+			else: theme = SIMPLE_BUTTON_LIGHT
 		else:
-			if Settings.dark_mode == 0: theme = ACCENT_BUTTON_LIGHT
-			else: theme = ACCENT_BUTTON_DARK
+			if Settings.get_dark_mode(): theme = ACCENT_BUTTON_DARK
+			else: theme = ACCENT_BUTTON_LIGHT
 @export var index: int
 
 signal on_pressed(index: int)

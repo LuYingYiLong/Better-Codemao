@@ -1,0 +1,28 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://2242u4ijk7aq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bb0ey"]
+load_path = "res://.godot/imported/Checked.svg-133c0e3639c7c84f1ddd65cb4a79c316.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oe24f"]
+load_path = "res://.godot/imported/Checked.svg-133c0e3639c7c84f1ddd65cb4a79c316.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s0bmf"]
+load_path = "res://.godot/imported/Unchecked.svg-72566d7ca445ed1f309b44ad410002f5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l8upf"]
+load_path = "res://.godot/imported/Unchecked.svg-72566d7ca445ed1f309b44ad410002f5.ctex"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ann7"]
+
+[resource]
+CheckBox/colors/font_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_disabled_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_focus_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_hover_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_pressed_color = Color(1, 1, 1, 1)
+CheckBox/icons/checked = SubResource("CompressedTexture2D_bb0ey")
+CheckBox/icons/checked_disabled = SubResource("CompressedTexture2D_oe24f")
+CheckBox/icons/unchecked = SubResource("CompressedTexture2D_s0bmf")
+CheckBox/icons/unchecked_disabled = SubResource("CompressedTexture2D_l8upf")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_6ann7")

@@ -22,7 +22,6 @@ signal settings_config_loaded
 func _ready():
 	if !FileAccess.file_exists(ProjectSettings.globalize_path(SETTINGS_CONFIG_PATH)):
 		save_settings_config()
-	print(ProjectSettings.globalize_path(SETTINGS_CONFIG_PATH))
 	var dir_access: DirAccess = DirAccess.open("user://")
 	dir_access.make_dir("Personalization")
 	dir_access.make_dir("Files")
