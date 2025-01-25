@@ -1,46 +1,130 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqed20qho1shw"]
+[gd_scene load_steps=16 format=3 uid="uid://dqed20qho1shw"]
 
-[ext_resource type="Script" path="res://Scripts/InitConfigMenu.gd" id="1_jctk8"]
-[ext_resource type="Material" uid="uid://coqkdcrjan8oh" path="res://Shaders/DarkenedBlur.tres" id="1_ty7wv"]
+[ext_resource type="Script" uid="uid://dgpa0j1r6p4bg" path="res://Scripts/InitConfigMenu.gd" id="1_jctk8"]
+[ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="2_87v8k"]
+[ext_resource type="StyleBox" uid="uid://be525535a2wxl" path="res://Resources/Themes/Window-Light.tres" id="2_nape6"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_87v8k"]
 [ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="3_s6tdb"]
-[ext_resource type="Theme" uid="uid://bb3oaxb0rt1le" path="res://Resources/Themes/LineEditTheme1.tres" id="4_kskwv"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="4_ouim8"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvduu"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ImageTexture" id="ImageTexture_pevra"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_h4no1"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_vocqu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_654ap"]
-bg_color = Color(1, 1, 1, 1)
-expand_margin_top = 7.0
-expand_margin_bottom = 7.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_15kgg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fcsn"]
-bg_color = Color(1, 1, 1, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-expand_margin_top = 8.0
-expand_margin_bottom = 8.0
-
-[sub_resource type="Theme" id="Theme_814qi"]
-HSlider/icons/grabber = SubResource("ImageTexture_pevra")
-HSlider/icons/grabber_disabled = SubResource("ImageTexture_h4no1")
-HSlider/icons/grabber_highlight = SubResource("ImageTexture_vocqu")
-HSlider/styles/grabber_area = SubResource("StyleBoxFlat_654ap")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_15kgg")
-HSlider/styles/slider = SubResource("StyleBoxFlat_1fcsn")
+[ext_resource type="Theme" uid="uid://dclql4fn5j5ts" path="res://Resources/Themes/TextEdit-Light.tres" id="5_8b1k2"]
+[ext_resource type="Theme" uid="uid://dhv8bp5a1k2d3" path="res://Resources/Themes/CheckBox-Light.tres" id="6_lv2dl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_38gjk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lp4t2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvffs"]
+bg_color = Color(0.952941, 0.952941, 0.952941, 1)
+border_width_top = 1
+border_color = Color(0.898039, 0.898039, 0.898039, 1)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="Animation" id="Animation_8b1k2"]
+resource_name = "Hide"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:theme_override_constants/margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [0, 256]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_87v8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:theme_override_constants/margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nape6"]
+resource_name = "Show"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:theme_override_constants/margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [256, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8b1k2"]
+_data = {
+&"Hide": SubResource("Animation_8b1k2"),
+&"RESET": SubResource("Animation_87v8k"),
+&"Show": SubResource("Animation_nape6")
+}
 
 [node name="InitConfigMenu" type="Control"]
 layout_mode = 3
@@ -54,7 +138,25 @@ script = ExtResource("1_jctk8")
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("2_87v8k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Blur"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -67,134 +169,106 @@ offset_right = 375.0
 offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 0
+theme_override_constants/margin_top = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
-material = ExtResource("1_ty7wv")
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(750, 512)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_yvduu")
+theme_override_styles/panel = ExtResource("2_nape6")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+[node name="ThemePainter" parent="MarginContainer/PanelContainer" instance=ExtResource("3_87v8k")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="WelcomeToBetterCodemaoLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="InitConfigLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
+theme_override_colors/font_color = Color(0.168627, 0.168627, 0.168627, 1)
 theme_override_fonts/font = ExtResource("3_s6tdb")
-theme_override_font_sizes/font_size = 40
-text = "INIT_CONFIG_NAME"
+theme_override_font_sizes/font_size = 32
+text = "WELCOME_TO_BETTERCODEMAO_NAME"
 uppercase = true
 
-[node name="HSlider" type="HSlider" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(0, 18)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme = SubResource("Theme_814qi")
-editable = false
-scrollable = false
+[node name="ThemePainter" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/WelcomeToBetterCodemaoLabel" instance=ExtResource("3_87v8k")]
 
-[node name="TabContainer" type="TabContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_38gjk")
-current_tab = 1
+current_tab = 0
 tabs_visible = false
 
-[node name="1" type="Control" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
+[node name="0" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lp4t2")
 metadata/_tab_index = 0
 
-[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "INIT_CONFIG_PROCESS1"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 1
-
-[node name="2" type="Control" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="PostRequest" type="HTTPRequest" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2"]
-unique_name_in_owner = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FindPostIDLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_s6tdb")
-theme_override_font_sizes/font_size = 24
-text = "INIT_CONFIG_PROCESS2"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TabContainer/0"]
 layout_mode = 2
 
-[node name="PostIDEdit" type="LineEdit" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_kskwv")
-placeholder_text = "ID"
-
-[node name="FindButton" type="Button" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = ExtResource("4_ouim8")
-text = "FIND_NAME"
-
-[node name="DescriptionLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 0.490196)
-text = "INIT_CONFIG_DESCRIPTION2"
-autowrap_mode = 1
-
-[node name="LinkButton" type="LinkButton" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
-layout_mode = 2
-text = "CODEMAO_COMMUNITY_FORUM_NAME"
-uri = "https://shequ.codemao.cn/community"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TabContainer/0/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-scroll_following = true
-shortcut_keys_enabled = false
+theme = ExtResource("5_8b1k2")
+text = "USER_AGREEMENT_DESCRIPTION"
+editable = false
+wrap_mode = 1
+scroll_past_end_of_file = true
 
-[node name="NextButton" type="Button" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ThemePainter" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TabContainer/0/VBoxContainer/TextEdit" instance=ExtResource("3_87v8k")]
+
+[node name="AgreeUserAgreementCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TabContainer/0/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_lv2dl")
+theme_override_constants/icon_max_width = 24
+text = "I_AGREE_TO_THE_USER_AGREEMENT_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TabContainer/0/VBoxContainer/AgreeUserAgreementCheckBox" instance=ExtResource("3_87v8k")]
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bvffs")
+
+[node name="ThemePainter" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer" instance=ExtResource("3_87v8k")]
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="NextButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("4_ouim8")
+disabled = true
 text = "NEXT_NAME"
 
-[connection signal="pressed" from="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/2/VBoxContainer/HBoxContainer/FindButton" to="." method="_on_find_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[node name="ThemePainter" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/NextButton" instance=ExtResource("3_87v8k")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_8b1k2")
+}
+autoplay = "Show"
+
+[connection signal="toggled" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TabContainer/0/VBoxContainer/AgreeUserAgreementCheckBox" to="." method="_on_agree_user_agreement_check_box_toggled"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/NextButton" to="." method="_on_next_button_pressed"]

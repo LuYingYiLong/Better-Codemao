@@ -35,48 +35,56 @@ func _ready():
 
 func show_login_menu():
 	automatic_login_check.button_pressed = Settings.automatic_login
-	animation_player.play("Show")
-	await animation_player.animation_finished
 	animation_player.play("ShowLoginMenu")
 
-func on_login_received(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
-	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
-	if response_code == 200:
-		Application.save_json_file(LOGIN_DATA_JSON_PATH, login_data)
-		user_headers = headers
-		Application.login_data = login_data
-		Application.logged_in = true
-		var response_headers: Dictionary
-		for header: String in headers:
-			response_headers[header.get_slice(": ", 0)] = header.get_slice(": ", 1)
+func on_login_received(_result: int, _response_code: int, headers: PackedStringArray, body: PackedByteArray):
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 
-		# 读取响应头
-		if response_headers.has("Set-Cookie"):
-			store_cookies(response_headers)
+	if !Settings.automatic_login: login_data.erase("password")
+	Application.save_json_file(LOGIN_DATA_JSON_PATH, login_data)
+	user_headers = headers
+	Application.login_data = login_data
+	Application.logged_in = true
+	var response_headers: Dictionary
+	for header: String in headers:
+		response_headers[header.get_slice(": ", 0)] = header.get_slice(": ", 1)
 
-		var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-		var user_info: Dictionary = json.get("user_info")
-		Settings.save_settings_config()
-		Application.user_id = user_info.get("id", -1)
-		avatar_url = user_info.get("avatar_url", "")
-		avatar_texture.load_image(avatar_url)
-		avatar_request.request(avatar_url)
-		if !Settings.automatic_login:
-			nickname_label.text = user_info.get("nickname", "")
-			Application.user_name = user_info.get("nickname", "")
-			description_label.text = user_info.get("description", "")
-			animation_player.play("HideLoginMenu")
-			await animation_player.animation_finished
-			animation_player.play("ShowWelcomeMenu")
-		else: hide()
-		
-		# 如果没有UserData则创建一个
-		if !FileAccess.file_exists(ProjectSettings.globalize_path("user://UserData.json")):
-			var user_data: Dictionary = {
-				"nickname": user_info.get("nickname", ""),
-				"description": user_info.get("description", "")
-				}
-			Application.save_json_file("user://UserData.json", user_data)
+	# 读取响应头
+	if response_headers.has("Set-Cookie"):
+		store_cookies(response_headers)
+
+	var user_info: Dictionary = json.get("user_info")
+	Settings.save_settings_config()
+	Application.user_id = user_info.get("id", -1)
+	avatar_url = user_info.get("avatar_url", "")
+	avatar_texture.load_image(avatar_url)
+	avatar_request.request(avatar_url)
+	if !Settings.automatic_login:
+		nickname_label.text = user_info.get("nickname", "")
+		Application.user_name = user_info.get("nickname", "")
+		description_label.text = user_info.get("description", "")
+		animation_player.play("HideLoginMenu")
+		await animation_player.animation_finished
+		animation_player.play("ShowWelcomeMenu")
+	else: hide()
+	
+	# 如果没有UserData则创建一个
+	if !FileAccess.file_exists(ProjectSettings.globalize_path("user://UserData.json")):
+		var user_data: Dictionary = {
+			"nickname": user_info.get("nickname", ""),
+			"description": user_info.get("description", ""),
+			"version": ProjectSettings.get_setting("application/config/version"),
+			"user_agreement": true
+			}
+		Application.save_json_file("user://UserData.json", user_data)
+	# 检查 user_data 的 version 键对值是否对应本产品版本和 user_agreement 是否已同意
+	else:
+		var user_data: Dictionary = Application.load_json_file(Application.USER_DATA_PATH)
+		if user_data.get("version", "") != ProjectSettings.get_setting("application/config/version") or \
+				user_data.get("user_agreement", false) == false:
+			Application.async_load_scene.emit("res://Scenes/InitConfigMenu.tscn", {
+				"user_agreement": TranslationServer.translate("USER_AGREEMENT_DESCRIPTION")
+				})
 
 func _on_avatar_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	if result != HTTPRequest.RESULT_SUCCESS: return
@@ -104,8 +112,6 @@ func store_cookies(set_cookie_headers):
 
 func _on_visitor_login_button_pressed():
 	animation_player.play("HideLoginMenu")
-	await animation_player.animation_finished
-	animation_player.play("Hide")
 
 func _on_login_button_pressed():
 	login_data["identity"] = identity_edit.text
@@ -116,8 +122,6 @@ func _on_login_button_pressed():
 
 func _on_enter_button_pressed():
 	animation_player.play("HideWelcomeMenu")
-	await animation_player.animation_finished
-	animation_player.play("Hide")
 
 func _on_automatic_login_check_pressed():
 	Settings.automatic_login = automatic_login_check.button_pressed

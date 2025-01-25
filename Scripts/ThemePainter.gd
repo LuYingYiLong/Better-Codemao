@@ -35,7 +35,8 @@ func update_theme() -> void:
 		if (node is Button or \
 				node is ScrollContainer or \
 				node is LineEdit or \
-				node is TextEdit) \
+				node is TextEdit or \
+				node is CheckBox) \
 				and node.theme != null:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
@@ -61,7 +62,8 @@ func update_theme() -> void:
 		if (node is Button or \
 				node is ScrollContainer or \
 				node is LineEdit or \
-				node is TextEdit) \
+				node is TextEdit or \
+				node is CheckBox) \
 				and node.theme != null:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
