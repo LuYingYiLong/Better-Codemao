@@ -40,6 +40,11 @@ func on_user_avatar_update() -> void:
 		var user_data: Dictionary = Application.load_json_file("user://UserData.json")
 		user_button.text = user_data.get("nickname")
 
+func _on_home_button_pressed() -> void:
+	Application.set_root_address.emit("HOME_NAME", \
+			"res://Scenes/Home/HomeMenu.tscn", \
+			{})
+
 func _on_workshop_tab_pressed() -> void:
 	Application.set_root_address.emit("WORKSHOP_NAME", \
 			"res://Scenes/Workshop/WorkshopMenu.tscn", \

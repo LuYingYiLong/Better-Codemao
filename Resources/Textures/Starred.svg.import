@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://17vbiuntajpd"
-path="res://.godot/imported/Like.svg-5219984fcd48a729bd6cb3b6f3900890.ctex"
+uid="uid://pg4sgc7b0kia"
+path="res://.godot/imported/Starred.svg-54c76f26f4a0f9b4a832b621b7d17b29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Like.svg"
-dest_files=["res://.godot/imported/Like.svg-5219984fcd48a729bd6cb3b6f3900890.ctex"]
+source_file="res://Resources/Textures/Starred.svg"
+dest_files=["res://.godot/imported/Starred.svg-54c76f26f4a0f9b4a832b621b7d17b29.ctex"]
 
 [params]
 

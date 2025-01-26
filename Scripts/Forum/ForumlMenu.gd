@@ -110,11 +110,8 @@ func _on_auto_suggest_box_search_pressed(text: String) -> void:
 	search = text
 	status = status_type.Search
 
-func on_boards_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+func on_boards_received(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-	if result != HTTPRequest.RESULT_SUCCESS:
-		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
-		return
 
 	var items: Array = json.get("items")
 	items.insert(0, {"id": "0", "name": TranslationServer.translate("FORUM_SQUARE_NAME")})
@@ -148,16 +145,8 @@ func _on_board_button_metadata_output(metadata: Dictionary) -> void:
 		status = status_type.Board
 		board_request.request("https://api.codemao.cn/web/forums/boards/%s/posts?page=1&limit=%s" %[board_id, LOADS_NUMBER])
 
-func _on_search_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	var json_class: JSON = JSON.new()
-	if json_class.parse(body.get_string_from_utf8()) != OK:
-		Application.emit_system_error_message("JSON parsing failed")
-		return
-	var json: Dictionary = json_class.data
-	if result != HTTPRequest.RESULT_SUCCESS: return
-	if json.has("error_code"):
-		Application.emit_system_error_message("Error code: %s, Error message: %s" %[json.get("error_code", ""), json.get("error_message", "")])
-		return
+func _on_search_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 
 	for node in post_card_container.get_children():
 		node.queue_free()

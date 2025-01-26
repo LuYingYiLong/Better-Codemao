@@ -2,15 +2,13 @@
 
 [ext_resource type="Script" uid="uid://spc0khlci45w" path="res://Scripts/Library/FanficCard.gd" id="1_3j2rn"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="1_bougr"]
-[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_5bd60"]
+[ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="1_rjuq7"]
 [ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="3_yj85q"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="4_b5d1v"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_yj85q"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="5_drvxb"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_ikg01"]
-[ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="8_w6vv7"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4ws2"]
-bg_color = Color(1, 1, 1, 1)
+[ext_resource type="StyleBox" uid="uid://ct0x8joxnke0w" path="res://Resources/Themes/HLine-Light.tres" id="6_rjuq7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0na54"]
 bg_color = Color(1, 1, 1, 1)
@@ -20,10 +18,9 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="FanficCard" type="PanelContainer"]
-self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(160, 270)
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b4ws2")
+theme_override_styles/panel = ExtResource("1_rjuq7")
 script = ExtResource("1_3j2rn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -42,7 +39,7 @@ custom_minimum_size = Vector2(160, 220)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture = ExtResource("3_yj85q")
-expand_mode = 4
+expand_mode = 5
 stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
@@ -54,7 +51,7 @@ theme_override_constants/separation = 0
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_fonts/font = ExtResource("3_5bd60")
+theme_override_fonts/font = ExtResource("4_yj85q")
 theme_override_font_sizes/font_size = 20
 text = "FanficName"
 horizontal_alignment = 1
@@ -62,6 +59,13 @@ vertical_alignment = 2
 text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="VBoxContainer/VBoxContainer/TitleLabel" instance=ExtResource("5_ikg01")]
+
+[node name="Line" type="PanelContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("6_rjuq7")
+
+[node name="ThemePainter" parent="VBoxContainer/VBoxContainer/Line" instance=ExtResource("5_ikg01")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -73,7 +77,7 @@ size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 self_modulate = Color(0.06, 0.06, 0.06, 0.490196)
-custom_minimum_size = Vector2(23, 23)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("4_b5d1v")
@@ -92,13 +96,6 @@ text = "999"
 text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/ViewTimes" instance=ExtResource("5_ikg01")]
-
-[node name="Line" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("8_w6vv7")
-
-[node name="ThemePainter" parent="VBoxContainer/VBoxContainer/HBoxContainer/Line" instance=ExtResource("5_ikg01")]
 
 [node name="TypeLabel" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
