@@ -6,21 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://mb21wmt63jw" path="res://Resources/Textures/Play.svg" id="4_0y431"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="4_lyxtc"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_fdmke"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="5_y2cvy"]
 [ext_resource type="Texture2D" uid="uid://w565eh6uxb5a" path="res://Resources/Textures/FullScreen.svg" id="6_7vgtg"]
 [ext_resource type="Texture2D" uid="uid://bkm17jqunexj3" path="res://Resources/Textures/Refresh.svg" id="6_kxv0f"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_uuxp6"]
 [ext_resource type="Texture2D" uid="uid://di1fixh8mr52o" path="res://Resources/Textures/Link.svg" id="7_wxigk"]
-[ext_resource type="PackedScene" uid="uid://daq0uuavjfgf1" path="res://Scenes/AuthorLevelTag.tscn" id="8_rtf2g"]
+[ext_resource type="PackedScene" uid="uid://daq0uuavjfgf1" path="res://Scenes/User/AuthorLevelTag.tscn" id="8_rtf2g"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="9_ll54y"]
-[ext_resource type="Texture2D" uid="uid://bl8b6wnodhldf" path="res://Resources/Textures/Like.svg" id="10_6pgep"]
+[ext_resource type="Texture2D" uid="uid://17vbiuntajpd" path="res://Resources/Textures/Like.svg" id="10_6pgep"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="11_1udrr"]
 [ext_resource type="PackedScene" uid="uid://doovx6ujtt10p" path="res://Scenes/Work/WorkTag.tscn" id="11_dj7m7"]
 [ext_resource type="PackedScene" uid="uid://bp6dbjsjji0pq" path="res://Scenes/Work/HWorkCard.tscn" id="11_e43ck"]
-[ext_resource type="Texture2D" uid="uid://bnp1vv6ye1f2b" path="res://Resources/Textures/Collect.svg" id="13_e5rua"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBarComponents/PaginationBar.tscn" id="13_gm0mk"]
 [ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="14_j04ab"]
+[ext_resource type="Texture2D" uid="uid://b8eyh0ddy4c26" path="res://Resources/Textures/Star.svg" id="15_upxpw"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="16_vn42d"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="17_upxpw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4n68a"]
 bg_color = Color(1, 1, 1, 1)
@@ -306,7 +306,7 @@ unique_name_in_owner = true
 self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
 custom_minimum_size = Vector2(59, 59)
 layout_mode = 2
-texture = ExtResource("13_e5rua")
+texture = ExtResource("15_upxpw")
 expand_mode = 1
 
 [node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/CollectIcon" instance=ExtResource("5_fdmke")]
@@ -445,7 +445,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_djshe")
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture = ExtResource("5_y2cvy")
+texture = ExtResource("17_upxpw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

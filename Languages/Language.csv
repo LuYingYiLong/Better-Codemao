@@ -18,6 +18,10 @@ OK_NAME,确定,OK
 COPY_NAME,复制,Copy
 COPIED_NAME,已复制,Copied
 GET_UPDATES_NAME,获取更新,Get updates
+HOME_NAME,主页,Home
+NEW_WORKS_NAME,潜力作品,New works
+RECOMMENDED_USERS_NAME,用户推荐,Recommended users
+RECOMMENDED_FANFICS_NAME,小说推荐,Recommended fanfics
 WORK_NAME,作品,Work
 LIKE_NAME,点赞,Like
 LIKED_NAME,已点赞,Liked

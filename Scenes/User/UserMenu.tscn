@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="4_itvox"]
 [ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="5_ufplj"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_28rkq"]
-[ext_resource type="PackedScene" uid="uid://daq0uuavjfgf1" path="res://Scenes/AuthorLevelTag.tscn" id="8_fotsh"]
-[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="9_dhe2u"]
+[ext_resource type="PackedScene" uid="uid://daq0uuavjfgf1" path="res://Scenes/User/AuthorLevelTag.tscn" id="8_fotsh"]
+[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/Workshop/WorkShopTag.tscn" id="9_dhe2u"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="10_oqh5g"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="10_w1ogm"]
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="11_14dwl"]
@@ -591,7 +591,7 @@ visible = false
 layout_mode = 2
 
 [node name="WorkList" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 304)
+custom_minimum_size = Vector2(0, 320)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("11_14dwl")
 
@@ -630,7 +630,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 8
 
 [node name="CollectionWorkList" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 304)
+custom_minimum_size = Vector2(0, 320)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("11_14dwl")
 

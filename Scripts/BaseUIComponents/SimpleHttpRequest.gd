@@ -1,6 +1,6 @@
 extends Node
 
-@export_enum("Json", "Other") var connect_type: int = 0
+@export_enum("Json", "Array", "Other") var connect_type: int = 0
 @export_node_path() var progress_bar
 
 @onready var http_request = %HTTPRequest
@@ -20,9 +20,11 @@ func request_raw(url: String, custom_headers: PackedStringArray = PackedStringAr
 	http_request.request_raw(url, custom_headers, method, request_data_raw)
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	if connect_type == 0:
+	if connect_type == 0 or connect_type == 1:
+		var json_string: String = body.get_string_from_utf8()
+		if connect_type == 1: json_string = '{"array":%s}' %json_string
 		var json_class: JSON = JSON.new()
-		if json_class.parse(body.get_string_from_utf8()) != OK:
+		if json_class.parse(json_string) != OK:
 			Application.emit_system_error_message("JSON parsing failed")
 			_change_progress_bar_state(2, true)
 			return
@@ -36,9 +38,12 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 			print(json)
 			return
 		_change_progress_bar_state(0, false)
+		if connect_type == 0:
+			request_completed.emit(result, response_code, headers, body)
+		elif connect_type == 1:
+			request_completed.emit(result, response_code, headers, json_string.to_utf8_buffer())
+	elif connect_type == 2:
 		request_completed.emit(result, response_code, headers, body)
-		
-	elif connect_type == 1: request_completed.emit(result, response_code, headers, body)
 
 func _change_progress_bar_state(state: int, visible: bool) -> void:
 	if progress_bar != null:

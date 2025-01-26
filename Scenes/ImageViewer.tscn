@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://ccy1pjbdx7xby"]
 
-[ext_resource type="Script" path="res://Scripts/ImageViewer.gd" id="1_2hnnf"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_tcup3"]
+[ext_resource type="Script" uid="uid://40qog8ssii42" path="res://Scripts/ImageViewer.gd" id="1_2hnnf"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="2_h2k5t"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="4_3ju1c"]
 [ext_resource type="Texture2D" uid="uid://bkm17jqunexj3" path="res://Resources/Textures/Refresh.svg" id="4_w403i"]
 [ext_resource type="Texture2D" uid="uid://exor33llkxq5" path="res://Resources/Textures/Save.svg" id="5_0f8s3"]
@@ -94,11 +94,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3q3sq"]
 _data = {
-"RESET": SubResource("Animation_sn2nn"),
-"RotationTo180": SubResource("Animation_thp4p"),
-"RotationTo270": SubResource("Animation_34id7"),
-"RotationTo360": SubResource("Animation_tpuvt"),
-"RotationTo90": SubResource("Animation_8wbq3")
+&"RESET": SubResource("Animation_sn2nn"),
+&"RotationTo180": SubResource("Animation_thp4p"),
+&"RotationTo270": SubResource("Animation_34id7"),
+&"RotationTo360": SubResource("Animation_tpuvt"),
+&"RotationTo90": SubResource("Animation_8wbq3")
 }
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mqa4x"]
@@ -135,13 +135,13 @@ unique_name_in_owner = true
 layout_mode = 2
 offset_right = 128.0
 offset_bottom = 128.0
-texture = ExtResource("2_tcup3")
+texture = ExtResource("2_h2k5t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PanelContainer/VBoxContainer/Viewer/ImageTexture"]
 unique_name_in_owner = true
 root_node = NodePath("../../../../..")
 libraries = {
-"": SubResource("AnimationLibrary_3q3sq")
+&"": SubResource("AnimationLibrary_3q3sq")
 }
 
 [node name="PanelContainer" parent="PanelContainer/VBoxContainer" instance=ExtResource("4_3ju1c")]
@@ -160,12 +160,12 @@ alignment = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-theme_override_colors/icon_focus_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-theme_override_colors/icon_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-theme_override_colors/icon_hover_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 theme_override_colors/icon_disabled_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_hover_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_focus_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_normal_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 theme_override_constants/icon_max_width = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mqa4x")
 icon = ExtResource("4_w403i")
@@ -175,12 +175,12 @@ flat = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/icon_normal_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-theme_override_colors/icon_focus_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-theme_override_colors/icon_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-theme_override_colors/icon_hover_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 theme_override_colors/icon_disabled_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_hover_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_pressed_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_focus_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/icon_normal_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 theme_override_constants/icon_max_width = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mqa4x")
 icon = ExtResource("5_0f8s3")

@@ -1,0 +1,153 @@
+[gd_scene load_steps=11 format=3 uid="uid://c4xdklc33jd0y"]
+
+[ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="1_5grf2"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_hgm23"]
+[ext_resource type="Script" uid="uid://bigp5t4s4yg28" path="res://Scripts/Library/VFanficCard.gd" id="2_wl2ws"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_exrdc"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="4_exrdc"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_hgm23"]
+[ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="6_qdker"]
+[ext_resource type="Texture2D" uid="uid://b8eyh0ddy4c26" path="res://Resources/Textures/Star.svg" id="7_wl2ws"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptdkl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl2ws"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_left = 8
+
+[node name="VFanficCard" type="PanelContainer"]
+custom_minimum_size = Vector2(360, 220)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("1_5grf2")
+script = ExtResource("2_wl2ws")
+
+[node name="ThemePainter" parent="." instance=ExtResource("2_hgm23")]
+
+[node name="Card" type="Button" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptdkl")
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Mask" type="PanelContainer" parent="HBoxContainer"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wl2ws")
+
+[node name="CoverTexture" parent="HBoxContainer/Mask" instance=ExtResource("3_exrdc")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_exrdc")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = -6
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_hgm23")
+theme_override_font_sizes/font_size = 24
+text = "Title"
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/TitleLabel" instance=ExtResource("2_hgm23")]
+
+[node name="NicknameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "Nickname"
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/NicknameLabel" instance=ExtResource("2_hgm23")]
+
+[node name="IntroductionLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 0.490196)
+theme_override_constants/line_spacing = -7
+text = "Introduction"
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/IntroductionLabel" instance=ExtResource("2_hgm23")]
+translucent = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ViewIcon" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0.168627, 0.168627, 0.168627, 0.490196)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_qdker")
+expand_mode = 1
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/ViewIcon" instance=ExtResource("2_hgm23")]
+translucent = true
+
+[node name="ViewTimesLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 0.490196)
+text = "--"
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/ViewTimesLabel" instance=ExtResource("2_hgm23")]
+translucent = true
+
+[node name="CollectIcon" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0.168627, 0.168627, 0.168627, 0.490196)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_wl2ws")
+expand_mode = 1
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/CollectIcon" instance=ExtResource("2_hgm23")]
+translucent = true
+
+[node name="CollectTimesLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 0.490196)
+text = "--"
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/CollectTimesLabel" instance=ExtResource("2_hgm23")]
+translucent = true
+
+[connection signal="pressed" from="Card" to="." method="_on_card_pressed"]

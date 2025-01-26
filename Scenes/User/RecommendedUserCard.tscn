@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmoccohejokrs"]
+
+[ext_resource type="Script" uid="uid://dh87ern00urot" path="res://Scripts/User/RecommendedUserCard.gd" id="1_2q7q4"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="1_4up4v"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="2_krukj"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_r81bp"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_r7up4"]
+[ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="6_t0fqi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s4wgn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vqvoj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2q7q4"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 75
+corner_radius_top_right = 75
+corner_radius_bottom_right = 75
+corner_radius_bottom_left = 75
+corner_detail = 12
+
+[node name="RecommendedUserCard" type="PanelContainer"]
+custom_minimum_size = Vector2(150, 0)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s4wgn")
+script = ExtResource("1_2q7q4")
+
+[node name="Card" type="Button" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vqvoj")
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Mask" type="PanelContainer" parent="VBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2q7q4")
+
+[node name="AvatarTexture" parent="VBoxContainer/Mask" instance=ExtResource("1_4up4v")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_krukj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -6
+
+[node name="NicknameLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_r81bp")
+theme_override_font_sizes/font_size = 20
+text = "Nickname"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="VBoxContainer/VBoxContainer/NicknameLabel" instance=ExtResource("5_r7up4")]
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.168627, 0.168627, 0.168627, 0.490196)
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("6_t0fqi")
+text = "Description
+D"
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("5_r7up4")]
+translucent = true
+
+[connection signal="pressed" from="Card" to="." method="_on_card_pressed"]

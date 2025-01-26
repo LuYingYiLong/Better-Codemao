@@ -46,9 +46,9 @@ extends Control
 @onready var h_recommended_work_card_container = %HRecommendedWorkCardContainer
 
 const LIKE_TEXTURE: Texture = preload("res://Resources/Textures/Like.svg")
-const PRAISE_TEXTURE: Texture = preload("res://Resources/Textures/Praise.svg")
-const COLLECT_TEXTURE: Texture = preload("res://Resources/Textures/Collect.svg")
-const COLLECTED_TEXTURE: Texture = preload("res://Resources/Textures/Collected.svg")
+const LIKED_TEXTURE: Texture = preload("res://Resources/Textures/Liked.svg")
+const STAR_TEXTURE: Texture = preload("res://Resources/Textures/Star.svg")
+const STARRED_TEXTURE: Texture = preload("res://Resources/Textures/Starred.svg")
 
 const MAX_LIMIT: int = 40
 
@@ -186,16 +186,16 @@ func _on_collection_request_request_completed(result: int, _response_code: int, 
 
 func update_like_collect_data():
 	if is_praised:
-		like_icon.texture = PRAISE_TEXTURE
+		like_icon.texture = LIKED_TEXTURE
 		like_label.text = TranslationServer.translate("LIKED_NAME")
 	else:
 		like_icon.texture = LIKE_TEXTURE
 		like_label.text = TranslationServer.translate("LIKE_NAME")
 	if is_collected:
-		collect_icon.texture = COLLECTED_TEXTURE
+		collect_icon.texture = STARRED_TEXTURE
 		collect_label.text = TranslationServer.translate("COLLECTED_NAME")
 	else:
-		collect_icon.texture = COLLECT_TEXTURE
+		collect_icon.texture = STAR_TEXTURE
 		collect_label.text = TranslationServer.translate("COLLECT_NAME")
 
 func _on_comments_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):

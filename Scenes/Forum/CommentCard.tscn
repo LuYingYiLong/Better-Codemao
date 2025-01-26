@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="3_ttr3s"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_6rxos"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="4_ttr3s"]
-[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="5_ya8ud"]
+[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/Workshop/WorkShopTag.tscn" id="5_ya8ud"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="6_6o5kq"]
 [ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="6_trih3"]
 [ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="7_osu5c"]

@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b6svpfkr2qi5j" path="res://Scripts/Forum/PostMenu.gd" id="1_na1xp"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_e7c64"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="2_hyegb"]
 [ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="2_qpd8g"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="3_4qe0f"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_ri125"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_ftsgq"]
-[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="4_svy5b"]
+[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/Workshop/WorkShopTag.tscn" id="4_svy5b"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="4_xut8d"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="5_ytj6e"]
 [ext_resource type="Theme" uid="uid://b7x5m4i1tmwo1" path="res://Resources/Themes/TitleLine-Light.tres" id="7_pggwr"]
@@ -17,6 +16,7 @@
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="9_vrxlf"]
 [ext_resource type="Texture2D" uid="uid://hcbgfg8by3t7" path="res://Resources/Textures/Text.svg" id="9_w60un"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="10_4n3yp"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="10_5fnrt"]
 [ext_resource type="Texture2D" uid="uid://cqkfqax51setl" path="res://Resources/Textures/Comment.svg" id="12_wwoe7"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="13_fdfjd"]
 [ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="14_wyd1l"]
@@ -48,10 +48,10 @@ progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/Detail
 unique_name_in_owner = true
 progress_bar = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/Replies/RepliesProgressBar")
 
-[node name="AddReplyRequest" type="HTTPRequest" parent="."]
+[node name="AddReplyRequest" parent="." instance=ExtResource("2_e7c64")]
 unique_name_in_owner = true
 
-[node name="CommentsRequest" type="HTTPRequest" parent="."]
+[node name="CommentsRequest" parent="." instance=ExtResource("2_e7c64")]
 unique_name_in_owner = true
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
@@ -135,7 +135,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j4781")
 [node name="AvatarTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("5_ytj6e")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("2_hyegb")
+texture = ExtResource("10_5fnrt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Details/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

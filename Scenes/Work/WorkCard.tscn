@@ -1,18 +1,16 @@
 [gd_scene load_steps=20 format=3 uid="uid://bpwr61ayi2fxj"]
 
 [ext_resource type="Script" uid="uid://3ouq1aodoaki" path="res://Scripts/Work/WorkCard.gd" id="1_0bhmr"]
-[ext_resource type="Texture2D" uid="uid://bu7c1a68177br" path="res://Resources/Textures/Image.svg" id="1_iac10"]
+[ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="1_2bf04"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_r22qk"]
 [ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="3_0tk2q"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="4_0tqyh"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_5a4rs"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_5a4rs"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="5_q85ay"]
 [ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="6_g0pfd"]
-[ext_resource type="Texture2D" uid="uid://cftybq6tll2w8" path="res://Resources/Textures/Praise.svg" id="7_5rtyt"]
 [ext_resource type="StyleBox" uid="uid://ct0x8joxnke0w" path="res://Resources/Themes/HLine-Light.tres" id="8_5wxwe"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7xnc"]
-bg_color = Color(1, 1, 1, 1)
+[ext_resource type="Texture2D" uid="uid://17vbiuntajpd" path="res://Resources/Textures/Like.svg" id="10_2bf04"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uqmf2"]
 
@@ -45,8 +43,6 @@ corner_radius_bottom_left = 4
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eko4q"]
 bg_color = Color(1, 1, 1, 1)
@@ -56,11 +52,10 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [node name="WorkCard" type="PanelContainer"]
-self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(150, 216)
 offset_right = 150.0
 offset_bottom = 215.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_q7xnc")
+theme_override_styles/panel = ExtResource("1_2bf04")
 script = ExtResource("1_0bhmr")
 
 [node name="Card" type="Button" parent="."]
@@ -78,7 +73,7 @@ layout_mode = 2
 
 [node name="Mask" type="PanelContainer" parent="VBoxContainer"]
 clip_children = 1
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 156)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m5j0x")
@@ -88,25 +83,34 @@ unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_0tk2q")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = -8
 
-[node name="WorkNameLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
+[node name="WorkNameLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-theme_override_fonts/font = ExtResource("4_0tqyh")
+theme_override_fonts/font = ExtResource("4_5a4rs")
 theme_override_font_sizes/font_size = 20
 text = "WorkName"
 horizontal_alignment = 1
 vertical_alignment = 2
 text_overrun_behavior = 4
 
-[node name="ThemePainter" parent="VBoxContainer/VBoxContainer/WorkNameLabel" instance=ExtResource("5_5a4rs")]
+[node name="ThemePainter" parent="VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/WorkNameLabel" instance=ExtResource("5_5a4rs")]
 
-[node name="DescriptionLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -117,31 +121,31 @@ theme_override_fonts/font = ExtResource("5_q85ay")
 text = "Description
 D"
 horizontal_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 text_overrun_behavior = 4
 
-[node name="ThemePainter" parent="VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("5_5a4rs")]
+[node name="ThemePainter" parent="VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("5_5a4rs")]
 translucent = true
 
-[node name="View&PraiseContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="View&PraiseContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ViewTimes" type="HBoxContainer" parent="VBoxContainer/View&PraiseContainer"]
+[node name="ViewTimes" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ViewIcon" type="TextureRect" parent="VBoxContainer/View&PraiseContainer/ViewTimes"]
+[node name="ViewIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer/ViewTimes"]
 self_modulate = Color(0.168627, 0.168627, 0.168627, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 texture = ExtResource("6_g0pfd")
 expand_mode = 1
 
-[node name="ThemePainter" parent="VBoxContainer/View&PraiseContainer/ViewTimes/ViewIcon" instance=ExtResource("5_5a4rs")]
+[node name="ThemePainter" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer/ViewTimes/ViewIcon" instance=ExtResource("5_5a4rs")]
 translucent = true
 
-[node name="ViewTimes" type="Label" parent="VBoxContainer/View&PraiseContainer/ViewTimes"]
+[node name="ViewTimes" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer/ViewTimes"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -150,24 +154,24 @@ theme_override_fonts/font = ExtResource("4_0tqyh")
 text = "--"
 text_overrun_behavior = 3
 
-[node name="ThemePainter" parent="VBoxContainer/View&PraiseContainer/ViewTimes/ViewTimes" instance=ExtResource("5_5a4rs")]
+[node name="ThemePainter" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer/ViewTimes/ViewTimes" instance=ExtResource("5_5a4rs")]
 translucent = true
 
-[node name="PraiseTimes" type="HBoxContainer" parent="VBoxContainer/View&PraiseContainer"]
+[node name="PraiseTimes" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PraiseIcon" type="TextureRect" parent="VBoxContainer/View&PraiseContainer/PraiseTimes"]
+[node name="PraiseIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer/PraiseTimes"]
 self_modulate = Color(0.168627, 0.168627, 0.168627, 0.490196)
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-texture = ExtResource("7_5rtyt")
+texture = ExtResource("10_2bf04")
 expand_mode = 1
 
-[node name="ThemePainter" parent="VBoxContainer/View&PraiseContainer/PraiseTimes/PraiseIcon" instance=ExtResource("5_5a4rs")]
+[node name="ThemePainter" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer/PraiseTimes/PraiseIcon" instance=ExtResource("5_5a4rs")]
 translucent = true
 
-[node name="PraiseTimes" type="Label" parent="VBoxContainer/View&PraiseContainer/PraiseTimes"]
+[node name="PraiseTimes" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer/PraiseTimes"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -176,30 +180,30 @@ theme_override_fonts/font = ExtResource("4_0tqyh")
 text = "--"
 text_overrun_behavior = 3
 
-[node name="ThemePainter" parent="VBoxContainer/View&PraiseContainer/PraiseTimes/PraiseTimes" instance=ExtResource("5_5a4rs")]
+[node name="ThemePainter" parent="VBoxContainer/MarginContainer/VBoxContainer/View&PraiseContainer/PraiseTimes/PraiseTimes" instance=ExtResource("5_5a4rs")]
 translucent = true
 
-[node name="Line" type="PanelContainer" parent="VBoxContainer"]
+[node name="Line" type="PanelContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = ExtResource("8_5wxwe")
 
-[node name="UserContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="UserContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Mask" type="PanelContainer" parent="VBoxContainer/UserContainer"]
+[node name="Mask" type="PanelContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/UserContainer"]
 clip_children = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eko4q")
 
-[node name="AvatarTexture" parent="VBoxContainer/UserContainer/Mask" instance=ExtResource("2_r22qk")]
+[node name="AvatarTexture" parent="VBoxContainer/MarginContainer/VBoxContainer/UserContainer/Mask" instance=ExtResource("2_r22qk")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("1_iac10")
+texture = ExtResource("3_0tk2q")
 
-[node name="NicknameLabel" type="Label" parent="VBoxContainer/UserContainer"]
+[node name="NicknameLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/UserContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -209,7 +213,7 @@ text = "Nickname"
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="ThemePainter" parent="VBoxContainer/UserContainer/NicknameLabel" instance=ExtResource("5_5a4rs")]
+[node name="ThemePainter" parent="VBoxContainer/MarginContainer/VBoxContainer/UserContainer/NicknameLabel" instance=ExtResource("5_5a4rs")]
 
 [connection signal="pressed" from="Card" to="." method="_on_card_pressed"]
 [connection signal="pressed" from="VBoxContainer/Mask/PreviewTexture" to="." method="_on_preview_texture_pressed"]

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_x1wks"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="5_wmkx4"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="6_gwf2p"]
-[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/WorkShopTag.tscn" id="6_wn6mf"]
+[ext_resource type="PackedScene" uid="uid://dvl2q2jkjjqbs" path="res://Scenes/Workshop/WorkShopTag.tscn" id="6_wn6mf"]
 [ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="6_wol24"]
 [ext_resource type="PackedScene" uid="uid://d18nv2g7nrkrb" path="res://Scenes/BaseUIComponents/DropDownButton.tscn" id="7_6iwvc"]
 [ext_resource type="Texture2D" uid="uid://dvpaca17undjp" path="res://Resources/Textures/More.svg" id="8_h12ad"]
