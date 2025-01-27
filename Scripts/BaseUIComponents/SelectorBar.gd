@@ -20,7 +20,11 @@ extends PanelContainer
 			if items_width > 0.0: selector_bar_item_scene.custom_minimum_size = Vector2(items_width, 0)
 			count += 1
 
-@export var current_item: int
+@export var current_item: int:
+	set(value):
+		current_item = value
+		for selector_bar_item in selector_bar_item_container.get_children():
+			selector_bar_item.selected = selector_bar_item.index == current_item
 @export_enum("Left", "Center", "Right") var item_alignment: int = 0:
 	set(value):
 		item_alignment = value

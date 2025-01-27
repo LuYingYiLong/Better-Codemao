@@ -27,21 +27,27 @@ extends PanelContainer
 var id: int
 	
 func set_work_card_data(json: Dictionary) -> void:
-	id = json.get("id")
-	if json.has("work_name"):
-		work_name_label.text = json.get("work_name")
-		preview_texture.load_image(json.get("preview"), json.get("work_name"))
-	elif json.has("name"):
-		work_name_label.text = json.get("name")
-		preview_texture.load_image(json.get("preview"), json.get("name"))
-	description_label.text = json.get("description", "")
+	if json.has("id"): id = int(json.get("id", 0))
+	elif json.has("work_id"): id = int(json.get("work_id", 0))
+	
+	if json.has("work_name"): work_name_label.text = json.get("work_name")
+	elif json.has("name"): work_name_label.text = json.get("name")
+	
+	if json.has("preview"): preview_texture.load_image(json.get("preview"), json.get("name", ""))
+	elif json.has("preview_url"): preview_texture.load_image(json.get("preview_url"), json.get("name", ""))
+	elif json.has("thumbnail"): preview_texture.load_image(json.get("thumbnail"), json.get("name"))
+	elif json.has("cover_url"): preview_texture.load_image(json.get("cover_url"), json.get("name"))
+	
+	description_label.text = json.get("description", "--")
+	
 	if json.has("view_times"): view_times.text = str(int(json.get("view_times", "--")))
 	elif json.has("views_count"): view_times.text = str(int(json.get("views_count", "--")))
 	if json.has("praise_times"): praise_times.text = str(int(json.get("praise_times", "--")))
 	elif json.has("liked_times"): praise_times.text = str(int(json.get("liked_times", "--")))
 	elif json.has("likes_count"): praise_times.text = str(int(json.get("likes_count", "--")))
+	
 	var user: Dictionary = json.get("user", {})
-	avatar_texture.load_image(user.get("avatar_url", ""), user.get("nickname", ""))
+	avatar_texture.load_image(user.get("avatar_url", ""), user.get("nickname", "ERROR"))
 	nickname_label.text = user.get("nickname", "ERROR")
 
 func jump_to_work_menu() -> void:

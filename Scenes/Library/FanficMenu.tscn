@@ -367,6 +367,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qpd0f")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_jw37s")
 text = "--"
 editable = false
+wrap_mode = 1
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/Introduction" instance=ExtResource("1_8sumo")]
 

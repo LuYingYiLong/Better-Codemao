@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://dqlb3s0adss3h"]
 
-[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_ekoyo"]
+[ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="1_ixm76"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_ghtjt"]
 [ext_resource type="Script" uid="uid://h5a6bebuorh8" path="res://Scripts/User/FansCard.gd" id="2_iqxt4"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_nxmy1"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_nnym4"]
 [ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="5_ixm76"]
-[ext_resource type="Texture2D" uid="uid://cftybq6tll2w8" path="res://Resources/Textures/Praise.svg" id="5_xj81q"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_mau3q"]
+[ext_resource type="Texture2D" uid="uid://17vbiuntajpd" path="res://Resources/Textures/Like.svg" id="7_ixm76"]
 [ext_resource type="Texture2D" uid="uid://bs8tg7fui1e36" path="res://Resources/Textures/Work.svg" id="7_y4qht"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="8_x1ax2"]
 
@@ -20,7 +20,7 @@ corner_radius_bottom_left = 32
 
 [node name="FansCard" type="PanelContainer"]
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = ExtResource("1_ekoyo")
+theme_override_styles/panel = ExtResource("1_ixm76")
 script = ExtResource("2_iqxt4")
 
 [node name="ThemePainter" parent="." instance=ExtResource("3_nxmy1")]
@@ -40,7 +40,7 @@ layout_mode = 2
 
 [node name="Mask" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 clip_children = 1
-custom_minimum_size = Vector2(66, 66)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 mouse_filter = 2
 mouse_default_cursor_shape = 2
@@ -68,7 +68,7 @@ theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("4_nnym4")
 theme_override_font_sizes/font_size = 20
 text = "Nickname"
-text_overrun_behavior = 3
+text_overrun_behavior = 4
 
 [node name="ThemePainter" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/NicknameLabel" instance=ExtResource("3_nxmy1")]
 
@@ -78,7 +78,7 @@ self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 text = "Description"
-text_overrun_behavior = 3
+text_overrun_behavior = 4
 
 [node name="ThemePainter" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("3_nxmy1")]
 
@@ -91,9 +91,9 @@ layout_mode = 2
 
 [node name="LikeIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TotalLikes"]
 self_modulate = Color(0.11, 0.11, 0.11, 1)
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-texture = ExtResource("5_xj81q")
+texture = ExtResource("7_ixm76")
 expand_mode = 1
 
 [node name="ThemePainter" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TotalLikes/LikeIcon" instance=ExtResource("3_nxmy1")]
@@ -105,7 +105,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("6_mau3q")
 theme_override_font_sizes/font_size = 13
-text = "999"
+text = "--"
 vertical_alignment = 1
 
 [node name="ThemePainter" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TotalLikes/TotalLikesLabel" instance=ExtResource("3_nxmy1")]
@@ -115,7 +115,7 @@ layout_mode = 2
 
 [node name="WorkIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TotalWorks"]
 self_modulate = Color(0.11, 0.11, 0.11, 1)
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 texture = ExtResource("7_y4qht")
 expand_mode = 1
@@ -129,7 +129,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
 theme_override_fonts/font = ExtResource("6_mau3q")
 theme_override_font_sizes/font_size = 13
-text = "999"
+text = "--"
 vertical_alignment = 1
 
 [node name="ThemePainter" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TotalWorks/TotalWorksLabel" instance=ExtResource("3_nxmy1")]
