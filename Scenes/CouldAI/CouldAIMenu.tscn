@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8dcimn7s6uiy"]
+
+[ext_resource type="Script" uid="uid://btd1sn2h4oxb7" path="res://Scripts/CouldAI/CouldAIMenu.gd" id="1_mtp2w"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_bnmqa"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="3_50u85"]
+[ext_resource type="Theme" uid="uid://c7vkhqml4gcnr" path="res://Resources/Themes/SmallButton-Light.tres" id="4_2bvvs"]
+[ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="8_2bvvs"]
+
+[node name="CouldAIMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mtp2w")
+
+[node name="ChatRequest" parent="." instance=ExtResource("2_bnmqa")]
+unique_name_in_owner = true
+connect_type = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="CAValidationButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_2bvvs")
+text = "CA_VALIDATION_NAME"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_50u85")
+
+[node name="ChatBubbleContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SecureTextEdit" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("8_2bvvs")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 256)
+layout_mode = 2
+size_flags_vertical = 10
+
+[connection signal="request_completed" from="ChatRequest" to="." method="_on_chat_request_request_completed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CAValidationButton" to="." method="_on_ca_validation_button_pressed"]
+[connection signal="reply" from="MarginContainer/VBoxContainer/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_reply"]

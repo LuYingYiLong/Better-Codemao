@@ -109,34 +109,6 @@ layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 
-[node name="RecommendedUsersPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_5fefd")]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="RecommendedUsersLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
-theme_override_fonts/font = ExtResource("3_8ssm4")
-theme_override_font_sizes/font_size = 24
-text = "RECOMMENDED_USERS_NAME"
-
-[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel/MarginContainer/VBoxContainer/RecommendedUsersLabel" instance=ExtResource("4_vhplv")]
-
-[node name="RecommendedUsersContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 12
-
 [node name="RecommendedFanficsPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_5fefd")]
 layout_mode = 2
 
@@ -160,6 +132,34 @@ text = "RECOMMENDED_FANFICS_NAME"
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedFanficsPanel/MarginContainer/VBoxContainer/RecommendedFanficsLabel" instance=ExtResource("4_vhplv")]
 
 [node name="RecommendedFanficsContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedFanficsPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+
+[node name="RecommendedUsersPanel" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_5fefd")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="RecommendedUsersLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("3_8ssm4")
+theme_override_font_sizes/font_size = 24
+text = "RECOMMENDED_USERS_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel/MarginContainer/VBoxContainer/RecommendedUsersLabel" instance=ExtResource("4_vhplv")]
+
+[node name="RecommendedUsersContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RecommendedUsersPanel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 12

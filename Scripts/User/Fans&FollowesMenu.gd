@@ -48,7 +48,7 @@ func on_fans_or_fllowers_received(result: int, _response_code: int, _headers: Pa
 		fans_card_scene.set_fans_card_data(item)
 
 func _on_pagination_bar_page_changed(page) -> void:
-	scroll_container.scroll_vertical = 0
+	Application.scroll_to_top(scroll_container)
 	if display_mode == display_type.Fans:
 		fans_request.request("https://api.codemao.cn/creation-tools/v1/user/fans?user_id=%s&offset=%s&limit=%s" %[user_id, (page - 1) * LOADS_NUMBER, LOADS_NUMBER], \
 				[Application.generate_cookie_header()])

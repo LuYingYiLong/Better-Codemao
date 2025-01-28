@@ -1,10 +1,11 @@
 extends PanelContainer
 
-@export var text: String:
-	set(value):
-		text = value
-		line_edit.text = text
+@export var text: String
 @export var placeholder_text: String
+@export var disabled: bool:
+	set(value):
+		disabled = value
+		line_edit.editable = !disabled
 
 @onready var line_edit = %LineEdit
 
@@ -17,9 +18,11 @@ extends PanelContainer
 signal search_pressed(text: String)
 
 func _ready():
+	line_edit.text = text
 	line_edit.placeholder_text = placeholder_text
 
 func _on_line_edit_text_changed(new_text: String) -> void:
+	text = new_text
 	clear_button.visible = !new_text.is_empty()
 
 func _on_line_edit_focus_entered() -> void:

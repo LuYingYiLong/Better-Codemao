@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b808mrffykjk0"]
+[gd_scene load_steps=23 format=3 uid="uid://b808mrffykjk0"]
 
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="1_8sumo"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_6ekja"]
@@ -16,6 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://c660qdoxbhy3x" path="res://Resources/Textures/Words.svg" id="10_n0b7u"]
 [ext_resource type="Texture2D" uid="uid://b3o645ki3oqgy" path="res://Resources/Textures/Type.svg" id="11_s53y3"]
 [ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="11_w2j0j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gn5oe"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2kif"]
 bg_color = Color(1, 1, 1, 1)
@@ -90,7 +97,12 @@ theme_override_constants/separation = 16
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="CoverTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_htqta")]
+[node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gn5oe")
+
+[node name="CoverTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/VBoxContainer/Mask" instance=ExtResource("3_htqta")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 220)
 layout_mode = 2
@@ -367,6 +379,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qpd0f")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_jw37s")
 text = "--"
 editable = false
+wrap_mode = 1
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/DetailsPanel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/Introduction" instance=ExtResource("1_8sumo")]
 

@@ -45,7 +45,7 @@ func load_image(url: String, _name_: String = "") -> void:
 
 func _on_image_request_request_completed(result: int, _response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS or body.is_empty():
-		push_error("Could not get data")
+		#push_error("Could not get data")
 		return
 	if _url.ends_with(".gif") or _url.ends_with(".dll"):
 		var animated_sprite_2d := AnimatedSprite2D.new()

@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=3 uid="uid://lg2js7bnceqy"]
+
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="1_2m3h5"]
+[ext_resource type="Script" uid="uid://b5gvvrsdd3dgx" path="res://Scripts/User/UserWorksMenu.gd" id="1_bbmxs"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="1_nwvpj"]
+[ext_resource type="PackedScene" uid="uid://nkl814adk865" path="res://Scenes/BaseUIComponents/SelectorBar.tscn" id="2_2m3h5"]
+[ext_resource type="Script" uid="uid://37mnb2dbt3cr" path="res://Scripts/SelectorBarItem.gd" id="3_bswki"]
+[ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBarComponents/PaginationBar.tscn" id="6_2ydep"]
+
+[sub_resource type="Resource" id="Resource_bbmxs"]
+script = ExtResource("3_bswki")
+text = "ALL_NAME"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[sub_resource type="Resource" id="Resource_60tgr"]
+script = ExtResource("3_bswki")
+text = "COLLECT_NAME"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[sub_resource type="Resource" id="Resource_2ydep"]
+script = ExtResource("3_bswki")
+text = "KittenN"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[sub_resource type="Resource" id="Resource_ic5ll"]
+script = ExtResource("3_bswki")
+text = "Kitten4.0"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[sub_resource type="Resource" id="Resource_h8xj4"]
+script = ExtResource("3_bswki")
+text = "Kitten3.0"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[sub_resource type="Resource" id="Resource_3wevu"]
+script = ExtResource("3_bswki")
+text = "Nemo"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[sub_resource type="Resource" id="Resource_ugt7s"]
+script = ExtResource("3_bswki")
+text = "CoCo"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[sub_resource type="Resource" id="Resource_xj433"]
+script = ExtResource("3_bswki")
+text = "TURTLE_EDITOR_NAME"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[sub_resource type="Resource" id="Resource_vsxa6"]
+script = ExtResource("3_bswki")
+text = "THE_CODE_ISLAND_NAME"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[sub_resource type="Resource" id="Resource_gi7lj"]
+script = ExtResource("3_bswki")
+text = "FANFIC_NAME"
+metadata/_custom_type_script = ExtResource("3_bswki")
+
+[node name="UserWorksMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bbmxs")
+
+[node name="AllRequest" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+
+[node name="CollectionWorksRequest" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+
+[node name="KittenNRequest" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+
+[node name="Kitten4Request" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+
+[node name="Kitten3Request" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+
+[node name="NemoRequest" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+
+[node name="CoCoRequest" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+
+[node name="TurtleEditorRequest" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+connect_type = 1
+
+[node name="TheCodeIslandRequest" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+
+[node name="FanficRequest" parent="." instance=ExtResource("1_2m3h5")]
+unique_name_in_owner = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nwvpj")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SelectorBar" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_2m3h5")]
+unique_name_in_owner = true
+layout_mode = 2
+selector_bar_items = Array[ExtResource("3_bswki")]([SubResource("Resource_bbmxs"), SubResource("Resource_60tgr"), SubResource("Resource_2ydep"), SubResource("Resource_ic5ll"), SubResource("Resource_h8xj4"), SubResource("Resource_3wevu"), SubResource("Resource_ugt7s"), SubResource("Resource_xj433"), SubResource("Resource_vsxa6"), SubResource("Resource_gi7lj")])
+
+[node name="WorkCardContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="PaginationBar" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_2ydep")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size = 20
+current_page = 1
+
+[connection signal="request_completed" from="AllRequest" to="." method="_on_all_request_request_completed"]
+[connection signal="request_completed" from="CollectionWorksRequest" to="." method="_on_collection_works_request_request_completed"]
+[connection signal="request_completed" from="KittenNRequest" to="." method="_on_kitten_n_request_request_completed"]
+[connection signal="request_completed" from="Kitten4Request" to="." method="_on_kitten_4_request_request_completed"]
+[connection signal="request_completed" from="Kitten3Request" to="." method="_on_kitten_3_request_request_completed"]
+[connection signal="request_completed" from="NemoRequest" to="." method="_on_nemo_request_request_completed"]
+[connection signal="request_completed" from="CoCoRequest" to="." method="_on_coco_request_request_completed"]
+[connection signal="request_completed" from="TurtleEditorRequest" to="." method="_on_turtle_editor_request_request_completed"]
+[connection signal="request_completed" from="TheCodeIslandRequest" to="." method="_on_the_code_island_request_request_completed"]
+[connection signal="request_completed" from="FanficRequest" to="." method="_on_fanfic_request_request_completed"]
+[connection signal="index_pressed" from="ScrollContainer/MarginContainer/VBoxContainer/SelectorBar" to="." method="_on_selector_bar_index_pressed"]
+[connection signal="page_changed" from="ScrollContainer/MarginContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]

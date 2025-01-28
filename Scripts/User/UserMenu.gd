@@ -51,7 +51,7 @@ func _ready() -> void:
 	Application.user_avatar_update.connect(user_avatar_update)
 
 func _process(_delta) -> void:
-	max_display_number = floori((size.x - 80) / 162)
+	max_display_number = floori((size.x - 80) / 170)
 	var count: int = 0
 	for node in work_card_container.get_children():
 		node.visible = count < max_display_number
@@ -194,8 +194,18 @@ func _on_followers_total_gui_input(event) -> void:
 			"res://Scenes/User/Fans&FollowesMenu.tscn", \
 			{"id": user_id, "mode": 1})
 
-func _on_retry_button_pressed():
+func _on_see_more_works_button_pressed() -> void:
+	Application.append_address.emit("USER_WORKS_NAME", \
+			"res://Scenes/User/UserWorksMenu.tscn", \
+			{"id": user_id})
+
+func _on_see_more_collection_works_button_pressed() -> void:
+	Application.append_address.emit("USER_WORKS_NAME", \
+			"res://Scenes/User/UserWorksMenu.tscn", \
+			{"id": user_id, "type": 1})
+
+func _on_retry_button_pressed() -> void:
 	user_id = Application.user_id
 
-func _on_login_button_pressed():
+func _on_login_button_pressed() -> void:
 	Application.show_login_menu.emit()
