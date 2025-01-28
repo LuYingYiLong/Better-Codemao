@@ -14,6 +14,7 @@ signal show_login_menu
 
 signal add_system_message(message: String, color: String, time: float)
 
+const LOGIN_DATA_PATH: String = "user://LoginData.json"
 const USER_DATA_PATH = "user://UserData.json"
 const SETTINGS_OPTIONS_DATA_PATH = "res://Resources/SettingsOptionsData.json"
 const FORUM_HISTORY_PATH = "user://Forum-history.json"

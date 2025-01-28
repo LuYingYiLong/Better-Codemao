@@ -630,6 +630,7 @@ use_native_dialog = true
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/WorkshopTab" to="NavigationBar" method="_on_workshop_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/ForumTab" to="NavigationBar" method="_on_forum_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/LibraryTab" to="NavigationBar" method="_on_library_tab_pressed"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/CouldAIButton" to="NavigationBar" method="_on_could_ai_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/MessageButton" to="NavigationBar" method="_on_message_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/SettingsButton" to="NavigationBar" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/UserButton" to="NavigationBar" method="_on_user_button_pressed"]

@@ -13,8 +13,6 @@ extends Control
 
 @onready var animation_player = %AnimationPlayer
 
-const LOGIN_DATA_JSON_PATH: String = "user://LoginData.json"
-
 var avatar_url: String
 
 var login_data = {"pid": "65edCTyg",
@@ -26,8 +24,8 @@ var user_headers: PackedStringArray
 func _ready():
 	automatic_login_check.button_pressed = Settings.automatic_login
 	Application.show_login_menu.connect(show_login_menu)
-	if FileAccess.file_exists(LOGIN_DATA_JSON_PATH):
-		login_data = Application.load_json_file(LOGIN_DATA_JSON_PATH)
+	if FileAccess.file_exists(Application.LOGIN_DATA_PATH):
+		login_data = Application.load_json_file(Application.LOGIN_DATA_PATH)
 		identity_edit.text = login_data.get("identity", "")
 		password_edit.text = login_data.get("password", "")
 	if Settings.automatic_login: _on_login_button_pressed()
@@ -41,7 +39,7 @@ func on_login_received(_result: int, _response_code: int, headers: PackedStringA
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 
 	if !Settings.automatic_login: login_data.erase("password")
-	Application.save_json_file(LOGIN_DATA_JSON_PATH, login_data)
+	Application.save_json_file(Application.LOGIN_DATA_PATH, login_data)
 	user_headers = headers
 	Application.login_data = login_data
 	Application.logged_in = true

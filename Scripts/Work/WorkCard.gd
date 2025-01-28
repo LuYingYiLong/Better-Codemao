@@ -42,6 +42,7 @@ func set_work_card_data(json: Dictionary) -> void:
 	
 	if json.has("view_times"): view_times.text = str(int(json.get("view_times", "--")))
 	elif json.has("views_count"): view_times.text = str(int(json.get("views_count", "--")))
+	
 	if json.has("praise_times"): praise_times.text = str(int(json.get("praise_times", "--")))
 	elif json.has("liked_times"): praise_times.text = str(int(json.get("liked_times", "--")))
 	elif json.has("likes_count"): praise_times.text = str(int(json.get("likes_count", "--")))

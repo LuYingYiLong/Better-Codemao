@@ -89,6 +89,10 @@ INTRODUCTION_NAME,介绍,Introduction
 PREVIOUS_NAME,上一页,Previous
 GO_BACK_TO_THE_HOME_PAGE_NAME,返回到主页,Go back to the home page
 NEXT_NAME,下一页,Next
+CA_VALIDATION_NAME,CA验证,CA Validation
+VERIFICATION_NAME,验证,Verification
+VERIFICATION_FAILED_NAME,验证失败,Verification failed
+VERIFICATION_SUCCEEDED_NAME,验证成功,Verification succeeded
 MESSAGE_NAME,消息,Message
 COMMENT_REPLY_NAME,评论与回复,Comment&Reply
 LIKE_FORK_NAME,赞与购买,Like&Fork

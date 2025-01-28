@@ -118,8 +118,7 @@ size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.168627, 0.168627, 0.168627, 0.490196)
 theme_override_constants/line_spacing = -7
 theme_override_fonts/font = ExtResource("5_q85ay")
-text = "Description
-D"
+text = "Description"
 horizontal_alignment = 1
 autowrap_mode = 3
 text_overrun_behavior = 4

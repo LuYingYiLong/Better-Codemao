@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://crk784x0xmebe"]
+
+[ext_resource type="Script" uid="uid://cvg2uuufhdu7g" path="res://Scripts/BaseUIComponents/ChatBubble.gd" id="1_swnhn"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="1_yqq70"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="2_swnhn"]
+[ext_resource type="PackedScene" uid="uid://p6qpvhy7k7xv" path="res://Scenes/Forum/RichContent.tscn" id="3_bnbge"]
+[ext_resource type="StyleBox" uid="uid://6u0dwki6hfeo" path="res://Resources/Themes/MyChatBubble-Light.tres" id="4_whj0y"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_ps64k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vyaq6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi4e7"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="ChatBubble" type="PanelContainer"]
+offset_right = 690.0
+offset_bottom = 158.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vyaq6")
+script = ExtResource("1_swnhn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="OtherMask" type="PanelContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+clip_children = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gi4e7")
+
+[node name="OtherAvatarTexture" parent="HBoxContainer/OtherMask" instance=ExtResource("1_yqq70")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_swnhn")
+
+[node name="Bubble" type="PanelContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("4_whj0y")
+
+[node name="ThemePainter" parent="HBoxContainer/Bubble" instance=ExtResource("5_ps64k")]
+unique_name_in_owner = true
+
+[node name="RichContent" parent="HBoxContainer/Bubble" instance=ExtResource("3_bnbge")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MyMask" type="PanelContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+clip_children = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gi4e7")
+
+[node name="MyAvatarTexture" parent="HBoxContainer/MyMask" instance=ExtResource("1_yqq70")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_swnhn")
