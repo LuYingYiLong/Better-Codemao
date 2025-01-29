@@ -403,7 +403,7 @@ script = ExtResource("3_ctk8w")
 [node name="ParseUserArgs" type="Node" parent="."]
 script = ExtResource("4_o48c8")
 
-[node name="AsynchronousLoader" type="Node" parent="."]
+[node name="AsynchronousLoader" type="Node" parent="." groups=["GlobalNode"]]
 script = ExtResource("5_w0iy8")
 
 [node name="BaseBlackground" type="TextureRect" parent="."]

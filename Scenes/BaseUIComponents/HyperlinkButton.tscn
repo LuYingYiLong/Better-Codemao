@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://drbgm8oplu7mk"]
 
 [ext_resource type="Theme" uid="uid://dyb206oidakt7" path="res://Resources/Themes/Hyperlink-Light.tres" id="1_7xt4c"]
-[ext_resource type="Script" path="res://Scripts/BaseUIComponents/HyperlinkButton.gd" id="1_yflxn"]
+[ext_resource type="Script" uid="uid://dp8a6oru66krk" path="res://Scripts/BaseUIComponents/HyperlinkButton.gd" id="1_yflxn"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_r1i65"]
 
 [node name="HyperlinkButton" type="Button"]

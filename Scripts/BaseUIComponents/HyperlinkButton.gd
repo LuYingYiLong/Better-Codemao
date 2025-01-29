@@ -10,17 +10,7 @@ func parse_hyperlink():
 			var json: Dictionary = json_class.data
 			var content_dialog = Application.get_global_node("ContentDialog")
 			if !content_dialog.is_connected("callback", _content_dialog_callback): content_dialog.callback.connect(_content_dialog_callback)
-			content_dialog.title = json.get("title", "")
-			content_dialog.text = json.get("text", "")
-			content_dialog.box_size.x = json.get("box_size", [398, 272])[0]
-			content_dialog.box_size.y = json.get("box_size", [398, 272])[1]
-			content_dialog.popup_item.clear()
-			var popup_items: Array = json.get("popup_items", [{"text": "OK_NAME"}])
-			for popup_item: Dictionary in popup_items:
-				var item: PopupItem = PopupItem.new()
-				item.text = popup_item.get("text", "")
-				item.flat = popup_item.get("flat", true)
-				content_dialog.popup_item.append(item)
+			content_dialog.load_from_json(json)
 			content_dialog.show_content_dialog()
 	else: OS.shell_open(hyperlink)
 
