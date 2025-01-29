@@ -58,13 +58,14 @@ func _on_secure_text_edit_reply(_reply_id: int, _parent_id: int, text: String) -
 	else:
 		Application.async_load_scene.emit("res://Scenes/CouldAI/CAValidationMenu.tscn", {})
 		return
-	# 如果当前没有会话就创建一个
-	if SessionManager.get_current_session().is_empty(): add_session(text)
 	var request_data: Dictionary = {
 		"prompt": text, 
 		"token": token,
 		"stream": false
 	}
+	# 如果当前没有会话就创建一个
+	if SessionManager.get_current_session().is_empty(): add_session(text)
+	else: request_data["sessionid"] = SessionManager.get_current_session().get("id")
 	chat_request.request("https://ai.coludai.cn/api/chat", headers, HTTPClient.METHOD_POST, JSON.stringify(request_data))
 
 func _on_chat_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
