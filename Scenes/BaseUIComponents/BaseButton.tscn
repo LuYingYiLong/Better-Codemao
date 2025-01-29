@@ -230,14 +230,16 @@ _data = {
 &"Selected": SubResource("Animation_7nmkk")
 }
 
-[node name="BaseButton" type="PanelContainer" node_paths=PackedStringArray("button")]
+[node name="BaseButton" type="PanelContainer" node_paths=PackedStringArray("focused_rect", "button", "animation_player")]
 offset_right = 140.0
 offset_bottom = 46.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_divmj")
 script = ExtResource("3_lhgw4")
+focused_rect = NodePath("FocusedRect")
 button = NodePath("HBoxContainer/Button")
+animation_player = NodePath("AnimationPlayer")
 
-[node name="ColorRect" type="PanelContainer" parent="."]
+[node name="FocusedRect" type="PanelContainer" parent="."]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

@@ -4,13 +4,16 @@ extends PanelContainer
 @export var icon: Texture:
 	set(value):
 		icon = value
-		set_icon(icon)
+		button.icon = icon
 @export var text: String:
 	set(value):
 		text = value
-		set_text(text)
+		button.text = text
 @export var group: String
-@export var selected: bool
+@export var selected: bool = false:
+	set(value):
+		selected = value
+		call_deferred("update_group_status")
 @export_group("InfoBadge")
 @export var infobadge_visible: bool:
 	set(value):
@@ -27,13 +30,13 @@ extends PanelContainer
 		info_badge_2.value = infobadge_value
 
 @export_group("Other")
-@export var button: Node
+@export var focused_rect: PanelContainer
+@export var button: Button
+@export var animation_player: AnimationPlayer
 
-@onready var color_rect = %ColorRect
 @onready var line = %Line
 @onready var info_badge = %InfoBadge
 @onready var info_badge_2 = %InfoBadge2
-@onready var animation_player = %AnimationPlayer
 
 signal pressed
 signal metadata_output(metadata)
@@ -46,41 +49,29 @@ var last_tab_scene = null
 var metadata = null
 
 func _ready():
+	current_tab = get_index()
 	if !Engine.is_editor_hint():
-		current_tab = get_index()
-		button.text = text
-		button.icon = icon
-		if selected:
-			selected = false
-			_on_pressed()
 		Settings.settings_config_update.connect(_on_settings_config_update)
 		_on_settings_config_update()
 
-func set_icon(_icon: Texture) -> void:
-	button.icon = _icon
-
-func set_text(_text: String) -> void:
-	button.text = _text
-
 func _on_pressed():
-	if not selected:
-		selected = true
-		color_rect.show()
+	selected = not selected
 
-		if last_tab == -1:
-			animation_player.play("Selected")
-
+func update_group_status() -> void:
+	focused_rect.visible = selected
+	if selected:
+		if last_tab == -1: animation_player.play("Selected")
 		else:
 			if last_tab > current_tab:
 				last_tab_scene.selected = false
-				last_tab_scene.color_rect.hide()
+				last_tab_scene.focused_rect.hide()
 				last_tab_scene.play("PushOutTop")
 				await last_tab_scene.animation_finished
 				play("PushInBottom")
-			
+				
 			elif last_tab < current_tab:
 				last_tab_scene.selected = false
-				last_tab_scene.color_rect.hide()
+				last_tab_scene.focused_rect.hide()
 				last_tab_scene.play("PushOutBottom")
 				await last_tab_scene.animation_finished
 				play("PushInTop")
@@ -88,9 +79,12 @@ func _on_pressed():
 		for node in get_tree().get_nodes_in_group(group):
 			node.last_tab = current_tab
 			node.last_tab_scene = self
-	pressed.emit()
-	if metadata != null:
-		metadata_output.emit(metadata)
+		pressed.emit()
+		if metadata != null:
+			metadata_output.emit(metadata)
+
+	else: animation_player.play("RESET")
+	
 
 func _set_infobadge_visible():
 	if infobage_display_mode == 0:
@@ -101,11 +95,11 @@ func _set_infobadge_visible():
 		info_badge_2.visible = infobadge_visible
 
 func _on_mouse_entered():
-	color_rect.show()
+	focused_rect.show()
 
 func _on_mouse_exited():
 	if !selected:
-		color_rect.hide()
+		focused_rect.hide()
 
 func play(anim: String):
 	animation_player.play(anim)

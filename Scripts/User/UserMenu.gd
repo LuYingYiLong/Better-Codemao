@@ -67,7 +67,7 @@ func user_avatar_update() -> void:
 func set_data(data: Dictionary):
 	user_id = data.get("id", -1)
 
-func on_honor_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+func on_honor_received(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
 	if json.has("error_code"):

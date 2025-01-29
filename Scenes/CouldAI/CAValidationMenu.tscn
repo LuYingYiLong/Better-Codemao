@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://delop7ttnvwor"]
+[gd_scene load_steps=15 format=3 uid="uid://delop7ttnvwor"]
 
 [ext_resource type="Script" uid="uid://r78d2fyiiqfk" path="res://Scripts/CouldAI/CAValidationMenu.gd" id="1_51r8r"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_ibos4"]
-[ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="3_am7d7"]
 [ext_resource type="StyleBox" uid="uid://be525535a2wxl" path="res://Resources/Themes/Window-Light.tres" id="4_bwaxr"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_spia1"]
 [ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="6_0utih"]
@@ -207,15 +206,6 @@ progress_bar = NodePath("../PanelContainer/ProgressBar")
 copy_mode = 2
 
 [node name="Blur" type="ColorRect" parent="."]
-material = ExtResource("3_am7d7")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Blackground" type="ColorRect" parent="Blur"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -264,7 +254,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("6_0utih")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "CA_VALIDATION_NAME"
 text_overrun_behavior = 4
 
