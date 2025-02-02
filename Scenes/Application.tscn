@@ -1,7 +1,7 @@
 [gd_scene load_steps=47 format=3 uid="uid://csg0n6d7u0rvf"]
 
 [ext_resource type="Script" uid="uid://d0nrmwgp3ek3a" path="res://Scripts/Application.gd" id="1_5hvyn"]
-[ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/LoginMenu.tscn" id="2_1hfjc"]
+[ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/User/LoginMenu.tscn" id="2_1hfjc"]
 [ext_resource type="Texture2D" uid="uid://dvw5rmq3qqeoa" path="res://Resources/Textures/Workshop.svg" id="2_b44jh"]
 [ext_resource type="Script" uid="uid://d3jtldyqk0ffy" path="res://Scripts/SensitiveWordsRequest.gd" id="2_epunv"]
 [ext_resource type="Script" uid="uid://0afy0dkwhuip" path="res://Scripts/NavigationBar.gd" id="2_gfkna"]
@@ -538,10 +538,10 @@ icon = ExtResource("16_f4m3o")
 text = "LIBRARY_NAME"
 group = "NavigationButtonsGroup"
 
-[node name="CouldAIButton" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
+[node name="ColudAIButton" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 layout_mode = 2
 icon = ExtResource("17_lns7o")
-text = "CouldAI"
+text = "ColudAI"
 group = "NavigationButtonsGroup"
 
 [node name="MessageButton" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
@@ -630,7 +630,7 @@ use_native_dialog = true
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/WorkshopTab" to="NavigationBar" method="_on_workshop_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/ForumTab" to="NavigationBar" method="_on_forum_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/LibraryTab" to="NavigationBar" method="_on_library_tab_pressed"]
-[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/CouldAIButton" to="NavigationBar" method="_on_could_ai_button_pressed"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/ColudAIButton" to="NavigationBar" method="_on_colud_ai_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/MessageButton" to="NavigationBar" method="_on_message_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/SettingsButton" to="NavigationBar" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/UserButton" to="NavigationBar" method="_on_user_button_pressed"]

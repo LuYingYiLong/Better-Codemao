@@ -1,0 +1,716 @@
+[gd_scene load_steps=22 format=3 uid="uid://d282bewo81tv4"]
+
+[ext_resource type="Script" uid="uid://drikm1xybwood" path="res://Scripts/ColudAI/LoginMenu.gd" id="1_3rgdb"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_nbkqs"]
+[ext_resource type="Material" uid="uid://cyrae2doglb4" path="res://Shaders/Blur.tres" id="3_ayxpg"]
+[ext_resource type="StyleBox" uid="uid://be525535a2wxl" path="res://Resources/Themes/Window-Light.tres" id="4_y1r45"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_unpnv"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="6_g3a75"]
+[ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="7_pvyq5"]
+[ext_resource type="Theme" uid="uid://bb3oaxb0rt1le" path="res://Resources/Themes/LineEditTheme1.tres" id="8_oadbf"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="11_bcaoa"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="12_ieq0a"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="13_babjp"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="14_sdomx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0bmf"]
+bg_color = Color(0.952941, 0.952941, 0.952941, 1)
+border_width_top = 1
+border_color = Color(0.898039, 0.898039, 0.898039, 1)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15rth"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 95
+corner_radius_top_right = 95
+corner_radius_bottom_right = 95
+corner_radius_bottom_left = 95
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oe24f"]
+bg_color = Color(0.952941, 0.952941, 0.952941, 1)
+border_width_top = 1
+border_color = Color(0.898039, 0.898039, 0.898039, 1)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="Animation" id="Animation_akmgy"]
+resource_name = "HideLoginMenu"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoginMenuMarginContainer:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [0, 256]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoginMenuMarginContainer:theme_override_constants/margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [0, -256]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LoginMenuMarginContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WelcomeMenuMarginContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_nbpq6"]
+resource_name = "HideWelcomeMenu"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WelcomeMenuMarginContainer:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [0, 256]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WelcomeMenuMarginContainer:theme_override_constants/margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [0, -256]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WelcomeMenuMarginContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LoginMenuMarginContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6ann7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoginMenuMarginContainer:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [256]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoginMenuMarginContainer:theme_override_constants/margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-256]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LoginMenuMarginContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WelcomeMenuMarginContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WelcomeMenuMarginContainer:theme_override_constants/margin_top")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [256]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WelcomeMenuMarginContainer:theme_override_constants/margin_bottom")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-256]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_l8upf"]
+resource_name = "ShowLoginMenu"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoginMenuMarginContainer:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [256, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoginMenuMarginContainer:theme_override_constants/margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [-256, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LoginMenuMarginContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WelcomeMenuMarginContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_78bfn"]
+resource_name = "ShowWelcomeMenu"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WelcomeMenuMarginContainer:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [256, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WelcomeMenuMarginContainer:theme_override_constants/margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.3, 6),
+"update": 0,
+"values": [-256, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WelcomeMenuMarginContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LoginMenuMarginContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y253u"]
+_data = {
+&"HideLoginMenu": SubResource("Animation_akmgy"),
+&"HideWelcomeMenu": SubResource("Animation_nbpq6"),
+&"RESET": SubResource("Animation_6ann7"),
+&"ShowLoginMenu": SubResource("Animation_l8upf"),
+&"ShowWelcomeMenu": SubResource("Animation_78bfn")
+}
+
+[node name="LoginMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3rgdb")
+
+[node name="LoginRequest" parent="." instance=ExtResource("2_nbkqs")]
+unique_name_in_owner = true
+progress_bar = NodePath("../LoginMenuMarginContainer/LoginMenu/ProgressBar")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("3_ayxpg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blackground" type="ColorRect" parent="Blur"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="LoginMenuMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -256.0
+offset_right = 200.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_bottom = -256
+
+[node name="LoginMenu" type="PanelContainer" parent="LoginMenuMarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_y1r45")
+
+[node name="ThemePainter" parent="LoginMenuMarginContainer/LoginMenu" instance=ExtResource("5_unpnv")]
+
+[node name="ProgressBar" parent="LoginMenuMarginContainer/LoginMenu" instance=ExtResource("6_g3a75")]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginMenuMarginContainer/LoginMenu"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LoginLabel" type="Label" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("7_pvyq5")
+theme_override_font_sizes/font_size = 40
+text = "Login"
+
+[node name="ThemePainter" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/MarginContainer/VBoxContainer/LoginLabel" instance=ExtResource("5_unpnv")]
+
+[node name="IdentityEdit" type="LineEdit" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("8_oadbf")
+placeholder_text = "Email"
+select_all_on_focus = true
+caret_blink = true
+
+[node name="ThemePainter" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/MarginContainer/VBoxContainer/IdentityEdit" instance=ExtResource("5_unpnv")]
+
+[node name="PasswordEdit" type="LineEdit" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("8_oadbf")
+placeholder_text = "PASSWORD_NAME"
+select_all_on_focus = true
+caret_blink = true
+secret = true
+secret_character = "*"
+
+[node name="ThemePainter" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/MarginContainer/VBoxContainer/PasswordEdit" instance=ExtResource("5_unpnv")]
+
+[node name="PanelContainer" type="PanelContainer" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s0bmf")
+
+[node name="ThemePainter" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer" instance=ExtResource("5_unpnv")]
+panel_container_style = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VisitorLoginButton" type="Button" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 10
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_bcaoa")
+text = "VISITOR_LOGIN_NAME"
+
+[node name="ThemePainter" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VisitorLoginButton" instance=ExtResource("5_unpnv")]
+
+[node name="LoginButton" type="Button" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_bcaoa")
+text = "LOGIN_NAME"
+
+[node name="ThemePainter" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/LoginButton" instance=ExtResource("5_unpnv")]
+
+[node name="WelcomeMenuMarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -256.0
+offset_right = 200.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_bottom = -256
+
+[node name="WelcomeMenu" type="PanelContainer" parent="WelcomeMenuMarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_y1r45")
+
+[node name="ThemePainter" parent="WelcomeMenuMarginContainer/WelcomeMenu" instance=ExtResource("5_unpnv")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Mask" type="PanelContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_15rth")
+
+[node name="AvatarTexture" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/MarginContainer/VBoxContainer/Mask" instance=ExtResource("12_ieq0a")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("13_babjp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -6
+
+[node name="NicknameLabel" type="Label" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+theme_override_fonts/font = ExtResource("14_sdomx")
+theme_override_font_sizes/font_size = 26
+text = "Nickname"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/NicknameLabel" instance=ExtResource("5_unpnv")]
+
+[node name="PanelContainer" type="PanelContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oe24f")
+
+[node name="ThemePainter" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/PanelContainer" instance=ExtResource("5_unpnv")]
+
+[node name="MarginContainer" type="MarginContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="EnterButton" type="Button" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_bcaoa")
+text = "ENTER_NAME"
+
+[node name="ThemePainter" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/PanelContainer/MarginContainer/EnterButton" instance=ExtResource("5_unpnv")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_y253u")
+}
+autoplay = "ShowLoginMenu"
+
+[connection signal="request_completed" from="LoginRequest" to="." method="on_login_received"]
+[connection signal="pressed" from="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VisitorLoginButton" to="." method="_on_visitor_login_button_pressed"]
+[connection signal="pressed" from="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/PanelContainer/MarginContainer/EnterButton" to="." method="_on_enter_button_pressed"]

@@ -88,7 +88,7 @@ func _on_works_request_request_completed(_result: int, _response_code: int, _hea
 	
 	submitted_works_pagination_bar.total = ceili(float(json.get("total")) / LOADS_NUMBER)
 	submitted_works_pagination_bar.update_pager_total()
-	submitted_works_pagination_bar.visible = submitted_works_pagination_bar.total > 0
+	submitted_works_pagination_bar.visible = submitted_works_pagination_bar.total > 1
 	var items: Array = json.get("items")
 	for node in work_card_container.get_children():
 		node.queue_free()

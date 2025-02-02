@@ -93,6 +93,7 @@ GO_BACK_TO_THE_HOME_PAGE_NAME,返回到主页,Go back to the home page
 NEXT_NAME,下一页,Next
 MODELS_NAME,模型,Models
 SESSIONS_NAME,会话,Sessions
+DEFAULT_SESSION_NAME,默认会话,Default session
 MANAGE_SESSIONS_NAME,管理会话,Manage sessions
 NEW_SESSION_NAME,新会话,New session
 MAXIMUM_SESSION_WARNING,最大会话数量为{0},The maximum number of sessions is {0}

@@ -60,9 +60,9 @@ func _on_library_tab_pressed() -> void:
 			"res://Scenes/Library/LibraryMenu.tscn", \
 			{})
 
-func _on_could_ai_button_pressed() -> void:
-	Application.set_root_address.emit("CouldAI", \
-			"res://Scenes/CouldAI/CouldAIMenu.tscn", \
+func _on_colud_ai_button_pressed() -> void:
+	Application.set_root_address.emit("ColudAI", \
+			"res://Scenes/ColudAI/ColudAIMenu.tscn", \
 			{})
 
 func _on_message_button_pressed() -> void:
