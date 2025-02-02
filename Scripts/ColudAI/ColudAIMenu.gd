@@ -5,6 +5,7 @@ extends Control
 @onready var add_session_request = %AddSessionRequest
 @onready var query_session_request = %QuerySessionRequest
 
+@onready var login_button = %LoginButton
 @onready var secure_text_edit = %SecureTextEdit
 @onready var chat_bubble_container = %ChatBubbleContainer
 
@@ -15,19 +16,28 @@ const COULDAI_TEXTURE: Texture = preload("res://Resources/Textures/COLUDAI.svg")
 const CHAT_BUBBLE_SCENE = preload("res://Scenes/BaseUIComponents/ChatBubble.tscn")
 const BASE_BUTTON_SCENE = preload("res://Scenes/BaseUIComponents/BaseButton.tscn")
 
+var logged_in: bool
 var session_id: String
 var session_name: String
 
 func _ready():
-	SessionManager.sessions_update.connect(populate_sessions)
+	ColudAIUserManager.login_data_update.connect(_on_coludai_user_manager_login_data_update)
+	ColudAIUserManager.sessions_update.connect(populate_sessions)
 	secure_text_edit.set_reply(0, 0, "CouldAI")
-	populate_sessions(SessionManager.get_sessions())
+	populate_sessions(ColudAIUserManager.get_sessions())
 	sessions_request.request("https://ai.coludai.cn/api/user/sessions?", \
 			[], \
 			HTTPClient.METHOD_GET)
+	var login_data: Dictionary = ColudAIUserManager.get_login_data()
+	logged_in = !login_data.is_empty()
+	if logged_in: login_button.text = login_data.get("data").get("fields").get("用户名")
+
+func _on_coludai_user_manager_login_data_update(new_login_data: Dictionary) -> void:
+	logged_in = true
+	login_button.text = new_login_data.get("data").get("fields").get("用户名")
 
 func populate_sessions(sessions: Array) -> void:
-	var current_session: Dictionary = SessionManager.get_current_session()
+	var current_session: Dictionary = ColudAIUserManager.get_current_session()
 	for session: Dictionary in sessions:
 		var base_button_scene = BASE_BUTTON_SCENE.instantiate()
 		sessions_container.add_child(base_button_scene)
@@ -42,7 +52,7 @@ func populate_sessions(sessions: Array) -> void:
 		#			JSON.stringify({"sessionid": session.get("id")}))
 
 func _on_login_button_pressed() -> void:
-	pass # Replace with function body.
+	Application.async_load_scene.emit("res://Scenes/ColudAI/LoginMenu.tscn", {})
 
 func _on_ca_validation_button_pressed() -> void:
 	Application.async_load_scene.emit("res://Scenes/ColudAI/CAValidationMenu.tscn", {})
@@ -71,8 +81,8 @@ func _on_secure_text_edit_reply(_reply_id: int, _parent_id: int, text: String) -
 		"stream": false
 	}
 	# 如果当前没有会话就创建一个
-	#if SessionManager.get_current_session().is_empty(): add_session(text)
-	#else: request_data["sessionid"] = SessionManager.get_current_session().get("id")
+	#if ColudAIUserManager.get_current_session().is_empty(): add_session(text)
+	#else: request_data["sessionid"] = ColudAIUserManager.get_current_session().get("id")
 	chat_request.request("https://ai.coludai.cn/api/chat", \
 			headers, \
 			HTTPClient.METHOD_POST, \
@@ -94,7 +104,7 @@ func _on_chat_request_request_completed(_result: int, _response_code: int, _head
 
 # 添加新会话
 func add_session(new_session_name: String) -> void:
-	if SessionManager.get_sessions().size() >= MAX_SESSIONS: return
+	if ColudAIUserManager.get_sessions().size() >= MAX_SESSIONS: return
 	session_name = new_session_name
 	add_session_request.request("https://ai.coludai.cn/api/session/create", \
 			["Content-Type: Application/json"], \
@@ -109,8 +119,8 @@ func _on_add_session_request_request_completed(_result: int, _response_code: int
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 	session_id = json.get("sessionid", "")
 	if session_id.is_empty(): return
-	var session_index: int = SessionManager.add_session(session_id, session_name)
-	SessionManager.set_current_session(session_index)
+	var session_index: int = ColudAIUserManager.add_session(session_id, session_name)
+	ColudAIUserManager.set_current_session(session_index)
 	var base_button_scene = BASE_BUTTON_SCENE.instantiate()
 	sessions_container.add_child(base_button_scene)
 	base_button_scene.add_to_group("Sessions")
@@ -150,7 +160,7 @@ func _on_manage_sessions_button_pressed() -> void:
 	Application.async_load_scene.emit("res://Scenes/ColudAI/FlayManageSessions.tscn", {})
 
 func _on_new_conversation_button_pressed() -> void:
-	if SessionManager.get_sessions().size() >= MAX_SESSIONS:
+	if ColudAIUserManager.get_sessions().size() >= MAX_SESSIONS:
 		var content_dialog: Control = Application.get_global_node("ContentDialog")
 		if !content_dialog.is_connected("callback", _content_dialog_callback): content_dialog.callback.connect(_content_dialog_callback)
 		content_dialog.load_from_json({"title": "WARNING_NAME", "text": TranslationServer.translate("MAXIMUM_SESSION_WARNING").format([MAX_SESSIONS])})

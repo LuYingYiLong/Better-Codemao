@@ -14,7 +14,7 @@ func _ready() -> void:
 	populate_sessions()
 
 func populate_sessions() -> void:
-	var sessions: Array = SessionManager.get_sessions()
+	var sessions: Array = ColudAIUserManager.get_sessions()
 	for node in session_id_card_container.get_children():
 		node.queue_free()
 	for session: Dictionary in sessions:
@@ -27,7 +27,7 @@ func _on_delete_session_request_request_completed(_result: int, _response_code: 
 	print(body.get_string_from_utf8())
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	if json == null: return
-	if json.get("message") == "ok": SessionManager.remove_session(delete_sessions.pop_back())
+	if json.get("message") == "ok": ColudAIUserManager.remove_session(delete_sessions.pop_back())
 	if !delete_sessions.is_empty():
 		delete_session_request.request("https://ai.coludai.cn/api/session/delete", \
 				["Content-Type: Application/json"], \

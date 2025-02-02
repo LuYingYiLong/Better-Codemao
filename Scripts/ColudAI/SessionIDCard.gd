@@ -29,7 +29,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	session_name = new_text
 	session_id_label.show()
 	line_edit.hide()
-	SessionManager.rename_session_name(session_id, session_name)
+	ColudAIUserManager.rename_session_name(session_id, session_name)
 
 func _on_delete_button_pressed() -> void:
 	delete = true

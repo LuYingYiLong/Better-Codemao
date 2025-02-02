@@ -1,6 +1,22 @@
 extends Node
 
+signal login_data_update(new_login_data: Dictionary)
 signal sessions_update(sessions: Array)
+
+# 保存登录数据
+func save_login_data(data: Dictionary) -> void:
+	var login_data: Dictionary = Application.load_json_file(Application.LOGIN_DATA_PATH)
+	var coludai: Dictionary = login_data.get("coludai", {})
+	coludai["login_data"] = data
+	login_data["coludai"] = coludai
+	Application.save_json_file(Application.LOGIN_DATA_PATH, login_data)
+	login_data_update.emit(data)
+
+# 获取登录数据
+func get_login_data() -> Dictionary:
+	var login_data: Dictionary = Application.load_json_file(Application.LOGIN_DATA_PATH)
+	var coludai: Dictionary = login_data.get("coludai", {})
+	return coludai.get("login_data", {})
 
 # 添加会话，返回当前会话索引
 func add_session(session_id: String, session_name: String) -> int:

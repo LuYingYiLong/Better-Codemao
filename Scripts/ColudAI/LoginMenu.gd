@@ -21,6 +21,7 @@ var user_headers: PackedStringArray
 
 func on_login_received(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	ColudAIUserManager.save_login_data(json)
 	avatar_texture.load_image(json.get("data", {}).get("fields", {}).get("头像", {}).get("title", ""))
 	nickname_label.text = json.get("data", {}).get("fields", {}).get("用户名", "ERROR")
 	animation_player.play("HideLoginMenu")

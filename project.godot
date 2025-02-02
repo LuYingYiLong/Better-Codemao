@@ -25,7 +25,7 @@ Application="*res://Scripts/Application.gd"
 Settings="*res://Scripts/Settings.gd"
 SensitiveWordsManager="*res://Scripts/SensitiveWordsManager.gd"
 GlobalTheme="*res://Scripts/Theme.gd"
-SessionManager="*res://Scripts/ColudAI/SessionManager.gd"
+ColudAIUserManager="*res://Scripts/ColudAI/ColudAIUserManager.gd"
 
 [display]
 

@@ -93,6 +93,7 @@ layout_mode = 2
 items = Array[ExtResource("5_p54xj")]([SubResource("Resource_fw3wp"), SubResource("Resource_p54xj"), SubResource("Resource_7pbt5")])
 
 [node name="LoginButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 size_flags_horizontal = 10
