@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://crk784x0xmebe"]
+[gd_scene load_steps=10 format=3 uid="uid://crk784x0xmebe"]
 
 [ext_resource type="Script" uid="uid://cvg2uuufhdu7g" path="res://Scripts/BaseUIComponents/ChatBubble.gd" id="1_swnhn"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="1_yqq70"]
 [ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="2_swnhn"]
 [ext_resource type="PackedScene" uid="uid://p6qpvhy7k7xv" path="res://Scenes/Forum/RichContent.tscn" id="3_bnbge"]
+[ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="4_ps64k"]
 [ext_resource type="StyleBox" uid="uid://6u0dwki6hfeo" path="res://Resources/Themes/MyChatBubble-Light.tres" id="4_whj0y"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_ps64k"]
 
@@ -17,7 +18,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [node name="ChatBubble" type="PanelContainer"]
-offset_right = 690.0
+offset_right = 1152.0
 offset_bottom = 158.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vyaq6")
 script = ExtResource("1_swnhn")
@@ -40,17 +41,51 @@ unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_swnhn")
 
-[node name="Bubble" type="PanelContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ReasoningTimePanel" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = ExtResource("4_ps64k")
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ReasoningTimePanel" instance=ExtResource("5_ps64k")]
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/ReasoningTimePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="ReasoningTimeLabel" type="Label" parent="HBoxContainer/VBoxContainer/ReasoningTimePanel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "Reasoning time"
+
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ReasoningTimePanel/MarginContainer/ReasoningTimeLabel" instance=ExtResource("5_ps64k")]
+
+[node name="RichThink" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_bnbge")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Bubble" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_styles/panel = ExtResource("4_whj0y")
 
-[node name="ThemePainter" parent="HBoxContainer/Bubble" instance=ExtResource("5_ps64k")]
+[node name="ThemePainter" parent="HBoxContainer/VBoxContainer/Bubble" instance=ExtResource("5_ps64k")]
 unique_name_in_owner = true
 
-[node name="RichContent" parent="HBoxContainer/Bubble" instance=ExtResource("3_bnbge")]
+[node name="RichContent" parent="HBoxContainer/VBoxContainer/Bubble" instance=ExtResource("3_bnbge")]
 unique_name_in_owner = true
 layout_mode = 2
 

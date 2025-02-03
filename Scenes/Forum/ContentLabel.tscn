@@ -34,6 +34,5 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 context_menu_enabled = true
-threaded = true
 selection_enabled = true
 script = ExtResource("4_on4jv")

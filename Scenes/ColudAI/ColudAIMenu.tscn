@@ -43,10 +43,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7xtks")
 
-[node name="ChatRequest" parent="." instance=ExtResource("2_rgtrp")]
-unique_name_in_owner = true
-connect_type = 2
-
 [node name="SessionsRequest" parent="." instance=ExtResource("2_rgtrp")]
 unique_name_in_owner = true
 connect_type = 1
@@ -88,6 +84,7 @@ text = "MODELS_NAME"
 [node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/ModelsLabel" instance=ExtResource("3_v4h17")]
 
 [node name="ComboBox" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_tqaq3")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 items = Array[ExtResource("5_p54xj")]([SubResource("Resource_fw3wp"), SubResource("Resource_p54xj"), SubResource("Resource_7pbt5")])
@@ -210,12 +207,15 @@ text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/NewSessionButton" instance=ExtResource("3_v4h17")]
 
-[connection signal="request_completed" from="ChatRequest" to="." method="_on_chat_request_request_completed"]
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="request_completed" from="SessionsRequest" to="." method="_on_sessions_request_request_completed"]
 [connection signal="request_completed" from="AddSessionRequest" to="." method="_on_add_session_request_request_completed"]
 [connection signal="request_completed" from="QuerySessionRequest" to="." method="_on_query_session_request_request_completed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CAValidationButton" to="." method="_on_ca_validation_button_pressed"]
-[connection signal="reply" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_reply"]
+[connection signal="ai_chat" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_ai_chat"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/ManageSessionsButton" to="." method="_on_manage_sessions_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/NewSessionButton" to="." method="_on_new_conversation_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

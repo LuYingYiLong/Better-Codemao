@@ -247,13 +247,15 @@ _data = {
 &"ShowSensitiveWordTag": SubResource("Animation_8wrt8")
 }
 
-[node name="SecureTextEdit" type="PanelContainer" node_paths=PackedStringArray("text_edit")]
+[node name="SecureTextEdit" type="PanelContainer" node_paths=PackedStringArray("text_edit", "tool_buttons", "perview")]
 custom_minimum_size = Vector2(210, 66)
 offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_j464s")
 script = ExtResource("1_iqm20")
 text_edit = NodePath("HBoxContainer/VBoxContainer/HBoxContainer2/TextEdit")
+tool_buttons = [NodePath("HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/BoldButton"), NodePath("HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/UnderlineButton"), NodePath("HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontSizeButton"), NodePath("HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontColorButton"), NodePath("HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignRightButton"), NodePath("HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignCenterButton"), NodePath("HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignLeftButton"), NodePath("HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/PhotoButton"), NodePath("HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/CodeButton")]
+perview = NodePath("HBoxContainer/VBoxContainer/HBoxContainer2/Perview")
 
 [node name="UploadingRequest" parent="." instance=ExtResource("2_n0xdi")]
 unique_name_in_owner = true
@@ -288,7 +290,7 @@ theme_override_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer"]
 layout_mode = 2
 
-[node name="BoldButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
+[node name="BoldButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -298,7 +300,7 @@ icon = ExtResource("2_b6ooh")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/BoldButton" instance=ExtResource("2_jepj1")]
 
-[node name="UnderlineButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
+[node name="UnderlineButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -308,7 +310,7 @@ icon = ExtResource("3_pxnxc")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/UnderlineButton" instance=ExtResource("2_jepj1")]
 
-[node name="FontSizeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
+[node name="FontSizeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -318,7 +320,7 @@ icon = ExtResource("4_3r0mh")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontSizeButton" instance=ExtResource("2_jepj1")]
 
-[node name="FontColorButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
+[node name="FontColorButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -332,7 +334,7 @@ icon = ExtResource("5_gxw6d")
 [node name="FlyColorPicker" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/FontColorButton" instance=ExtResource("8_no7xv")]
 unique_name_in_owner = true
 
-[node name="AlignRightButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
+[node name="AlignRightButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -342,7 +344,7 @@ icon = ExtResource("6_n2bok")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignRightButton" instance=ExtResource("2_jepj1")]
 
-[node name="AlignCenterButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
+[node name="AlignCenterButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -352,7 +354,7 @@ icon = ExtResource("7_6e646")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignCenterButton" instance=ExtResource("2_jepj1")]
 
-[node name="AlignLeftButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
+[node name="AlignLeftButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -362,7 +364,7 @@ icon = ExtResource("8_d2swd")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/AlignLeftButton" instance=ExtResource("2_jepj1")]
 
-[node name="PhotoButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
+[node name="PhotoButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -372,7 +374,7 @@ icon = ExtResource("11_3n6bf")
 
 [node name="ThemePainter" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer/PhotoButton" instance=ExtResource("2_jepj1")]
 
-[node name="CodeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer" groups=["tool_buttons_group"]]
+[node name="CodeButton" type="Button" parent="HBoxContainer/VBoxContainer/ToolsBar/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
