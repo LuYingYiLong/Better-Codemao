@@ -9,6 +9,7 @@ extends PanelContainer
 	set(value):
 		text = value
 		button.text = text
+@export var metadata: Variant = null
 @export var group: String
 @export var selected: bool = false:
 	set(value):
@@ -46,7 +47,6 @@ var current_tab: int
 var last_tab: int = -1
 var last_tab_scene = null
 
-var metadata = null
 
 func _ready():
 	current_tab = get_index()

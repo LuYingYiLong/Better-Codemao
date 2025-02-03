@@ -19,7 +19,7 @@ func clear() -> void:
 
 # 递归装载富内容
 func populate_content(bbcode_content: String) -> void:
-	var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
+	
 	var image_url_loader = IMAGE_URL_LOADER_SCENE.instantiate()
 	var code_viewer_scene = CODE_VIEWER_SCENE.instantiate()
 	var regex = RegEx.new()
@@ -44,8 +44,7 @@ func populate_content(bbcode_content: String) -> void:
 		# 添加图像
 		elif get_string.begins_with("[image=") and get_string.ends_with("]"):
 			var split: PackedStringArray = bbcode_content.split(get_string)
-			add_child(content_label_scene)
-			content_label_scene.append_text(split[0])
+			add_content_label(split[0])
 			
 			add_child(image_url_loader)
 			image_url_loader.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
@@ -61,8 +60,7 @@ func populate_content(bbcode_content: String) -> void:
 			split.append(split[1].get_slice("[/code]", 1))
 			split.set(1, split[1].get_slice("[/code]", 0))
 			
-			add_child(content_label_scene)
-			content_label_scene.append_text(split[0])
+			add_content_label(split[0])
 			
 			add_child(code_viewer_scene)
 			code_viewer_scene.text = split[1]
@@ -70,5 +68,9 @@ func populate_content(bbcode_content: String) -> void:
 			if split.size() >= 3: populate_content(split[2])
 			return
 
+	add_content_label(bbcode_content)
+
+func add_content_label(content: String) -> void:
+	var content_label_scene = CONTENT_LABEL_SCENE.instantiate()
 	add_child(content_label_scene)
-	content_label_scene.append_text(bbcode_content)
+	content_label_scene.append_text(content)

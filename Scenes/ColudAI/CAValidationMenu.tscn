@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://delop7ttnvwor"]
 
-[ext_resource type="Script" uid="uid://r78d2fyiiqfk" path="res://Scripts/CouldAI/CAValidationMenu.gd" id="1_51r8r"]
+[ext_resource type="Script" uid="uid://r78d2fyiiqfk" path="res://Scripts/ColudAI/CAValidationMenu.gd" id="1_51r8r"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_ibos4"]
 [ext_resource type="StyleBox" uid="uid://be525535a2wxl" path="res://Resources/Themes/Window-Light.tres" id="4_bwaxr"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_spia1"]

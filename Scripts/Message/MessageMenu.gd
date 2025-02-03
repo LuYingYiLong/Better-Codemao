@@ -37,7 +37,7 @@ func on_message_count_received(result: int, _response_code: int, _headers: Packe
 		return
 	
 	if result != HTTPRequest.RESULT_SUCCESS: push_error("Could not get data")
-	for query: Dictionary in json.get("query"):
+	for query: Dictionary in json.get("query", {}):
 		if query.get("query_type") == "COMMENT_REPLY":
 			comment_reply_count = query.get("count")
 			tab_bar.tab_items[0].text = str(comment_reply_count)

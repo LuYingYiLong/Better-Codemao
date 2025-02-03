@@ -1,9 +1,11 @@
 extends PanelContainer
 
-@export_enum("Comment", "Reply") var type: int = 0:
+@export_enum("Comment", "Reply", "AIChat") var type: int = 0:
 	set(value):
 		type = value
-		set_toolbar_disabled(type == 1)
+		for tool_button: Button in tool_buttons:
+			tool_button.visible = type == 0
+		perview.visible = type == 0
 @export var post_id: int
 @export var reply_id: int
 @export var parent_id: int
@@ -21,6 +23,8 @@ extends PanelContainer
 		else: %ScrollContainer.vertical_scroll_mode = 1
 @export_group("Other")
 @export var text_edit: TextEdit
+@export var tool_buttons: Array[Button]
+@export var perview: PanelContainer
 
 @onready var uploading_request = %UploadingRequest
 @onready var upload_request = %UploadRequest
@@ -30,7 +34,6 @@ extends PanelContainer
 @onready var fly_color_picker = %FlyColorPicker
 
 @onready var scroll_container = %ScrollContainer
-@onready var perview = %Perview
 @onready var rich_content = %RichContent
 
 @onready var sensitive_word_bar = %SensitiveWordBar
@@ -45,6 +48,7 @@ extends PanelContainer
 
 signal comment(post_id: int, text: String)
 signal reply(reply_id: int, parent_id: int, text: String)
+signal ai_chat(text: String)
 
 enum Error{CHECKING, OK, WARNING}
 
@@ -94,13 +98,14 @@ func on_files_dropped(files: PackedStringArray) -> void:
 	for path in files:
 		if FILE_LANGUAGE_TYPE.has(path.get_extension()):
 			var file_access: FileAccess = FileAccess.open(path, FileAccess.READ)
-			text_edit.text += "\n[language=%s][code]%s[/code][/language]" %[FILE_LANGUAGE_TYPE.get(path.get_extension()), file_access.get_as_text()]
+			if type == 1: text_edit.text += "\n[language=%s][code]%s[/code][/language]" %[FILE_LANGUAGE_TYPE.get(path.get_extension()), file_access.get_as_text()]
+			else: text_edit.text += "\n%s" %file_access.get_as_text()
 			file_access.close()
 		elif path.get_extension() == "txt":
 			var file_access: FileAccess = FileAccess.open(path, FileAccess.READ)
 			text_edit.text += "\n%s" %file_access.get_as_text()
 			file_access.close()
-		elif path.get_extension() == "png" or path.get_extension() == "jpg" or path.get_extension() == "jpeg":
+		elif path.get_extension() == "png" or path.get_extension() == "jpg" or path.get_extension() == "jpeg" and type == 0:
 			_on_file_dialog_file_selected(path)
 	rich_content.init_contents(text_edit.text)
 
@@ -141,12 +146,19 @@ func set_reply(_reply_id: int = 0, _parent_id: int = 0, nickname: String = "") -
 		nickname
 	]
 
-func set_toolbar_disabled(disabled: bool) -> void:
-	for node in get_tree().get_nodes_in_group("tool_buttons_group"):
-		node.disabled = disabled
-	perview.visible = !disabled
+# 设置AI聊天
+func set_ai_chat(bot_name: String) -> void:
+	type = 2
+	reply_button.hide()
+	text_edit.text = ""
+	words_button.text = "0"
+	text_edit.placeholder_text = "%s %s" %[
+		TranslationServer.translate("REPLY_NAME"),
+		bot_name
+	]
 
 func _on_text_edit_text_changed() -> void:
+	if type == 2: return
 	text = text_edit.text
 	rich_content.init_contents(text_edit.text)
 	words_button.text = str(text_edit.text.length())
@@ -213,6 +225,8 @@ func _on_send_button_pressed() -> void:
 		comment.emit(post_id, content)
 	elif type == 1:
 		reply.emit(reply_id, parent_id, text_edit.text)
+	elif type == 2:
+		ai_chat.emit(text_edit.text)
 
 func insert_text_at_caret(insert_text: String) -> void:
 	text_edit.begin_complex_operation()

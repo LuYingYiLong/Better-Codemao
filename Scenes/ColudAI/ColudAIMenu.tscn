@@ -1,0 +1,221 @@
+[gd_scene load_steps=16 format=3 uid="uid://c8dcimn7s6uiy"]
+
+[ext_resource type="Script" uid="uid://btd1sn2h4oxb7" path="res://Scripts/ColudAI/ColudAIMenu.gd" id="1_7xtks"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_rgtrp"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_v4h17"]
+[ext_resource type="PackedScene" uid="uid://cd2hiax67rgqi" path="res://Scenes/BaseUIComponents/ComboBox.tscn" id="4_tqaq3"]
+[ext_resource type="Script" uid="uid://fvyup8kkg73i" path="res://Scripts/PopupItem.gd" id="5_p54xj"]
+[ext_resource type="Theme" uid="uid://c7vkhqml4gcnr" path="res://Resources/Themes/SmallButton-Light.tres" id="6_akvnj"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="7_4a5c6"]
+[ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="8_rlk1j"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="9_0kqkx"]
+[ext_resource type="Texture2D" uid="uid://kmkj3ojscglm" path="res://Resources/Textures/Settings2.svg" id="10_s1rm1"]
+[ext_resource type="PackedScene" uid="uid://dfa41l48uuw85" path="res://Scenes/BaseUIComponents/CustomPanelContainer.tscn" id="11_lapgp"]
+[ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="12_fw3wp"]
+
+[sub_resource type="Resource" id="Resource_fw3wp"]
+script = ExtResource("5_p54xj")
+text = "SAI-L6"
+checked = false
+flat = false
+metadata/_custom_type_script = ExtResource("5_p54xj")
+
+[sub_resource type="Resource" id="Resource_p54xj"]
+script = ExtResource("5_p54xj")
+text = "SAI-L6 Coder"
+checked = false
+flat = false
+metadata/_custom_type_script = ExtResource("5_p54xj")
+
+[sub_resource type="Resource" id="Resource_7pbt5"]
+script = ExtResource("5_p54xj")
+text = "SAI-Reasoner"
+checked = false
+flat = false
+metadata/_custom_type_script = ExtResource("5_p54xj")
+
+[node name="ColudAIMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7xtks")
+
+[node name="SessionsRequest" parent="." instance=ExtResource("2_rgtrp")]
+unique_name_in_owner = true
+connect_type = 1
+
+[node name="AddSessionRequest" parent="." instance=ExtResource("2_rgtrp")]
+unique_name_in_owner = true
+
+[node name="QuerySessionRequest" parent="." instance=ExtResource("2_rgtrp")]
+unique_name_in_owner = true
+connect_type = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ModelsLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "MODELS_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/ModelsLabel" instance=ExtResource("3_v4h17")]
+
+[node name="ComboBox" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_tqaq3")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+items = Array[ExtResource("5_p54xj")]([SubResource("Resource_fw3wp"), SubResource("Resource_p54xj"), SubResource("Resource_7pbt5")])
+
+[node name="LoginButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_akvnj")
+text = "LOGIN_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/LoginButton" instance=ExtResource("3_v4h17")]
+
+[node name="CAValidationButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_akvnj")
+text = "CA_VALIDATION_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer/CAValidationButton" instance=ExtResource("3_v4h17")]
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("7_4a5c6")
+
+[node name="ChatBubbleContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="SecureTextEdit" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("8_rlk1j")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 256)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="SessionsLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("9_0kqkx")
+theme_override_font_sizes/font_size = 24
+text = "SESSIONS_NAME"
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/SessionsLabel" instance=ExtResource("3_v4h17")]
+
+[node name="ManageSessionsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_akvnj")
+theme_override_constants/icon_max_width = 35
+icon = ExtResource("10_s1rm1")
+icon_alignment = 1
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/ManageSessionsButton" instance=ExtResource("3_v4h17")]
+
+[node name="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("11_lapgp")]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="DefaultSessionButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer" groups=["Sessions"] instance=ExtResource("12_fw3wp")]
+layout_mode = 2
+text = "DEFAULT_SESSION_NAME"
+group = "Sessions"
+selected = true
+
+[node name="SessionsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NewSessionButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_akvnj")
+text = "NEW_SESSION_NAME"
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/NewSessionButton" instance=ExtResource("3_v4h17")]
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="request_completed" from="SessionsRequest" to="." method="_on_sessions_request_request_completed"]
+[connection signal="request_completed" from="AddSessionRequest" to="." method="_on_add_session_request_request_completed"]
+[connection signal="request_completed" from="QuerySessionRequest" to="." method="_on_query_session_request_request_completed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CAValidationButton" to="." method="_on_ca_validation_button_pressed"]
+[connection signal="ai_chat" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_ai_chat"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/ManageSessionsButton" to="." method="_on_manage_sessions_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/NewSessionButton" to="." method="_on_new_conversation_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

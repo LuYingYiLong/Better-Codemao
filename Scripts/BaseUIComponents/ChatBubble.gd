@@ -18,11 +18,28 @@ extends PanelContainer
 	set(value):
 		content = value
 		rich_content.init_contents(content)
+@export_multiline var think: String:
+	set(value):
+		think = value
+		rich_think.visible = !think.is_empty()
+		rich_think.init_contents(think)
+@export var reasoning_time: int:
+	set(value):
+		reasoning_time = value
+		reasoning_time_panel.visible = reasoning_time > 0
+		reasoning_time_label.text = "%s: %s%s" %[
+			TranslationServer.translate("REASONING_TIME_NAME"),
+			reasoning_time,
+			TranslationServer.translate("SECOND_NAME")
+			]
 
 @onready var other_mask = %OtherMask
 @onready var other_avatar_texture = %OtherAvatarTexture
 @onready var bubble = %Bubble
 @onready var theme_painter = %ThemePainter
+@onready var reasoning_time_panel = %ReasoningTimePanel
+@onready var reasoning_time_label = %ReasoningTimeLabel
+@onready var rich_think = %RichThink
 @onready var rich_content = %RichContent
 @onready var my_mask = %MyMask
 @onready var my_avatar_texture = %MyAvatarTexture

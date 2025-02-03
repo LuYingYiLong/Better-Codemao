@@ -269,6 +269,7 @@ func on_post_card_scene_pressed(data: Dictionary) -> void:
 	var forum_history: Dictionary = Application.load_json_file(Application.FORUM_HISTORY_PATH)
 	var items: Array = forum_history.get("items", [])
 	items.insert(0, data)
+	
 	#检查items是否有和该帖子ID相匹配的item，若有则删除
 	if items.size() >= 2:
 		var index: int = 1

@@ -303,6 +303,25 @@ func string_to_hex(input: String) -> String:
 		hex_char = hex_char + "%" + "%02x" %byte
 	return hex_char.to_upper()
 
+# Unicode 解码
+func decode_unicode(encoded_str: String) -> String:
+	var result: String = ""
+	var i: int = 0
+	while i < encoded_str.length():
+		if encoded_str.substr(i, 2) == "\\u":
+			# 提取 Unicode 编码部分（4 个十六进制字符）
+			var hex_code = encoded_str.substr(i + 2, 4)
+			# 将十六进制转换为整数
+			var char_code = int("0x" + hex_code)
+			# 将整数转换为对应的 Unicode 字符
+			result += char(char_code)
+			i += 6  # 跳过 "\uXXXX" 部分
+		else:
+			# 直接添加普通字符
+			result += encoded_str[i]
+			i += 1
+	return result
+
 # 时间戳转北京时间
 func adjust_to_beijing_time_from_unix_time(unix_time_val: int) -> Dictionary:
 	return adjust_to_beijing_time(Time.get_datetime_dict_from_unix_time(unix_time_val))

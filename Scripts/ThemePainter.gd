@@ -1,6 +1,5 @@
 extends Node
 
-@export_enum("Auto", "Light", "Dark") var theme_mode: int
 @export var translucent: bool = false
 @export_group("PanelContainer")
 @export_enum("Style box", "Light color", "Dark color") var panel_container_style: int = 0
@@ -13,9 +12,7 @@ func _ready() -> void:
 
 func update_theme() -> void:
 	var node = get_parent()
-	var dark_mode: int = 0
-	if theme_mode == 1: dark_mode = Settings.dark_mode
-	else: dark_mode = theme_mode - 1
+	var dark_mode: int = Settings.dark_mode
 	if dark_mode == 2:
 		var dark_mode_checker: DarkModeChecker = DarkModeChecker.new()
 		dark_mode = int(dark_mode_checker.is_dark_mode_enabled())

@@ -58,6 +58,8 @@ offset_bottom = 215.0
 theme_override_styles/panel = ExtResource("1_2bf04")
 script = ExtResource("1_0bhmr")
 
+[node name="ThemePainter" parent="." instance=ExtResource("5_5a4rs")]
+
 [node name="Card" type="Button" parent="."]
 layout_mode = 2
 mouse_default_cursor_shape = 2
