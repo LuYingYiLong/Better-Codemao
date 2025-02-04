@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://26pd5c21ql3c"]
+
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="1_mta1x"]
+[ext_resource type="Script" uid="uid://bkkipgphnc03j" path="res://Scripts/Settings/DeveloperToolsMenu.gd" id="1_v628w"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_4uc0o"]
+[ext_resource type="PackedScene" uid="uid://b56q43ue36r4q" path="res://Scenes/Settings/OptionBox.tscn" id="3_4uc0o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v628w"]
+
+[node name="DeveloperToolsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v628w")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mta1x")
+
+[node name="ThemePainter" parent="ScrollContainer" instance=ExtResource("2_4uc0o")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_v628w")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="OptionBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UIGalleryOption" parent="ScrollContainer/MarginContainer/PanelContainer/MarginContainer/OptionBoxContainer" instance=ExtResource("3_4uc0o")]
+layout_mode = 2
+text = "UI Gallery"
+description = ""
+
+[node name="QRCodeOption" parent="ScrollContainer/MarginContainer/PanelContainer/MarginContainer/OptionBoxContainer" instance=ExtResource("3_4uc0o")]
+layout_mode = 2
+text = "QR Code"
+description = ""

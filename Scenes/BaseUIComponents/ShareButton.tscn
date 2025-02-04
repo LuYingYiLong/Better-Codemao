@@ -13,9 +13,9 @@ offset_bottom = 37.0
 text_overrun_behavior = 4
 script = ExtResource("1_3ptvt")
 
+[node name="ThemePainter" parent="." instance=ExtResource("3_eoi2l")]
+
 [node name="FlyShareMenu" parent="." instance=ExtResource("2_eoi2l")]
 unique_name_in_owner = true
-
-[node name="ThemePainter" parent="." instance=ExtResource("3_eoi2l")]
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

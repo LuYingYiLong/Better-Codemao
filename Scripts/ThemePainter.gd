@@ -30,10 +30,10 @@ func update_theme() -> void:
 					elif panel_container_style == 2: style_box.bg_color = Color.html("#f3f3f3")
 					style_box.border_color = Color.html("#e5e5e5")
 
-		if node is Label:
+		elif node is Label:
 			if translucent: node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_translucent_palette))
 			else: node.add_theme_color_override("font_color", Color.html(GlobalTheme.light_mode_palette))
-		if (node is Button or \
+		elif (node is Button or \
 				node is ScrollContainer or \
 				node is LineEdit or \
 				node is TextEdit or \
@@ -42,7 +42,10 @@ func update_theme() -> void:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
 			if get_res_theme(file_name) != dark_mode: node.theme = get_opposite_theme(node.theme)
-		if node is TextureRect:
+		elif node is QRCodeRect:
+			node.light_module_color = Color.html("ffffff")
+			node.dark_module_color = Color.html("000000")
+		elif node is TextureRect:
 			if translucent: node.self_modulate = Color.html(GlobalTheme.light_mode_translucent_palette)
 			else: node.self_modulate = Color.html(GlobalTheme.light_mode_palette)
 
@@ -59,8 +62,8 @@ func update_theme() -> void:
 					elif panel_container_style == 2: style_box.bg_color = Color.html("#202020")
 					style_box.border_color = Color.html("#3a3a3a")
 
-		if node is Label: node.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
-		if (node is Button or \
+		elif node is Label: node.add_theme_color_override("font_color", Color.html(GlobalTheme.dark_mode_font_color))
+		elif (node is Button or \
 				node is ScrollContainer or \
 				node is LineEdit or \
 				node is TextEdit or \
@@ -69,12 +72,12 @@ func update_theme() -> void:
 			var file_name: String = get_theme_resource_name(node)
 			if !has_theme_suffix(file_name): return
 			if get_res_theme(file_name) != dark_mode: node.theme = get_opposite_theme(node.theme)
-		if node is TextureRect:
-			if translucent: node.self_modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)
-			else: node.self_modulate = Color.html(GlobalTheme.dark_mode_palette)
-		if node is QRCodeRect:
+		elif node is QRCodeRect:
 			node.light_module_color = Color.html("2b2b2b")
 			node.dark_module_color = Color.html("ffffff")
+		elif node is TextureRect:
+			if translucent: node.self_modulate = Color.html(GlobalTheme.dark_mode_translucent_palette)
+			else: node.self_modulate = Color.html(GlobalTheme.dark_mode_palette)
 
 func get_panel_resource_name(node) -> String:
 	return node.get_theme_stylebox("panel").resource_path.get_file().trim_suffix(".tres")
