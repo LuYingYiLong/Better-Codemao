@@ -1,0 +1,379 @@
+[gd_scene load_steps=17 format=3 uid="uid://dw88kfb87jdls"]
+
+[ext_resource type="Script" uid="uid://jo2jnk8whkkj" path="res://Scripts/ColudAI/FlyUserDetails.gd" id="1_84nau"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="1_oq1i3"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_hufji"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="2_prfhv"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_84nau"]
+[ext_resource type="PackedScene" uid="uid://cx75ylkifpdjf" path="res://Scenes/BaseUIComponents/LineEdit.tscn" id="4_hufji"]
+[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="5_6qs8a"]
+[ext_resource type="PackedScene" uid="uid://guycskdfsy8d" path="res://Scenes/BaseUIComponents/TextEdit.tscn" id="5_prfhv"]
+[ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/SimpleButton-Light.tres" id="7_f8vl1"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="8_6qs8a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8vl1"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74, 0.74, 0.74, 0.490196)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.0980392)
+shadow_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tylbv"]
+bg_color = Color(0.952941, 0.952941, 0.952941, 1)
+border_width_top = 1
+border_color = Color(0.898039, 0.898039, 0.898039, 1)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="Animation" id="Animation_hufji"]
+resource_name = "Hide"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackGround:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.196078), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.15, 15),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_84nau"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackGround:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.196078)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_prfhv"]
+resource_name = "Show"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackGround:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.196078)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.15, 15),
+"update": 0,
+"values": [Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6qs8a"]
+_data = {
+&"Hide": SubResource("Animation_hufji"),
+&"RESET": SubResource("Animation_84nau"),
+&"Show": SubResource("Animation_prfhv")
+}
+
+[node name="FlyUserDetails" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_84nau")
+
+[node name="QueryPromptRequest" parent="." instance=ExtResource("2_hufji")]
+unique_name_in_owner = true
+progress_bar = NodePath("../PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox/PromptWordsEdit/ProgressBar")
+
+[node name="SetPromptRequest" parent="." instance=ExtResource("2_hufji")]
+unique_name_in_owner = true
+progress_bar = NodePath("../PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox/PromptWordsEdit/ProgressBar")
+
+[node name="BlackGround" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(512, 550)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -275.0
+offset_right = 256.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(256, 275)
+theme_override_styles/panel = SubResource("StyleBoxFlat_f8vl1")
+
+[node name="ThemePainter" parent="PanelContainer" instance=ExtResource("1_oq1i3")]
+panel_container_style = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="UserNmaeLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("2_prfhv")
+theme_override_font_sizes/font_size = 30
+text = "UserNmae"
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/UserNmaeLabel" instance=ExtResource("1_oq1i3")]
+
+[node name="EmailBox" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EmailLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/EmailBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("3_84nau")
+theme_override_font_sizes/font_size = 20
+text = "EMAIL_NAME"
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/EmailBox/EmailLabel" instance=ExtResource("1_oq1i3")]
+
+[node name="EmailEdit" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/EmailBox" instance=ExtResource("4_hufji")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+editable = false
+
+[node name="CABox" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CALabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("3_84nau")
+theme_override_font_sizes/font_size = 20
+text = "CA"
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/CALabel" instance=ExtResource("1_oq1i3")]
+
+[node name="CAEdit" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox" instance=ExtResource("4_hufji")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+editable = false
+
+[node name="CAValidationButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(320, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_f8vl1")
+text = "CA_VALIDATION_NAME"
+
+[node name="PromptWordsBox" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PromptWordsLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("3_84nau")
+theme_override_font_sizes/font_size = 20
+text = "PROMPT_WORDS_NAME"
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox/PromptWordsLabel" instance=ExtResource("1_oq1i3")]
+
+[node name="PromptWordsEdit" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox" instance=ExtResource("5_prfhv")]
+unique_name_in_owner = true
+layout_mode = 2
+editable = false
+
+[node name="ProgressBar" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox/PromptWordsEdit" instance=ExtResource("8_6qs8a")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChangePromptWordsButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_6qs8a")
+disabled = true
+text = "CHANGE_NAME"
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox/ChangePromptWordsButton" instance=ExtResource("1_oq1i3")]
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tylbv")
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/PanelContainer" instance=ExtResource("1_oq1i3")]
+panel_container_style = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="ButtonContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="OkButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_6qs8a")
+text = "OK_NAME"
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer/OkButton" instance=ExtResource("1_oq1i3")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_6qs8a")
+}
+autoplay = "Show"
+
+[connection signal="request_completed" from="QueryPromptRequest" to="." method="_on_query_prompt_request_request_completed"]
+[connection signal="request_completed" from="SetPromptRequest" to="." method="_on_set_prompt_request_request_completed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/CAValidationButton" to="." method="_on_ca_validation_button_pressed"]
+[connection signal="text_changed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox/PromptWordsEdit" to="." method="_on_prompt_words_edit_text_changed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox/ChangePromptWordsButton" to="." method="_on_change_prompt_words_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer/OkButton" to="." method="_on_ok_button_pressed"]

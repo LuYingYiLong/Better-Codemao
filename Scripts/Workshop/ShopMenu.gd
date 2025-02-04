@@ -55,7 +55,6 @@ func set_data(data: Dictionary) -> void:
 	shop_request.request("https://api.codemao.cn/web/shops/%s" %id)
 	works_request.request("https://api.codemao.cn/web/works/subjects/%s/works?&offset=0&limit=%s&sort=-created_at,-id&user_id=%s&work_subject_id=%s" %[id, LOADS_NUMBER, Application.user_id, id])
 	comments_request.request("https://api.codemao.cn/web/discussions/%s/comments?source=WORK_SHOP&sort=-created_at&limit=%s&offset=0" %[id, COMMENTS_LOADS_NUMBER])
-	secure_text_edit.set_toolbar_disabled(true)
 
 func _on_shop_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json_class: JSON = JSON.new()

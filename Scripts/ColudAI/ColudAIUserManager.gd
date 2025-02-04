@@ -1,7 +1,8 @@
 extends Node
 
 signal login_data_update(new_login_data: Dictionary)
-signal sessions_update(sessions: Array)
+signal user_data_update(new_user_data: Dictionary)
+signal ca_update(new_ca: String)
 
 # 保存登录数据
 func save_login_data(data: Dictionary) -> void:
@@ -18,71 +19,59 @@ func get_login_data() -> Dictionary:
 	var coludai: Dictionary = login_data.get("coludai", {})
 	return coludai.get("login_data", {})
 
-# 添加会话，返回当前会话索引
-func add_session(session_id: String, session_name: String) -> int:
-	var sessions: Array = get_sessions()
-	sessions.append({"id": session_id, "name": session_name})
-	save_sessions(sessions)
-	sessions_update.emit(sessions)
-	return sessions.size() - 1
+# 保存 Cookie
+func save_cookie(cookie: String) -> void:
+	var login_data: Dictionary = Application.load_json_file(Application.LOGIN_DATA_PATH)
+	var coludai: Dictionary = login_data.get("coludai", {})
+	coludai["cookie"] = cookie
+	login_data["coludai"] = coludai
+	Application.save_json_file(Application.LOGIN_DATA_PATH, login_data)
 
-# 移除会话
-func remove_session(session_id: String) -> void:
-	var sessions: Array = get_sessions()
-	var index: int = 0
-	for session: Dictionary in sessions:
-		if session.get("id") == session_id: sessions.remove_at(index)
-		index += 1
-	sessions_update.emit(sessions)
-	save_sessions(sessions)
+# 获取 Cookie
+func get_cookie() -> String:
+	var login_data: Dictionary = Application.load_json_file(Application.LOGIN_DATA_PATH)
+	var coludai: Dictionary = login_data.get("coludai", {})
+	return coludai.get("cookie", "")
 
-# 通过会话名字查询会话ID
-func find_session_id(session_name: String) -> String:
-	var sessions: Array = get_sessions()
-	for session: Dictionary in sessions:
-		if session.get("name") == session_name: return session.get("id")
-	return ""
-
-# 重命名会话名
-func rename_session_name(session_id: String, new_name: String) -> void:
-	var sessions: Array = get_sessions()
-	for session: Dictionary in sessions:
-		if session.get("id") == session_id: session["name"] = new_name
-	sessions_update.emit(sessions)
-	save_sessions(sessions)
-
-# 获取会话列表
-func get_sessions() -> Array:
+# 保存用户数据
+func save_user_data(data: Dictionary) -> void:
 	var user_data: Dictionary = Application.load_json_file(Application.USER_DATA_PATH)
-	var couldai: Dictionary = user_data.get("couldai", {})
-	var sessions: Array = couldai.get("sessions", [])
-	return sessions
-
-func get_session(session_id: String) -> Dictionary:
-	var sessions: Array = get_sessions()
-	for session: Dictionary in sessions:
-		if session.get("id") == session_id: return session
-	return {}
-
-# 保存会话列表
-func save_sessions(sessions: Array) -> void:
-	var user_data: Dictionary = Application.load_json_file(Application.USER_DATA_PATH)
-	var couldai: Dictionary = user_data.get("couldai", {})
-	couldai["sessions"] = sessions
-	user_data["couldai"] = couldai
+	var coludai: Dictionary = user_data.get("coludai", {})
+	coludai["user_data"] = data
+	user_data["coludai"] = coludai
 	Application.save_json_file(Application.USER_DATA_PATH, user_data)
+	user_data_update.emit(data)
 
-# 获取当前会话
-func get_current_session() -> Dictionary:
+# 获取用户数据
+func get_user_data() -> Dictionary:
 	var user_data: Dictionary = Application.load_json_file(Application.USER_DATA_PATH)
-	var couldai: Dictionary = user_data.get("couldai", {})
-	var sessions: Array = couldai.get("sessions", [])
-	var current_session_index: int = int(couldai.get("current_session_index", -1))
-	if current_session_index < 0 or current_session_index > sessions.size() - 1: return {}
-	else: return sessions[current_session_index]
+	var coludai: Dictionary = user_data.get("coludai", {})
+	return coludai.get("user_data", {})
 
-# 设置当前会话
-func set_current_session(index: int) -> void:
+# 保存 CA
+func save_ca(ca: String) -> void:
+	var login_data: Dictionary = Application.load_json_file(Application.LOGIN_DATA_PATH)
+	var coludai: Dictionary = login_data.get("coludai", {})
+	coludai["ca"] = ca
+	login_data["coludai"] = coludai
+	Application.save_json_file(Application.LOGIN_DATA_PATH, login_data)
+	ca_update.emit(ca)
+
+# 获取 CA
+func get_ca() -> String:
+	var login_data: Dictionary = Application.load_json_file(Application.LOGIN_DATA_PATH)
+	var coludai: Dictionary = login_data.get("coludai", {})
+	return coludai.get("ca", "c9b3f395-f8e6-47f4-98c0-64b5ac6fc1f0")
+
+# 退出登录
+func sign_out() -> void:
+	var login_data: Dictionary = Application.load_json_file(Application.LOGIN_DATA_PATH)
+	var login_to_coludai: Dictionary = login_data.get("coludai", {})
+	login_to_coludai = {}
+	Application.save_json_file(Application.LOGIN_DATA_PATH, login_data)
 	var user_data: Dictionary = Application.load_json_file(Application.USER_DATA_PATH)
-	var couldai: Dictionary = user_data.get("couldai", {})
-	couldai["current_session_index"] = index
+	var user_to_coludai: Dictionary = user_data.get("coludai", {})
+	user_to_coludai = {}
+	Application.save_json_file(Application.USER_DATA_PATH, user_data)
+	login_data_update.emit(login_to_coludai)
+	user_data_update.emit(user_to_coludai)

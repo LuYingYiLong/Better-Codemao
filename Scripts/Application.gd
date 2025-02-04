@@ -77,6 +77,26 @@ func load_json_file(file_path: String):
 			return {}
 	else: return {}
 
+# 从响应头提取 Cookie
+func store_cookies_from_headers(headers: PackedStringArray) -> String:
+	var target_cookies: Dictionary
+	var response_headers: Dictionary
+	for header: String in headers:
+		response_headers[header.get_slice(": ", 0)] = header.get_slice(": ", 1)
+		if response_headers.has("Set-Cookie") or response_headers.has("set-cookie"):
+			for set_cookie in response_headers:
+				var cookie_parts = response_headers.get(set_cookie).split("; ")
+				var name_value = cookie_parts[0].split("=")
+				if name_value.size() == 2:
+					var _name = name_value[0]
+					var value = name_value[1]
+					target_cookies[_name] = value
+			var cookie_str = ""
+			for _name in target_cookies.keys():
+				cookie_str += _name + "=" + target_cookies[_name] + "; "
+			return "Cookie: " + cookie_str.trim_suffix("; ")
+	return ""
+
 #生成 Cookie 请求头
 func generate_cookie_header() -> String:
 	var cookie_str = ""
@@ -96,6 +116,7 @@ func sign_out() -> void:
 	Settings.automatic_login = false
 	Settings.save_settings_config()
 	user_avatar = null
+	ColudAIUserManager.sign_out()
 
 func html_to_text(html: String):
 	var regex = RegEx.new()

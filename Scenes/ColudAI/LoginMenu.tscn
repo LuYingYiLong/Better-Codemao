@@ -474,6 +474,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3rgdb")
 
+[node name="SSOLoginRequest" parent="." instance=ExtResource("2_nbkqs")]
+unique_name_in_owner = true
+progress_bar = NodePath("../LoginMenuMarginContainer/LoginMenu/ProgressBar")
+
 [node name="LoginRequest" parent="." instance=ExtResource("2_nbkqs")]
 unique_name_in_owner = true
 progress_bar = NodePath("../LoginMenuMarginContainer/LoginMenu/ProgressBar")
@@ -555,7 +559,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme = ExtResource("8_oadbf")
-placeholder_text = "Email"
+placeholder_text = "ID"
 select_all_on_focus = true
 caret_blink = true
 
@@ -710,6 +714,7 @@ libraries = {
 }
 autoplay = "ShowLoginMenu"
 
+[connection signal="request_completed" from="SSOLoginRequest" to="." method="_on_sso_login_request_request_completed"]
 [connection signal="request_completed" from="LoginRequest" to="." method="on_login_received"]
 [connection signal="pressed" from="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VisitorLoginButton" to="." method="_on_visitor_login_button_pressed"]
 [connection signal="pressed" from="LoginMenuMarginContainer/LoginMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8dcimn7s6uiy"]
+[gd_scene load_steps=17 format=3 uid="uid://c8dcimn7s6uiy"]
 
 [ext_resource type="Script" uid="uid://btd1sn2h4oxb7" path="res://Scripts/ColudAI/ColudAIMenu.gd" id="1_7xtks"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_rgtrp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://fvyup8kkg73i" path="res://Scripts/PopupItem.gd" id="5_p54xj"]
 [ext_resource type="Theme" uid="uid://c7vkhqml4gcnr" path="res://Resources/Themes/SmallButton-Light.tres" id="6_akvnj"]
 [ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="7_4a5c6"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="7_7pbt5"]
 [ext_resource type="PackedScene" uid="uid://c7tf2uyqb86vx" path="res://Scenes/BaseUIComponents/SecureTextEdit.tscn" id="8_rlk1j"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="9_0kqkx"]
 [ext_resource type="Texture2D" uid="uid://kmkj3ojscglm" path="res://Resources/Textures/Settings2.svg" id="10_s1rm1"]
@@ -53,6 +54,7 @@ unique_name_in_owner = true
 [node name="QuerySessionRequest" parent="." instance=ExtResource("2_rgtrp")]
 unique_name_in_owner = true
 connect_type = 1
+progress_bar = NodePath("../MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ProgressBar")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -121,6 +123,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
+[node name="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("7_7pbt5")]
+visible = false
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -187,15 +193,16 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="DefaultSessionButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer" groups=["Sessions"] instance=ExtResource("12_fw3wp")]
+[node name="SessionsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DefaultSessionButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/SessionsContainer" groups=["Sessions"] instance=ExtResource("12_fw3wp")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "DEFAULT_SESSION_NAME"
 group = "Sessions"
 selected = true
-
-[node name="SessionsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="NewSessionButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -217,5 +224,6 @@ unique_name_in_owner = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CAValidationButton" to="." method="_on_ca_validation_button_pressed"]
 [connection signal="ai_chat" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/SecureTextEdit" to="." method="_on_secure_text_edit_ai_chat"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/ManageSessionsButton" to="." method="_on_manage_sessions_button_pressed"]
+[connection signal="metadata_output" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/SessionsContainer/DefaultSessionButton" to="." method="_on_session_button_metadata_output"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/NewSessionButton" to="." method="_on_new_conversation_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

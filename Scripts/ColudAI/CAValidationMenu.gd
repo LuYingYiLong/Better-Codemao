@@ -32,11 +32,7 @@ func _on_ca_validation_request_request_completed(_result: int, _response_code: i
 	if json.get("success"):
 		verification_info_label.add_theme_color_override("font_color", Color.html(GlobalTheme.system_ok_message_color))
 		verification_info_label.text = TranslationServer.translate("VERIFICATION_SUCCEEDED_NAME")
-		var login_data: Dictionary = Application.load_json_file(Application.LOGIN_DATA_PATH)
-		var couldai: Dictionary = login_data.get("couldai", {})
-		couldai["ca"] = auto_suggest_box.text
-		login_data["couldai"] = couldai
-		Application.save_json_file(Application.LOGIN_DATA_PATH, login_data)
+		ColudAIUserManager.save_ca(auto_suggest_box.text)
 	else:
 		verification_info_label.add_theme_color_override("font_color", Color.html(GlobalTheme.system_error_message_color))
 		verification_info_label.text = TranslationServer.translate("VERIFICATION_FAILED_NAME")

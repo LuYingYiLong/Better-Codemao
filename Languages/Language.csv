@@ -5,6 +5,7 @@ VISITOR_LOGIN_NAME,游客登录,Visitor login
 PLEASE_LOGIN_FIRST_NAME,请先登录,Please log in first
 VISITOR_NAME,游客,Visitor
 IDENTITY_NAME,手机号,Identity
+EMAIL_NAME,邮箱,Email
 PASSWORD_NAME,密码,Password
 AUTOMATIC_LOGIN_NAME,自动登录,Automatic login
 ENTER_NAME,进入,Enter
@@ -92,6 +93,8 @@ PREVIOUS_NAME,上一页,Previous
 GO_BACK_TO_THE_HOME_PAGE_NAME,返回到主页,Go back to the home page
 NEXT_NAME,下一页,Next
 MODELS_NAME,模型,Models
+PROMPT_WORDS_NAME,提示词,Prompt words
+CHANGE_NAME,更改,Change
 REASONING_TIME_NAME,推理时间,Reasoning time
 SECOND_NAME,秒,Second
 SESSIONS_NAME,会话,Sessions
