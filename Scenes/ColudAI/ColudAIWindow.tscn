@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbpxo0n5eer8"]
+
+[ext_resource type="Script" uid="uid://jioqlq58vfmc" path="res://Scripts/ColudAI/ColudAIWindow.gd" id="1_2obl6"]
+[ext_resource type="PackedScene" uid="uid://bwty5frjl5bgq" path="res://Scenes/BaseUIComponents/BaseBlackground.tscn" id="2_wyc8w"]
+[ext_resource type="PackedScene" uid="uid://c8dcimn7s6uiy" path="res://Scenes/ColudAI/ColudAIMenu.tscn" id="3_dayj7"]
+
+[node name="ColudAIWindow" type="Window"]
+title = "ColudAI"
+initial_position = 2
+size = Vector2i(1152, 648)
+visible = false
+force_native = true
+script = ExtResource("1_2obl6")
+
+[node name="BaseBlackground" parent="." instance=ExtResource("2_wyc8w")]
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="ColudAIMenu" parent="." instance=ExtResource("3_dayj7")]
+unique_name_in_owner = true
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pin" from="ColudAIMenu" to="." method="_on_colud_ai_menu_pin"]
+[connection signal="unpin" from="ColudAIMenu" to="." method="_on_colud_ai_menu_unpin"]

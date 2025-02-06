@@ -1,5 +1,6 @@
 extends Control
 
+@onready var sessions_request = %SessionsRequest
 @onready var delete_session_request = %DeleteSessionRequest
 
 @onready var session_id_card_container = %SessionIDCardContainer
@@ -11,20 +12,24 @@ const SESSION_ID_CARD_SCENE = preload("res://Scenes/ColudAI/SessionIDCard.tscn")
 var delete_sessions: Array
 
 func _ready() -> void:
-	populate_sessions()
+	sessions_request.request("https://ai.coludai.cn/api/user/sessions?", \
+			[ColudAIUserManager.get_cookie()], \
+			HTTPClient.METHOD_GET)
 
-func populate_sessions() -> void:
-	var sessions: Array = ColudAIUserManager.get_sessions()
+func _on_query_session_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	populate_sessions(json.get("array", []))
+
+func populate_sessions(sessions: Array) -> void:
 	for node in session_id_card_container.get_children():
 		node.queue_free()
 	for session: Dictionary in sessions:
 		var session_id_card_scene = SESSION_ID_CARD_SCENE.instantiate()
 		session_id_card_container.add_child(session_id_card_scene)
-		session_id_card_scene.session_id = session.get("id", "")
-		session_id_card_scene.session_name = session.get("name", "")
+		session_id_card_scene.session_id = session.get("sessionid", "")
+		session_id_card_scene.session_name = session.get("name", "ERROR")
 
 func _on_delete_session_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	print(body.get_string_from_utf8())
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	if json == null: return
 	if json.get("message") == "ok": ColudAIUserManager.remove_session(delete_sessions.pop_back())
@@ -33,8 +38,9 @@ func _on_delete_session_request_request_completed(_result: int, _response_code: 
 				["Content-Type: Application/json"], \
 				HTTPClient.METHOD_POST, \
 				JSON.stringify({"sessionid": delete_sessions[delete_sessions.size() - 1]}))
-		populate_sessions()
-	else: animation_player.play("Hide")
+	else:
+		ColudAIUserManager.sessions_update.emit()
+		animation_player.play("Hide")
 
 func _on_cancel_button_pressed() -> void:
 	animation_player.play("Hide")

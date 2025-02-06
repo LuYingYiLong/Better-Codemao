@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://w565eh6uxb5a" path="res://Resources/Textures/FullScreen.svg" id="6_7vgtg"]
 [ext_resource type="Texture2D" uid="uid://bkm17jqunexj3" path="res://Resources/Textures/Refresh.svg" id="6_kxv0f"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_uuxp6"]
-[ext_resource type="Texture2D" uid="uid://di1fixh8mr52o" path="res://Resources/Textures/Link.svg" id="7_wxigk"]
 [ext_resource type="PackedScene" uid="uid://daq0uuavjfgf1" path="res://Scenes/User/AuthorLevelTag.tscn" id="8_rtf2g"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="9_ll54y"]
+[ext_resource type="Texture2D" uid="uid://dk2lq7dxuj16r" path="res://Resources/Textures/Share.svg" id="9_upxpw"]
 [ext_resource type="Texture2D" uid="uid://17vbiuntajpd" path="res://Resources/Textures/Like.svg" id="10_6pgep"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="11_1udrr"]
 [ext_resource type="PackedScene" uid="uid://doovx6ujtt10p" path="res://Scenes/Work/WorkTag.tscn" id="11_dj7m7"]
@@ -180,7 +180,7 @@ size_flags_horizontal = 10
 mouse_default_cursor_shape = 2
 theme = ExtResource("16_vn42d")
 theme_override_constants/icon_max_width = 30
-icon = ExtResource("7_wxigk")
+icon = ExtResource("9_upxpw")
 icon_alignment = 1
 
 [node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/OpenInBrowserButton" instance=ExtResource("5_fdmke")]

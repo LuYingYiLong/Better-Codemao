@@ -6,6 +6,9 @@ extends Control
 
 @onready var combo_box = %ComboBox
 @onready var login_button = %LoginButton
+@onready var open_in_new_window_button = %OpenInNewWindowButton
+@onready var pin_button = %PinButton
+@onready var unpin_button = %UnpinButton
 @onready var secure_text_edit = %SecureTextEdit
 @onready var chat_bubble_container = %ChatBubbleContainer
 
@@ -18,6 +21,9 @@ const MAX_SESSIONS: int = 10
 const COLUDAI_AVATAR: Texture = preload("res://Resources/Textures/COLUDAI.svg")
 const CHAT_BUBBLE_SCENE = preload("res://Scenes/BaseUIComponents/ChatBubble.tscn")
 const BASE_BUTTON_SCENE = preload("res://Scenes/BaseUIComponents/BaseButton.tscn")
+
+signal pin
+signal unpin
 
 var chat_client: HTTPClient = HTTPClient.new()
 var honst: String
@@ -45,7 +51,8 @@ var session_id: String:
 var session_name: String
 
 func _ready():
-	ColudAIUserManager.user_data_update.connect(_on_coludai_user_manager_user_data_update)
+	ColudAIUserManager.user_data_update.connect(_on_user_data_update)
+	ColudAIUserManager.sessions_update.connect(_on_sessions_update)
 	secure_text_edit.set_ai_chat("ColudAI")
 	default_session_button.metadata = ""
 	var user_data: Dictionary = ColudAIUserManager.get_user_data()
@@ -56,7 +63,11 @@ func _ready():
 				[ColudAIUserManager.get_cookie()], \
 				HTTPClient.METHOD_GET)
 
-func _on_coludai_user_manager_user_data_update(new_user_data: Dictionary) -> void:
+func set_data(data: Dictionary) -> void:
+	open_in_new_window_button.visible = !data.get("in_new_window", false)
+	pin_button.visible = data.get("in_new_window", false)
+
+func _on_user_data_update(new_user_data: Dictionary) -> void:
 	logged_in = !new_user_data.is_empty()
 	if logged_in:
 		login_button.text = new_user_data.get("data").get("fields").get("用户名")
@@ -66,12 +77,30 @@ func _on_coludai_user_manager_user_data_update(new_user_data: Dictionary) -> voi
 	else:
 		login_button.text = "LOGIN_NAME"
 
+func _on_sessions_update() -> void:
+	sessions_request.request("https://ai.coludai.cn/api/user/sessions?", \
+			[ColudAIUserManager.get_cookie()], \
+			HTTPClient.METHOD_GET)
+
 func _on_login_button_pressed() -> void:
 	if logged_in: Application.async_load_scene.emit("res://Scenes/ColudAI/FlyUserDetails.tscn", {})
 	else: Application.async_load_scene.emit("res://Scenes/ColudAI/LoginMenu.tscn", {})
 
 func _on_ca_validation_button_pressed() -> void:
 	Application.async_load_scene.emit("res://Scenes/ColudAI/CAValidationMenu.tscn", {})
+
+func _on_open_in_new_window_button_pressed() -> void:
+	Application.async_load_scene.emit("res://Scenes/ColudAI/ColudAIWindow.tscn", {"size": size})
+
+func _on_pin_button_pressed() -> void:
+	pin_button.hide()
+	unpin_button.show()
+	pin.emit()
+
+func _on_unpin_button_pressed() -> void:
+	pin_button.show()
+	unpin_button.hide()
+	unpin.emit()
 
 func _on_secure_text_edit_ai_chat(text: String) -> void:
 	if streaming: return
@@ -174,6 +203,7 @@ func add_session(new_session_name: String) -> void:
 
 func _on_sessions_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	if not json.get("array") is Array: return
 	var items: Array = json.get("array", [])
 	for item: Dictionary in items:
 		var base_button_scene = BASE_BUTTON_SCENE.instantiate()
@@ -234,7 +264,7 @@ func generate_token(text: String) -> String:
 	return text.md5_text()
 
 func _on_manage_sessions_button_pressed() -> void:
-	Application.async_load_scene.emit("res://Scenes/ColudAI/FlayManageSessions.tscn", {})
+	Application.async_load_scene.emit("res://Scenes/ColudAI/FlyManageSessions.tscn", {})
 
 func _on_new_conversation_button_pressed() -> void:
 	if sessions_container.get_child_count() - 1 >= MAX_SESSIONS:
@@ -248,5 +278,5 @@ func _content_dialog_callback(_index: int) -> void:
 	content_dialog.hide_content_dialog()
 	content_dialog.disconnect("callback", _content_dialog_callback)
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	elapsed_time += 1

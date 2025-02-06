@@ -1,20 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://boqgq58c1ex0b"]
+[gd_scene load_steps=12 format=3 uid="uid://boqgq58c1ex0b"]
 
 [ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="1_egnx5"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_bjhoj"]
 [ext_resource type="Script" uid="uid://dlvwn8fkrk5wp" path="res://Scripts/ColudAI/SessionIDCard.gd" id="2_vsc4v"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="3_5v54m"]
 [ext_resource type="Theme" uid="uid://c7vkhqml4gcnr" path="res://Resources/Themes/SmallButton-Light.tres" id="3_d6lwy"]
 [ext_resource type="Texture2D" uid="uid://cnn8ltmrnlqij" path="res://Resources/Textures/Rename.svg" id="4_vsc4v"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="4_xt5nn"]
 [ext_resource type="PackedScene" uid="uid://cx75ylkifpdjf" path="res://Scenes/BaseUIComponents/LineEdit.tscn" id="5_gurpn"]
 [ext_resource type="Texture2D" uid="uid://ccichedi4sflv" path="res://Resources/Textures/Delete.svg" id="5_xt5nn"]
 [ext_resource type="Texture2D" uid="uid://d0o0sfffy1yj5" path="res://Resources/Textures/Undo.svg" id="9_vsc4v"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="11_wr5nr"]
 
 [node name="SessionIDCard" type="PanelContainer"]
 offset_right = 480.0
 offset_bottom = 45.0
 theme_override_styles/panel = ExtResource("1_egnx5")
 script = ExtResource("2_vsc4v")
+
+[node name="RenameRequest" parent="." instance=ExtResource("3_5v54m")]
+unique_name_in_owner = true
+progress_bar = NodePath("../ProgressBar")
 
 [node name="ThemePainter" parent="." instance=ExtResource("2_bjhoj")]
 
@@ -91,6 +97,11 @@ icon_alignment = 1
 
 [node name="ThemePainter" parent="MarginContainer/HBoxContainer/UndoButton" instance=ExtResource("2_bjhoj")]
 
+[node name="ProgressBar" parent="." instance=ExtResource("11_wr5nr")]
+visible = false
+layout_mode = 2
+
+[connection signal="request_completed" from="RenameRequest" to="." method="_on_rename_request_request_completed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/SessionIDLabel" to="." method="_rename"]
 [connection signal="text_submitted" from="MarginContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/RenameButton" to="." method="_rename"]
