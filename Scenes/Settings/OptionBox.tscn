@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://b56q43ue36r4q"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_4rym5"]
-[ext_resource type="Script" path="res://Scripts/Settings/OptionBox.gd" id="2_xn38o"]
+[ext_resource type="Script" uid="uid://dfu4wt6brbm4j" path="res://Scripts/Settings/OptionBox.gd" id="2_xn38o"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_p2xmy"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="3_rd6d5"]
-[ext_resource type="Texture2D" uid="uid://di1fixh8mr52o" path="res://Resources/Textures/Link.svg" id="4_0hwcg"]
 [ext_resource type="Texture2D" uid="uid://cw0oar8pbxka2" path="res://Resources/Textures/LightArrow.svg" id="5_pr178"]
 [ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="5_y7p17"]
+[ext_resource type="Texture2D" uid="uid://dk2lq7dxuj16r" path="res://Resources/Textures/Share.svg" id="6_7ungk"]
 [ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="6_fuxi7"]
 [ext_resource type="PackedScene" uid="uid://cd2hiax67rgqi" path="res://Scenes/BaseUIComponents/ComboBox.tscn" id="7_t8efv"]
 
@@ -83,9 +83,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sj6wq"]
 _data = {
-"MouseEntered": SubResource("Animation_sqdm5"),
-"MouseExited": SubResource("Animation_03oa2"),
-"RESET": SubResource("Animation_ah0ha")
+&"MouseEntered": SubResource("Animation_sqdm5"),
+&"MouseExited": SubResource("Animation_03oa2"),
+&"RESET": SubResource("Animation_ah0ha")
 }
 
 [node name="OptionBox" type="PanelContainer"]
@@ -177,7 +177,7 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-texture = ExtResource("4_0hwcg")
+texture = ExtResource("6_7ungk")
 expand_mode = 1
 
 [node name="ThemePainter" parent="MarginContainer/HBoxContainer/LinkTexture" instance=ExtResource("3_p2xmy")]
@@ -236,7 +236,7 @@ use_native_dialog = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_sj6wq")
+&"": SubResource("AnimationLibrary_sj6wq")
 }
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

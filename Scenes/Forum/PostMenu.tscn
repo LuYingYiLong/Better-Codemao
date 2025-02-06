@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="5_ytj6e"]
 [ext_resource type="Theme" uid="uid://b7x5m4i1tmwo1" path="res://Resources/Themes/TitleLine-Light.tres" id="7_pggwr"]
 [ext_resource type="Texture2D" uid="uid://ddeh8htl365sg" path="res://Resources/Textures/RichText.svg" id="8_8nsta"]
-[ext_resource type="Texture2D" uid="uid://di1fixh8mr52o" path="res://Resources/Textures/Link.svg" id="8_ums52"]
 [ext_resource type="Texture2D" uid="uid://crt23j26ryky" path="res://Resources/Textures/Mirroring.svg" id="9_idpnt"]
 [ext_resource type="SystemFont" uid="uid://dnjetdjtsa8ww" path="res://Resources/Fonts/SystemFontLight.tres" id="9_vrxlf"]
 [ext_resource type="Texture2D" uid="uid://hcbgfg8by3t7" path="res://Resources/Textures/Text.svg" id="9_w60un"]
@@ -22,6 +21,7 @@
 [ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="14_wyd1l"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="15_6alh1"]
 [ext_resource type="PackedScene" uid="uid://dfb7taf7dr0jb" path="res://Scenes/BaseUIComponents/PaginationBarComponents/PaginationBar.tscn" id="16_0gukb"]
+[ext_resource type="Texture2D" uid="uid://dk2lq7dxuj16r" path="res://Resources/Textures/Share.svg" id="20_5fnrt"]
 [ext_resource type="PackedScene" uid="uid://p6qpvhy7k7xv" path="res://Scenes/Forum/RichContent.tscn" id="21_5fnrt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4781"]
@@ -293,7 +293,7 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("15_6alh1")
 theme_override_constants/icon_max_width = 26
-icon = ExtResource("8_ums52")
+icon = ExtResource("20_5fnrt")
 flat = true
 icon_alignment = 1
 

@@ -1,18 +1,17 @@
-[gd_scene load_steps=47 format=3 uid="uid://csg0n6d7u0rvf"]
+[gd_scene load_steps=46 format=3 uid="uid://csg0n6d7u0rvf"]
 
 [ext_resource type="Script" uid="uid://d0nrmwgp3ek3a" path="res://Scripts/Application.gd" id="1_5hvyn"]
 [ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/User/LoginMenu.tscn" id="2_1hfjc"]
 [ext_resource type="Texture2D" uid="uid://dvw5rmq3qqeoa" path="res://Resources/Textures/Workshop.svg" id="2_b44jh"]
 [ext_resource type="Script" uid="uid://d3jtldyqk0ffy" path="res://Scripts/SensitiveWordsRequest.gd" id="2_epunv"]
 [ext_resource type="Script" uid="uid://0afy0dkwhuip" path="res://Scripts/NavigationBar.gd" id="2_gfkna"]
-[ext_resource type="Texture2D" uid="uid://beqerc842vvic" path="res://Resources/Textures/Default.png" id="2_s4ftx"]
 [ext_resource type="Script" uid="uid://cipbup5rtw63m" path="res://Scripts/CheckUpdatesRequest.gd" id="3_ctk8w"]
-[ext_resource type="Script" uid="uid://5trx5x2px3ne" path="res://Scripts/BaseBlackground.gd" id="3_jr2r8"]
 [ext_resource type="Shader" uid="uid://blji0uwy7sqhq" path="res://Shaders/Blur.gdshader" id="3_scs3j"]
 [ext_resource type="Script" uid="uid://oe650pn8tqht" path="res://Scripts/ParseUserArgs.gd" id="4_o48c8"]
 [ext_resource type="Script" uid="uid://w4onyjwqldyw" path="res://Scripts/AddressBar.gd" id="5_4xxjt"]
 [ext_resource type="Script" uid="uid://bjutoaj5vry4h" path="res://Scripts/AsynchronousLoader.gd" id="5_w0iy8"]
 [ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_6l8hs"]
+[ext_resource type="PackedScene" uid="uid://bwty5frjl5bgq" path="res://Scenes/BaseUIComponents/BaseBlackground.tscn" id="6_m37u7"]
 [ext_resource type="PackedScene" uid="uid://cbxnfno4eba6m" path="res://Scenes/BaseUIComponents/BaseButton.tscn" id="9_2koew"]
 [ext_resource type="Texture2D" uid="uid://chfkitgkphv77" path="res://Resources/Textures/Settings.svg" id="12_tealn"]
 [ext_resource type="PackedScene" uid="uid://bdw6wa6gmpvb5" path="res://Scenes/SystemMessageList.tscn" id="13_0uouo"]
@@ -406,26 +405,8 @@ script = ExtResource("4_o48c8")
 [node name="AsynchronousLoader" type="Node" parent="." groups=["GlobalNode"]]
 script = ExtResource("5_w0iy8")
 
-[node name="BaseBlackground" type="TextureRect" parent="."]
+[node name="BaseBlackground" parent="." instance=ExtResource("6_m37u7")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_s4ftx")
-expand_mode = 5
-stretch_mode = 6
-script = ExtResource("3_jr2r8")
-
-[node name="BaseBlur" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.94902, 0.94902, 0.94902, 1)
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2

@@ -1,6 +1,6 @@
 extends TextureRect
 
-@onready var base_blur = $"../BaseBlur"
+@onready var base_blur = %BaseBlur
 
 var color: Color = DisplayServer.get_base_color()
 

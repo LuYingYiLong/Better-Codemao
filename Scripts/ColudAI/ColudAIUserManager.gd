@@ -3,6 +3,8 @@ extends Node
 signal login_data_update(new_login_data: Dictionary)
 signal user_data_update(new_user_data: Dictionary)
 signal ca_update(new_ca: String)
+@warning_ignore("unused_signal")
+signal sessions_update
 
 # 保存登录数据
 func save_login_data(data: Dictionary) -> void:
