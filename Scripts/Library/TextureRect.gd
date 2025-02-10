@@ -66,7 +66,7 @@ func _on_fanfic_request_request_completed(_result: int, _response_code: int, _he
 	for section: Dictionary in section_list:
 		var section_card_scene = SECTION_CARD_SCENE.instantiate()
 		section_card_container.add_child(section_card_scene)
-		section_card_scene.set_section_card_data(section)
+		section_card_scene.set_section_card_data(section, 0)
 		section_card_scene.pressed.connect(_on_section_card_pressed)
 
 func _on_comic_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
@@ -93,7 +93,7 @@ func _on_comic_request_request_completed(_result: int, _response_code: int, _hea
 	for section: Dictionary in comic_section_list:
 		var section_card_scene = SECTION_CARD_SCENE.instantiate()
 		section_card_container.add_child(section_card_scene)
-		section_card_scene.set_section_card_data(section)
+		section_card_scene.set_section_card_data(section, 1)
 		section_card_scene.pressed.connect(_on_section_card_pressed)
 
 func _on_collect_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
@@ -105,7 +105,10 @@ func _on_collect_request_request_completed(_result: int, _response_code: int, _h
 		collected_button.visible = !collected_button.visible
 
 func _on_read_button_pressed() -> void:
-	Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"fanfic_id": fanfic_id, "id": -1})
+	match type:
+		0: Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"fanfic_id": fanfic_id, "id": -1, "type": type})
+		0: Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"comic_id": comic_id, "id": -1, "type": type})
+	
 
 func _on_collect_button_pressed():
 	collect_request.request("https://api.codemao.cn/web/fanfic/collect/%s" %fanfic_id, \
@@ -119,5 +122,7 @@ func _on_collected_button_pressed() -> void:
 			HTTPClient.METHOD_DELETE)
 	collected_button.disabled = true
 
-func _on_section_card_pressed(_fanfic_id: int, id: int) -> void:
-	Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"fanfic_id": _fanfic_id, "id": id, "type": type})
+func _on_section_card_pressed(work_id: int, id: int) -> void:
+	match type:
+		0: Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"fanfic_id": work_id, "id": id, "type": type})
+		1: Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"comic_id": work_id, "id": id, "type": type})

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://gfti8mt5piut"]
 
 [ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="1_dn8xt"]
-[ext_resource type="Script" path="res://Scripts/Library/SectionCard.gd" id="2_174b8"]
+[ext_resource type="Script" uid="uid://dqegkflj0n6gq" path="res://Scripts/Library/SectionCard.gd" id="2_174b8"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_gntan"]
 [ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="3_yafjg"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_3n72t"]

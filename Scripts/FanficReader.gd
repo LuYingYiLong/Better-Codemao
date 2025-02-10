@@ -2,6 +2,7 @@ extends Control
 
 @onready var section_request = %SectionRequest
 @onready var fanfic_request = %FanficRequest
+@onready var comic_request = %ComicRequest
 
 @onready var scroll_container = %ScrollContainer
 
@@ -16,40 +17,81 @@ extends Control
 
 @onready var animation_player = %AnimationPlayer
 
+var type: int
+
 var section_list: Array
 
 var user_id: int
 var fanfic_id: int
+var comic_id: int
 var id: int
+
 var index: int = 0
 
 func set_data(data: Dictionary):
-	fanfic_id = int(data.get("fanfic_id", 0))
-	id = int(data.get("id", -1))
-	if id == -1 and get_history() != -1: id = int(get_history())
-	save_history()
-	fanfic_request.request("https://api.codemao.cn/api/fanfic/%s" %fanfic_id)
-	section_request.request("https://api.codemao.cn/api/fanfic/section/%s" %id)
+	type = data.get("type", 0)
+	match type:
+		0:
+			fanfic_id = int(data.get("fanfic_id", 0))
+			id = int(data.get("id", -1))
+			if id == -1 and get_history() != -1: id = int(get_history())
+			save_history()
+			fanfic_request.request("https://api.codemao.cn/api/fanfic/%s" %fanfic_id)
+			section_request.request("https://api.codemao.cn/api/fanfic/section/%s" %id)
+		1:
+			for node in get_tree().get_nodes_in_group("only_fanfic"):
+				node.hide()
+			comic_id = int(data.get("comic_id", 0))
+			id = int(data.get("id", -1))
+			if id == -1 and get_history() != -1: id = int(get_history())
+			save_history()
+			comic_request.request("https://api.codemao.cn/api/comic/%s" %comic_id)
+			section_request.request("https://api.codemao.cn/api/comic/page/list/%s" %id)
 
+# 获取历史记录
 func get_history() -> int:
 	var library_history: Dictionary = Application.load_json_file(Application.LIBARAY_HISTORY_PATH)
-	var fanfic_history: Dictionary = library_history.get("fanfic_history", {})
-	if fanfic_history.has(str(fanfic_id)): return int(fanfic_history.get(str(fanfic_id)))
-	else: return -1
+	match type:
+		0:
+			var fanfic_history: Dictionary = library_history.get("fanfic_history", {})
+			if fanfic_history.has(str(fanfic_id)): return int(fanfic_history.get(str(fanfic_id)))
+			else: return -1
+		1:
+			var comic_history: Dictionary = library_history.get("comic_history", {})
+			if comic_history.has(str(comic_id)): return int(comic_history.get(str(comic_id)))
+			else: return -1
+		_:
+			return -1
 
+# 保存历史记录
 func save_history() -> void:
 	var library_history: Dictionary = Application.load_json_file(Application.LIBARAY_HISTORY_PATH)
-	var fanfic_history: Dictionary = library_history.get("fanfic_history", {})
-	fanfic_history[str(fanfic_id)] = id
-	library_history["fanfic_history"] = fanfic_history
+	match type:
+		0:
+			var fanfic_history: Dictionary = library_history.get("fanfic_history", {})
+			fanfic_history[str(fanfic_id)] = id
+			library_history["fanfic_history"] = fanfic_history
+		1:
+			var comic_history: Dictionary = library_history.get("comic_history", {})
+			comic_history[str(comic_id)] = id
+			library_history["comic_history"] = comic_history
 	Application.save_json_file(Application.LIBARAY_HISTORY_PATH, library_history)
 
 func _on_section_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-	var data: Dictionary = json.get("data", {})
-	var section: Dictionary = data.get("section", {})
-	title_label.text = section.get("title", "ERROR")
-	rich_content.init_contents(section.get("content", ""))
+	match type:
+		0:
+			var data: Dictionary = json.get("data", {})
+			var section: Dictionary = data.get("section", {})
+			title_label.text = section.get("title", "ERROR")
+			rich_content.init_contents(section.get("content", ""))
+		1:
+			var data: Dictionary = json.get("data", {})
+			var rich_text: String = ""
+			var comic_page_list: Array = data.get("comicPageList")
+			for comic_page: Dictionary in comic_page_list:
+				rich_text += "[image=%s]" %comic_page.get("img_url", "")
+			rich_content.init_contents(rich_text)
 
 func _on_fanfic_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -64,6 +106,23 @@ func _on_fanfic_request_request_completed(_result: int, _response_code: int, _he
 		var popup_item: PopupItem = PopupItem.new()
 		popup_item.text = section.get("title", "ERROR")
 		if int(section.get("id", -1)) == id:
+			popup_item.checked = true
+			index = drop_down_button.popup_items.size()
+		popup_item.metadata = int(section.get("id", -1))
+		drop_down_button.popup_items.append(popup_item)
+	update_button_status()
+
+func _on_comic_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	var data: Dictionary = json.get("data", {})
+	var comic_info: Dictionary = data.get("comic", {})
+	section_list = comic_info.get("comicSectionList", [])
+	drop_down_button.popup_items.clear()
+	for section: Dictionary in section_list:
+		var popup_item: PopupItem = PopupItem.new()
+		popup_item.text = section.get("title", "ERROR")
+		if int(section.get("id", -1)) == id:
+			title_label.text  = section.get("title", "ERROR")
 			popup_item.checked = true
 			index = drop_down_button.popup_items.size()
 		popup_item.metadata = int(section.get("id", -1))

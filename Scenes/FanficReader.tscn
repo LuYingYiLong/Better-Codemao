@@ -202,6 +202,10 @@ progress_bar = NodePath("../ScrollContainer/MarginContainer/PanelContainer/Progr
 [node name="FanficRequest" parent="." instance=ExtResource("1_ojtov")]
 unique_name_in_owner = true
 
+[node name="ComicRequest" parent="." instance=ExtResource("1_ojtov")]
+unique_name_in_owner = true
+progress_bar = NodePath("../ScrollContainer/MarginContainer/PanelContainer/ProgressBar")
+
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
 
@@ -295,7 +299,7 @@ icon = ExtResource("7_mu1wb")
 popup_menu_width = 360
 popup_menu_size_flags_horizontal = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" groups=["only_fanfic"]]
 layout_mode = 2
 
 [node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -388,6 +392,7 @@ autoplay = "Show"
 
 [connection signal="request_completed" from="SectionRequest" to="." method="_on_section_request_request_completed"]
 [connection signal="request_completed" from="FanficRequest" to="." method="_on_fanfic_request_request_completed"]
+[connection signal="request_completed" from="ComicRequest" to="." method="_on_comic_request_request_completed"]
 [connection signal="index_pressed" from="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/DropDownButton" to="." method="_on_drop_down_button_index_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/GoBackToTheHomePageButton" to="." method="_on_go_back_to_the_home_page_button_pressed"]
