@@ -49,10 +49,7 @@ script = ExtResource("1_7xtks")
 
 [node name="SessionsRequest" parent="." instance=ExtResource("2_rgtrp")]
 unique_name_in_owner = true
-connect_type = 1
-
-[node name="AddSessionRequest" parent="." instance=ExtResource("2_rgtrp")]
-unique_name_in_owner = true
+connect_type = 2
 
 [node name="QuerySessionRequest" parent="." instance=ExtResource("2_rgtrp")]
 unique_name_in_owner = true
@@ -269,7 +266,6 @@ text_overrun_behavior = 3
 unique_name_in_owner = true
 
 [connection signal="request_completed" from="SessionsRequest" to="." method="_on_sessions_request_request_completed"]
-[connection signal="request_completed" from="AddSessionRequest" to="." method="_on_add_session_request_request_completed"]
 [connection signal="request_completed" from="QuerySessionRequest" to="." method="_on_query_session_request_request_completed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CAValidationButton" to="." method="_on_ca_validation_button_pressed"]

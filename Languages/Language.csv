@@ -1,4 +1,5 @@
 id,ch,en
+REGISTRATION_ACCOUNT_NAME,注册账号,Registration account
 LOGIN_NAME,登录,Login
 SIGN_OUT_NAME,退出登录,Sign out
 VISITOR_LOGIN_NAME,游客登录,Visitor login
@@ -82,12 +83,16 @@ LIBRARY_NAME,图书馆,Library
 FANFIC_NAME,同人小说,Fanfic
 COMIC_NAME,漫画连载,Comic
 FACTION_NAME,资料图鉴,Faction
+UPDATING_NAME,更新中,Updating
+ENDED_NAME,已完结,Ended
+LAST_UPDATE_NAME,最近更新,Last update
+UPDATE_TIME_NAME,更新时间,Update time
 READ_NAME,阅读,Read
 COLLECT_NAME,收藏,Collect
 SHARE_NAME,分享,Share
+COMIC_TAG_NAME,漫画标签,Comic tag
 STATUS_NAME,状态,Status
 SERIALIZED_NAME,连载中,Serialized
-DONE_NAME,已完成,Done
 INTRODUCTION_NAME,介绍,Introduction
 PREVIOUS_NAME,上一页,Previous
 GO_BACK_TO_THE_HOME_PAGE_NAME,返回到主页,Go back to the home page
@@ -101,6 +106,7 @@ SESSIONS_NAME,会话,Sessions
 DEFAULT_SESSION_NAME,默认会话,Default session
 MANAGE_SESSIONS_NAME,管理会话,Manage sessions
 NEW_SESSION_NAME,新会话,New session
+ADD_SESSION_NAME,添加会话,Add session
 MAXIMUM_SESSION_WARNING,最大会话数量为{0},The maximum number of sessions is {0}
 CA_VALIDATION_NAME,CA验证,CA Validation
 VERIFICATION_NAME,验证,Verification

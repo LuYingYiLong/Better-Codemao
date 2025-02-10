@@ -1,0 +1,154 @@
+[gd_scene load_steps=13 format=3 uid="uid://j8hwtjpibypp"]
+
+[ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="1_o3pfs"]
+[ext_resource type="Script" uid="uid://bc2ndnpwa7l1a" path="res://Scripts/Library/ComicCard.gd" id="2_c8qo5"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_lcwy7"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="3_c8qo5"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_tjoy3"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="5_qtgy5"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="6_ms757"]
+[ext_resource type="Theme" uid="uid://cbw1oejoid3q4" path="res://Resources/Themes/FlatButton-Light.tres" id="8_c8qo5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c8qo5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvooh"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcwy7"]
+bg_color = Color(0.968627, 0.431373, 0.407843, 1)
+corner_radius_bottom_left = 16
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjoy3"]
+bg_color = Color(0.333333, 0.717647, 1, 1)
+corner_radius_bottom_left = 16
+corner_detail = 1
+
+[node name="ComicCard" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 128)
+offset_right = 939.0
+offset_bottom = 130.0
+theme_override_styles/panel = ExtResource("1_o3pfs")
+script = ExtResource("2_c8qo5")
+
+[node name="Card" type="Button" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c8qo5")
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Mask" type="PanelContainer" parent="HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(90, 128)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jvooh")
+
+[node name="CoverTexture" parent="HBoxContainer/Mask" instance=ExtResource("2_lcwy7")]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_c8qo5")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="UpdatingInfo" type="PanelContainer" parent="HBoxContainer/Mask"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcwy7")
+
+[node name="EndedInfo" type="PanelContainer" parent="HBoxContainer/Mask"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tjoy3")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = -6
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("4_tjoy3")
+theme_override_font_sizes/font_size = 20
+text = "Title"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/TitleLabel" instance=ExtResource("5_qtgy5")]
+
+[node name="NicknameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("6_ms757")
+theme_override_font_sizes/font_size = 16
+text = "Nickname"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/NicknameLabel" instance=ExtResource("5_qtgy5")]
+
+[node name="IntroductionLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.06, 0.06, 0.06, 0.490196)
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("6_ms757")
+text = "Introduction"
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="ThemePainter" parent="HBoxContainer/MarginContainer/VBoxContainer/IntroductionLabel" instance=ExtResource("5_qtgy5")]
+translucent = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LastUpdateSectionButton" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("8_c8qo5")
+text = "LastUpdateSection"
+alignment = 0
+
+[node name="UpdateTimeLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "UpdateDay"
+
+[connection signal="pressed" from="Card" to="." method="_on_card_pressed"]

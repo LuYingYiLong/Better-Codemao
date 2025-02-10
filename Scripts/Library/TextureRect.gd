@@ -1,6 +1,7 @@
 extends Control
 
 @onready var fanfic_request = %FanficRequest
+@onready var comic_request = %ComicRequest
 @onready var collect_request = %CollectRequest
 
 @onready var cover_texture = %CoverTexture
@@ -14,18 +15,30 @@ extends Control
 @onready var collect_times_label = %CollectTimesLabel
 @onready var total_words_label = %TotalWordsLabel
 @onready var type_label = %TypeLabel
+@onready var comic_tag_container = %ComicTagContainer
 @onready var status_label = %StatusLabel
 @onready var introduction = %Introduction
 
 @onready var section_card_container = %SectionCardContainer
 
 const SECTION_CARD_SCENE = preload("res://Scenes/Library/SectionCard.tscn")
+const COMIC_TAG_SCENE = preload("res://Scenes/Library/ComicTag.tscn")
 
+var type: int
 var fanfic_id: int
+var comic_id: int
 
 func set_data(data: Dictionary) -> void:
-	fanfic_request.request("https://api.codemao.cn/api/fanfic/%s" %data.get("id", 0), \
-			[Application.generate_cookie_header()])
+	type = data.get("type", 0)
+	match type:
+		0:
+			for node in get_tree().get_nodes_in_group("only_comic"):
+				node.hide()
+			fanfic_request.request("https://api.codemao.cn/api/fanfic/%s" %data.get("id", 0), [Application.generate_cookie_header()])
+		1:
+			for node in get_tree().get_nodes_in_group("only_fanfic"):
+				node.hide()
+			comic_request.request("https://api.codemao.cn/api/comic/%s" %data.get("id", 0), [Application.generate_cookie_header()])
 
 func _on_fanfic_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -46,11 +59,38 @@ func _on_fanfic_request_request_completed(_result: int, _response_code: int, _he
 	var status: int = fanfic_info.get("status")
 	match status:
 		1: status_label.text = "%s: %s" %[TranslationServer.translate("STATUS_NAME"), TranslationServer.translate("SERIALIZED_NAME")]
-		2: status_label.text = "%s: %s" %[TranslationServer.translate("STATUS_NAME"), TranslationServer.translate("DONE_NAME")]
+		2: status_label.text = "%s: %s" %[TranslationServer.translate("STATUS_NAME"), TranslationServer.translate("ENDED_NAME")]
 	introduction.text = fanfic_info.get("introduction", "--")
 	
 	var section_list: Array = data.get("sectionList", [])
 	for section: Dictionary in section_list:
+		var section_card_scene = SECTION_CARD_SCENE.instantiate()
+		section_card_container.add_child(section_card_scene)
+		section_card_scene.set_section_card_data(section)
+		section_card_scene.pressed.connect(_on_section_card_pressed)
+
+func _on_comic_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	var data: Dictionary = json.get("data", {})
+	var comic_info: Dictionary = data.get("comic", {})
+	comic_id = comic_info.get("id", 0)
+	cover_texture.load_image(comic_info.get("cover_pic", ""), comic_info.get("title", "ERROR"))
+	share_button.url = "https://shequ.codemao.cn/wiki/cartoon/cover/%s" %comic_id
+	title_label.text = comic_info.get("title", "ERROR")
+	nickname_label.text = comic_info.get("nickname", "ERROR")
+	view_times_label.text = str(int(comic_info.get("view_times", "--")))
+	for tag: String in comic_info.get("label_list", []):
+		var comic_tag_scene = COMIC_TAG_SCENE.instantiate()
+		comic_tag_container.add_child(comic_tag_scene)
+		comic_tag_scene.set_tag(tag)
+	var status: int = comic_info.get("status")
+	match status:
+		1: status_label.text = "%s: %s" %[TranslationServer.translate("STATUS_NAME"), TranslationServer.translate("SERIALIZED_NAME")]
+		2: status_label.text = "%s: %s" %[TranslationServer.translate("STATUS_NAME"), TranslationServer.translate("ENDED_NAME")]
+	introduction.text = comic_info.get("introduction", "--")
+	
+	var comic_section_list: Array = comic_info.get("comicSectionList", [])
+	for section: Dictionary in comic_section_list:
 		var section_card_scene = SECTION_CARD_SCENE.instantiate()
 		section_card_container.add_child(section_card_scene)
 		section_card_scene.set_section_card_data(section)
@@ -80,4 +120,4 @@ func _on_collected_button_pressed() -> void:
 	collected_button.disabled = true
 
 func _on_section_card_pressed(_fanfic_id: int, id: int) -> void:
-	Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"fanfic_id": _fanfic_id, "id": id})
+	Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"fanfic_id": _fanfic_id, "id": id, "type": type})

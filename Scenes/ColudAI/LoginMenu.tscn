@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d282bewo81tv4"]
+[gd_scene load_steps=23 format=3 uid="uid://d282bewo81tv4"]
 
 [ext_resource type="Script" uid="uid://drikm1xybwood" path="res://Scripts/ColudAI/LoginMenu.gd" id="1_3rgdb"]
 [ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_nbkqs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="6_g3a75"]
 [ext_resource type="FontFile" uid="uid://cfmxchqsorf7g" path="res://Resources/Fonts/SourceHanSansCN-Bold.otf" id="7_pvyq5"]
 [ext_resource type="Theme" uid="uid://bb3oaxb0rt1le" path="res://Resources/Themes/LineEditTheme1.tres" id="8_oadbf"]
+[ext_resource type="PackedScene" uid="uid://drbgm8oplu7mk" path="res://Scenes/BaseUIComponents/HyperlinkButton.tscn" id="9_c0i3m"]
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="11_bcaoa"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="12_ieq0a"]
 [ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="13_babjp"]
@@ -577,6 +578,12 @@ secret = true
 secret_character = "*"
 
 [node name="ThemePainter" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/MarginContainer/VBoxContainer/PasswordEdit" instance=ExtResource("5_unpnv")]
+
+[node name="HyperlinkButton" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("9_c0i3m")]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "REGISTRATION_ACCOUNT_NAME"
+hyperlink = "https://account.coludai.cn/sso/?from=aHR0cHM6Ly9zYWkuY29sdWRhaS5jbi8="
 
 [node name="PanelContainer" type="PanelContainer" parent="LoginMenuMarginContainer/LoginMenu/VBoxContainer"]
 layout_mode = 2
