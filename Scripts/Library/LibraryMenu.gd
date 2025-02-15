@@ -25,8 +25,11 @@ var current_type: Type = Type.FANFIC:
 			node.queue_free()
 		for node in comic_card_container.get_children():
 			node.queue_free()
+		for node in faction_card_container.get_children():
+			node.queue_free()
 		faction_request.cancel_request()
 		comic_request.cancel_request()
+		faction_request.cancel_request()
 		match current_type:
 			Type.FANFIC: fanfic_recommend_request.request("https://api.codemao.cn/api/fanfic/list/recommend")
 			Type.COMIC: comic_request.request("https://api.codemao.cn/api/comic/list/all")
