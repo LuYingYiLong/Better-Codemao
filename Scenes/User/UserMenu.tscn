@@ -321,7 +321,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
 theme_override_font_sizes/font_size = 24
-text = "999"
+text = "--"
 text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/FansTotal/VBoxContainer/FansTotalLabel" instance=ExtResource("3_bgjsx")]
@@ -360,7 +360,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
 theme_override_font_sizes/font_size = 24
-text = "999"
+text = "--"
 text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Fans&Attention/MarginContainer/HBoxContainer/AttentionTotal/VBoxContainer/AttentionTotalLabel" instance=ExtResource("3_bgjsx")]
@@ -415,7 +415,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
 theme_override_font_sizes/font_size = 24
-text = "999"
+text = "--"
 text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ViewTimes/VBoxContainer/ViewTimesLabel" instance=ExtResource("3_bgjsx")]
@@ -453,7 +453,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
 theme_override_font_sizes/font_size = 24
-text = "999"
+text = "--"
 text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/LikedTotal/VBoxContainer/LikedTotalLabel" instance=ExtResource("3_bgjsx")]
@@ -484,7 +484,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
 theme_override_font_sizes/font_size = 24
-text = "999"
+text = "--"
 text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/CollectedTotal/VBoxContainer/CollectedTotalLabel" instance=ExtResource("3_bgjsx")]
@@ -522,7 +522,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_28rkq")
 theme_override_font_sizes/font_size = 24
-text = "999"
+text = "--"
 text_overrun_behavior = 3
 
 [node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/Honor/MarginContainer/GridContainer/ReCreatedTotal/VBoxContainer/ReCreatedTotalLabel" instance=ExtResource("3_bgjsx")]

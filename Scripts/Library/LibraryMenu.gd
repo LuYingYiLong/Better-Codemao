@@ -7,6 +7,7 @@ extends Control
 
 @onready var fanfic_card_container = %FanficCardContainer
 @onready var comic_card_container = %ComicCardContainer
+@onready var faction_card_container = %FactionCardContainer
 @onready var pagination_bar = %PaginationBar
 
 enum Type{FANFIC, COMIC, FACTION}
@@ -14,10 +15,12 @@ enum Type{FANFIC, COMIC, FACTION}
 const MAX_QUANTITY: int = 20
 const FANFIC_CARD_SCENE = preload("res://Scenes/Library/FanficCard.tscn")
 const COMIC_CARD_SCENE = preload("res://Scenes/Library/ComicCard.tscn")
+const FACTION_CARD_SCENE = preload("res://Scenes/Library/FactionCard.tscn")
 
 var current_type: Type = Type.FANFIC:
 	set(value):
 		current_type = value
+		pagination_bar.visible = current_type == Type.FANFIC
 		for node in fanfic_card_container.get_children():
 			node.queue_free()
 		for node in comic_card_container.get_children():
@@ -35,6 +38,7 @@ func _ready():
 
 func _process(_delta):
 	fanfic_card_container.columns = clampi(floori(fanfic_card_container.size.x / 170), 1, 999)
+	faction_card_container.columns = clampi(floori(faction_card_container.size.x / 230), 1, 999)
 
 func _on_fanfic_type_request_request_completed(result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -78,7 +82,6 @@ func _on_fanfic_recommend_request_request_completed(_result: int, _response_code
 
 func _on_comic_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-	pagination_bar.hide()
 	var data: Dictionary = json.get("data")
 	var comic_list: Array = data.get("comicList")
 	for comic: Dictionary in comic_list:
@@ -86,6 +89,16 @@ func _on_comic_request_request_completed(_result: int, _response_code: int, _hea
 		comic_card_container.add_child(comic_card_scene)
 		comic_card_scene.set_comic_card_data(comic)
 		comic_card_scene.pressed.connect(_on_comic_card_pressed)
+
+func _on_faction_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	var data: Dictionary = json.get("data")
+	var sprite_list: Array = data.get("sprite_list")
+	for sprite: Dictionary in sprite_list:
+		var faction_card_scene = FACTION_CARD_SCENE.instantiate()
+		faction_card_container.add_child(faction_card_scene)
+		faction_card_scene.set_faction_card_data(sprite)
+		faction_card_scene.pressed.connect(_on_faction_card_pressed)
 
 func _on_fanfic_card_scene(id: int) -> void:
 	Application.append_address.emit("FANFIC_NAME", \
@@ -96,6 +109,11 @@ func _on_comic_card_pressed(id: int) -> void:
 	Application.append_address.emit("FANFIC_NAME", \
 			"res://Scenes/Library/FanficMenu.tscn", \
 			{"id": id, "type": 1})
+
+func _on_faction_card_pressed(id: int) -> void:
+	Application.append_address.emit("FACTION_NAME", \
+			"res://Scenes/Library/FactionMenu.tscn", \
+			{"id": id})
 
 func _on_pagination_bar_page_changed(_page: int) -> void:
 	fanfic_recommend_request.request("https://api.codemao.cn/api/fanfic/list/recommend")

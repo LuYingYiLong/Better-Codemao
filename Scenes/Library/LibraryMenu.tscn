@@ -107,6 +107,15 @@ columns = 6
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="FactionCardContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 6
+
 [node name="PaginationBar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("8_ugik6")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -117,5 +126,6 @@ current_page = 1
 [connection signal="request_completed" from="FanficTypeRequest" to="." method="_on_fanfic_type_request_request_completed"]
 [connection signal="request_completed" from="FanficRecommendRequest" to="." method="_on_fanfic_recommend_request_request_completed"]
 [connection signal="request_completed" from="ComicRequest" to="." method="_on_comic_request_request_completed"]
+[connection signal="request_completed" from="FactionRequest" to="." method="_on_faction_request_request_completed"]
 [connection signal="index_pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar" to="." method="_on_tab_bar_index_pressed"]
 [connection signal="page_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]

@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bb0nb3jfh3mbo"]
+
+[ext_resource type="Shader" uid="uid://c051oysi0t8el" path="res://Shaders/DiscreteOcean.gdshader" id="1_qbtqd"]
+
+[resource]
+shader = ExtResource("1_qbtqd")
+shader_parameter/bottom_color = Color(0.0117647, 0.027451, 0.172549, 1)
+shader_parameter/top_color = Color(0.227451, 0.682353, 1, 1)
+shader_parameter/wave_amp = 0.06
+shader_parameter/wave_size = 1.703
+shader_parameter/wave_time_mul = 0.367
+shader_parameter/total_phases = 6

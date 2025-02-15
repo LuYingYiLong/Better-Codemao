@@ -107,8 +107,7 @@ func _on_collect_request_request_completed(_result: int, _response_code: int, _h
 func _on_read_button_pressed() -> void:
 	match type:
 		0: Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"fanfic_id": fanfic_id, "id": -1, "type": type})
-		0: Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"comic_id": comic_id, "id": -1, "type": type})
-	
+		1: Application.async_load_scene.emit("res://Scenes/FanficReader.tscn", {"comic_id": comic_id, "id": -1, "type": type})
 
 func _on_collect_button_pressed():
 	collect_request.request("https://api.codemao.cn/web/fanfic/collect/%s" %fanfic_id, \

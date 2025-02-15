@@ -97,6 +97,12 @@ INTRODUCTION_NAME,介绍,Introduction
 PREVIOUS_NAME,上一页,Previous
 GO_BACK_TO_THE_HOME_PAGE_NAME,返回到主页,Go back to the home page
 NEXT_NAME,下一页,Next
+HEALTH_NAME,生命,Health
+SPEED_NAME,速度,Speed
+ATTACK_NAME,攻击,Attack
+DEFENSE_NAME,防御,Defense
+SPECIAL_ATTACK_NAME,特攻,Special attack
+SPECIAL_DEFENSE_NAME,特防,Special defense
 MODELS_NAME,模型,Models
 PROMPT_WORDS_NAME,提示词,Prompt words
 CHANGE_NAME,更改,Change
@@ -206,6 +212,7 @@ POST_REPLY_AUTHOR_NAME,回复了你在帖子 {0} 下的 {1} 的评论,replied to
 POST_REPLY_REPLY_NAME,回复了你在帖子 {0} 下的评论,replied to your comment on the post {0}
 POST_REPLY_REPLY_FEEDBACK_NAME,回复了你的回帖 {0} 下的 {1} 的回复,replies {1} to your reply {0}
 POST_DISCUSSION_LIKED_NAME,赞了你在帖子 {0} 下的回复,liked your reply on the post {0}
+POST_REPLY_REPLY_AUTHOR_NAME,回复了你在帖子 {0} 下的 {1} 的评论,replied to your comment {1} on the post {0}
 WORK_REPLY_REPLY_AUTHOR_NAME,回复了你的作品 {0} 下的 {1} 的回复,replies {1} to your work {0}
 WORK_REPLY_REPLY_NAME,回复了你在作品 {0} 下的评论,replied to your comment on the work {0}
 POST_REPLY_NAME,回复了你的帖子 {0} 下的回帖,replied to a reply to your post {0}

@@ -1,7 +1,6 @@
 extends Control
 
 @onready var sessions_request = %SessionsRequest
-@onready var add_session_request = %AddSessionRequest
 @onready var query_session_request = %QuerySessionRequest
 
 @onready var combo_box = %ComboBox
