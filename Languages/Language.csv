@@ -118,6 +118,8 @@ CA_VALIDATION_NAME,CA验证,CA Validation
 VERIFICATION_NAME,验证,Verification
 VERIFICATION_FAILED_NAME,验证失败,Verification failed
 VERIFICATION_SUCCEEDED_NAME,验证成功,Verification succeeded
+PLUGIN_NAME,插件,Plugin
+INSTALLED_PLUGINS_NAME,已安装插件,Installed plugins
 MESSAGE_NAME,消息,Message
 COMMENT_REPLY_NAME,评论与回复,Comment&Reply
 LIKE_FORK_NAME,赞与购买,Like&Fork

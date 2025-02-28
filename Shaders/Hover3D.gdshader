@@ -19,7 +19,7 @@ void vertex() {
 	vec2 mouse_centered = ((_mousePos + 0.5/TEXTURE_PIXEL_SIZE) * TEXTURE_PIXEL_SIZE) * 2.0 - 1.0;
 	mouseoffset = mouse_centered / 2.0;
 
-    // Rotation matrices around the x, y, and z axes	
+    // Rotation matrices around the x, y, and z axes
     float cosX = cos(mouse_centered.y * _tilt_Scale);
     float sinX = sin(mouse_centered.y * _tilt_Scale);
     mat3 rotationX;
@@ -50,25 +50,25 @@ void vertex() {
     // Apply perspective projection
     float perspective = 1.0 / (1.0 - transformedCoord.z * 0.5);
 	float perspective2 = 1.0 / (transformedCoord.z * 0.5);
-    transformedCoord.xy *= perspective;		
+    transformedCoord.xy *= perspective;
 	texCoord *= perspective;
 	fragPerspective = perspective;
-	
+
     // Transform back to screen coordinates
-    vec2 screenPosition = transformedCoord.xy + vec2(0.5, 0.5);	
-    VERTEX = screenPosition / TEXTURE_PIXEL_SIZE;	    
+    vec2 screenPosition = transformedCoord.xy + vec2(0.5, 0.5);
+    VERTEX = screenPosition / TEXTURE_PIXEL_SIZE;
 }
 
 void fragment() {
 	//perspective correction of UV
-    vec2 finalTexCoord = texCoord / fragPerspective;	
-    vec4 texColor = texture(TEXTURE, finalTexCoord);	    
-	
+    vec2 finalTexCoord = texCoord / fragPerspective;
+    vec4 texColor = texture(TEXTURE, finalTexCoord);
+
 	//sepcular light
 	float colvalue = pow(clamp(1.0 - length(finalTexCoord - 0.5 + mouseoffset), 0.0, 1.0), _speularLightPower) * _speularLightIntensity;
 	vec3 specularCol = vec3(colvalue, colvalue, colvalue);
-    
-	if(_isSpecularLight)   
+
+	if(_isSpecularLight)
     	COLOR = texColor + vec4(specularCol, 0.0);
 	else
 		COLOR = texColor;

@@ -65,6 +65,13 @@ func _on_colud_ai_button_pressed() -> void:
 			"res://Scenes/ColudAI/ColudAIMenu.tscn", \
 			{})
 
+func _on_plugin_button_pressed() -> void:
+	message_button.infobadge_value = 0
+	message_button.infobadge_visible = false
+	Application.set_root_address.emit("PLUGIN_NAME", \
+			"res://Scenes/Plugin/PluginMenu.tscn", \
+			{})
+
 func _on_message_button_pressed() -> void:
 	message_button.infobadge_value = 0
 	message_button.infobadge_visible = false

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dfb7taf7dr0jb"]
 
 [ext_resource type="Script" uid="uid://bccsfy8ycvese" path="res://Scripts/BaseUIComponents/PaginationBarComponents/PaginationBar.gd" id="1_ycgga"]
-[ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="2_d5we3"]
+[ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/SimpleButton-Light.tres" id="2_41wcv"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_oewf6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lo4wy"]
@@ -21,7 +21,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_d5we3")
+theme = ExtResource("2_41wcv")
 theme_override_font_sizes/font_size = 24
 text = "<"
 
@@ -37,7 +37,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_d5we3")
+theme = ExtResource("2_41wcv")
 theme_override_font_sizes/font_size = 24
 text = ">"
 

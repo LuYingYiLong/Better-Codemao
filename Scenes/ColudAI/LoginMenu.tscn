@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://dkyoh2iih75tg" path="res://Resources/Themes/AccentButton-Light.tres" id="11_bcaoa"]
 [ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="12_ieq0a"]
 [ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="13_babjp"]
+[ext_resource type="StyleBox" uid="uid://mlyeyl3hw3ia" path="res://Resources/Themes/Window2-Light.tres" id="14_jx3i2"]
 [ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="14_sdomx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0bmf"]
@@ -27,13 +28,6 @@ corner_radius_top_left = 95
 corner_radius_top_right = 95
 corner_radius_bottom_right = 95
 corner_radius_bottom_left = 95
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oe24f"]
-bg_color = Color(0.952941, 0.952941, 0.952941, 1)
-border_width_top = 1
-border_color = Color(0.898039, 0.898039, 0.898039, 1)
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
 
 [sub_resource type="Animation" id="Animation_akmgy"]
 resource_name = "HideLoginMenu"
@@ -693,7 +687,7 @@ text_overrun_behavior = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_oe24f")
+theme_override_styles/panel = ExtResource("14_jx3i2")
 
 [node name="ThemePainter" parent="WelcomeMenuMarginContainer/WelcomeMenu/VBoxContainer/PanelContainer" instance=ExtResource("5_unpnv")]
 

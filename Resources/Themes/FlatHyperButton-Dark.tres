@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://d4b7j3bkud5qk"]
+
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="1_b7h84"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2kys"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpa8m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8aw28"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ugf4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vlsys"]
+
+[resource]
+Button/colors/font_color = Color(0.298039, 0.760784, 1, 1)
+Button/colors/font_disabled_color = Color(0.298039, 0.760784, 1, 0.490196)
+Button/colors/font_focus_color = Color(0.298039, 0.760784, 1, 1)
+Button/colors/font_hover_color = Color(0.298039, 0.760784, 1, 1)
+Button/colors/font_hover_pressed_color = Color(0.298039, 0.760784, 1, 1)
+Button/colors/font_outline_color = Color(0.298039, 0.760784, 1, 1)
+Button/colors/font_pressed_color = Color(0.298039, 0.760784, 1, 1)
+Button/colors/icon_disabled_color = Color(0.11, 0.11, 0.11, 0.490196)
+Button/colors/icon_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_hover_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_normal_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/fonts/font = ExtResource("1_b7h84")
+Button/styles/disabled = SubResource("StyleBoxEmpty_l2kys")
+Button/styles/focus = SubResource("StyleBoxEmpty_bpa8m")
+Button/styles/hover = SubResource("StyleBoxEmpty_8aw28")
+Button/styles/normal = SubResource("StyleBoxEmpty_5ugf4")
+Button/styles/pressed = SubResource("StyleBoxEmpty_vlsys")

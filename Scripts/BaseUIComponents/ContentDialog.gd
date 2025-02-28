@@ -20,6 +20,12 @@ signal callback(index: int)
 
 const CONTENT_DIALOG_BUTTON_SCENE = preload("res://Scenes/BaseUIComponents/ContentDialogButton.tscn")
 
+var awaly_exit: bool
+
+func set_data(data: Dictionary) -> void:
+	load_from_json(data)
+	show_content_dialog()
+
 func load_from_json(json: Dictionary) -> void:
 	box_size.x = json.get("box_size", [398, 272])[0]
 	box_size.y = json.get("box_size", [398, 272])[1]
@@ -31,6 +37,7 @@ func load_from_json(json: Dictionary) -> void:
 		item.text = popup_item.get("text", "")
 		item.flat = popup_item.get("flat", true)
 		popup_items.append(item)
+	awaly_exit = json.get("awaly_exit", false)
 
 func show_content_dialog() -> void:
 	panel_container.custom_minimum_size = box_size
@@ -54,4 +61,5 @@ func hide_content_dialog() -> void:
 	animation_player.play("Hide")
 
 func _on_button_pressed(index: int) -> void:
-	callback.emit(index)
+	if awaly_exit: hide_content_dialog()
+	else: callback.emit(index)

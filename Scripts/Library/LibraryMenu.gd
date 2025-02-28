@@ -72,6 +72,8 @@ func _on_fanfic_recommend_request_request_completed(_result: int, _response_code
 	pagination_bar.total = ceili(fanfic_list.size() / MAX_QUANTITY)
 	pagination_bar.update_pager_total()
 	pagination_bar.show()
+	for node in fanfic_card_container.get_children():
+		node.queue_free()
 	for _i in range((pagination_bar.current_page - 1) * MAX_QUANTITY):
 		fanfic_list.remove_at(0)
 	var count: int = 1

@@ -37,10 +37,10 @@ void fragment() {
 	float i = floor(UV.y * t);
 	float vi = floor(UV.y * t + t * effective_wave_amp);
 	float s = effective_wave_amp * sin((UV.x + TIME * max(1.0 / t, noise(vi)) * wave_time_mul * vi / t) * 2.0 * PI * wave_size);
-	
+
 	if (d < s) i--;
 	if (d > s + 1.0 / t) i++;
 	i = clamp(i, 0.0, t - 1.0);
-	
+
 	COLOR = lerp(top_color, bottom_color, i / (t - 1.0));
 }

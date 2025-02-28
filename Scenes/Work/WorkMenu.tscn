@@ -94,53 +94,54 @@ unique_name_in_owner = true
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_hyp1r")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
-layout_mode = 2
-theme = ExtResource("3_hyp1r")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/separation = 32
 
-[node name="Work" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
+[node name="Work" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4n68a")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PlayButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="PlayButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -149,9 +150,9 @@ theme_override_constants/icon_max_width = 30
 icon = ExtResource("4_0y431")
 icon_alignment = 1
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/PlayButton" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/PlayButton" instance=ExtResource("5_fdmke")]
 
-[node name="RefreshButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="RefreshButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -160,9 +161,9 @@ theme_override_constants/icon_max_width = 30
 icon = ExtResource("6_kxv0f")
 icon_alignment = 1
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/RefreshButton" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/RefreshButton" instance=ExtResource("5_fdmke")]
 
-[node name="FullScreenButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="FullScreenButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -171,9 +172,9 @@ theme_override_constants/icon_max_width = 30
 icon = ExtResource("6_7vgtg")
 icon_alignment = 1
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/FullScreenButton" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/FullScreenButton" instance=ExtResource("5_fdmke")]
 
-[node name="OpenInBrowserButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="OpenInBrowserButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -183,15 +184,15 @@ theme_override_constants/icon_max_width = 30
 icon = ExtResource("9_upxpw")
 icon_alignment = 1
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/OpenInBrowserButton" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/OpenInBrowserButton" instance=ExtResource("5_fdmke")]
 
-[node name="Mask" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer"]
+[node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer"]
 clip_children = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_57n8s")
 
-[node name="PreviewTexture" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/Mask" instance=ExtResource("4_lyxtc")]
+[node name="PreviewTexture" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/Mask" instance=ExtResource("4_lyxtc")]
 unique_name_in_owner = true
 self_modulate = Color(0.5, 0.5, 0.5, 1)
 custom_minimum_size = Vector2(0, 422)
@@ -200,29 +201,29 @@ size_flags_horizontal = 3
 expand_mode = 3
 stretch_mode = 6
 
-[node name="Like&Collect" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
+[node name="Like&Collect" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer"]
 layout_mode = 2
 
-[node name="Like" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
+[node name="Like" type="PanelContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ebvss")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
 layout_mode = 2
 
-[node name="LikeIcon" type="TextureRect" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer"]
+[node name="LikeIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
 custom_minimum_size = Vector2(59, 59)
@@ -230,14 +231,14 @@ layout_mode = 2
 texture = ExtResource("10_6pgep")
 expand_mode = 1
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/LikeIcon" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/LikeIcon" instance=ExtResource("5_fdmke")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="LikeLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer"]
+[node name="LikeLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -246,9 +247,9 @@ theme_override_font_sizes/font_size = 24
 text = "LIKE_NAME"
 text_overrun_behavior = 3
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer/LikeLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer/LikeLabel" instance=ExtResource("5_fdmke")]
 
-[node name="PraiseTimes" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer"]
+[node name="PraiseTimes" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -257,9 +258,9 @@ theme_override_fonts/font = ExtResource("11_1udrr")
 text = "999"
 uppercase = true
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer/PraiseTimes" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/HBoxContainer/VBoxContainer/PraiseTimes" instance=ExtResource("5_fdmke")]
 
-[node name="LikeButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
+[node name="LikeButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -270,9 +271,9 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
 flat = true
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikeButton" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikeButton" instance=ExtResource("5_fdmke")]
 
-[node name="LikedButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
+[node name="LikedButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -284,24 +285,24 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
 flat = true
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikedButton" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikedButton" instance=ExtResource("5_fdmke")]
 
-[node name="Line" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
+[node name="Line" type="PanelContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("14_j04ab")
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Line" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Line" instance=ExtResource("5_fdmke")]
 
-[node name="Collect" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
+[node name="Collect" type="PanelContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ebvss")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
 layout_mode = 2
 
-[node name="CollectIcon" type="TextureRect" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer"]
+[node name="CollectIcon" type="TextureRect" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
 custom_minimum_size = Vector2(59, 59)
@@ -309,14 +310,14 @@ layout_mode = 2
 texture = ExtResource("15_upxpw")
 expand_mode = 1
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/CollectIcon" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/CollectIcon" instance=ExtResource("5_fdmke")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="CollectLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer"]
+[node name="CollectLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -325,9 +326,9 @@ theme_override_font_sizes/font_size = 24
 text = "COLLECT_NAME"
 text_overrun_behavior = 3
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer/CollectLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer/CollectLabel" instance=ExtResource("5_fdmke")]
 
-[node name="CollectTimes" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer"]
+[node name="CollectTimes" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -336,9 +337,9 @@ theme_override_fonts/font = ExtResource("11_1udrr")
 text = "999"
 uppercase = true
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer/CollectTimes" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/HBoxContainer/VBoxContainer/CollectTimes" instance=ExtResource("5_fdmke")]
 
-[node name="CollectButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
+[node name="CollectButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -349,9 +350,9 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
 flat = true
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectButton" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectButton" instance=ExtResource("5_fdmke")]
 
-[node name="CollectedButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
+[node name="CollectedButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -363,22 +364,22 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_3su1t")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x2hr1")
 flat = true
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectedButton" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectedButton" instance=ExtResource("5_fdmke")]
 
-[node name="Comments" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
+[node name="Comments" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_3t1v3")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Comments"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer"]
 layout_mode = 2
 
-[node name="AllRepliesLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
+[node name="AllRepliesLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -387,19 +388,19 @@ theme_override_font_sizes/font_size = 24
 text = "ALL_REPLIES_NAME"
 text_overrun_behavior = 3
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/AllRepliesLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/AllRepliesLabel" instance=ExtResource("5_fdmke")]
 
-[node name="TopReplyCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
+[node name="TopReplyCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ReplyCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
+[node name="ReplyCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PaginationBar" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer" instance=ExtResource("13_gm0mk")]
+[node name="PaginationBar" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer" instance=ExtResource("13_gm0mk")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -407,33 +408,33 @@ size_flags_vertical = 8
 size = 11
 current_page = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_constants/separation = 32
 
-[node name="Details" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
+[node name="Details" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 
-[node name="Mask" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Mask" type="PanelContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer"]
 clip_children = 1
 custom_minimum_size = Vector2(56, 0)
 layout_mode = 2
@@ -441,18 +442,18 @@ mouse_filter = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_djshe")
 
-[node name="AvatarTexture" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("4_lyxtc")]
+[node name="AvatarTexture" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/Mask" instance=ExtResource("4_lyxtc")]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture = ExtResource("17_upxpw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -4
 
-[node name="NicknameLabel" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="NicknameLabel" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -464,14 +465,14 @@ flat = true
 alignment = 0
 text_overrun_behavior = 3
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" instance=ExtResource("5_fdmke")]
 
-[node name="AuthorLevelTag" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("8_rtf2g")]
+[node name="AuthorLevelTag" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("8_rtf2g")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="FollowButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+[node name="FollowButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -479,7 +480,7 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("9_ll54y")
 text = "FOLLOW_NAME"
 
-[node name="FollowedButton" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+[node name="FollowedButton" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 40)
@@ -488,14 +489,14 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("9_ll54y")
 text = "FOLLOWED_NAME"
 
-[node name="Line" type="PanelContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+[node name="Line" type="PanelContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxLine_6vkn7")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="WorkNameLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="WorkNameLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -504,17 +505,17 @@ theme_override_font_sizes/font_size = 24
 text = "WorkName"
 autowrap_mode = 2
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/WorkNameLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/WorkNameLabel" instance=ExtResource("5_fdmke")]
 
-[node name="DescriptionLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "DESCRIPTION_NAME"
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/DescriptionLabel" instance=ExtResource("5_fdmke")]
 
-[node name="Description" type="TextEdit" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Description" type="TextEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -535,18 +536,18 @@ autowrap_mode = 2
 scroll_fit_content_height = true
 caret_blink = true
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/Description" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/Description" instance=ExtResource("5_fdmke")]
 
-[node name="OperationLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="OperationLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "OPERATION_NAME"
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/OperationLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/OperationLabel" instance=ExtResource("5_fdmke")]
 
-[node name="Operation" type="TextEdit" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Operation" type="TextEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -567,33 +568,33 @@ autowrap_mode = 2
 scroll_fit_content_height = true
 caret_blink = true
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/Operation" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/Operation" instance=ExtResource("5_fdmke")]
 
-[node name="WorkTagLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="WorkTagLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "WORK_TAG_NAME"
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/WorkTagLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/WorkTagLabel" instance=ExtResource("5_fdmke")]
 
-[node name="WorkTagContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="WorkTagContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="WorkTag" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/WorkTagContainer" instance=ExtResource("11_dj7m7")]
+[node name="WorkTag" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/WorkTagContainer" instance=ExtResource("11_dj7m7")]
 layout_mode = 2
 
-[node name="ViewTimesLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="ViewTimesLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "VIEW_TIMES_NAME"
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/ViewTimesLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/ViewTimesLabel" instance=ExtResource("5_fdmke")]
 
-[node name="ViewTimes" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="ViewTimes" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -601,17 +602,17 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("11_1udrr")
 text = "--"
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/ViewTimes" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/ViewTimes" instance=ExtResource("5_fdmke")]
 
-[node name="PublishTimeLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="PublishTimeLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 text = "PUBLISH_TIME_NAME"
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/PublishTimeLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/PublishTimeLabel" instance=ExtResource("5_fdmke")]
 
-[node name="PublishTime" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="PublishTime" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
@@ -619,64 +620,64 @@ theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("11_1udrr")
 text = "--"
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/PublishTime" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/VBoxContainer/PublishTime" instance=ExtResource("5_fdmke")]
 
-[node name="MoreWorks" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
+[node name="MoreWorks" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/MoreWorks"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer"]
 layout_mode = 2
 
-[node name="MoreWorksLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer"]
+[node name="MoreWorksLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 theme_override_font_sizes/font_size = 24
 text = "MORE_WORKS_NAME"
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer/MoreWorksLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer/MoreWorksLabel" instance=ExtResource("5_fdmke")]
 
-[node name="HWorkCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer"]
+[node name="HWorkCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HWorkCard" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer/HWorkCardContainer" instance=ExtResource("11_e43ck")]
+[node name="HWorkCard" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/MoreWorks/MarginContainer/VBoxContainer/HWorkCardContainer" instance=ExtResource("11_e43ck")]
 layout_mode = 2
 
-[node name="RecommendedWorks" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
+[node name="RecommendedWorks" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("2_3t1v3")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/RecommendedWorks"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer"]
 layout_mode = 2
 
-[node name="RecommendedWorksLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer"]
+[node name="RecommendedWorksLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 theme_override_fonts/font = ExtResource("7_uuxp6")
 theme_override_font_sizes/font_size = 24
 text = "RECOMMENDED_WORKS_NAME"
 
-[node name="ThemePainter" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer/RecommendedWorksLabel" instance=ExtResource("5_fdmke")]
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer/RecommendedWorksLabel" instance=ExtResource("5_fdmke")]
 
-[node name="HRecommendedWorkCardContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer"]
+[node name="HRecommendedWorkCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HWorkCard" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer/HRecommendedWorkCardContainer" instance=ExtResource("11_e43ck")]
+[node name="HWorkCard" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/RecommendedWorks/MarginContainer/VBoxContainer/HRecommendedWorkCardContainer" instance=ExtResource("11_e43ck")]
 layout_mode = 2
 
 [connection signal="request_completed" from="WorkRequest" to="." method="_on_work_request_request_completed"]
@@ -686,13 +687,13 @@ layout_mode = 2
 [connection signal="request_completed" from="FollowRequest" to="." method="_on_follow_request_request_completed"]
 [connection signal="request_completed" from="UserWorksRequest" to="." method="_on_user_works_request_request_completed"]
 [connection signal="request_completed" from="RecommendedRequest" to="." method="_on_recommended_request_request_completed"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/OpenInBrowserButton" to="." method="_on_open_in_browser_button_pressed"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikeButton" to="." method="_on_like_button_pressed"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikedButton" to="." method="_on_liked_button_pressed"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectButton" to="." method="_on_collect_button_pressed"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectedButton" to="." method="_on_collected_button_pressed"]
-[connection signal="page_changed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/Mask/AvatarTexture" to="." method="view_user"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="view_user"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/FollowButton" to="." method="_on_follow_button_pressed"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/FollowedButton" to="." method="_on_followed_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Work/VBoxContainer/PanelContainer/HBoxContainer/OpenInBrowserButton" to="." method="_on_open_in_browser_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikeButton" to="." method="_on_like_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Like/LikedButton" to="." method="_on_liked_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectButton" to="." method="_on_collect_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Like&Collect/MarginContainer/HBoxContainer/Collect/CollectedButton" to="." method="_on_collected_button_pressed"]
+[connection signal="page_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Comments/MarginContainer/VBoxContainer/PaginationBar" to="." method="_on_pagination_bar_page_changed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/Mask/AvatarTexture" to="." method="view_user"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NicknameLabel" to="." method="view_user"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/FollowButton" to="." method="_on_follow_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2/Details/MarginContainer/VBoxContainer/FollowedButton" to="." method="_on_followed_button_pressed"]
