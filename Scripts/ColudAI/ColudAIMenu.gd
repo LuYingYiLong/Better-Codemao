@@ -1,7 +1,6 @@
 extends Control
 
 @onready var sessions_request = %SessionsRequest
-@onready var add_session_request = %AddSessionRequest
 @onready var query_session_request = %QuerySessionRequest
 
 @onready var combo_box = %ComboBox
@@ -53,6 +52,7 @@ var session_name: String
 func _ready():
 	ColudAIUserManager.user_data_update.connect(_on_user_data_update)
 	ColudAIUserManager.sessions_update.connect(_on_sessions_update)
+	ColudAIUserManager.sign_status_update.connect(_on_sign_status_update)
 	secure_text_edit.set_ai_chat("ColudAI")
 	default_session_button.metadata = ""
 	var user_data: Dictionary = ColudAIUserManager.get_user_data()
@@ -81,6 +81,10 @@ func _on_sessions_update() -> void:
 	sessions_request.request("https://ai.coludai.cn/api/user/sessions?", \
 			[ColudAIUserManager.get_cookie()], \
 			HTTPClient.METHOD_GET)
+
+func _on_sign_status_update() -> void:
+	logged_in = false
+	login_button.text = "LOGIN_NAME"
 
 func _on_login_button_pressed() -> void:
 	if logged_in: Application.async_load_scene.emit("res://Scenes/ColudAI/FlyUserDetails.tscn", {})
@@ -192,45 +196,32 @@ func add_chat_bubble(who: int, avatar: Texture, content: String) -> int:
 	chat_bubble_scene.content = content
 	return chat_bubble_scene.get_index()
 
-# 添加新会话
-func add_session(new_session_name: String) -> void:
-	if ColudAIUserManager.get_sessions().size() >= MAX_SESSIONS: return
-	session_name = new_session_name
-	add_session_request.request("https://ai.coludai.cn/api/session/create", \
-			["Content-Type: Application/json"], \
-			HTTPClient.METHOD_POST, \
-			JSON.stringify({"name": session_name}))
-
 func _on_sessions_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-	if not json.get("array") is Array: return
-	var items: Array = json.get("array", [])
-	for item: Dictionary in items:
-		var base_button_scene = BASE_BUTTON_SCENE.instantiate()
-		sessions_container.add_child(base_button_scene)
-		base_button_scene.add_to_group("Sessions")
-		base_button_scene.text = item.get("name", "ERROR")
-		base_button_scene.metadata = item.get("sessionid", "")
-		base_button_scene.group = "Sessions"
-		base_button_scene.last_tab = default_session_button.get_index()
-		base_button_scene.last_tab_scene = default_session_button
-		base_button_scene.metadata_output.connect(_on_session_button_metadata_output)
+	var json_class = JSON.new()
+	var result = json_class.parse(body.get_string_from_utf8())
+	if result == OK:
+		var json: Dictionary = JSON.parse_string('{"array":%s}'  %body.get_string_from_utf8())
+		if not json.get("array") is Array: return
+		var items: Array = json.get("array", [])
+		var count: int = 0
+		for node in sessions_container.get_children():
+			if count > 0: node.queue_free()
+			count += 1
+		for item: Dictionary in items:
+			var base_button_scene = BASE_BUTTON_SCENE.instantiate()
+			sessions_container.add_child(base_button_scene)
+			base_button_scene.add_to_group("Sessions")
+			base_button_scene.text = item.get("name", "ERROR")
+			base_button_scene.metadata = item.get("sessionid", "")
+			base_button_scene.group = "Sessions"
+			base_button_scene.last_tab = default_session_button.get_index()
+			base_button_scene.last_tab_scene = default_session_button
+			base_button_scene.metadata_output.connect(_on_session_button_metadata_output)
+	else:
+		ColudAIUserManager.sign_out()
 
 func _on_session_button_metadata_output(metadata: String) -> void:
 	session_id = metadata
-
-func _on_add_session_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-	session_id = json.get("sessionid", "")
-	if session_id.is_empty(): return
-	var session_index: int = ColudAIUserManager.add_session(session_id, session_name)
-	ColudAIUserManager.set_current_session(session_index)
-	var base_button_scene = BASE_BUTTON_SCENE.instantiate()
-	sessions_container.add_child(base_button_scene)
-	base_button_scene.add_to_group("Sessions")
-	base_button_scene.text = session_name
-	base_button_scene.group = "Sessions"
-	base_button_scene.selected = true
 
 func _on_query_session_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
@@ -272,6 +263,8 @@ func _on_new_conversation_button_pressed() -> void:
 		if !content_dialog.is_connected("callback", _content_dialog_callback): content_dialog.callback.connect(_content_dialog_callback)
 		content_dialog.load_from_json({"title": "WARNING_NAME", "text": TranslationServer.translate("MAXIMUM_SESSION_WARNING").format([MAX_SESSIONS])})
 		content_dialog.show_content_dialog()
+	else:
+		Application.async_load_scene.emit("res://Scenes/ColudAI/FlyAddSession.tscn", {})
 
 func _content_dialog_callback(_index: int) -> void:
 	var content_dialog = Application.get_global_node("ContentDialog")

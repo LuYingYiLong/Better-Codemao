@@ -1,0 +1,398 @@
+[gd_scene load_steps=19 format=3 uid="uid://eykki6qbsvuh"]
+
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="1_hlr2c"]
+[ext_resource type="Script" uid="uid://cpplm5c6o0xtu" path="res://Scripts/Library/FactionMenu.gd" id="1_w6746"]
+[ext_resource type="PackedScene" uid="uid://bqabpg44ed0mq" path="res://Scenes/BaseUIComponents/SimpleHttpRequest.tscn" id="2_lrrfj"]
+[ext_resource type="Material" uid="uid://bb0nb3jfh3mbo" path="res://Shaders/DiscreteOcean.tres" id="2_ps5a6"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="3_eb7ak"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="4_w6746"]
+[ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="6_36260"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="9_36260"]
+[ext_resource type="FontFile" uid="uid://dndmarojekfh5" path="res://Resources/Fonts/Segoe Fluent Icons.ttf" id="9_yuw3f"]
+[ext_resource type="StyleBox" uid="uid://ck8x0ojn261w3" path="res://Resources/Themes/PanelContainer-Light.tres" id="10_vxcui"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="11_fvyjd"]
+[ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="11_yg0bu"]
+[ext_resource type="SystemFont" uid="uid://cet1proxcxegx" path="res://Resources/Fonts/SystemFontMedium.tres" id="12_yes50"]
+[ext_resource type="StyleBox" uid="uid://nohkvbokicl4" path="res://Resources/Themes/VLine-Light.tres" id="13_jarvj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuw3f"]
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Gradient" id="Gradient_vxcui"]
+colors = PackedColorArray(0, 0, 0, 0.788235, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fvyjd"]
+gradient = SubResource("Gradient_vxcui")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apen8"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="FactionMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w6746")
+
+[node name="FactionRequest" parent="." instance=ExtResource("2_lrrfj")]
+unique_name_in_owner = true
+progress_bar = NodePath("../ScrollContainer/ProgressBar")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hlr2c")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RolePanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+clip_children = 2
+material = ExtResource("2_ps5a6")
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yuw3f")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("6_36260")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NoLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/MarginContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+text = "No.--"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/MarginContainer"]
+layout_mode = 2
+
+[node name="HandbookTexture" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/MarginContainer/VBoxContainer" instance=ExtResource("3_eb7ak")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_w6746")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="NameLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_36260")
+theme_override_font_sizes/font_size = 26
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_yuw3f")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("GradientTexture1D_fvyjd")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "DESCRIPTION_NAME"
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RolePanel/TextureRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_spacing = -4
+text = "Description"
+autowrap_mode = 3
+
+[node name="RoleDetailsPanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("10_vxcui")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel" instance=ExtResource("11_fvyjd")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
+
+[node name="HealthPanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_apen8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/HealthPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HealthLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/HealthPanel/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("12_yes50")
+text = "HEALTH_NAME"
+uppercase = true
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/HealthPanel/VBoxContainer/HealthLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="HealthTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/HealthPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_36260")
+theme_override_font_sizes/font_size = 24
+text = "--"
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/HealthPanel/VBoxContainer/HealthTotalLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="BeginSeparator" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = ExtResource("13_jarvj")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/BeginSeparator" instance=ExtResource("11_fvyjd")]
+
+[node name="SpeedPanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_apen8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpeedPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SpeedLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpeedPanel/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("12_yes50")
+text = "SPEED_NAME"
+uppercase = true
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpeedPanel/VBoxContainer/SpeedLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="SpeedTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpeedPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_36260")
+theme_override_font_sizes/font_size = 24
+text = "--"
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpeedPanel/VBoxContainer/SpeedTotalLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="AttackPanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_apen8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/AttackPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AttackLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/AttackPanel/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("12_yes50")
+text = "ATTACK_NAME"
+uppercase = true
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/AttackPanel/VBoxContainer/AttackLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="AttackTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/AttackPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_36260")
+theme_override_font_sizes/font_size = 24
+text = "--"
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/AttackPanel/VBoxContainer/AttackTotalLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="Separator" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = ExtResource("13_jarvj")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/Separator" instance=ExtResource("11_fvyjd")]
+
+[node name="DefensePanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_apen8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/DefensePanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DefenseLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/DefensePanel/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("12_yes50")
+text = "DEFENSE_NAME"
+uppercase = true
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/DefensePanel/VBoxContainer/DefenseLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="DefenseTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/DefensePanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_36260")
+theme_override_font_sizes/font_size = 24
+text = "--"
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/DefensePanel/VBoxContainer/DefenseTotalLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="SpecialAttackPanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_apen8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialAttackPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SpecialAttackLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialAttackPanel/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("12_yes50")
+text = "SPECIAL_ATTACK_NAME"
+uppercase = true
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialAttackPanel/VBoxContainer/SpecialAttackLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="SpecialAttackTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialAttackPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_36260")
+theme_override_font_sizes/font_size = 24
+text = "--"
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialAttackPanel/VBoxContainer/SpecialAttackTotalLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="EndSeparator" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = ExtResource("13_jarvj")
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/EndSeparator" instance=ExtResource("11_fvyjd")]
+
+[node name="SpecialDefensePanel" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_apen8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialDefensePanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SpecialDefenseLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialDefensePanel/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("12_yes50")
+text = "SPECIAL_DEFENSE_NAME"
+uppercase = true
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialDefensePanel/VBoxContainer/SpecialDefenseLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="SpecialDefenseTotalLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialDefensePanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_fonts/font = ExtResource("9_36260")
+theme_override_font_sizes/font_size = 24
+text = "--"
+text_overrun_behavior = 3
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/RoleDetailsPanel/MarginContainer/GridContainer/SpecialDefensePanel/VBoxContainer/SpecialDefenseTotalLabel" instance=ExtResource("11_fvyjd")]
+
+[node name="ProgressBar" parent="ScrollContainer" instance=ExtResource("11_yg0bu")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="request_completed" from="FactionRequest" to="." method="_on_faction_request_request_completed"]

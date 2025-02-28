@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dw88kfb87jdls"]
+[gd_scene load_steps=20 format=3 uid="uid://dw88kfb87jdls"]
 
 [ext_resource type="Script" uid="uid://jo2jnk8whkkj" path="res://Scripts/ColudAI/FlyUserDetails.gd" id="1_84nau"]
 [ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="1_oq1i3"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://guycskdfsy8d" path="res://Scenes/BaseUIComponents/TextEdit.tscn" id="5_prfhv"]
 [ext_resource type="Theme" uid="uid://d0mq5q5s16u37" path="res://Resources/Themes/SimpleButton-Light.tres" id="7_f8vl1"]
 [ext_resource type="PackedScene" uid="uid://brxq8kk53a3hx" path="res://Scenes/BaseUIComponents/ProgressBar.tscn" id="8_6qs8a"]
+[ext_resource type="Texture2D" uid="uid://cb4lpmeb8vv6r" path="res://Resources/Textures/Copy.svg" id="8_j6jtx"]
+[ext_resource type="Texture2D" uid="uid://dlh0ixpfywrqf" path="res://Resources/Textures/View.svg" id="9_16ghl"]
+[ext_resource type="Texture2D" uid="uid://dsosgrcsii6j7" path="res://Resources/Textures/Hide.svg" id="10_qx7sc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8vl1"]
 bg_color = Color(1, 1, 1, 1)
@@ -278,22 +281,61 @@ text = "CA"
 
 [node name="ThemePainter" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/CALabel" instance=ExtResource("1_oq1i3")]
 
-[node name="CAEdit" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox" instance=ExtResource("4_hufji")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 40)
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox"]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 10
-editable = false
 
-[node name="CAValidationButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox"]
+[node name="CAEdit" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/HBoxContainer" instance=ExtResource("4_hufji")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+secret = true
+
+[node name="CAValidationButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(320, 40)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("7_f8vl1")
 text = "CA_VALIDATION_NAME"
+
+[node name="CopyButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_f8vl1")
+theme_override_constants/icon_max_width = 32
+icon = ExtResource("8_j6jtx")
+icon_alignment = 1
+
+[node name="ShowButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_f8vl1")
+theme_override_constants/icon_max_width = 32
+icon = ExtResource("9_16ghl")
+icon_alignment = 1
+
+[node name="HideButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_f8vl1")
+theme_override_constants/icon_max_width = 32
+icon = ExtResource("10_qx7sc")
+icon_alignment = 1
 
 [node name="PromptWordsBox" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -354,6 +396,26 @@ theme_override_constants/margin_bottom = 30
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="CancelButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_f8vl1")
+text = "CANCEL_NAME"
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer/CancelButton" instance=ExtResource("1_oq1i3")]
+
+[node name="SignOutButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_f8vl1")
+text = "SIGN_OUT_NAME"
+
+[node name="ThemePainter" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer/SignOutButton" instance=ExtResource("1_oq1i3")]
+
 [node name="OkButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -373,7 +435,12 @@ autoplay = "Show"
 
 [connection signal="request_completed" from="QueryPromptRequest" to="." method="_on_query_prompt_request_request_completed"]
 [connection signal="request_completed" from="SetPromptRequest" to="." method="_on_set_prompt_request_request_completed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/CAValidationButton" to="." method="_on_ca_validation_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/HBoxContainer/CAValidationButton" to="." method="_on_ca_validation_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/HBoxContainer/CopyButton" to="." method="_on_copy_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/HBoxContainer/ShowButton" to="." method="_on_show_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CABox/HBoxContainer/HideButton" to="." method="_on_hide_button_pressed"]
 [connection signal="text_changed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox/PromptWordsEdit" to="." method="_on_prompt_words_edit_text_changed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/PromptWordsBox/ChangePromptWordsButton" to="." method="_on_change_prompt_words_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer/SignOutButton" to="." method="_on_sign_out_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonContainer/OkButton" to="." method="_on_ok_button_pressed"]

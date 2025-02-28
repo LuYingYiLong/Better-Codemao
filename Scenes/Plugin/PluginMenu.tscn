@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cu0qjrgpaf58u"]
+
+[ext_resource type="Script" uid="uid://closk076f1nb4" path="res://Scripts/Plugin/PluginMenu.gd" id="1_hgkgv"]
+[ext_resource type="Theme" uid="uid://4wnlucn420o6" path="res://Resources/Themes/ScrollContainer-Light.tres" id="1_s0eqv"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="2_hgkgv"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="3_104b1"]
+[ext_resource type="PackedScene" uid="uid://cgyc8p5opm82r" path="res://Scenes/Plugin/PluginCard.tscn" id="5_104b1"]
+
+[node name="PluginMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hgkgv")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_s0eqv")
+
+[node name="ThemePainter" parent="ScrollContainer" instance=ExtResource("2_hgkgv")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="InstalledPluginsLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("3_104b1")
+text = "INSTALLED_PLUGINS_NAME"
+
+[node name="ThemePainter" parent="ScrollContainer/MarginContainer/VBoxContainer/InstalledPluginsLabel" instance=ExtResource("2_hgkgv")]
+
+[node name="InstalledPluginCardContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PluginCard" parent="ScrollContainer/MarginContainer/VBoxContainer/InstalledPluginCardContainer" instance=ExtResource("5_104b1")]
+layout_mode = 2

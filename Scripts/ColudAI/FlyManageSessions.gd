@@ -32,7 +32,7 @@ func populate_sessions(sessions: Array) -> void:
 func _on_delete_session_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	if json == null: return
-	if json.get("message") == "ok": ColudAIUserManager.remove_session(delete_sessions.pop_back())
+	if json.get("message") == "ok": delete_sessions.resize(delete_sessions.size() - 1)
 	if !delete_sessions.is_empty():
 		delete_session_request.request("https://ai.coludai.cn/api/session/delete", \
 				["Content-Type: Application/json"], \

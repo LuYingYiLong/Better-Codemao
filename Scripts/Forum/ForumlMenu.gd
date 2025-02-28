@@ -169,6 +169,8 @@ func on_all_received(result: int, _response_code: int, _headers: PackedStringArr
 	for node in post_card_container.get_children():
 		node.queue_free()
 	var items: Array = json.get("items")
+	var target_interface = Interface.get_interface(get_node("/root/@Control@119/Node"), &"MyPlugin")
+	if target_interface: target_interface.forum_posts_changed(items)
 	pagination_bar.total = ceili(float(items.size()) / LOADS_NUMBER)
 	pagination_bar.update_pager_total()
 	pagination_bar.visible = pagination_bar.total > 0

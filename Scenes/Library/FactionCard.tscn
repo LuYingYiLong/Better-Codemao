@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bu5dqfwyn5dyi"]
+
+[ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="1_icyne"]
+[ext_resource type="Script" uid="uid://drwt4y0ljac6t" path="res://Scripts/Library/FactionCard.gd" id="2_th75j"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="3_vf1yo"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="4_fhas1"]
+[ext_resource type="Material" uid="uid://h3h86yy12dsj" path="res://Shaders/Hover3D.tres" id="5_vf1yo"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="6_fhas1"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="7_cp3py"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhas1"]
+
+[node name="FactionCard" type="PanelContainer"]
+offset_right = 158.0
+offset_bottom = 213.0
+theme_override_styles/panel = ExtResource("1_icyne")
+script = ExtResource("2_th75j")
+
+[node name="ThemePainter" parent="." instance=ExtResource("3_vf1yo")]
+
+[node name="Card" type="Button" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fhas1")
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HandbookTexture" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_fhas1")]
+unique_name_in_owner = true
+material = ExtResource("5_vf1yo")
+custom_minimum_size = Vector2(204, 271)
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("6_fhas1")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("7_cp3py")
+theme_override_font_sizes/font_size = 26
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ThemePainter" parent="MarginContainer/VBoxContainer/NameLabel" instance=ExtResource("3_vf1yo")]
+
+[connection signal="pressed" from="Card" to="." method="_on_card_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HandbookTexture" to="." method="_on_handbook_texture_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/HandbookTexture" to="." method="_on_handbook_texture_mouse_exited"]

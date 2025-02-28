@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://csg0n6d7u0rvf"]
+[gd_scene load_steps=48 format=3 uid="uid://csg0n6d7u0rvf"]
 
 [ext_resource type="Script" uid="uid://d0nrmwgp3ek3a" path="res://Scripts/Application.gd" id="1_5hvyn"]
 [ext_resource type="PackedScene" uid="uid://c4h76lvohoy6a" path="res://Scenes/User/LoginMenu.tscn" id="2_1hfjc"]
@@ -22,11 +22,13 @@
 [ext_resource type="Texture2D" uid="uid://c070s2dlx5ae2" path="res://Resources/Textures/Library.svg" id="16_f4m3o"]
 [ext_resource type="PackedScene" uid="uid://c37vy0oob4v5k" path="res://Scenes/BaseUIComponents/PopupMenu.tscn" id="16_f86f1"]
 [ext_resource type="Texture2D" uid="uid://dt4vvl5xceytj" path="res://Resources/Textures/Empty.svg" id="16_jv21r"]
+[ext_resource type="Texture2D" uid="uid://0vqurc44vwqw" path="res://Resources/Textures/Plugin.svg" id="17_f4m3o"]
 [ext_resource type="Texture2D" uid="uid://bdfpckc5q5mbw" path="res://Resources/Textures/COLUDAI.svg" id="17_lns7o"]
 [ext_resource type="Texture2D" uid="uid://cajejdglei48j" path="res://Resources/Textures/Message.svg" id="17_wwp2o"]
 [ext_resource type="PackedScene" uid="uid://d1r6i8d7tpoqp" path="res://Scenes/BaseUIComponents/ContentDialog.tscn" id="21_4v3bv"]
 [ext_resource type="PackedScene" uid="uid://dnpj1qtwe4hfr" path="res://Scenes/BaseUIComponents/FlyTextEdit.tscn" id="23_m37u7"]
 [ext_resource type="PackedScene" uid="uid://ccy1pjbdx7xby" path="res://Scenes/ImageViewer.tscn" id="23_omtur"]
+[ext_resource type="Script" uid="uid://diw2v04k6v5t3" path="res://examples/Main.gd" id="29_wwp2o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lemjn"]
 
@@ -525,6 +527,12 @@ icon = ExtResource("17_lns7o")
 text = "ColudAI"
 group = "NavigationButtonsGroup"
 
+[node name="PluginButton" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
+layout_mode = 2
+icon = ExtResource("17_f4m3o")
+text = "PLUGIN_NAME"
+group = "NavigationButtonsGroup"
+
 [node name="MessageButton" parent="NavigationBar/MarginContainer/VBoxContainer" groups=["NavigationButtonsGroup"] instance=ExtResource("9_2koew")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -603,6 +611,9 @@ dialog_autowrap = true
 access = 2
 use_native_dialog = true
 
+[node name="Node" type="Node" parent="."]
+script = ExtResource("29_wwp2o")
+
 [connection signal="request_completed" from="SensitiveWordsRequest" to="SensitiveWordsRequest" method="_on_shielded_word_request_request_completed"]
 [connection signal="request_completed" from="CheckUpdatesRequest" to="CheckUpdatesRequest" method="_on_request_completed"]
 [connection signal="tab_selected" from="HBoxContainer/VBoxContainer/AddressBar/MarginContainer/AddressTabBar" to="HBoxContainer/VBoxContainer/AddressBar" method="_on_address_tab_bar_tab_selected"]
@@ -612,6 +623,7 @@ use_native_dialog = true
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/ForumTab" to="NavigationBar" method="_on_forum_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/LibraryTab" to="NavigationBar" method="_on_library_tab_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/ColudAIButton" to="NavigationBar" method="_on_colud_ai_button_pressed"]
+[connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/PluginButton" to="NavigationBar" method="_on_plugin_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/MessageButton" to="NavigationBar" method="_on_message_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/SettingsButton" to="NavigationBar" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="NavigationBar/MarginContainer/VBoxContainer/UserButton" to="NavigationBar" method="_on_user_button_pressed"]

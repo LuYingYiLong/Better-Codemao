@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgyc8p5opm82r"]
+
+[ext_resource type="StyleBox" uid="uid://pfmb6a744j1s" path="res://Resources/Themes/Box-Light.tres" id="1_50vpo"]
+[ext_resource type="PackedScene" uid="uid://ci8hbvggabgnh" path="res://Scenes/ImageUrlLoader.tscn" id="2_d0fap"]
+[ext_resource type="Script" uid="uid://d2m5kewsakvoh" path="res://Scripts/Plugin/PluginCard.gd" id="2_r0obl"]
+[ext_resource type="Texture2D" uid="uid://yjyvl733y0f8" path="res://Resources/Textures/Photo.svg" id="3_r0obl"]
+[ext_resource type="SystemFont" uid="uid://qgdcrj7r5eya" path="res://Resources/Fonts/SystemFontBold.tres" id="4_x2xk2"]
+[ext_resource type="PackedScene" uid="uid://dhhh13oso15fl" path="res://Scenes/BaseUIComponents/ToggleSwitch.tscn" id="5_e3626"]
+[ext_resource type="Theme" uid="uid://xjgco3mkt4cv" path="res://Resources/Themes/FlatHyperButton-Light.tres" id="6_x2xk2"]
+[ext_resource type="PackedScene" uid="uid://d2870yealvg0d" path="res://Scenes/ThemePainter.tscn" id="7_e3626"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7g3u"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="PluginCard" type="PanelContainer"]
+offset_right = 839.0
+offset_bottom = 70.0
+theme_override_styles/panel = ExtResource("1_50vpo")
+script = ExtResource("2_r0obl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Mark" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7g3u")
+
+[node name="IconTexture" parent="MarginContainer/HBoxContainer/Mark" instance=ExtResource("2_d0fap")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_r0obl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -6
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("4_x2xk2")
+theme_override_font_sizes/font_size = 20
+text = "Name"
+text_overrun_behavior = 4
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.105882, 0.105882, 0.490196)
+theme_override_constants/line_spacing = -7
+text = "Description"
+text_overrun_behavior = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DetailsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_x2xk2")
+text = "DETAILS_NAME"
+
+[node name="ThemePainter" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/DetailsButton" instance=ExtResource("7_e3626")]
+
+[node name="ToggleSwitch" parent="MarginContainer/HBoxContainer" instance=ExtResource("5_e3626")]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/DetailsButton" to="." method="_on_details_button_pressed"]

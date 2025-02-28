@@ -3,6 +3,7 @@ extends Node
 signal login_data_update(new_login_data: Dictionary)
 signal user_data_update(new_user_data: Dictionary)
 signal ca_update(new_ca: String)
+signal sign_status_update(sign_in: bool)
 @warning_ignore("unused_signal")
 signal sessions_update
 
@@ -77,3 +78,4 @@ func sign_out() -> void:
 	Application.save_json_file(Application.USER_DATA_PATH, user_data)
 	login_data_update.emit(login_to_coludai)
 	user_data_update.emit(user_to_coludai)
+	sign_status_update.emit(false)

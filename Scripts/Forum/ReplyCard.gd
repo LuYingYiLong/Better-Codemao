@@ -32,7 +32,7 @@ var page: int
 
 var menu
 
-func set_reply_card_data(json: Dictionary):
+func set_reply_card_data(json: Dictionary) -> void:
 	data = json
 	var user: Dictionary = json.get("user")
 	avatar_texture.load_image(user.get("avatar_url"), user.get("nickname"))
@@ -72,7 +72,7 @@ func populate_comments(comments: Array, append: bool = false) -> void:
 		comment_card_scene.comment_pressed.connect(_on_comment_card_comment_pressed)
 		comment_card_scene.delete_pressed.connect(_on_comment_card_delete_pressed)
 
-func _on_comments_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+func _on_comments_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 	populate_comments(json.get("items", []), page > 1)
 	expand_more_button.visible = LIMIT * page < int(json.get("total", 0))
@@ -89,22 +89,22 @@ func _menu_callback(item_id: int) -> void:
 	elif item_id == 1:
 		delete_pressed.emit(data.get("id").to_int())
 
-func _on_avatar_texture_gui_input(event):
+func _on_avatar_texture_gui_input(event) -> void:
 	if event is InputEventMouseButton and \
 			event.is_pressed and \
 			event.button_mask == 1 and \
 			event.button_index == 1:
 		jump_to_user_menu()
 
-func _on_nickname_label_pressed():
+func _on_nickname_label_pressed() -> void:
 	jump_to_user_menu()
 
-func jump_to_user_menu():
+func jump_to_user_menu() -> void:
 	Application.append_address.emit(data.get("user").get("nickname"), \
 			"res://Scenes/User/UserMenu.tscn", \
 			{"id": int(data.get("user", {}).get("id", -1))})
 
-func _on_gui_input(event):
+func _on_gui_input(event) -> void:
 	if event is InputEventMouseButton and \
 			event.is_pressed and \
 			event.button_index == 2 and \
@@ -115,6 +115,6 @@ func _on_gui_input(event):
 		if data.get("user").get("id").to_int() == Application.user_id: NativeMenu.add_item(menu, TranslationServer.translate("DELETE_NAME"), _menu_callback, Callable(), 1)
 		NativeMenu.popup(menu, DisplayServer.mouse_get_position())
 
-func _on_expand_more_button_pressed():
+func _on_expand_more_button_pressed() -> void:
 	page += 1
 	comments_request.request("https://api.codemao.cn/web/forums/replies/%s/comments?limit=%s&page=%s" %[data.get("id", 0), LIMIT, page])

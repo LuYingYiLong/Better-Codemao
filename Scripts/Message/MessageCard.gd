@@ -31,7 +31,7 @@ func set_message_card_data(_data: Dictionary) -> void:
 		link_button.text = link_button_text.format([message.get("business_name")])
 		content_label_text = message.get("comment")
 		work_id = message.get("business_id")
-	elif type == "WORK_REPLY_AUTHOR" or type == "POST_REPLY_AUTHOR" or type == "POST_REPLY_REPLY_FEEDBACK" or type == "WORK_REPLY_REPLY_AUTHOR":
+	elif type == "WORK_REPLY_AUTHOR" or type == "POST_REPLY_AUTHOR" or type == "POST_REPLY_REPLY_FEEDBACK" or type == "WORK_REPLY_REPLY_AUTHOR" or type == "POST_REPLY_REPLY_AUTHOR":
 		link_button.text = link_button_text.format([message.get("business_name"), message.get("replied_user_nickname")])
 		content_label_text = message.get("reply")
 		comment_label_text = message.get("replied", "")
@@ -60,6 +60,8 @@ func set_message_card_data(_data: Dictionary) -> void:
 		link_button.text = link_button_text.format([message.get("business_name")])
 		comment_label_text = message.get("comment", "")
 		post_id = message.get("business_id")
+	else:
+		print(type)
 	user_id = sender.get("id", 0)
 	post_id = message.get("business_id", 0)
 	content_label.text = Application.html_to_text(content_label_text)

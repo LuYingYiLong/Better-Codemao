@@ -7,6 +7,9 @@ extends Node
 
 signal request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedStringArray)
 
+func cancel_request() -> void:
+	http_request.cancel_request()
+
 @warning_ignore("int_as_enum_without_cast")
 func request(url: String, custom_headers: PackedStringArray = PackedStringArray(), method: HTTPClient.Method = 0, request_data: String = ""):
 	var error = http_request.request(url, custom_headers, method, request_data)
